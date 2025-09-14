@@ -1,0 +1,16 @@
+[MASTER]
+# Make Pylint see both the project root AND the "idosell/models" folder
+# so imports like "import base" and cross-folder imports under models/* work.
+init-hook='import sys; from pathlib import Path; ROOT=Path(__file__).parent.resolve(); sys.path[:0]=[str(ROOT), str(ROOT/"idosell"/"models")]'
+
+[MESSAGES CONTROL]
+# Enable the message, report, category or checker with the given id(s). You can
+# either give multiple identifier separated by comma (,) or put this option
+# multiple time.
+#enable=
+
+# Disable the message, report, category or checker with the given id(s). You
+# can either give multiple identifier separated by comma (,) or put this option
+# multiple time (only on the command line, not in the configuration file where
+# it should appear only once).
+disable=line-too-long, missing-class-docstring, missing-module-docstring, fixme, anomalous-backslash-in-string, too-many-lines
