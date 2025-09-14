@@ -49,12 +49,6 @@ source .venv/bin/activate
 uv pip install -e .
 ```
 
-### Using poetry
-
-```sh
-poetry install
-```
-
 ### Using pip
 
 ```sh
