@@ -1,411 +1,717 @@
-# Idosell REST API (Python v3)
+# Idosell Python API - Usage examples
 
-This package wraps the Idosell REST API to make it easier to use by implementing chainable options, intuitive methods, and helpers for formatting requests. The [official Idosell documentation](https://idosell.readme.io/docs) still applies.
+This comprehensive guide shows **real-world usage examples** for the Idosell Python SDK across all modules: PIM, CRM, OMS, CMS, System, and WMS.
 
-## Basic use
+> **Note**: See README.md for basic setup. This file focuses on advanced, practical examples.
 
-The Python package exposes readable method names matching the REST verbs and endpoints, using Pythonic snake_case. Most methods retain their original names but converted to snake_case.
-
-TODO - make it clearer!!
+## Client Setup
 
 ```python
-import asyncio
-from idosell.client import IdosellClient
-from idosell.models.enums import EnumGateType
+from idosell.api_request import ApiRequest
 
-async def main():
-    client = IdosellClient("https://yourshop.iai-shop.com", "API_KEY")
-    # Example usage (implementations are placeholders)
-    # categories = await client.products.get_categories()
-    # orders = await client.orders.get_orders()
-    # returns = await client.returns.get_returns()
-    # clients = await client.clients.get_clients()
-    # enums = client.enums.get_enum(EnumGateType.PRODUCTS_RETURN_ELEMENTS)
-    await client.close()
-
-asyncio.run(main())
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
 ```
 
----
+## Product Information Management (PIM)
+
+### 1. Product Categories Management
 
 ```python
-from idosell import Idosell
+from idosell.pim.products._common import CategoriesModel, OperationEnum
+from idosell.pim.products.categories import Get, Put, PutPimProductsCategoriesParamsModel, SearchIdosell, SearchIdosellPimProductsCategoriesParamsModel
+from idosell.api_request import ApiRequest
 
-# Initialize the client
-idosell_request = Idosell(shop_url="https://yourdomain.com", api_key="API_KEY", api_version="v3")
-print(idosell_request)
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get categories
+categories_data = Get(
+    languages=["pol"],
+    resultsPage=1,
+    resultsLimit=20
+)
+res = api.request(categories_data)
+
+# Add new category
+new_category_params = PutPimProductsCategoriesParamsModel(
+    categories = [CategoriesModel(
+        id=101,
+        parent_id=1,
+        priority=10,
+        operation=OperationEnum.ADD,
+    )])
+
+new_category = Put(params=new_category_params)
+res = api.request(new_category)
+
+# Search IdoSell categories
+search_dto = SearchIdosell(
+    params = SearchIdosellPimProductsCategoriesParamsModel(
+        # ...
+    )
+)
+res = api.request(search_dto)
 ```
 
-**Sample output:**
-
-```json
-{
-    "method": null,
-    "endpoint": null,
-    "params": {},
-    "base_url": "https://yourdomain.com/api/admin/v3",
-    "headers": {
-        "X-API-KEY": "API_KEY",
-        "Content-Type": "application/json"
-    }
-}
-```
-
-- **API_KEY**: Obtainable from your Idosell panel.
-- **SHOP_URL**: Base URI of your shop, e.g.: `https://yourdomain.com`, `https://clientXXXX.idosell.com`, `https://yourshop.iai-shop.com`.
-- **API_VERSION**: Defaults to `v3`.
-
-### Properties vs Endpoints
-
-After creating the client, access its properties to work with specific endpoints. For example:
+### 2. Product Operations
 
 ```python
-# GET /products/categories
-categories = idosell_request.get_products_categories().params({"ids": [1,2,3]}).exec()
-print(categories)
+from idosell.pim.products.product._common import SettingModificationTypeEnum, SettingCalculateBasePriceSizesEnum, SettingsPutModel, ProductDateSearchModel, ProductDateModeSearchEnum
+from idosell.pim.products.product.product import PutPimProductsProductProductParamsModel, Search, Put, SearchPimProductsProductProductParamsModel
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get products with complex filters
+products_dto = Search(
+    params = SearchPimProductsProductProductParamsModel(
+        productDate = [ProductDateSearchModel(
+            productDateMode = ProductDateModeSearchEnum.ADDED,
+            productDateBegin = "2024-01-01",
+            productDateEnd = "2024-12-31"
+        )],
+        returnElements = "lang_data"
+    ),
+    resultsPage = 1,
+    resultsLimit = 50,
+)
+res = api.request(products_dto)
+
+# Bulk product update
+bulk_update = Put(
+    params=PutPimProductsProductProductParamsModel(
+        settings = SettingsPutModel(
+            settingModificationType = SettingModificationTypeEnum.ALL,
+            settingCalculateBasePriceSizes = SettingCalculateBasePriceSizesEnum.ALL
+        ),
+        picturesSettings = None,
+        products = []  # Note: requires at least one product model, but left empty for now
+    )
+)
+res = api.request(bulk_update)
 ```
 
-**Sample output:**
+### 3. Brands Management
 
-```json
-{
-    "count": 3,
-    "data": [
-        { "categoryId": 1, "name": "Electronics" },
-        { "categoryId": 2, "name": "Books" },
-        { "categoryId": 3, "name": "Clothing" }
+```python
+from idosell.pim.products.brands import Post, PostPimProductsBrandsParamsModel
+from idosell.pim.products._common import ProducerPostModel, ImagesSettingsModel, SourceTypeEnum
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+brand_params = PostPimProductsBrandsParamsModel(
+    producers=[
+        ProducerPostModel(
+            nameInPanel="Example Brand",
+            imagesSettings=ImagesSettingsModel(sourceType=SourceTypeEnum.BASE64),
+            languagesConfigurations=[]
+        )
     ]
-}
-```
-
-```python
-# PUT /products/categories
-create_category = idosell_request.put_products_categories().params({"name": "New Category"}).exec()
-print(create_category)
-```
-
-**Sample output:**
-
-```json
-{ "status": "success", "categoryId": 42 }
-```
-
-Some endpoint-method mappings:
-
-```python
-idosell_request.get_products().exec()         # GET /products/products
-idosell_request.search_products().exec()      # POST /products/products/search
-idosell_request.delete_products().exec()      # POST /products/products/delete
-idosell_request.delete_products_opinions().exec()  # POST /products/opinions/opinions/delete
-```
-
-### Chaining methods to set request parameters
-
-You can chain methods named after parameters:
-
-```python
-categories = (
-    idosell_request
-    .get_products_categories()
-    .ids([123, 456, 789])
-    .languages(["pol", "eng"])
-    .result_page(1)
-    .result_limit(10)
-    .exec()
 )
-print(categories)
+
+brand_dto = Post(params=brand_params)
+res = api.request(brand_dto)
 ```
 
-**Sample output:**
-
-```json
-[
-    { "categoryId": 123, "language": "pol" },
-    { "categoryId": 456, "language": "eng" }
-]
-```
-
-**Generated GET URL:**
-
-```
-https://yourdomain.com/api/admin/v3/products/categories?ids=123,456,789&languages=pol,eng&result_page=1&result_limit=10
-```
-
-For POST:
+### 4. Collections Management
 
 ```python
-rebate = (
-    idosell_request
-    .post_discounts_rebates_code()
-    .campaign_id(123)
-    .code_number("REBATECODE")
-    .exec()
+from idosell.pim.products._common import ProductsCollectionsPostModel, ProductSizesPostModel
+from idosell.pim.products.collections import Post, PostPimProductsCollectionsParamsModel
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
 )
-print(rebate)
-```
 
-**Sample output:**
-
-```json
-{ "status": "created", "codeId": 987 }
-```
-
-## Helper functions
-
-### Page and Count
-
-Many endpoints support pagination. Use `page(page_number, limit)` or `count()`:
-
-```python
-count = idosell_request.get_products_categories().count()
-print(count)
-```
-
-**Sample output:**
-
-```
-42
-```
-
-```python
-categories = idosell_request.get_products_categories().page(1, 10).exec()
-print(categories)
-```
-
-**Sample output:**
-
-```json
-{
-    "page": 1,
-    "limit": 10,
-    "data": [ ... ]
-}
-```
-
-### Looping through pages
-
-Requests track paging via `has_next()`:
-
-```python
-req = idosell_request.get_returns().dates("2023-12-01").page(0, 10)
-while req.has_next():
-    results = req.exec()
-    print(results)
-```
-
-**Sample output:**
-
-```json
-{ "page": 0, "data": [ ... ], "hasNext": true }
-{ "page": 1, "data": [ ... ], "hasNext": false }
-```
-
-### Date, date ranges and formatting
-
-Use `dates(start_date, end_date, date_type)` for date ranges:
-
-```python
-dispatched = (
-    idosell_request
-    .search_orders()
-    .dates("2023-12-01", "2023-12-31", "dispatch")
-    .exec()
-)
-print(dispatched)
-```
-
-**Sample output:**
-
-```json
-{
-  "ordersRange": {
-    "ordersDateRange": {
-      "ordersDateBegin": "2023-12-01 00:00:00",
-      "ordersDateEnd": "2023-12-31 23:59:59",
-      "ordersDateType": "dispatch"
-    }
-  },
-  "data": [ ... ]
-}
-```
-
-Single date defaults to now:
-
-```python
-from datetime import datetime, timedelta
-orders = idosell_request.search_orders().dates(datetime.now() - timedelta(days=1)).exec()
-print(orders)
-```
-
-**Sample output:**
-
-```json
-{ "range": "2025-07-24 12:00:00" to "2025-07-25 12:00:00", "data": [ ... ] }
-```
-
-## Array of objects
-
-### Simple objects
-
-```python
-analytics = idosell_request.get_orders_analytics().serial_numbers([123, 456, 789]).exec()
-print(analytics)
-```
-
-**Sample output:**
-
-```json
-{
-  "orders": [
-    { "orderSerialNumber": 123 },
-    { "orderSerialNumber": 456 },
-    { "orderSerialNumber": 789 }
-  ]
-}
-```
-
-### Complex objects
-
-Use `append()` to build arrays:
-
-```python
-update = idosell_request.put_products().settings({"settingModificationType":"edit"})
-update.product_id(101).product_displayed_code("CODE1").append()
-update.product_id(102).product_displayed_code("CODE2").product_retail_price(99.99).append()
-update.product_id(103).product_displayed_code("CODE3").product_note("Latest product").exec()
-print(update)
-```
-
-**Sample output:**
-
-```json
-{
-  "settings": {"settingModificationType": "edit"},
-  "products": [
-    { "productId": 101, "productDisplayedCode": "CODE1" },
-    { "productId": 102, "productDisplayedCode": "CODE2", "productRetailPrice": 99.99 },
-    { "productId": 103, "productDisplayedCode": "CODE3", "productNote": "Latest product" }
-  ]
-}
-```
-
-Or in loops:
-
-```python
-codes = [{"id":202,"code":"CODE202"}, {"id":203,"code":"CODE203"}]
-update = idosell_request.put_products().settings({"settingModificationType":"edit"})
-for item in codes:
-    update.product_id(item["id"]).product_displayed_code(item["code"]).append()
-update.exec()
-```
-
-**Sample output:**
-
-```json
-{ "status": "updated", "modifiedCount": 2 }
-```
-
-## Enums
-
-Import and use ENUMS:
-
-```python
-from idosell import ENUMS
-result = idosell_request.search_products().return_elements([ENUMS.PRODUCTS_RETURN_ELEMENTS.CODE]).exec()
-print(result)
-
-status = idosell_request.get_returns().status(ENUMS.RETURN_STATUS.ACCEPTED).exec()
-print(status)
-```
-
-**Sample output:**
-
-```json
-{ "data": [ ... ], "returnStatus": "ACCEPTED" }
-```
-
-## Other formatters
-
-### order_by
-
-```python
-lowest = idosell_request.get_products_opinions().order_by("rating", ascending=True).exec()
-print(lowest)
-```
-
-**Sample output:**
-
-```json
-{ "ordersBy": [ { "elementName": "rating", "sortDirection": "ASC" } ], "data": [ ... ] }
-```
-
-### set_text
-
-```python
-update = (
-    idosell_request
-    .put_products()
-    .product_id(202)
-    .set_text("Świetny produkt")
-    .set_text("Awesome product", type="short", language_id="eng")
-    .set_text("<p>This product is really amazing</p>", type="long", language_id="eng", shop_id=1)
-    .exec()
-)
-print(update)
-```
-
-**Generated request body:**
-
-```json
-{
-  "products": [
-    {
-      "productId": 202,
-      "productParamDescriptions": {
-        "productParamDescriptionsLangData": [
-          { "langId": "pol", "productParamDescriptions": "Świetny produkt" },
-          { "langId": "eng", "productParamDescriptions": "Awesome product" }
+# Add a new collections
+collections_dto = Post(
+    params = PostPimProductsCollectionsParamsModel(
+        products=[
+            ProductsCollectionsPostModel(
+                productId=1,
+                productSizes=[
+                    ProductSizesPostModel(size="M")
+                ],
+                quantity=1
+            )
         ]
-      },
-      "productLongDescriptions": {
-        "productLongDescriptionsLangData": [
-          { "langId": "eng", "shopId": 1, "productLongDescription": "<p>This product is really amazing</p>" }
+    )
+)
+res = api.request(collections_dto)
+print(res)
+```
+
+## Customer Relationship Management (CRM)
+
+### 1. Client Management
+
+```python
+from idosell.crm.clients import (
+    Get, Post, PostCrmClientsClientsModel, PostCrmClientsParamsModel, Put, PutCrmClientsClientsModel,
+    PutCrmClientsParamsModel, SettingsPostModel, SettingsPostPutModel
+)
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get clients with filters
+clients_dto = Get(
+    resultsPage=1,
+    resultsLimit=50
+)
+res = api.request(clients_dto)
+
+# Create new client
+new_client = Post(
+    params = PostCrmClientsParamsModel(
+        clients = [PostCrmClientsClientsModel(
+            login="testuser",
+            code_extern="12345",
+            # ...
+        )],
+    ),
+    settings = SettingsPostModel(
+        send_mail = False,
+        send_sms = False
+    )
+)
+res = api.request(new_client)
+
+# Update client information
+update_client = Put(
+    params = PutCrmClientsParamsModel(
+        clients = [PutCrmClientsClientsModel(
+            clientLogin="updateduser",
+            clientEmail="updated@example.com",
+            # ...
+        )]
+    ),
+    clientsSettings = SettingsPostPutModel(
+        clientSettingSendMail = False,
+        clientSettingSendSms = False
+    )
+)
+res = api.request(update_client)
+
+```
+
+### 2. Client Balance Operations
+
+```python
+from idosell.crm.clients import PostBalance, PostBalanceCrmClientsParamsModel, SettingsPostPutModel, OperationClientsEnum
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Add credit to client balance
+add_balance = PostBalance(
+    params = PostBalanceCrmClientsParamsModel(
+        clientId=1,
+        operation=OperationClientsEnum.ADD,
+        balance=100.0,
+        currency="PLN",
+        note="Adding credit to client balance",
+        prepaidId=1
+    ),
+    settings = SettingsPostPutModel(
+        clientSettingSendMail = False,
+        clientSettingSendSms = False
+    )
+)
+res = api.request(add_balance)
+```
+
+### 3. Pricelists Management
+
+```python
+from idosell._common import BooleanStrLongEnum
+from idosell.crm.pricelists import Post, PostCrmPricelistsParamsModel, PutClients, PutClientsCrmPricelistsParamsModel
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Create new pricelist
+pricelist_create = Post(
+    params = PostCrmPricelistsParamsModel(
+        priceListName="Test Pricelist",
+        onlyOrderProductsWithManuallySetPrices=BooleanStrLongEnum.NO,
+        onlySeeProductsWithManuallySetPrices=BooleanStrLongEnum.NO
+    )
+)
+res = api.request(pricelist_create)
+
+# Assign clients to pricelist
+assign_clients = PutClients(
+    params = PutClientsCrmPricelistsParamsModel(
+        priceListId=1,
+        clientsIds=[123]
+    )
+)
+res_assign = api.request(assign_clients)
+```
+
+### 4. Giftcards Management
+
+```python
+from idosell.crm.giftcards import Post, PostCrmGiftcardsParamsModel, Put, PutCrmGiftcardsParamsModel
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Create giftcard
+giftcard_create = Post(
+    params=PostCrmGiftcardsParamsModel(
+        giftCards=[
+            GiftCardPostModel(
+                number="000000001",
+                pin="1234",
+                name="Test Gift Card",
+                expirationDate="2025-12-31",
+                balanceOperationType=BalanceOperationTypeEnum.ADD,
+                balance=BalanceModel(amount=100.0, currency="PLN"),
+                shops=[1],
+                note="Test note",
+                typeId=1
+            )
         ]
-      }
-    }
-  ]
-}
+    )
+)
+res = api.request(giftcard_create)
+
+# Update giftcard balance
+giftcard_update = Put(
+    params=PutCrmGiftcardsParamsModel(
+        giftCards=[
+            GiftCardPutModel(
+                id=1,
+                number="000000001",
+                pin="1234",
+                name="Updated Gift Card",
+                expirationDate="2025-12-31",
+                balanceOperationType=BalanceOperationTypeEnum.SET,
+                balance=BalanceModel(amount=50.0, currency="PLN"),
+                shops=[1],
+                note="Updated note"
+            )
+        ]
+    )
+)
+res = api.request(giftcard_update)
 ```
 
-### params
+### 5. Newsletter Subscriptions
 
 ```python
-query = {"orderSource": {"auctionsParams": {"auctionsServicesNames": ["allegro"]}}}
-orders = idosell_request.params(query).exec()
-print(orders)
+from idosell.crm.newsletter import SearchEmail, Get
+from idosell.crm._common import BooleanStrShortEnum
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Search newsletter subscribers by email
+newsletter_dto = SearchEmail(
+    results_page=0,
+    results_limit=10,
+    params=SearchEmailCrmNewsletterParamsModel(
+        # ...
+    )
+)
+res = api.request(newsletter_dto)  # type: ignore
 ```
 
-**Sample output:**
+## 📦 Order Management System (OMS)
 
-```json
-{ "data": [ ... ] }
-```
-
-## Debugging
-
-Retrieve parameters without sending:
+### 1. Order Processing
 
 ```python
-params = idosell_request.search_orders().orders_serial_numbers([123,456,789]).get_params()
-print(params)
+from idosell.oms.orders import Get, Search, SearchOmsOrdersParamsModel
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get orders with filters
+orders_dto = Get(
+    ordersIds = ['1']
+)
+res = api.request(orders_dto)
+
+# Search orders by serial numbers
+order_search = Search(
+    params = SearchOmsOrdersParamsModel()
+)
+res = api.request(order_search)
 ```
 
-**Sample output:**
+### 2. Package Management
 
 ```python
-{ "ordersSerialNumbers": [123, 456, 789] }
+from idosell.oms.packages import (
+    Post, PostOmsPackagesParamsModel, Search, SearchOmsPackagesParamsModel,
+    OrderPackagesPackagesPostModel, EventOrderTypeEnum
+)
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Create shipment package
+package_dto = Post(
+    params = PostOmsPackagesParamsModel(
+        orderPackages=[
+            OrderPackagesPackagesPostModel(
+                eventId=1,
+                eventType=EventOrderTypeEnum.ORDER,
+                parcelParameters=[],
+                parcelParametersByPackages=[]
+            )
+        ]
+    )
+)
+res = api.request(package_dto)
+
+# Get packages with status
+packages_dto = Search(
+    params = SearchOmsPackagesParamsModel(
+        deliveryPackageNumbers=None,
+        events=None,
+        returnLabels=None
+    )
+)
+res = api.request(packages_dto)
 ```
 
-## Examples
+### 3. Returns & Refunds
 
-See more examples and documentation at [https://idosell-converter.vercel.app/examples](https://idosell-converter.vercel.app/examples)
+```python
+from idosell.oms.returns import Get, Post, PostOmsReturnsParamsModel, ProductsReturnsPostModel
+from idosell.oms.refunds import PutCancelRefund, PutCancelRefundOmsRefundsParamsModel, SourceTypeWithOrderEnum
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Create return request
+params = PostOmsReturnsParamsModel(
+    order_sn=12345,
+    stock_id=1,
+    products=[
+        ProductsReturnsPostModel(
+            id=67890,
+            size="M",
+            quantity=1.0,
+            price=10.99,
+            serialNumbers=[],
+            productOrderAdditional="Example additional info"
+        )
+    ],
+    status=1,
+    client_received=False,
+    change_status=False,
+    courier_id=1,
+    return_operator="Example operator",
+    tryCorrectInvoice=False,
+    include_shipping_cost="no",
+    additional_payment_cost="0.00",
+    emptyReturn="false"
+)
+return_request = Post(params=params)
+res = api.request(return_request)
+
+# Get returns list
+returns_dto = Get(
+    order_sn = 1
+)
+res = api.request(returns_dto)
+
+# Process refund
+refund_params = PutCancelRefundOmsRefundsParamsModel(
+    sourceType=SourceTypeWithOrderEnum.RETURN,
+    sourceId=12345,
+    paymentId="1"
+)
+refund_dto = PutCancelRefund(params=refund_params)
+res = api.request(refund_dto)
+```
+
+## 📝 Content Management System (CMS)
+
+### 1. Content Entries
+
+```python
+from idosell._common import BooleanStrShortEnum
+from idosell.cms.entries import Get, Post, Put, PostCmsEntriesParamsModel, PutCmsEntriesParamsModel
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get CMS entries
+entries_dto = Get(
+    entryId=1,
+    # ...
+)
+res = api.request(entries_dto)
+
+# Create new blog entry
+blog_post = Post(
+    params=PostCmsEntriesParamsModel(
+        shopId=1,
+        # ....
+    )
+)
+res = api.request(blog_post)
+
+# Update content
+update_entry = Put(
+    params=PutCmsEntriesParamsModel(
+        entryId=1,
+        deletePicture=BooleanStrShortEnum.NO,
+        # ...
+    )
+)
+res = api.request(update_entry)
+```
+
+### 2. Snippets & Config
+
+```python
+from idosell.cms.snippets.snippets import Get, Post, PostCmsSnippetsSnippetsParamsModel, PostSnippetsModel
+from idosell.cms.config_variables import Get as GetConfig, Put as PutConfig, PutCmsConfigVariablesModel, PutVariablesModel, TypeConfigVariablesEnum
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get active snippets
+snippets_dto = Get(
+    # ...
+)
+res = api.request(snippets_dto)
+
+# Create custom footer snippet
+footer_snippet = Post(
+    params=PostCmsSnippetsSnippetsParamsModel(
+        snippets=[
+            PostSnippetsModel(
+                name="Custom Footer Snippet",
+                campaign=1
+            )
+        ]
+    )
+)
+res = api.request(footer_snippet)
+
+# Get configuration variables
+config_dto = GetConfig(
+    type = TypeConfigVariablesEnum.SNIPPETS_CAMPAIGN,
+)
+res = api.request(config_dto)
+
+# Update configuration
+update_config = PutConfig(
+    params=PutCmsConfigVariablesModel(
+        variables=[
+            PutVariablesModel(
+                key="example_key",
+                value=None,
+                type="snippets_campaign",
+                itemId=1
+            )
+        ]
+    )
+)
+res = api.request(update_config)
+```
+
+## 🛠️ System Management
+
+### 1. Shops Configuration
+
+```python
+from idosell.system.shops import GetCurrencies
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get shops currencies
+shops_dto = GetCurrencies()
+res = api.request(shops_dto)
+```
+
+### 2. Couriers Management
+
+```python
+from idosell.system.couriers import Get
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get available couriers
+couriers_dto = Get(
+    countryCode = 'PL'
+)
+res = api.request(couriers_dto)
+```
+
+### 3. Delivery Methods
+
+```python
+from idosell.system.deliveries import GetProfiles
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get profiles
+dto = GetProfiles()
+res = api.request(dto)
+
+```
+
+## 📊 Warehouse Management System (WMS)
+
+### 1. Stock Management
+
+```python
+from idosell.wms.stocks import GetProducts, PutProducts
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get stock levels
+stocks_dto = GetProducts(
+    # ...
+)
+res = api.request(stocks_dto)
+
+# Update stock quantities
+stock_update = PutProducts(
+    params=PutProductsWmsStocksParamsModel(
+        products=[
+            ProductsPostPutModel(
+                product=1,  # Example product ID
+                size="M",  # Example size
+                quantity=10,  # Example quantity to update
+                productPurchasePrice=15.50,  # Example purchase price
+                locationId=1,  # Example location ID
+                locationCode="LOC001",  # Example location code
+                locationTextId="Warehouse1\\SectionA\\Shelf01"  # Example location text ID
+            )
+        ],
+        type=DocumentTypeEnum.PW,
+        id=1
+    )
+)
+res = api.request(stock_update)
+```
+
+### 2. Warehouse Locations
+
+```python
+from idosell.wms.locations import GetLocations
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get warehouse locations
+locations_dto = GetLocations(
+    # ...
+)
+res = api.request(locations_dto)
+```
+
+### 3. Supplier Stock Tracking
+
+```python
+from idosell.wms._common import SuppliersModel, AverageDeliveryTimeModel, OrderCompletionTimeModel, WorkDaysModel
+from idosell.wms.suppliers import Get, Put, PutWmsSuppliersParamsModel
+from idosell.api_request import ApiRequest
+
+api = ApiRequest(
+    base_url="https://yourshop.iai-shop.com/",
+    api_key="YOUR_API_KEY"
+)
+
+# Get supplier information
+suppliers_dto = Get(
+    # ...
+)
+res = api.request(suppliers_dto)
+
+# Update supplier product codes
+supplier_update = Put(
+    params = PutWmsSuppliersParamsModel(
+        suppliers = [SuppliersModel(
+            id=1,
+            name="Supplier Name",
+            email="email@example.com",
+            phone="123456789",
+            fax="987654321",
+            street="Street Address",
+            zipCode="12345",
+            city="City Name",
+            country=1,
+            taxCode="123456789",
+            averageDeliveryTime=AverageDeliveryTimeModel(value=1, unit="days"),
+            description="Supplier description",
+            orderCompletionTime=OrderCompletionTimeModel(value=1, unit="days"),
+            workDays=[WorkDaysModel.model_validate({"day": 1, "type": "weekday", "from": "08:00", "to": "17:00"})]
+        )]
+    )
+)
+res = api.request(supplier_update)
+```

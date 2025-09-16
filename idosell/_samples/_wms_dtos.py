@@ -2,7 +2,7 @@ from typing import List, Any
 
 from idosell._common import BooleanStrShortEnum
 from idosell.wms._common import AverageDeliveryTimeModel, DocumentTypeEnum, DocumentsConfirmedEnum, DocumentsCurrencyForPurchasePriceRateTypeEnum, DocumentsPriceTypeEnum, DocumentsQueueTypeEnum, DocumentsWntEnum, OrderCompletionTimeModel, ProductsDeleteModel, ProductsPostPutModel, SuppliersModel, WorkDaysModel
-from idosell.wms.locations import GetWmsLocations as WmsGetWmsLocations
+from idosell.wms.locations import GetLocations as WmsGetWmsLocations
 from idosell.wms.stocks import (
     DeleteDocuments as WmsStocksDeleteDocuments, DeleteDocumentsWmsStocksParamsModel, DeleteProducts as WmsStocksDeleteProducts, DeleteProductsWmsStocksParamsModel,
     GetDocuments as WmsGetDocuments, GetOpenedDocuments as WmsGetOpenedDocuments, GetProducts as WmsGetProducts,

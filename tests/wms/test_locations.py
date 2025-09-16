@@ -1,16 +1,16 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.wms.locations import GetWmsLocations
+from idosell.wms.locations import GetLocations
 from idosell.wms._common import ReturnElementsEnum
 
 
-class TestGetWmsLocations:
+class TestGetLocations:
     """Test cases for GetWmsLocations model."""
 
     def test_instantiate_without_params(self):
         """Test creating instance with default (None) values."""
-        dto = GetWmsLocations()
+        dto = GetLocations()
         assert dto.locationId is None
         assert dto.locationCode is None
         assert dto.stockId is None
@@ -20,7 +20,7 @@ class TestGetWmsLocations:
 
     def test_instantiate_with_valid_params(self):
         """Test creating instance with valid parameters."""
-        dto = GetWmsLocations(
+        dto = GetLocations(
             locationId=1,
             locationCode="LOC001",
             stockId=2,
@@ -38,35 +38,35 @@ class TestGetWmsLocations:
     def test_location_id_validation_min(self):
         """Test locationId must be >= 1."""
         with pytest.raises(ValidationError):
-            GetWmsLocations(locationId=0)
+            GetLocations(locationId=0)
         with pytest.raises(ValidationError):
-            GetWmsLocations(locationId=-1)
+            GetLocations(locationId=-1)
 
     def test_location_code_validation_min_length(self):
         """Test locationCode must have min_length 1."""
         with pytest.raises(ValidationError):
-            GetWmsLocations(locationCode="")
+            GetLocations(locationCode="")
 
     def test_stock_id_validation_min(self):
         """Test stockId must be >= 1."""
         with pytest.raises(ValidationError):
-            GetWmsLocations(stockId=0)
+            GetLocations(stockId=0)
 
     def test_results_page_validation_min(self):
         """Test resultsPage must be >= 0."""
         with pytest.raises(ValidationError):
-            GetWmsLocations(resultsPage=-1)
+            GetLocations(resultsPage=-1)
 
     def test_results_limit_validation_range(self):
         """Test resultsLimit must be between 1 and 100."""
         with pytest.raises(ValidationError):
-            GetWmsLocations(resultsLimit=0)
+            GetLocations(resultsLimit=0)
         with pytest.raises(ValidationError):
-            GetWmsLocations(resultsLimit=101)
+            GetLocations(resultsLimit=101)
 
     def test_build_body(self):
         """Test build_body method returns correct structure."""
-        dto = GetWmsLocations(
+        dto = GetLocations(
             locationId=1,
             locationCode="LOC001"
         )
@@ -81,7 +81,7 @@ class TestGetWmsLocations:
 
     def test_build_body_exclude_none(self):
         """Test build_body excludes None values."""
-        dto = GetWmsLocations(locationId=1)
+        dto = GetLocations(locationId=1)
         body = dto.build_body()
         assert "locationCode" not in body["params"]
         assert "stockId" not in body["params"]
@@ -91,7 +91,7 @@ class TestGetWmsLocations:
 
     def test_build_body_with_return_elements(self):
         """Test build_body with list of enums."""
-        dto = GetWmsLocations(returnElements=[ReturnElementsEnum.LOCATIONNAME])
+        dto = GetLocations(returnElements=[ReturnElementsEnum.LOCATIONNAME])
         body = dto.build_body()
         expected = {
             "params": {
@@ -102,7 +102,7 @@ class TestGetWmsLocations:
 
     def test_build_body_with_multiple_return_elements(self):
         """Test build_body with multiple enums in list."""
-        dto = GetWmsLocations(returnElements=[ReturnElementsEnum.LOCATIONNAME, ReturnElementsEnum.STOCKID])
+        dto = GetLocations(returnElements=[ReturnElementsEnum.LOCATIONNAME, ReturnElementsEnum.STOCKID])
         body = dto.build_body()
         expected = {
             "params": {
@@ -113,5 +113,5 @@ class TestGetWmsLocations:
 
     def test_inheritance_from_pageable_camel_gateway(self):
         """Test that it correctly inherits from PageableCamelGateway."""
-        assert 'resultsPage' in GetWmsLocations.model_fields
-        assert 'resultsLimit' in GetWmsLocations.model_fields
+        assert 'resultsPage' in GetLocations.model_fields
+        assert 'resultsLimit' in GetLocations.model_fields

@@ -225,7 +225,7 @@ class ProductDateModeSearchEnum(StrEnum):
     MODIFIED_AND_QUANTITY_CHANGED= 'modified_and_quantity_changed' #date of last modification and stock quantity change.
 
 class ReturnElementsSearchEnum(StrEnum):
-    ANG_DATA = 'ang_data'
+    LANG_DATA = 'lang_data'
     ADDING_TIME = 'adding_time'
     DELETED = 'deleted'
     CODE = 'code'

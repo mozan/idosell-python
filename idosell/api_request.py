@@ -133,12 +133,12 @@ class ApiRequest:
                 raise ValueError("base_url is required when no client is provided")
             client = httpx.Client(base_url=base, timeout=timeout or self.config['timeout'])
         try:
-            if method == "GET":
+            if method == "GET": # TODO remove before merge
                 resp = client.request(
                     method = method,
-                    url = endpoint,  # resolved against base_url if set on client
-                    params = params, # type: ignore
-                    json = json_body, # type: ignore
+                    url = endpoint,
+                    params = params,
+                    json = json_body,
                     headers = req_headers,
                     auth = auth or self.config['auth'],
                     timeout = timeout or self.config['timeout'],
@@ -159,6 +159,8 @@ class ApiRequest:
                         return resp
 
                 return resp.json() if parse_json else resp
+            else:
+                raise NotImplementedError("Only GET method is implemented in request")
         finally:
             if owns_client:
                 client.close()
@@ -216,31 +218,34 @@ class ApiRequest:
                 raise ValueError("base_url is required when no client is provided")
             client = httpx.AsyncClient(base_url=base, timeout=timeout or self.config['timeout'])
         try:
-            resp = await client.request(
-                method = method,
-                url = endpoint,
-                params = params, # type: ignore
-                json = json_body, # type: ignore
-                headers = req_headers,
-                auth = auth or self.config['auth'],
-                timeout = timeout or self.config['timeout'],
-            )
-            if raise_for_status:
-                resp.raise_for_status()
-            else:
-                if resp.is_error:
-                    if parse_json:
-                        return {
-                            "_error": {
-                                "status_code": resp.status_code,
-                                "reason": resp.reason_phrase,
-                                "url": str(resp.request.url),
-                                "body": resp.text,
+            if method == "GET": # TODO remove before merge
+                resp = await client.request(
+                    method = method,
+                    url = endpoint,
+                    params = params,
+                    json = json_body,
+                    headers = req_headers,
+                    auth = auth or self.config['auth'],
+                    timeout = timeout or self.config['timeout'],
+                )
+                if raise_for_status:
+                    resp.raise_for_status()
+                else:
+                    if resp.is_error:
+                        if parse_json:
+                            return {
+                                "_error": {
+                                    "status_code": resp.status_code,
+                                    "reason": resp.reason_phrase,
+                                    "url": str(resp.request.url),
+                                    "body": resp.text,
+                                }
                             }
-                        }
-                    return resp
+                        return resp
 
-            return await resp.json() if parse_json else resp
+                return await resp.json() if parse_json else resp
+            else:
+                raise NotImplementedError("Only GET method is implemented in async_request")
         finally:
             if owns_client:
                 await client.aclose()

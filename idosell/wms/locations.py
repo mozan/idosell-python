@@ -8,7 +8,7 @@ from idosell.wms._common import ReturnElementsEnum
 
 
 # --- Locations DTOs ---
-class GetWmsLocations(PageableCamelGateway):
+class GetLocations(PageableCamelGateway):
     """
     The method allows to download information about a selected location or all locations in a given warehouse together with a list of product IDs located in these locations.
     DOCS_URL: https://idosell.readme.io/reference/wmslocationsget
