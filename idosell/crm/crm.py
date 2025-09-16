@@ -1,6 +1,6 @@
 from enum import StrEnum
 from typing import List
-from pydantic import BaseModel, Field, PrivateAttr, StrictInt, model_validator
+from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from idosell._common import BooleanStrLongEnum, BooleanStrShortEnum, PageableCamelGateway
 from idosell.cms._common import ClientTypeEnum
@@ -36,13 +36,6 @@ class ClientLoyaltyCardModel(BaseModel):
     clientLoyaltyCardId: StrictInt | None = Field(None, ge=1, description="Customer loyalty card ID, omitted when has_loyalty_card = no")
     clientLoyaltyCardNumber: str | None = Field(None, description="Customer loyalty card number, omitted when has_loyalty_card = no")
 
-    @model_validator(mode='after')
-    def validate_conditional_fields(self):
-        if self.clientHasLoyaltyCard == ClientHasLoyaltyCardEnum.NO:
-            self.clientLoyaltyCardId = None
-            self.clientLoyaltyCardNumber = None
-        return self
-
 class NewsletterEmailApprovalsDataModel(BaseModel):
     inNewsletterEmailApproval: BooleanStrShortEnum = Field(..., description="Permission to E-mail Newsletter")
     shopId: StrictInt = Field(..., description="Shop Id")
@@ -64,14 +57,6 @@ class OrderModel(BaseModel):
     ordersMinimalValue: float | None = Field(None, description="Minimum order value, omitted when hasOrders = no")
     ordersSerialNumberRange: OrderSerialNumberRangeModel | None = Field(None, description="Data for serial number range")
     ordersAddDate: OrderAddDateModel | None = Field(None, description="Date range of orders made by customers, omitted when hasOrders = no")
-
-    @model_validator(mode='after')
-    def validate_conditional_fields(self):
-        if self.clientHasOrders == BooleanStrLongEnum.NO:
-            self.ordersMinimalValue = None
-            self.ordersSerialNumberRange = None
-            self.ordersAddDate = None
-        return self
 
 class PostParamsSearchModel(BaseModel):
     clientLogin: str | None = Field(None, description="Customer's login")

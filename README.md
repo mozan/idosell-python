@@ -1,6 +1,6 @@
-# Idosell Python SDK
+# Idosell Python API v6 wrapper (`/api/admin/v6/`)
 
-A Python 3 SDK for the Idosell REST API ([official documentation](https://idosell.readme.io/docs/apps) and [reference](https://idosell.readme.io/reference)).
+A Python 3 API wrapper for the Idosell REST API ([official documentation](https://idosell.readme.io/docs/apps) and [reference](https://idosell.readme.io/reference)).
 Inspired by the [@ltung7/idosell](https://github.com/ltung7/idosell) TypeScript library.
 
 This library provides access to Idosell e-commerce platform APIs, enabling management of customers (CRM), orders (OMS), products (PIM), CMS content, system settings, and warehouse operations (WMS).
@@ -53,8 +53,6 @@ result = api.request(categories_dto)
 print(result)
 ```
 
-For API key authentication, set `IDOSELL_API_KEY` or `IDOSELL_BASE_URL` environment variables.
-
 ## API Modules
 
 The library provides modular access to different Idosell systems:
@@ -66,11 +64,11 @@ The library provides modular access to different Idosell systems:
 - **System**: Configure shops, couriers, and deliveries
 - **WMS (Warehouse Management System)**: Track inventory, locations, and suppliers
 
-Each module includes GET, POST, PUT, DELETE operations with type-safe DTOs and Pydantic validation.
+Each module includes GET, POST, PUT, DELETE where needed operations with type-safe DTOs and Pydantic validation.
 
-## Advanced Usage
+## Usage
 
-See [USAGE.md](USAGE.md) for comprehensive examples, advanced patterns, bulk operations, async handling, error handling, and real-world integration guides.
+See [USAGE.md](USAGE.md) for some examples.
 
 ## License
 
@@ -104,9 +102,7 @@ uv build
 - `idosell/pim/`: Product Information Management
 - `idosell/system/`: System-related
 - `idosell/wms/`: Warehouse Management System
-- `idosell/_common.py`: Shared enumerations, models, and utilities
+- `idosell/_samples/`: Sample/test DTOs usage for all modules
+- `idosell/_common.py`: Shared enumerations, models and utilities
 - `idosell/api_request.py`: HTTP client for API requests
-- `idosell/_samples/`: Sample DTOs for all modules
 - `tests/`: Pytest-based tests
-
-API version: Use v6 (`/api/admin/v6/`) for full functionality.

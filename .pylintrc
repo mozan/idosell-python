@@ -13,4 +13,4 @@ init-hook='import sys; from pathlib import Path; ROOT=Path(__file__).parent.reso
 # can either give multiple identifier separated by comma (,) or put this option
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once).
-disable=line-too-long, missing-class-docstring, missing-module-docstring, fixme, anomalous-backslash-in-string, too-many-lines
+disable=line-too-long, missing-class-docstring, missing-module-docstring, fixme, anomalous-backslash-in-string, too-many-lines, invalid-name

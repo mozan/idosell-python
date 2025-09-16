@@ -68,6 +68,8 @@ if __name__ == "__main__":
                 endpoint = getattr(d, "_endpoint")
                 method = getattr(d, "_method", "GET").upper()
                 print(method + ": " + endpoint)
-                # if method == "GET" or method == "POST":
-                #     res = api.request(d)
-                #     print(method + ": " + endpoint + ":\nresponse:\n", res)
+                if method == "GET":
+                    res = api.request(d)
+                    print(method + ": " + endpoint + ":\nresponse:\n", res)
+                else:
+                    print(method + ": " + endpoint + ":\nSKIPPED (POST/PUT/DELETE)\n")
