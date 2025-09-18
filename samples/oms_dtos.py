@@ -123,12 +123,12 @@ oms_get: List[Any] = [ # type: ignore
         orderSerialNumber = ['1'],
         documentType = DocumentTypeOrdersGetEnum.SALES_CONFIRMATION
     ), # type: ignore
-    OmsOrdersGetExportdocumentsEPP(
-        dateBegin = '2025-06-26 17:00:00',
-        dateEnd = '2025-08-26 17:00:00',
-        applicationType = ApplicationTypeEnum.WFIRMA,
-        documentType = DocumentTypeEppEnum.ALL
-    ), # type: ignore
+    # OmsOrdersGetExportdocumentsEPP( # TODO check it out (takes too long time to respond)
+    #     dateBegin = '2025-08-25 17:00:00',
+    #     dateEnd = '2025-08-26 17:00:00',
+    #     applicationType = ApplicationTypeEnum.WFIRMA,
+    #     documentType = DocumentTypeEppEnum.INVOICE
+    # ), # type: ignore
     OmsOrdersGetExportdocumentsJPK(), # type: ignore
     OmsOrdersGetHandler(
         orderSerialNumber = 1

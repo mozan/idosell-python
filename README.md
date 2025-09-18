@@ -102,7 +102,7 @@ uv build
 - `idosell/pim/`: Product Information Management
 - `idosell/system/`: System-related
 - `idosell/wms/`: Warehouse Management System
-- `idosell/_samples/`: Sample/test DTOs usage for all modules
+- `idosell/samples/`: Sample/test DTOs usage for all modules
 - `idosell/_common.py`: Shared enumerations, models and utilities
 - `idosell/api_request.py`: HTTP client for API requests
 - `tests/`: Pytest-based tests
