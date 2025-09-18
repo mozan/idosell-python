@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.product.facebook import (
+from src.idosell.pim.products.product.facebook import (
     # DTOs
     DeleteToFacebookCatalogPimProductsProductFacebookParamsModel,
     PostToFacebookCatalogPimProductsProductFacebookParamsModel,

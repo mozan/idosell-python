@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.strikethrough import (
+from src.idosell.pim.products.strikethrough import (
     # DTOs
     StpSettingsModel,
     ShopsStrikethroughModel,
@@ -18,7 +18,7 @@ from idosell.pim.products.strikethrough import (
     PriceChangeBasevalueStrikethroughEnum,
     PriceModeStrikethroughEnum,
 )
-from idosell.pim.products._common import IdentModel, IdentTypeEnum, PriceRoundModeEnum
+from src.idosell.pim.products._common import IdentModel, IdentTypeEnum, PriceRoundModeEnum
 
 
 # --- Tests for DTOs

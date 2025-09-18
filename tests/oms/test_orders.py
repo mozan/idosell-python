@@ -7,7 +7,7 @@ without complex dependencies.
 """
 
 import pytest
-from idosell.oms.orders import (
+from src.idosell.oms.orders import (
     PutClientOmsOrdersParamsModel,
     PutCourierOmsOrdersParamsModel,
     PutHandlerOmsOrdersParamsModel,

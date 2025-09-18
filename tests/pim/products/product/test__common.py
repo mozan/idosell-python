@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.product._common import (
+from src.idosell.pim.products.product._common import (
     # --- Enums
     AttachmentOperationValuesEnum,
     ContextValueEnum,
@@ -160,8 +160,8 @@ from idosell.pim.products.product._common import (
     ProductSearchPriceRangeSearchModel,
     ProductTypeSearchModel,
 )
-from idosell._common import BooleanStrShortEnum, BooleanStrLongEnum
-from idosell.pim.products._common import AttachmentFileTypeEnum, AttachmentNameModel, DocumentTypesModel, PriceRoundModeEnum, ProductLongDescriptionsModel, ProductAuctionDescriptionsDataModel, VirtualAttachmentsBaseModel
+from src.idosell._common import BooleanStrShortEnum, BooleanStrLongEnum
+from src.idosell.pim.products._common import AttachmentFileTypeEnum, AttachmentNameModel, DocumentTypesModel, PriceRoundModeEnum, ProductLongDescriptionsModel, ProductAuctionDescriptionsDataModel, VirtualAttachmentsBaseModel
 
 
 # --- Tests for Enums

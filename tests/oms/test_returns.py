@@ -7,7 +7,7 @@ without complex dependencies.
 """
 
 import pytest
-from idosell.oms.returns import (
+from src.idosell.oms.returns import (
     # Enums
     ApiFlagReturnsEnum,
     DatesTypeEnum,

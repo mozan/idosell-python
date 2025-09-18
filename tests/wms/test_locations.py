@@ -1,8 +1,8 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.wms.locations import GetLocations
-from idosell.wms._common import ReturnElementsEnum
+from src.idosell.wms.locations import GetLocations
+from src.idosell.wms._common import ReturnElementsEnum
 
 
 class TestGetLocations:

@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.supplier import (
+from src.idosell.pim.products.supplier import (
     # DTOs
     PutCodePimProductsSupplierParamsModel,
     PutProductDataPimProductsSupplierParamsModel,
@@ -14,7 +14,7 @@ from idosell.pim.products.supplier import (
 # --- Tests for DTOs
 class TestPutCodePimProductsSupplierParamsModel:
     def test_valid(self):
-        from idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
+        from src.idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
 
         dto = PutCodePimProductsSupplierParamsModel(
             products=[ProductsSupplierPutCodeModel(
@@ -32,7 +32,7 @@ class TestPutCodePimProductsSupplierParamsModel:
         assert dto.products[0].productId == 1
 
     def test_multiple_products(self):
-        from idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
+        from src.idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
 
         dto = PutCodePimProductsSupplierParamsModel(
             products=[
@@ -61,7 +61,7 @@ class TestPutCodePimProductsSupplierParamsModel:
         assert len(dto.products) == 2
 
     def test_invalid_product_id_zero(self):
-        from idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
+        from src.idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
 
         with pytest.raises(ValidationError):
             PutCodePimProductsSupplierParamsModel(
@@ -78,7 +78,7 @@ class TestPutCodePimProductsSupplierParamsModel:
             )
 
     def test_invalid_deliverer_id_zero(self):
-        from idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
+        from src.idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
 
         with pytest.raises(ValidationError):
             PutCodePimProductsSupplierParamsModel(
@@ -97,7 +97,7 @@ class TestPutCodePimProductsSupplierParamsModel:
 
 class TestPutProductDataPimProductsSupplierParamsModel:
     def test_valid(self):
-        from idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
+        from src.idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
 
         dto = PutProductDataPimProductsSupplierParamsModel(
             products=[ProductsSupplierPutProductDataModel(
@@ -119,7 +119,7 @@ class TestPutProductDataPimProductsSupplierParamsModel:
         assert dto.products[0].productId == 1
 
     def test_clear_all_quantities_true(self):
-        from idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
+        from src.idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
 
         dto = PutProductDataPimProductsSupplierParamsModel(
             products=[ProductsSupplierPutProductDataModel(
@@ -134,7 +134,7 @@ class TestPutProductDataPimProductsSupplierParamsModel:
         assert dto.products[0].productDeliverers[0].clearAllQuantities == True
 
     def test_invalid_product_id_zero(self):
-        from idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
+        from src.idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
 
         with pytest.raises(ValidationError):
             PutProductDataPimProductsSupplierParamsModel(
@@ -155,7 +155,7 @@ class TestPutProductDataPimProductsSupplierParamsModel:
             )
 
     def test_invalid_deliverer_id_zero(self):
-        from idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
+        from src.idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
 
         with pytest.raises(ValidationError):
             PutProductDataPimProductsSupplierParamsModel(
@@ -176,7 +176,7 @@ class TestPutProductDataPimProductsSupplierParamsModel:
             )
 
     def test_invalid_quantity_zero(self):
-        from idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
+        from src.idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
 
         with pytest.raises(ValidationError):
             PutProductDataPimProductsSupplierParamsModel(
@@ -201,11 +201,11 @@ class TestPutProductDataPimProductsSupplierParamsModel:
 class TestPutCode:
     def test_invalid_empty_products(self):
         with pytest.raises(ValidationError):
-            from idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
+            from src.idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
             PutCodePimProductsSupplierParamsModel(products=[])
 
     def test_instantiate_with_products(self):
-        from idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
+        from src.idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
 
         dto = PutCode(
             params=PutCodePimProductsSupplierParamsModel(
@@ -232,11 +232,11 @@ class TestPutCode:
 class TestPutProductData:
     def test_invalid_empty_products(self):
         with pytest.raises(ValidationError):
-            from idosell.pim.products._common import ProductsSupplierPutProductDataModel
+            from src.idosell.pim.products._common import ProductsSupplierPutProductDataModel
             PutProductDataPimProductsSupplierParamsModel(products=[])
 
     def test_instantiate_with_products(self):
-        from idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
+        from src.idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
 
         dto = PutProductData(
             params=PutProductDataPimProductsSupplierParamsModel(

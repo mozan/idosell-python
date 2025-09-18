@@ -1,15 +1,15 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.cms.cpa.cpa import (
+from src.idosell.cms.cpa.cpa import (
     PageSettingsModeEnum, SourceEnum,
     DisplayModel, PageModel, PageSettingsModel, VariableModel,
     CpaModel, PostCpaModel, PutCpaModel,
     PostCmsCpaCpaParamsModel, PutCmsCpaCpaParamsModel,
     Get, Post, Put, Delete
 )
-from idosell._common import BooleanStrShortEnum, AllYNEnum
-from idosell.cms._common import PageEnum, ZoneEnum, BodyModel
+from src.idosell._common import BooleanStrShortEnum, AllYNEnum
+from src.idosell.cms._common import PageEnum, ZoneEnum, BodyModel
 
 
 # --- Tests for Enums

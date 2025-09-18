@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.crm.tags import (
+from src.idosell.crm.tags import (
     OperationTagsEnum, ClientTagsModel, DeleteClearCrmTagsParamsModel,
     DeleteCrmTagsParamsModel, PostCrmTagsParamsModel, PutCrmTagsParamsModel,
     DeleteClear, Delete as DeleteTags, Get, Post, Put

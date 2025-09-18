@@ -1,6 +1,6 @@
 import pytest
 from pydantic import ValidationError
-from idosell.wms._common import (
+from src.idosell.wms._common import (
     DateTypeEnum,
     DateRangeOpenedDocumentsModel,
     DocumentTypeEnum,

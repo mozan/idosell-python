@@ -11,7 +11,7 @@ class TestMarketingModuleImport:
     def test_module_import(self):
         """Test that marketing module can be imported successfully."""
         try:
-            from idosell.pim.products import marketing
+            from src.idosell.pim.products import marketing
             assert marketing is not None
         except ImportError:
             pytest.fail("Failed to import marketing module")
@@ -22,7 +22,7 @@ class TestMarketingEndpoints:
 
     def test_get_all_facebook_catalog_ids(self):
         """Test GetAllFacebookCatalogIds endpoint can be created."""
-        from idosell.pim.products.marketing import GetAllFacebookCatalogIds
+        from src.idosell.pim.products.marketing import GetAllFacebookCatalogIds
 
         try:
             # Try instantiation with minimal required parameters
@@ -35,7 +35,7 @@ class TestMarketingEndpoints:
 
     def test_get_promotion(self):
         """Test GetPromotion endpoint can be created."""
-        from idosell.pim.products.marketing import GetPromotion
+        from src.idosell.pim.products.marketing import GetPromotion
 
         try:
             endpoint = GetPromotion()
@@ -46,7 +46,7 @@ class TestMarketingEndpoints:
 
     def test_post_promotion(self):
         """Test PostPromotion endpoint can be created."""
-        from idosell.pim.products.marketing import PostPromotion
+        from src.idosell.pim.products.marketing import PostPromotion
 
         try:
             endpoint = PostPromotion()
@@ -56,7 +56,7 @@ class TestMarketingEndpoints:
 
     def test_put_promotion(self):
         """Test PutPromotion endpoint can be created."""
-        from idosell.pim.products.marketing import PutPromotion
+        from src.idosell.pim.products.marketing import PutPromotion
 
         try:
             endpoint = PutPromotion()
@@ -66,7 +66,7 @@ class TestMarketingEndpoints:
 
     def test_get_zones(self):
         """Test GetZones endpoint can be created."""
-        from idosell.pim.products.marketing import GetZones
+        from src.idosell.pim.products.marketing import GetZones
 
         try:
             endpoint = GetZones()
@@ -77,7 +77,7 @@ class TestMarketingEndpoints:
 
     def test_put_zones(self):
         """Test PutZones endpoint can be created."""
-        from idosell.pim.products.marketing import PutZones
+        from src.idosell.pim.products.marketing import PutZones
 
         try:
             endpoint = PutZones()

@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.crm import _common, vouchers
+from src.idosell.crm import _common, vouchers
 
 
 # --- Tests for Enums

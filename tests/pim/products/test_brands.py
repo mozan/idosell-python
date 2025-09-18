@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.brands import (
+from src.idosell.pim.products.brands import (
     # DTOs
     DeletePimProductsBrandsParamsModel,
     PostPimProductsBrandsParamsModel,
@@ -15,7 +15,7 @@ from idosell.pim.products.brands import (
     Post,
     Put,
 )
-from idosell.pim.products._common import (
+from src.idosell.pim.products._common import (
     FilterActiveModel,
     ProducerPostModel,
     ProducerPutModel,
@@ -28,7 +28,7 @@ from idosell.pim.products._common import (
     ProductCardImagesConfigurationModel,
     GraphicTypeEnum,
 )
-from idosell._common import BooleanStrShortEnum
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for DTOs

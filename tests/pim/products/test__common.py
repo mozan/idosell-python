@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products._common import (
+from src.idosell.pim.products._common import (
     # --- Enums
     AddTypeEnum,
     AttachmentFileTypeEnum,
@@ -134,7 +134,7 @@ from idosell.pim.products._common import (
     ScoreNegativeGetModel,
     DateRangeGetModel,
 )
-from idosell._common import BooleanStrShortEnum, BooleanStrLongEnum
+from src.idosell._common import BooleanStrShortEnum, BooleanStrLongEnum
 
 
 # --- Tests for General Enums

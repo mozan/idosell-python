@@ -1,14 +1,14 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.cms.entries import (
+from src.idosell.cms.entries import (
     PictureFormatEntriesEnum,
     LangsEntriesModel, VisibleOnSitesListEntriesModel, ProductsEntriesModel,
     PictureEntriesDataModel, EntitiesModel, DeleteCmsEntriesParamsModel,
     PostCmsEntriesParamsModel, PutCmsEntriesParamsModel,
     Delete, Get, Post, Put, GetPagesToDisplay, GetSources
 )
-from idosell._common import BooleanStrShortEnum
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for Enums

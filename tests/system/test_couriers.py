@@ -1,11 +1,11 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.system.couriers import (
+from src.idosell.system.couriers import (
     Get, GetAssignedToShippingProfiles, GetPickupPoints, PostPickupPoints, DeletePickupPoint, PutPickupPoints,
     DeletePickupPointSystemCouriersParamsModel, PostPickupPointsSystemCouriersParamsModel, PutPickupPointsSystemCouriersParamsModel
 )
-from idosell.system._common import (
+from src.idosell.system._common import (
     AddressModel, CoordinatesModel, DescriptionsCouriersModel, OperatingDaysModel, PickupPointDeleteRequestsPostModel, PickupPointsPostModel, PickupPointsPutModel,
     OperatingModeEnum, ServiceStatusEnum, PaymentFormsEnum
 )

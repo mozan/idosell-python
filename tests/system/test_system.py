@@ -1,16 +1,16 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.system.system import (
+from src.idosell.system.system import (
     GetConfig, PutConfig, GetCurrencies, PutCurrencies, GetProcessesAutomation, PutProcessesAutomation,
     GetServerLoad, GetServerTime, GetShopsData, GetUnits, PutUnits, GetUsers,
     PutConfigSystemSystemParamsModel, PutProcessesAutomationSystemSystemParamsModel, PutUnitsSystemSystemParamsModel
 )
-from idosell.system._common import (
+from src.idosell.system._common import (
     PanelSettingsModel, CurrenciesModel, OrdersModel, UnitsModel, DescriptionsSystemModel
 )
-from idosell._common import BooleanStrShortEnum
-from idosell.system._common import (
+from src.idosell._common import BooleanStrShortEnum
+from src.idosell.system._common import (
     MainStockSystemEnum, StockStateConfigEnum, TaxSettingsModel, ShopsModel, RestrictionsModel, UserTypeEnum
 )
 
@@ -18,7 +18,7 @@ from idosell.system._common import (
 # --- Tests for DTOs
 class TestPutConfigSystemSystemParamsModel:
     def test_valid(self):
-        from idosell.system._common import MainStockSystemEnum, StockStateConfigEnum, TaxSettingsModel, CurrencyRateEnum, SaleDateEnum, ShopsModel
+        from src.idosell.system._common import MainStockSystemEnum, StockStateConfigEnum, TaxSettingsModel, CurrencyRateEnum, SaleDateEnum, ShopsModel
         dto = PutConfigSystemSystemParamsModel(
             panelSettings=PanelSettingsModel(
                 mainStockSystem=MainStockSystemEnum.OTHER,

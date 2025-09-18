@@ -1,5 +1,5 @@
 import pytest
-from idosell.oms._common import (
+from src.idosell.oms._common import (
     # Enums
     ApiFlagEnum,
     ApplicationTypeEnum,
@@ -92,7 +92,7 @@ from idosell.oms._common import (
     SettingsPutModel,
     StocksSearachModel,
 )
-from idosell._common import BooleanStrShortEnum, ElementNameSearchEnum, SortDirectionSearchEnum
+from src.idosell._common import BooleanStrShortEnum, ElementNameSearchEnum, SortDirectionSearchEnum
 
 
 class TestEnums:

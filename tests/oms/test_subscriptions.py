@@ -8,7 +8,7 @@ without complex dependencies.
 
 from datetime import date, datetime, time
 import pytest
-from idosell.oms.subscriptions import (
+from src.idosell.oms.subscriptions import (
     # Enums
     DirectionTypeEnum, OrderByDirectionEnum, OrderByPropertyEnum, PriceChangeModeEnum, PropertyTypeEnum, SubscriptionsStatusEnum, SubscriptionsTypeEnum,
     # DTOs

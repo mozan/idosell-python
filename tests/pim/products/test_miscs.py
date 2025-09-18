@@ -11,7 +11,7 @@ class TestMiscsModuleImport:
     def test_module_import(self):
         """Test that miscs module can be imported successfully."""
         try:
-            from idosell.pim.products import miscs
+            from src.idosell.pim.products import miscs
             assert miscs is not None
         except ImportError:
             pytest.fail("Failed to import miscs module")
@@ -22,7 +22,7 @@ class TestMiscsEndpoints:
 
     def test_get_products_auctions(self):
         """Test GetProductsAuctions endpoint can be created."""
-        from idosell.pim.products.miscs import GetProductsAuctions
+        from src.idosell.pim.products.miscs import GetProductsAuctions
 
         try:
             # Note: This endpoint likely requires multiple parameters
@@ -33,7 +33,7 @@ class TestMiscsEndpoints:
 
     def test_get_products_code_existence(self):
         """Test GetProductsCodeExistence endpoint can be created."""
-        from idosell.pim.products.miscs import GetProductsCodeExistence
+        from src.idosell.pim.products.miscs import GetProductsCodeExistence
 
         try:
             endpoint = GetProductsCodeExistence()
@@ -43,7 +43,7 @@ class TestMiscsEndpoints:
 
     def test_get_products_id_by_sizecode(self):
         """Test GetProductsIdBySizecode endpoint can be created."""
-        from idosell.pim.products.miscs import GetProductsIdBySizecode
+        from src.idosell.pim.products.miscs import GetProductsIdBySizecode
 
         try:
             endpoint = GetProductsIdBySizecode()
@@ -53,7 +53,7 @@ class TestMiscsEndpoints:
 
     def test_get_products_reservations(self):
         """Test GetProductsReservations endpoint can be created."""
-        from idosell.pim.products.miscs import GetProductsReservations
+        from src.idosell.pim.products.miscs import GetProductsReservations
 
         try:
             endpoint = GetProductsReservations()
@@ -63,7 +63,7 @@ class TestMiscsEndpoints:
 
     def test_get_products_sku_by_barcode(self):
         """Test GetProductsSKUbyBarcode endpoint can be created."""
-        from idosell.pim.products.miscs import GetProductsSKUbyBarcode
+        from src.idosell.pim.products.miscs import GetProductsSKUbyBarcode
 
         try:
             endpoint = GetProductsSKUbyBarcode()
@@ -73,7 +73,7 @@ class TestMiscsEndpoints:
 
     def test_post_products_restore(self):
         """Test PostProductsRestore endpoint can be created."""
-        from idosell.pim.products.miscs import PostProductsRestore
+        from src.idosell.pim.products.miscs import PostProductsRestore
 
         try:
             # This likely requires productId parameter
@@ -84,7 +84,7 @@ class TestMiscsEndpoints:
 
     def test_put_products_attachments(self):
         """Test PutProductsAttachments endpoint can be created."""
-        from idosell.pim.products.miscs import PutProductsAttachments
+        from src.idosell.pim.products.miscs import PutProductsAttachments
 
         try:
             endpoint = PutProductsAttachments()
@@ -94,7 +94,7 @@ class TestMiscsEndpoints:
 
     def test_search_products_delivery_time(self):
         """Test SearchProductsDeliveryTime endpoint can be created."""
-        from idosell.pim.products.miscs import SearchProductsDeliveryTime
+        from src.idosell.pim.products.miscs import SearchProductsDeliveryTime
 
         try:
             endpoint = SearchProductsDeliveryTime()

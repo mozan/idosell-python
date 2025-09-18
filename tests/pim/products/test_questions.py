@@ -1,14 +1,14 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.questions import (
+from src.idosell.pim.products.questions import (
     # DTOs
     PutPimProductsQuestionsParamsModel,
     # Endpoints
     Get,
     Put,
 )
-from idosell.pim.products._common import (
+from src.idosell.pim.products._common import (
     QuestionsPutModel,
     ProductIdentQuestionsModel,
     ProductIdentTypeQuestionsEnum,

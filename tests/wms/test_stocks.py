@@ -1,18 +1,18 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.wms.stocks import (
+from src.idosell.wms.stocks import (
     DeleteDocuments, DeleteDocumentsWmsStocksParamsModel, DeleteProducts, DeleteProductsWmsStocksParamsModel,
     GetDocuments, GetOpenedDocuments, GetProducts, PostDocuments, PostDocumentsWmsStocksParamsModel,
     PostProducts, PostProductsWmsStocksParamsModel, PutAcceptMM, PutAcceptMMWmsStocksParamsModel,
     PutClose, PutCloseWmsStocksParamsModel, PutDocuments, PutDocumentsWmsStocksParamsModel,
     PutProducts, PutProductsWmsStocksParamsModel, PutRejectMM, PutRejectMMWmsStocksParamsModel
 )
-from idosell.wms._common import (
+from src.idosell.wms._common import (
     DocumentTypeEnum, DocumentTypeFullEnum, DocumentsConfirmedEnum, DocumentsPriceTypeEnum,
     DocumentsQueueTypeEnum, DocumentsWntEnum, OpenedDocumentsStatusEnum, StockDocumentStatusEnum
 )
-from idosell._common import BooleanStrShortEnum
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for DTOs
@@ -28,7 +28,7 @@ class TestDeleteDocumentsWmsStocksParamsModel:
 
 class TestDeleteProductsWmsStocksParamsModel:
     def test_valid(self):
-        from idosell.wms._common import ProductsDeleteModel
+        from src.idosell.wms._common import ProductsDeleteModel
         dto = DeleteProductsWmsStocksParamsModel(
             products=[ProductsDeleteModel(product=1, size="1")],
             type=DocumentTypeEnum.PZ,
@@ -143,7 +143,7 @@ class TestPostDocuments:
 
 class TestPutDocuments:
     def test_valid(self):
-        from idosell.wms._common import DocumentsCurrencyForPurchasePriceRateTypeEnum
+        from src.idosell.wms._common import DocumentsCurrencyForPurchasePriceRateTypeEnum
         dto = PutDocuments(params=PutDocumentsWmsStocksParamsModel(
             stockDocumentId=1,
             stockDocumentType=DocumentTypeEnum.PZ,
@@ -182,7 +182,7 @@ class TestGetOpenedDocuments:
 
 class TestDeleteProducts:
     def test_valid(self):
-        from idosell.wms._common import ProductsDeleteModel
+        from src.idosell.wms._common import ProductsDeleteModel
         dto = DeleteProducts(params=DeleteProductsWmsStocksParamsModel(
             products=[ProductsDeleteModel(product=1, size="1")],
             type=DocumentTypeEnum.PZ,
@@ -200,7 +200,7 @@ class TestGetProducts:
 
 class TestPostProducts:
     def test_valid(self):
-        from idosell.wms._common import ProductsPostPutModel
+        from src.idosell.wms._common import ProductsPostPutModel
         dto = PostProducts(params=PostProductsWmsStocksParamsModel(
             products=[ProductsPostPutModel(
                 product=1,
@@ -219,7 +219,7 @@ class TestPostProducts:
 
 class TestPutProducts:
     def test_valid(self):
-        from idosell.wms._common import ProductsPostPutModel
+        from src.idosell.wms._common import ProductsPostPutModel
         dto = PutProducts(params=PutProductsWmsStocksParamsModel(
             products=[ProductsPostPutModel(
                 product=1,

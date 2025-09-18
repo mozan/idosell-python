@@ -1,14 +1,14 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.omnibus import (
+from src.idosell.pim.products.omnibus import (
     # DTOs
     PutPricesPimProductsOmnibusParamsModel,
     # Endpoints
     GetPrices,
     PutPrices,
 )
-from idosell.pim.products._common import (
+from src.idosell.pim.products._common import (
     ProductsOmnibusModel,
     SizesOmnibusModel,
     ShopsModel,

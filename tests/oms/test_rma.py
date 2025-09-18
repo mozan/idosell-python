@@ -7,7 +7,7 @@ without complex dependencies.
 """
 
 import pytest
-from idosell.oms.rma import (
+from src.idosell.oms.rma import (
     # Enums
     StatusIdEnum,
     # DTOs

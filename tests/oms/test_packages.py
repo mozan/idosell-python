@@ -7,7 +7,7 @@ without complex dependencies.
 """
 
 import pytest
-from idosell.oms.packages import (
+from src.idosell.oms.packages import (
     # Enums
     EventOrderTypeEnum,
     # DTOs
@@ -28,7 +28,7 @@ from idosell.oms.packages import (
     Put,
     Search,
 )
-from idosell.oms._common import ShippingStoreCostsModel
+from src.idosell.oms._common import ShippingStoreCostsModel
 
 
 class TestEnums:

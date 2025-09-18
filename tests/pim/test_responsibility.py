@@ -1,14 +1,14 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.responsibility import (
+from src.idosell.pim.responsibility import (
     # DTOs
     PostEntitiesPimResponsabilityParamsModel,
     PutEntitiesPimResponsabilityParamsModel,
     # Endpoints
     GetEntities, PostEntities, PutEntities, DeleteEntities
 )
-from idosell.pim._common import (
+from src.idosell.pim._common import (
     EntityTypeEnum, EntitiesResponsibilityPostModel,
     EntitiesResponsibilityPutModel
 )

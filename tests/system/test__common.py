@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.system._common import (
+from src.idosell.system._common import (
     OperatingModeEnum, PaymentFormsEnum, ServiceStatusEnum,
     CurrencyRateEnum, MainStockSystemEnum, UserTypeEnum, SaleDateEnum, StockStateConfigEnum,
     AddressModel, CoordinatesModel, DescriptionsCouriersModel, OperatingDaysModel,
@@ -10,7 +10,7 @@ from idosell.system._common import (
     RestrictionsModel, OrdersModel, TaxSettingsModel, ShopsModel, PanelSettingsModel,
     UnitsModel
 )
-from idosell._common import BooleanStrShortEnum
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for Enums

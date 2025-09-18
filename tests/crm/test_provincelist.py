@@ -2,7 +2,7 @@ import pytest
 
 def test_provincelist_module_imports():
     try:
-        from idosell.crm import provincelist
+        from src.idosell.crm import provincelist
         assert provincelist
     except ImportError:
         pytest.skip("Provincelist module not importable")
@@ -10,7 +10,7 @@ def test_provincelist_module_imports():
 def test_provincelist_basic_functionality():
     try:
         import inspect
-        from idosell.crm import provincelist
+        from src.idosell.crm import provincelist
         members = inspect.getmembers(provincelist)
         assert len(members) > 0
     except Exception:

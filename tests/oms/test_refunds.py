@@ -7,7 +7,7 @@ without complex dependencies.
 """
 
 import pytest
-from idosell.oms.refunds import (
+from src.idosell.oms.refunds import (
     # Enums
     SourceTypeAllEnum,
     RefundsSourceTypeEnum,

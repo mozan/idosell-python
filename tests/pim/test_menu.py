@@ -1,19 +1,19 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.menu import (
+from src.idosell.pim.menu import (
     # DTOs
     PutFilterPimMenuParamsModel,
     # Endpoints
     GetFilter, PutFilter, Delete, Get, Post, Put, PutSort
 )
-from idosell.pim._common import (
+from src.idosell.pim._common import (
     MenuFiltersActivePutFilterModel, MenuListDeleteModel,
     MenuListPostModel, MenuListPutModel, MenuListPutSortModel,
     SettingsModel, SettingsPutSortModel,
     MenuFilterDisplayEnum, MenuFilterValueSortEnum
 )
-from idosell._common import BooleanStrShortEnum
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for DTOs

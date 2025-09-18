@@ -2,7 +2,7 @@ import pytest
 from datetime import date
 from pydantic import ValidationError
 
-from idosell.cms.snippets.snippets import (
+from src.idosell.cms.snippets.snippets import (
     SnippetsTypeEnum,
     DateBeginSnippetsModel, DateEndSnippetsModel,
     DisplaySnippetsModel, PagesSnippetsModel, SnippetsModel,
@@ -10,8 +10,8 @@ from idosell.cms.snippets.snippets import (
     PostCmsSnippetsSnippetsParamsModel, PutCmsSnippetsSnippetsParamsModel,
     Get, Post, Put, Delete
 )
-from idosell.cms._common import PageEnum, ClientTypeEnum, ZoneEnum
-from idosell._common import BooleanStrShortEnum, AllYNEnum
+from src.idosell.cms._common import PageEnum, ClientTypeEnum, ZoneEnum
+from src.idosell._common import BooleanStrShortEnum, AllYNEnum
 
 
 # --- Tests for Enums

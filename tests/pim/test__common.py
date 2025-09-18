@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim._common import (
+from src.idosell.pim._common import (
     # Enums
     FormatEnum, ItemTypeEnum, HrefTargetEnum, DefaultViewEnum, ActionEnum,
     DisplayAllTypeEnum, MetaRobotsIndexEnum, MetaRobotsFollowEnum,
@@ -26,8 +26,8 @@ from idosell.pim._common import (
     LangWarrantiesModel, LangDataWarrantiesModel, ResultsOrderWarrantiesGetModel,
     ShopnameWarrantiesModel, WarrantiesPostModel, WarrantiesPutModel,
 )
-from idosell._common import BooleanStrShortEnum
-from idosell.pim.products._common import GraphicTypeEnum
+from src.idosell._common import BooleanStrShortEnum
+from src.idosell.pim.products._common import GraphicTypeEnum
 
 
 # --- Tests for Menu Enums

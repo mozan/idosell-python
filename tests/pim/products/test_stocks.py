@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.stocks import (
+from src.idosell.pim.products.stocks import (
     # DTOs
     IdentStocksModel,
     PutPimProductsStocksSettingsModel,
@@ -21,8 +21,8 @@ from idosell.pim.products.stocks import (
     AdditionalLocationSettingsEnum,
     OperationStocksEnum,
 )
-from idosell.pim.products._common import IdentModel, IdentTypeEnum
-from idosell.pim.products.stocks import ErrorModel
+from src.idosell.pim.products._common import IdentModel, IdentTypeEnum
+from src.idosell.pim.products.stocks import ErrorModel
 
 
 # --- Tests for DTOs

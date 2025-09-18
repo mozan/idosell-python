@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.synchronization import (
+from src.idosell.pim.products.synchronization import (
     # DTOs
     PostFilePimProductsSynchronizationParamsModel,
     PutFinishUploadPimProductsSynchronizationParamsModel,

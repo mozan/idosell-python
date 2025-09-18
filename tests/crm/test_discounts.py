@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.crm.discounts import (
+from src.idosell.crm.discounts import (
     ReturnElementsEnum, CategoriesModel, ProductsDiscountsModel, ProducersModel, SeriesModel,
     MenuItemsModel, DeleteGroupsCrmDiscountsParamsModel, PostGroupsCrmDiscountsParamsModel,
     PutGroupsCrmDiscountsParamsModel, DeleteGroupsProductsCrmDiscountsParamsModel,

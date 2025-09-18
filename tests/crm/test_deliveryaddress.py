@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.crm.deliveryaddress import (
+from src.idosell.crm.deliveryaddress import (
     ClientDeliveryAddressModel, ClientSettingsDeliveryAddressModel,
     ClientsDeliveryAddressPostModel, ClientsDeliveryAddressPutModel, ClientsPostPutModel,
     DeleteCrmDeliveryaddressParamsModel, PostCrmDeliveryaddressParamsModel, PutCrmDeliveryaddressParamsModel,

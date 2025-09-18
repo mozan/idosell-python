@@ -1,14 +1,14 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.sizecharts import (
+from src.idosell.pim.sizecharts import (
     # DTOs
     DeletePimSizechartsParamsModel,
     PutPimSizechartsParamsModel,
     # Endpoints
     Delete, Get, Put
 )
-from idosell.pim._common import (
+from src.idosell.pim._common import (
     SizeChartsPutModel, LanguagesDataModel, ColumnsModel,
     SizesModel, DescriptionsModel, DisplayModeEnum
 )

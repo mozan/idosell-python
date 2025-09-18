@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.categories import (
+from src.idosell.pim.products.categories import (
     # DTOs
     PutPimProductsCategoriesParamsModel,
     SearchIdosellPimProductsCategoriesParamsModel,
@@ -10,7 +10,7 @@ from idosell.pim.products.categories import (
     Put,
     SearchIdosell,
 )
-from idosell.pim.products._common import CategoriesModel, OperationEnum
+from src.idosell.pim.products._common import CategoriesModel, OperationEnum
 
 
 # --- Tests for DTOs

@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.groups import (
+from src.idosell.pim.products.groups import (
     # DTOs
     PutMainProductPimProductsGroupsParamsModel,
     PutOrderPimProductsGroupsParamsModel,
@@ -11,7 +11,7 @@ from idosell.pim.products.groups import (
     PutOrder,
     PutSettings,
 )
-from idosell.pim.products._common import (
+from src.idosell.pim.products._common import (
     ProductIdentModel,
     ProductsInOrderModel,
     GroupsPutSettingsModel,

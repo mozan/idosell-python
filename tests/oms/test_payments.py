@@ -7,7 +7,7 @@ without complex dependencies.
 """
 
 import pytest
-from idosell.oms.payments import (
+from src.idosell.oms.payments import (
     # Enums
     EventSourceTypeEnum,
     PaymentsTypeEnum,
@@ -33,7 +33,7 @@ from idosell.oms.payments import (
     GetProfiles,
     PostRepayment,
 )
-from idosell._common import BooleanStrLongEnum
+from src.idosell._common import BooleanStrLongEnum
 
 
 class TestEnums:

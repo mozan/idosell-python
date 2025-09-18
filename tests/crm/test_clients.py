@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.crm.clients import (
+from src.idosell.crm.clients import (
     BalanceOperationClientsEnum, OperationClientsEnum, ReturnElementsClientsEnum,
     ClientLastPurchaseDateModel, ClientLastModificationDateModel, DeliveryDateModel,
     LastPurchaseDateModel, NewsletterEmailApprovalModel, NewsletterSmsApprovalModel,
@@ -9,8 +9,8 @@ from idosell.crm.clients import (
     PostCrmClientsParamsModel, PutCrmClientsParamsModel, SettingsPostModel, SettingsPostPutModel,
     GetBalance, PostBalance, Get, Post, Put
 )
-from idosell.crm._common import ClientTypeEnum
-from idosell._common import BooleanStrShortEnum
+from src.idosell.crm._common import ClientTypeEnum
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for Enums

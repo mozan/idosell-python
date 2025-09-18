@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.sizes import (
+from src.idosell.pim.products.sizes import (
     # DTOs
     ProductPricesSizesModel,
     SitesDataModel,
@@ -19,8 +19,8 @@ from idosell.pim.products.sizes import (
     DeleteModeSizesEnum,
     PutModeSizesEnum,
 )
-from idosell.pim.products._common import ProductSizesBundlesCollectionsModel
-from idosell._common import BooleanStrShortEnum
+from src.idosell.pim.products._common import ProductSizesBundlesCollectionsModel
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for DTOs

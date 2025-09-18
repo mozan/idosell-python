@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.opinions import (
+from src.idosell.pim.products.opinions import (
     # DTOs
     DeletePimProductsOpinionsParamsModel,
     PostPimProductsOpinionsParamsModel,
@@ -13,7 +13,7 @@ from idosell.pim.products.opinions import (
     Put,
     GetRate,
 )
-from idosell.pim.products._common import (
+from src.idosell.pim.products._common import (
     OpinionGetModel,
     OrdersByGetModel,
     OpinionsPostModel,

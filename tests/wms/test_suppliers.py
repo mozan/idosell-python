@@ -1,11 +1,11 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.wms.suppliers import (
+from src.idosell.wms.suppliers import (
     Delete, DeleteWmsSuppliersParamsModel, Get, Put, PutWmsSuppliersParamsModel
 )
-from idosell.wms._common import SuppliersModel
-from idosell._common import BooleanStrShortEnum
+from src.idosell.wms._common import SuppliersModel
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for DTOs
@@ -16,7 +16,7 @@ class TestDeleteWmsSuppliersParamsModel:
 
 class TestPutWmsSuppliersParamsModel:
     def test_valid(self):
-        from idosell.wms._common import AverageDeliveryTimeModel, OrderCompletionTimeModel, WorkDaysModel as SuppliersWorkDaysModel
+        from src.idosell.wms._common import AverageDeliveryTimeModel, OrderCompletionTimeModel, WorkDaysModel as SuppliersWorkDaysModel
         supplier = SuppliersModel(
             id=1,
             name="Test Supplier",
@@ -96,7 +96,7 @@ class TestGet:
 
 class TestPut:
     def test_valid(self):
-        from idosell.wms._common import AverageDeliveryTimeModel, OrderCompletionTimeModel, WorkDaysModel as SuppliersWorkDaysModel
+        from src.idosell.wms._common import AverageDeliveryTimeModel, OrderCompletionTimeModel, WorkDaysModel as SuppliersWorkDaysModel
         supplier = SuppliersModel(
             id=1,
             name="Test Supplier",
@@ -121,7 +121,7 @@ class TestPut:
         assert len(dto.params.suppliers) == 1
 
     def test_build_body(self):
-        from idosell.wms._common import AverageDeliveryTimeModel, OrderCompletionTimeModel, WorkDaysModel as SuppliersWorkDaysModel
+        from src.idosell.wms._common import AverageDeliveryTimeModel, OrderCompletionTimeModel, WorkDaysModel as SuppliersWorkDaysModel
         supplier = SuppliersModel(
             id=1,
             name="Test Supplier",

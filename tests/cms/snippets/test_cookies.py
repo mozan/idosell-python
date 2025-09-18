@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.cms.snippets.cookies import (
+from src.idosell.cms.snippets.cookies import (
     CategoryEnum, LifeTimeTypeEnum, TypeEnum,
     DescriptionCookiesModel, CookiesModel,
     PostCookiesModel, PutCookiesModel,

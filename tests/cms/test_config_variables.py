@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.cms.config_variables import (
+from src.idosell.cms.config_variables import (
     TypeConfigVariablesEnum,
     PutVariablesModel, PutCmsConfigVariablesModel,
     Get, Put, Delete

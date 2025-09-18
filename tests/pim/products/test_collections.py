@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.products.collections import (
+from src.idosell.pim.products.collections import (
     # DTOs
     DeleteProductsPimProductsCollectionsParamsModel,
     PostPimProductsCollectionsParamsModel,
@@ -15,7 +15,7 @@ from idosell.pim.products.collections import (
     PutProducts,
     PutRenew,
 )
-from idosell.pim.products._common import (
+from src.idosell.pim.products._common import (
     ProductIdentCollectionsModel,
     ProductsCollectionsDeleteProductsModel,
     ProductsCollectionsPostModel,

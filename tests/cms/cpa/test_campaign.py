@@ -1,12 +1,12 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.cms.cpa.campaign import (
+from src.idosell.cms.cpa.campaign import (
     CampaignModel, PostCampaignModel, PutCampaignModel,
     PostCmsCpaCampaignParamsModel, PutCmsCpaCampaignParamsModel,
     Get, Post, Put, Delete
 )
-from idosell._common import BooleanStrShortEnum
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for DTOs

@@ -1,13 +1,13 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.sizes import (
+from src.idosell.pim.sizes import (
     # DTOs
     PutPimSizesParamsModel,
     # Endpoints
     Get, Put
 )
-from idosell.pim._common import (
+from src.idosell.pim._common import (
     SizesPutModel, LangDataSizesModel, OperationSizesEnum
 )
 

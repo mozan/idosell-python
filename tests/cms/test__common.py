@@ -1,11 +1,11 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.cms._common import (
+from src.idosell.cms._common import (
     ClientTypeEnum, PageEnum, ZoneEnum,
     BodyModel, DisplayBaseModel, SourceFilterModel, SourceModel
 )
-from idosell._common import AllYNEnum, BooleanStrShortEnum
+from src.idosell._common import AllYNEnum, BooleanStrShortEnum
 
 
 # --- Tests for Enums

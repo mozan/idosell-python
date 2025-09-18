@@ -1,13 +1,13 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.cms.snippets.campaign import (
+from src.idosell.cms.snippets.campaign import (
     SnippetsCampaignConfigVariablesModel, SnippetsCampaignModel,
     PostSnippetsCampaignModel, PutSnippetsCampaignModel,
     PostCmsSnippetsCampaignParamsModel, PutCmsSnippetsCampaignParamsModel,
     Get, Post, Put, Delete
 )
-from idosell._common import BooleanStrShortEnum
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for DTOs

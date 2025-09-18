@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.pim.warranties import (
+from src.idosell.pim.warranties import (
     # DTOs
     DeletePimWarrantiesParamsModel,
     PostPimWarrantiesParamsModel,
@@ -10,7 +10,7 @@ from idosell.pim.warranties import (
     # Endpoints
     GetCountTotal, PutLanguageData, Delete, Get, Post, Put
 )
-from idosell.pim._common import (
+from src.idosell.pim._common import (
     WarrantiesPostModel, WarrantiesPutModel, LangDataWarrantiesModel,
     ResultsOrderWarrantiesGetModel, TypeEnum, ShopnameWarrantiesModel,
     DescriptionWarrantiesModel, LanguagesWarrantiesModel, FieldEnum,

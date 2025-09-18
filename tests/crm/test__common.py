@@ -2,11 +2,11 @@ import pytest
 from pydantic import ValidationError
 from datetime import date
 
-from idosell.crm._common import (
+from src.idosell.crm._common import (
     BalanceOperationTypeEnum, ClientTypeEnum, TradeCreditEnum,
     BalanceModel, ClientRegistrationDateModel, DateModel, ShopsModel
 )
-from idosell._common import BooleanStrShortEnum
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for Enums

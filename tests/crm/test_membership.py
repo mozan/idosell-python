@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.crm.membership import (
+from src.idosell.crm.membership import (
     ErrorModel, FaultCodeEnum, GetCards, MembershipCardsModel, PutCards,
     PutCardsCrmMembershipParamsModel, SettingsModel
 )

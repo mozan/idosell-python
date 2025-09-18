@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from idosell.system.deliveries import (
+from src.idosell.system.deliveries import (
     GetProfiles, GetRegions, PostRegions, PutDefaultProfiles,
     PostRegionsSystemDeliveriesParamsModel, PutDefaultProfilesSystemDeliveriesParamsModel
 )
