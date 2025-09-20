@@ -3,7 +3,7 @@ from enum import StrEnum
 from typing import List
 from pydantic import BaseModel, Field, StrictInt
 
-from src.idosell._common import BooleanStrShortEnum, ElementNameSearchEnum, PayerAddressBaseModel, SortDirectionSearchEnum
+from src.idosell._common import BooleanStrShortEnum, ElementNameSearchEnum, ErrorsModel, PayerAddressBaseModel, SortDirectionSearchEnum
 
 
 # --- Orders Enums
@@ -364,9 +364,6 @@ class DocumentsPostModel(BaseModel):
     returnedInOrderDetails: BooleanStrShortEnum = Field(..., description="Is it to be shown to the customer in the order view")
     additionalData: AdditionalDataModel | None = Field(None, description="Additional information")
 
-class ErrorsModel(BaseModel):
-    faultCode: int | None = Field(None, description="Error code")
-    faultString: str | None = Field(None, description="Error description")
 
 class ImagesDeleteModel(BaseModel):
     id: StrictInt = Field(..., ge=1, description="Attachment ID")
@@ -572,12 +569,12 @@ class ProductsProfitMarginOrdersPutModel(BaseModel):
     sizeId: str = Field(..., description="Size identifier")
     productProfitMargin: float = Field(..., description="Product profit margin gross")
     productProfitMarginNet: float = Field(..., description="Product profit margin net")
-    errors: ErrorsModel = Field(..., description="Information on error that occurred during gate call")
+    errors: ErrorsModel | None = Field(None, description="Information on error that occurred during gate call")
 
 class ProfitMarginOrdersPutModel(BaseModel):
     orderSerialNumber: StrictInt = Field(..., ge=1, description="Order serial number")
     products: List[ProductsProfitMarginOrdersPutModel] = Field(..., description="Products list")
-    errors: ErrorsModel = Field(..., description="Information on error that occurred during gate call")
+    errors: ErrorsModel | None = Field(None, description="Information on error that occurred during gate call")
     isProductsErrors: bool = Field(..., description="Flag marking errors in the result")
 
 class ProductsSearchModel(BaseModel):

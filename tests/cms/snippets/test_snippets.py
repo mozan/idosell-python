@@ -25,23 +25,24 @@ class TestSnippetsTypeEnum:
 # --- Tests for DTOs
 class TestDateBeginSnippetsModel:
     def test_valid(self):
-        dto = DateBeginSnippetsModel(
-            defined=BooleanStrShortEnum.YES,
-            date_=date(2023, 1, 1),
-            autoBlock=BooleanStrShortEnum.NO
-        )
+        # Use the alias name 'date' instead of field name 'date_value'
+        dto = DateBeginSnippetsModel(**{
+            'defined': BooleanStrShortEnum.YES,
+            'date': date(2023, 1, 1),
+            'autoBlock': BooleanStrShortEnum.NO
+        })
         assert dto.defined == BooleanStrShortEnum.YES
-        assert dto.date_ == date(2023, 1, 1)
+        assert dto.date_value == date(2023, 1, 1)
 
 class TestDateEndSnippetsModel:
     def test_valid(self):
-        dto = DateEndSnippetsModel(
-            defined=BooleanStrShortEnum.YES,
-            date_=date(2023, 12, 31),
-            autoBlock=BooleanStrShortEnum.YES
-        )
+        # Use the alias name 'date' instead of field name 'date_value'
+        dto = DateEndSnippetsModel(**{
+            'defined': BooleanStrShortEnum.YES,
+            'date': date(2023, 12, 31)
+        })
         assert dto.defined == BooleanStrShortEnum.YES
-        assert dto.date_ == date(2023, 12, 31)
+        assert dto.date_value == date(2023, 12, 31)
 
 class TestDisplaySnippetsModel:
     def test_valid(self):

@@ -325,7 +325,7 @@ class ReturnElementsSearchEnum(StrEnum):
     PRODUCTISGRATIS = 'productIsGratis'
     DIMENSIONS = 'dimensions'
     RESPONSIBLEPRODUCERCODE = 'responsibleProducerCode'
-    # * responsiblePersonCode # yTODO - how to implement this one?
+    RESPONSIBLEPERSONCODE = 'responsiblePersonCode'
 
 class ModeSearchEnum(StrEnum):
     NO = 'no'
@@ -921,7 +921,7 @@ class ProductParamDescriptionsModel(BaseModel):
 class ProductMenuItemsModel(BaseModel):
     productMenuOperation: ProductMenuOperationEnum = Field(..., description="Menu element operation type")
     menuItemId: StrictInt = Field(..., ge=1, description="ID of the menu node to which the product is to be assigned")
-    menuItemTextId: str = Field(..., description="Menu element text identifier. Example: 'item1\item2\item3'") # type: ignore
+    menuItemTextId: str = Field(..., description="Menu element text identifier. Example: item1\item2\item3") # type: ignore
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
     menuId: StrictInt = Field(..., ge=1, description="ID of the menu zone displayed in the mask")
 
@@ -967,7 +967,7 @@ class ProductsPutModel(ProductsBaseModel):
     productSizeCodeProducer: str = Field(..., description="Producer code for size")
     sizesGroupName: str = Field(..., description="Size group name")
     priceChangeMode: PriceChangeModeEnum = Field(..., description="Optional element, that determines prices edition mode. Default value is 'amount_set', when indicated element is omitted in API gate call")
-    productRetailPrice: float = Field(..., gt=0, description="Gross price") # yTODO - should be gross???
+    productRetailPrice: float = Field(..., gt=0, description="Gross price")
     productRetailPriceNet: float = Field(..., gt=0, description="Net retail price for every shop")
     productWholesalePrice: float = Field(..., gt=0, description="Wholesale price")
     productWholesalePriceNet: float = Field(..., gt=0, description="Net wholesale price for every shop")

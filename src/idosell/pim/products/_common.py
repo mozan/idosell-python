@@ -2,7 +2,7 @@ from enum import StrEnum
 from typing import List
 from pydantic import BaseModel, Field, StrictInt, model_validator
 
-from src.idosell._common import BooleanStrLongEnum, BooleanStrShortEnum
+from src.idosell._common import BooleanStrLongEnum, BooleanStrShortEnum, ErrorsModel
 
 
 # --- Enums
@@ -667,9 +667,6 @@ class AttachmentLimitsModel(BaseModel):
     attachmentDownloadsLimit: StrictInt = Field(..., ge=1, description="Number of downloads limit")
     attachmentDaysLimit: StrictInt = Field(..., ge=1, description="Number of days file should be available")
 
-class ErrorsModel(BaseModel):
-    faultCode: StrictInt = Field(..., ge=0, description="Error code")
-    faultString: str = Field(..., description="Error description")
 
 class VirtualAttachmentsBaseModel(BaseModel):
     attachmentUrl: str = Field(..., description="Attachment file link")
@@ -681,7 +678,7 @@ class VirtualAttachmentsBaseModel(BaseModel):
 
 class VirtualAttachmentsModel(VirtualAttachmentsBaseModel):
     attachmentToDelete: bool = Field(..., description="Flag indicating if an attachment should be removed")
-    errors: ErrorsModel = Field(..., description="Information on error that occurred during gate call")
+    errors: ErrorsModel | None = Field(None, description="Information on error that occurred during gate call")
 
 class ProductsDeliveryTimeProductsSearchModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Product Id")
@@ -694,7 +691,7 @@ class ProductAttachmentPutModel(BaseModel):
     productIdent: ProductIdentModel = Field(..., description="Stock keeping unit")
     attachments: List[AttachmentsModel] = Field(..., description="Product attachments list")
     virtualAttachments: List[VirtualAttachmentsModel] = Field(..., description="List of product's virtual attachments")
-    errors: ErrorsModel = Field(..., description="Information on error that occurred during gate call") # wTODO - all errors in all models - WTF??? Why, what for?, used in many places, easy to refactor
+    errors: ErrorsModel | None = Field(None, description="Information on error that occurred during gate call")
     attachmentsErrorsOccurred: bool = Field(..., description="Flag indicating if there are errors in results of attachments settings")
     virtualAttachmentsErrorsOccurred: bool = Field(..., description="Flag indicating if there are errors in results of virtual attachments settings")
 

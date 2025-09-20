@@ -128,20 +128,20 @@ class TestGet:
     def test_instantiate_with_all_params(self):
         dto = Get(
             ids=[1, 2, 3],
-            languages=["en", "pl"],
+            languages=["eng", "pol"],
             return_last_changed_time="2023-01-01 00:00:00"
         )
         assert dto.ids == [1, 2, 3]
-        assert dto.languages == ["en", "pl"]
+        assert dto.languages == ["eng", "pol"]
         assert dto.return_last_changed_time == "2023-01-01 00:00:00"
 
     def test_partial_params(self):
         dto = Get(
             ids=[1],
-            languages=["en"]
+            languages=["eng"]
         )
         assert dto.ids == [1]
-        assert dto.languages == ["en"]
+        assert dto.languages == ["eng"]
         assert dto.return_last_changed_time is None
 
 

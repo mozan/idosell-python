@@ -16,15 +16,13 @@ class SnippetsTypeEnum(StrEnum):
 
 # --- DTOs
 class DateBeginSnippetsModel(BaseModel):
-    # xTODO date_
     defined: BooleanStrShortEnum = Field(..., description="Whether date condition is active")
-    date_: date = Field(..., description="Date of snippet activation") #TODO ALIAS
+    date_value: date = Field(..., alias="date", description="Date of snippet activation")
     autoBlock: BooleanStrShortEnum = Field(..., description="Automatic shutdown control")
 
 class DateEndSnippetsModel(BaseModel):
-    # xTODO date_
     defined: BooleanStrShortEnum = Field(..., description="Whether date condition is active")
-    date_: date = Field(..., description="Date of snippet activation") #TODO ALIAS
+    date_value: date = Field(..., alias="date", description="Date of snippet activation")
 
 class DisplaySnippetsModel(DisplayBaseModel):
     screen: BooleanStrShortEnum = Field(..., description="Display on desktop screens")

@@ -1,7 +1,7 @@
 from typing import List
 from pydantic import BaseModel, Field, PrivateAttr
 
-from src.idosell._common import AppendableGateway, PageableCamelGateway
+from src.idosell._common import AppendableGateway, IdoSellDateTime, IdoSellLanguageId, PageableCamelGateway
 from src.idosell.pim.products._common import CategoriesModel
 
 
@@ -27,10 +27,8 @@ class Get(PageableCamelGateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/categories')
 
     ids: List[int] | None = Field(None, description="List of product category identifiers in the panel")
-    # xTODO check the languages here
-    languages: List[str] | None = Field(None, description="Array of languages categories names should be returned in. 'Defaults' value returns categories names in store default language. Not using languages parameter causes a situation, that categories names are returned in all available languages")
-    # xTODO check the correctnes of this field
-    return_last_changed_time: str | None = Field(None, description="Returns the date of last modification (YYYY-MM-DD HH-MM-SS)")
+    languages: List[IdoSellLanguageId] | None = Field(None, description="Array of languages categories names should be returned in. 'Defaults' value returns categories names in store default language. Not using languages parameter causes a situation, that categories names are returned in all available languages")
+    return_last_changed_time: IdoSellDateTime | None = Field(None, description="Returns the date of last modification (YYYY-MM-DD HH:MM:SS)")
 
 class Put(AppendableGateway):
     """

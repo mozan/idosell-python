@@ -1,7 +1,7 @@
 from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
-from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway
+from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway, IdoSellPhpDateTime
 from src.idosell.pim.products._common import (
     AssignmentModeEnum, BasePricingEnum, CalculationMethodEnum, IdentTypeEnum, MarketingZonesModel,
     MarketingZonesPromotionModel, NewPriceSettingsModel, ProductsMarketingModel, PromotionElementsModel, ShopsPutZonesModel
@@ -14,8 +14,8 @@ class PostPromotionPimProductsMarketingParamsModel(BaseModel):
     shopsIds: Optional[List[StrictInt]] = Field(None, min_length=1, description="List of stores IDs (min 1 item when provided)") # type: ignore
     marketingZones: MarketingZonesPromotionModel = Field(..., description="Special zones")
     newPriceSettings: NewPriceSettingsModel = Field(..., description="Promotional price settings")
-    startDate: str = Field(..., description="Promotion start date in Y-m-d H:i:s format") # xTODO add validation
-    endDate: str = Field(..., description="Promotion end date in Y-m-d H:i:s format") # xTODO add validation
+    startDate: IdoSellPhpDateTime = Field(..., description="Promotion start date in Y-m-d H:i:s format")
+    endDate: IdoSellPhpDateTime = Field(..., description="Promotion end date in Y-m-d H:i:s format")
     changeProductsToVisibleWhileStarting: BooleanStrShortEnum = Field(..., description="Change the status of hidden products to visible while starting the special offer")
     removeProductsAfterStockLevelRunsDown: BooleanStrShortEnum = Field(..., description="After running out of stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)")
     removeProductsAfterOwnStockLevelRunsDown: BooleanStrShortEnum = Field(..., description="After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)")
@@ -29,8 +29,8 @@ class PutPromotionPimProductsMarketingParamsModel(BaseModel):
     shopsIds: Optional[List[StrictInt]] = Field(None, min_length=1, description="List of stores IDs (min 1 item when provided)") # type: ignore
     marketingZones: MarketingZonesPromotionModel = Field(..., description="Special zones")
     newPriceSettings: NewPriceSettingsModel = Field(..., description="Promotional price settings")
-    startDate: str = Field(..., description="Promotion start date in Y-m-d H:i:s format") # xTODO add validation
-    endDate: str = Field(..., description="Promotion end date in Y-m-d H:i:s format") # xTODO add validation
+    startDate: IdoSellPhpDateTime = Field(..., description="Promotion start date in Y-m-d H:i:s format")
+    endDate: IdoSellPhpDateTime = Field(..., description="Promotion end date in Y-m-d H:i:s format")
     changeProductsToVisibleWhileStarting: BooleanStrShortEnum = Field(..., description="Change the status of hidden products to visible while starting the special offer")
     removeProductsAfterStockLevelRunsDown: BooleanStrShortEnum = Field(..., description="After running out of stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)")
     removeProductsAfterOwnStockLevelRunsDown: BooleanStrShortEnum = Field(..., description="After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)")
