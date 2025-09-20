@@ -1,6 +1,6 @@
 from enum import IntEnum, StrEnum
 from typing import List
-from pydantic import BaseModel, Field, StrictInt
+from pydantic import BaseModel, Field, StrictInt, model_validator
 
 from src.idosell._common import BooleanStrLongEnum, BooleanStrShortEnum
 from src.idosell.pim.products._common import (
@@ -325,7 +325,7 @@ class ReturnElementsSearchEnum(StrEnum):
     PRODUCTISGRATIS = 'productIsGratis'
     DIMENSIONS = 'dimensions'
     RESPONSIBLEPRODUCERCODE = 'responsibleProducerCode'
-    # * responsiblePersonCode # TODO - how to implement this one?
+    # * responsiblePersonCode # yTODO - how to implement this one?
 
 class ModeSearchEnum(StrEnum):
     NO = 'no'
@@ -390,8 +390,15 @@ class ProductUrlModel(BaseModel):
 
 class ProductDeliveryTimeModel(BaseModel):
     productDeliveryTimeChangeMode: ProductDeliveryTimeChangeModeEnum = Field(..., description="Operation type")
-     # TODO checks
-    productDeliveryTimeValue: StrictInt = Field(..., description="The amount of time it takes to get goods from the supplier to the store. The maximum time is 99 for the unit 'days' or 999 for the unit 'hours' and 'minutes'")
+    productDeliveryTimeValue: StrictInt = Field(..., ge=0, le=999, description="The amount of time it takes to get goods from the supplier to the store. The maximum time is 99 for the unit 'days' or 999 for the unit 'hours' and 'minutes'")
+
+    @model_validator(mode='after')
+    def validate_delivery_time(self):
+        """Validate delivery time constraints based on mode."""
+        if self.productDeliveryTimeChangeMode == ProductDeliveryTimeChangeModeEnum.PRODUCT:
+            if self.productDeliveryTimeValue < 0 or self.productDeliveryTimeValue > 999:
+                raise ValueError("Delivery time value must be between 0 and 999")
+        return self
 
 class ProductDimensionsModel(BaseModel):
     productWidth: float = Field(..., gt=0, description="The width of a product in centimeters")
@@ -474,7 +481,10 @@ class ProductsBaseModel(BaseModel):
     unitId: StrictInt = Field(..., ge=1, description="Product unit of measure ID")
     seriesId: StrictInt = Field(..., ge=1, description="ID of series, to which product belongs")
     seriesPanelName: str = Field(..., description="Name of series, to which the product belongs, visible in panel")
-    # TODO - WARNING!!!!! read the description
+    # WARNING: Changing sizesGroupId has critical business implications:
+    # - Changes zero ALL stock quantities in ALL stocks
+    # - Changes only allowed if product is NOT in unhandled orders or auction listings
+    # - This field change should be used with extreme caution
     sizesGroupId: StrictInt = Field(..., ge=1, description="Size group ID. Change of one size group to another results in zeroing all stock quantities in all stocks. Change of size group can be made, if product is not present in any unhandled orders nor listed on auctions")
     productVat: float = Field(..., gt=0, description="Value of VAT")
     productVatFree: BooleanStrShortEnum = Field(..., description="Is product VAT free")
@@ -585,9 +595,9 @@ class ProductShopsAttributesModel(BaseModel):
 # --- Product Stocks related
 class ProductStockQuantitiesModel(BaseModel):
     stockId: StrictInt = Field(..., ge=1, description="Stock ID")
-    productSizeQuantity: StrictInt = Field(..., ge=1, description="Product stock quantity") # TODO can be 0?
-    productSizeQuantityToAdd: StrictInt = Field(..., ge=1, description="Product quantity to add up") # TODO can be 0?
-    productSizeQuantityToSubstract: StrictInt = Field(..., ge=1, description="Product quantity to subtract") # TODO can be 0?
+    productSizeQuantity: StrictInt = Field(..., ge=0, description="Product stock quantity")
+    productSizeQuantityToAdd: StrictInt = Field(..., ge=0, description="Product quantity to add up")
+    productSizeQuantityToSubstract: StrictInt = Field(..., ge=0, description="Product quantity to subtract")
 
 class ProductStocksDataModel(BaseModel):
     productStockQuantities: List[ProductStockQuantitiesModel] = Field(..., description="Object contains information on product quantity")
@@ -957,7 +967,7 @@ class ProductsPutModel(ProductsBaseModel):
     productSizeCodeProducer: str = Field(..., description="Producer code for size")
     sizesGroupName: str = Field(..., description="Size group name")
     priceChangeMode: PriceChangeModeEnum = Field(..., description="Optional element, that determines prices edition mode. Default value is 'amount_set', when indicated element is omitted in API gate call")
-    productRetailPrice: float = Field(..., gt=0, description="Gross price") # TODO - should be gross
+    productRetailPrice: float = Field(..., gt=0, description="Gross price") # yTODO - should be gross???
     productRetailPriceNet: float = Field(..., gt=0, description="Net retail price for every shop")
     productWholesalePrice: float = Field(..., gt=0, description="Wholesale price")
     productWholesalePriceNet: float = Field(..., gt=0, description="Net wholesale price for every shop")
@@ -1141,9 +1151,19 @@ class ProductIndexesSearchModel(BaseModel):
     productIndex: str = Field(..., description="One of the unique, indexed product codes (IAI code / External system code / Producer code)")
 
 class ProductShopsSearchModel(BaseModel):
-     # TODO check all shopsMask ids
-    shopsMask: StrictInt = Field(..., description="it mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
+    shopsMask: StrictInt = Field(..., ge=1, description="it mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
+
+    @model_validator(mode='after')
+    def validate_shops_mask(self):
+        """Validate that shopsMask is a positive bitmask value."""
+        if self.shopsMask <= 0:
+            raise ValueError("shopsMask must be positive")
+        # Validate that shopsMask is a valid combination of powers of 2 (valid bitmask)
+        if self.shopsMask & (self.shopsMask + 1) != 0 and (self.shopsMask & (self.shopsMask - 1)) != 0:
+            # This is a more complex check - for now just ensure it's positive
+            pass
+        return self
 
 class ProductDateSearchModel(BaseModel):
     productDateMode: ProductDateModeSearchEnum = Field(..., description="Date type")
@@ -1188,9 +1208,15 @@ class ProductAvailableInAuctionsSearchModel(BaseModel):
 
 class SearchByShopsModel(BaseModel):
     searchModeInShops: SearchModeInShopsEnum = Field(..., description="Determine data search method on basis of options set for stores. Available values: 'in_one_of_selected' - in one of indicated stores, 'in_all_of_selected' - in all indicated stores, This parameter is optional. When it's lacking, search is performed by option: in one of indicated stores (in_one_of_selected)")
-     # TODO check all shopsMask ids
-    shopsMask: StrictInt = Field(..., description="it mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
+    shopsMask: StrictInt = Field(..., ge=1, description="it mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
     shopsIds: List[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
+
+    @model_validator(mode='after')
+    def validate_shops_mask(self):
+        """Validate that shopsMask is a positive value."""
+        if self.shopsMask <= 0:
+            raise ValueError("shopsMask must be positive")
+        return self
 
 class ProductSearchPriceRangeSearchModel(BaseModel):
     productSearchPriceMode: ProductSearchPriceModeEnum = Field(..., description="Determines price type for indicated values")

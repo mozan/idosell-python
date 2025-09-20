@@ -1,6 +1,6 @@
 from enum import StrEnum
 from typing import List
-from pydantic import BaseModel, Field, StrictInt
+from pydantic import BaseModel, Field, StrictInt, model_validator
 
 from src.idosell._common import BooleanStrLongEnum, BooleanStrShortEnum
 
@@ -604,7 +604,7 @@ class ProductImagesModel(BaseModel):
     productImagePriority: StrictInt = Field(..., ge=1, description="Picture priority")
     deleteProductImage: bool = Field(..., description="lag marking if a picture should be deleted")
 
-class ProductsImages(BaseModel): # TODO Correct class name!!!
+class ProductsImages(BaseModel):
     productIdent: ProductIdentModel = Field(..., description="...")
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
     otherShopsForPic: List[int] = Field(..., description="List of shops for which photos will be added (including shop provided in shopId). If parameter is empty or not provided, photos will be added to all shops")
@@ -694,7 +694,7 @@ class ProductAttachmentPutModel(BaseModel):
     productIdent: ProductIdentModel = Field(..., description="Stock keeping unit")
     attachments: List[AttachmentsModel] = Field(..., description="Product attachments list")
     virtualAttachments: List[VirtualAttachmentsModel] = Field(..., description="List of product's virtual attachments")
-    errors: ErrorsModel = Field(..., description="Information on error that occurred during gate call") # TODO - all errors in all models - WTF??? Why, what for?, used in many places, easy to refactor
+    errors: ErrorsModel = Field(..., description="Information on error that occurred during gate call") # wTODO - all errors in all models - WTF??? Why, what for?, used in many places, easy to refactor
     attachmentsErrorsOccurred: bool = Field(..., description="Flag indicating if there are errors in results of attachments settings")
     virtualAttachmentsErrorsOccurred: bool = Field(..., description="Flag indicating if there are errors in results of virtual attachments settings")
 
@@ -742,8 +742,8 @@ class OpinionsPostModel(BaseModel):
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
     host: str = Field(..., description="...")
     clients: ClientsOpinionsModel = Field(..., description="Customer data")
-    scorePositive: StrictInt = Field(..., description="...") # TODO description, ge, etc...
-    scoreNegative: StrictInt = Field(..., description="...") # TODO description, ge, etc...
+    scorePositive: StrictInt = Field(..., ge=0, description="Number of positive ratings indicating opinion usefulness")
+    scoreNegative: StrictInt = Field(..., ge=0, description="Number of negative ratings indicating opinion usefulness")
     products: ProductsModel = Field(..., description="Product")
     orderSerialNumber: StrictInt = Field(..., ge=1, description="Order serial number")
     shopAnswer: str = Field(..., description="Reply to an opinion")
@@ -766,11 +766,25 @@ class ClientsGetModel(BaseModel):
 
 class ScorePositiveGetModel(BaseModel):
     from_: StrictInt = Field(..., ge=1, description="Amount of positive score from", alias="from")
-    to: StrictInt = Field(..., gt=0, description="Amount of positive score to") # TODO is gt=0 a good choice?
+    to: StrictInt = Field(..., ge=1, description="Amount of positive score to")
+
+    @model_validator(mode='after')
+    def validate_range(self):
+        """Validate that 'to' value is greater than or equal to 'from' value."""
+        if self.to < self.from_:
+            raise ValueError("'to' value must be greater than or equal to 'from' value")
+        return self
 
 class ScoreNegativeGetModel(BaseModel):
-    from_: StrictInt = Field(..., ge=1, description="Amount of positive score from", alias="from")
-    to: StrictInt = Field(..., gt=0, description="Amount of positive score to") # TODO is gt=0 a good choice?
+    from_: StrictInt = Field(..., ge=1, description="Amount of negative score from", alias="from")
+    to: StrictInt = Field(..., ge=1, description="Amount of negative score to")
+
+    @model_validator(mode='after')
+    def validate_range(self):
+        """Validate that 'to' value is greater than or equal to 'from' value."""
+        if self.to < self.from_:
+            raise ValueError("'to' value must be greater than or equal to 'from' value")
+        return self
 
 class DateRangeGetModel(BaseModel):
     begin: str = Field(..., description="...")
@@ -894,7 +908,7 @@ class ProductsSupplierPutCodeModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
     productDeliverers: List[ProductDeliverersSupplierModel] = Field(..., description="Suppliers data")
 
-# TODO - simplify class names, make them more readable
+# sTODO - simplify class names, make them more readable
 class ProductSizesProductDeliverersProductsPutProductDataModelModel(ProductSizesSupplierModel):
     quantity: float = Field(..., gt=0, description="Supplier's stock level")
     lastPrice: float = Field(..., gt=0, description="Last purchase price")

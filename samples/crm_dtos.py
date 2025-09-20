@@ -1,12 +1,12 @@
 from typing import List, Any
-from idosell._common import BooleanStrLongEnum, BooleanStrShortEnum
-from idosell.crm._common import BalanceModel, BalanceOperationTypeEnum, ClientTypeEnum
-from idosell.crm.clients import (
+from src.idosell._common import BooleanStrLongEnum, BooleanStrShortEnum
+from src.idosell.crm._common import BalanceModel, BalanceOperationTypeEnum, ClientTypeEnum
+from src.idosell.crm.clients import (
     GetBalance as CrmClientsGetBalance, Get as CrmClientsGet, OperationClientsEnum,
     PostBalance as CrmClientsPostBalance, Post as CrmClientsPost, PostBalanceCrmClientsParamsModel, PostCrmClientsClientsModel, PostCrmClientsParamsModel, Put as CrmClientsPut, PutCrmClientsClientsModel, PutCrmClientsParamsModel, SettingsPostModel, SettingsPostPutModel
 )
-from idosell.crm.crm import Search as CrmCrmSearch, PostParamsSearchModel
-from idosell.crm.deliveryaddress import (
+from src.idosell.crm.crm import Search as CrmCrmSearch, PostParamsSearchModel
+from src.idosell.crm.deliveryaddress import (
     ClientDeliveryAddressModel,
     ClientSettingsDeliveryAddressModel,
     ClientsDeliveryAddressPostModel,
@@ -18,14 +18,14 @@ from idosell.crm.deliveryaddress import (
     PostCrmDeliveryaddressParamsModel, Put as CrmDeliveryaddressPut,
     PutCrmDeliveryaddressParamsModel
 )
-from idosell.crm.discounts import (
+from src.idosell.crm.discounts import (
     DeleteGroups as CrmDiscountsDeleteGroups, DeleteGroupsCrmDiscountsParamsModel, DeleteGroupsProducts as CrmDiscountsDeleteGroupsProducts, DeleteGroupsProductsCrmDiscountsParamsModel, DeleteRebatesCard as CrmDiscountsDeleteRebatesCard, DeleteRebatesCode as CrmDiscountsDeleteRebatesCode, CategoriesModel,
     GetGroupsClients as CrmDiscountsGetGroupsClients, GetGroups as CrmDiscountsGetGroups, MenuItemsModel,
     PostGroups as CrmDiscountsPostGroups, PostGroupsCrmDiscountsParamsModel, PostRebatesCard as CrmDiscountsPostRebatesCard, PostRebatesCode as CrmDiscountsPostRebatesCode, ProducersModel, ProductsDiscountsModel,
     PutGroups as CrmDiscountsPutGroups, PutGroupsCrmDiscountsParamsModel, PutGroupsProducts as CrmDiscountsPutGroupsProducts, PutGroupsProductsCrmDiscountsParamsModel, PutRebatesBlockCard as CrmDiscountsPutRebatesBlockCard, PutRebatesUnblockCard as CrmDiscountsPutRebatesUnblockCard, SeriesModel,
 )
-from idosell.crm.externalcode import Put as CrmExternalCodePut, PutCrmExternalcodeParamsModel
-from idosell.crm.giftcards import (
+from src.idosell.crm.externalcode import Put as CrmExternalCodePut, PutCrmExternalcodeParamsModel
+from src.idosell.crm.giftcards import (
     Delete as CrmGiftcardsDelete, DeleteCrmGiftcardsParamsModel,
     GetTypes as CrmGiftcardsGetTypes,
     GiftCardDeleteModel,
@@ -38,9 +38,9 @@ from idosell.crm.giftcards import (
     Post as CrmGiftcardsPost, PutBlock as CrmGiftcardsPutBlock, Put as CrmGiftcardsPut, PutUnblock as CrmGiftcardsPutUnblock,
     SearchCrmGiftcardsParamsModel,
 )
-from idosell.crm.membership import GetCards as CrmMembershipGetCards, MembershipCardsModel, PutCards as CrmMembershipPutCards, PutCardsCrmMembershipParamsModel, SettingsModel, ErrorModel, FaultCodeEnum
-from idosell.crm.newsletter import SearchEmail as CrmNewsletterSearchEmail, SearchEmailCrmNewsletterParamsModel, SearchSmsCrmNewsletterParamsModel, SearchSms as CrmNewsletterSearchSms
-from idosell.crm.payeraddress import (
+from src.idosell.crm.membership import GetCards as CrmMembershipGetCards, MembershipCardsModel, PutCards as CrmMembershipPutCards, PutCardsCrmMembershipParamsModel, SettingsModel, ErrorModel, FaultCodeEnum
+from src.idosell.crm.newsletter import SearchEmail as CrmNewsletterSearchEmail, SearchEmailCrmNewsletterParamsModel, SearchSmsCrmNewsletterParamsModel, SearchSms as CrmNewsletterSearchSms
+from src.idosell.crm.payeraddress import (
     Delete as CrmPayeraddressDelete,
     DeleteParamsPayersAddressModel,
     Get as CrmPayeraddressGet,
@@ -51,7 +51,7 @@ from idosell.crm.payeraddress import (
     PutParamsPayersAddressModel,
     PutPayersModel
 )
-from idosell.crm.pricelists import (
+from src.idosell.crm.pricelists import (
     CategoriesPriceListsModel,
     Delete as CrmPricelistsDelete,
     DeleteCrmPricelistsParamsModel,
@@ -68,14 +68,14 @@ from idosell.crm.pricelists import (
     PutRenameCrmPricelistsParamsModel,
     SeriesPriceListsModel
 )
-from idosell.crm.profitpoints import Get as CrmProfitpointsGet
-from idosell.crm.provincelist import Get as CrmProvincelistGet
-from idosell.crm.tags import (
+from src.idosell.crm.profitpoints import Get as CrmProfitpointsGet
+from src.idosell.crm.provincelist import Get as CrmProvincelistGet
+from src.idosell.crm.tags import (
     ClientTagsModel, DeleteClear as CrmTagsDeleteClear, Delete as CrmTagsDelete, DeleteClearCrmTagsParamsModel, DeleteCrmTagsParamsModel,
     Get as CrmTagsGet,
     Post as CrmTagsPost, PostCrmTagsParamsModel, Put as CrmTagsPut, PutCrmTagsParamsModel, OperationTagsEnum
 )
-from idosell.crm.vouchers import (
+from src.idosell.crm.vouchers import (
     Delete as CrmVouchersDelete,
     DeleteCrmVouchersParamsModel,
     GetTypes as CrmVouchersGetTypes, Get as CrmVouchersGet,
@@ -90,7 +90,7 @@ from idosell.crm.vouchers import (
     VoucherPutModel
 )
 
-from idosell.crm.giftcards import GiftCardModel
+from src.idosell.crm.giftcards import GiftCardModel
 
 crm_delete: List[Any] = [ # type: ignore
     CrmDeliveryaddressDelete(

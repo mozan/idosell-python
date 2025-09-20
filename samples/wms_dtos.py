@@ -1,15 +1,15 @@
 from typing import List, Any
 
-from idosell._common import BooleanStrShortEnum
-from idosell.wms._common import AverageDeliveryTimeModel, DocumentTypeEnum, DocumentsConfirmedEnum, DocumentsCurrencyForPurchasePriceRateTypeEnum, DocumentsPriceTypeEnum, DocumentsQueueTypeEnum, DocumentsWntEnum, OrderCompletionTimeModel, ProductsDeleteModel, ProductsPostPutModel, SuppliersModel, WorkDaysModel
-from idosell.wms.locations import GetLocations as WmsGetWmsLocations
-from idosell.wms.stocks import (
+from src.idosell._common import BooleanStrShortEnum
+from src.idosell.wms._common import AverageDeliveryTimeModel, DocumentTypeEnum, DocumentsConfirmedEnum, DocumentsCurrencyForPurchasePriceRateTypeEnum, DocumentsPriceTypeEnum, DocumentsQueueTypeEnum, DocumentsWntEnum, OrderCompletionTimeModel, ProductsDeleteModel, ProductsPostPutModel, SuppliersModel, WorkDaysModel
+from src.idosell.wms.locations import GetLocations as WmsGetWmsLocations
+from src.idosell.wms.stocks import (
     DeleteDocuments as WmsStocksDeleteDocuments, DeleteDocumentsWmsStocksParamsModel, DeleteProducts as WmsStocksDeleteProducts, DeleteProductsWmsStocksParamsModel,
     GetDocuments as WmsGetDocuments, GetOpenedDocuments as WmsGetOpenedDocuments, GetProducts as WmsGetProducts,
     PostDocuments as WmsStocksPostDocuments, PostDocumentsWmsStocksParamsModel, PostProducts as WmsStocksPostProducts, PostProductsWmsStocksParamsModel,
     PutAcceptMM as WmsStocksPutAcceptMM, PutAcceptMMWmsStocksParamsModel, PutClose as WmsStocksPutClose, PutCloseWmsStocksParamsModel, PutDocuments as WmsStocksPutDocuments, PutDocumentsWmsStocksParamsModel, PutProducts as WmsStocksPutProducts, PutProductsWmsStocksParamsModel, PutRejectMM as WmsStocksPutRejectMM, PutRejectMMWmsStocksParamsModel
 )
-from idosell.wms.suppliers import DeleteWmsSuppliersParamsModel, Get as WmsGet, Delete as WmsSuppliersDelete, Put as WmsSuppliersPut, PutWmsSuppliersParamsModel
+from src.idosell.wms.suppliers import DeleteWmsSuppliersParamsModel, Get as WmsGet, Delete as WmsSuppliersDelete, Put as WmsSuppliersPut, PutWmsSuppliersParamsModel
 
 wms_delete: List[Any] = [
     WmsSuppliersDelete(

@@ -1,6 +1,6 @@
 from typing import List, Any
 
-from idosell.pim._common import (
+from src.idosell.pim._common import (
     EntityTypeEnum, LangDataModel, MenuListPostModel, SettingsModel, MenuListPutModel,
     MenuListPutSortModel, SettingsPutSortModel, EntitiesResponsibilityPostModel, EntitiesResponsibilityPutModel,
     ItemTypeEnum, HrefTargetEnum, DefaultViewEnum, ActionEnum, DisplayAllTypeEnum,
@@ -13,31 +13,31 @@ from idosell.pim._common import (
     SortLangDataModelModel, DisplayLimitLangDataModel, ViewEnum, SortByEnum, SortOrderEnum, MenuListDeleteModel
 )
 
-from idosell._common import BooleanStrShortEnum
-from idosell.pim.products._common import GraphicTypeEnum
+from src.idosell._common import BooleanStrShortEnum
+from src.idosell.pim.products._common import GraphicTypeEnum
 
-from idosell.pim.menu import (
+from src.idosell.pim.menu import (
     Delete as PimMenuDelete, GetFilter as PimMenuGetFilter, Get as PimMenuGet,
     Post as PimMenuPost,
     PutFilter as PimMenuPutFilter, Put as PimMenuPut, PutFilterPimMenuParamsModel, PutSort as PimMenuPutSort
 )
-from idosell.pim.responsibility import (
+from src.idosell.pim.responsibility import (
     DeleteEntities as PimResponsibilityDeleteEntities, GetEntities as PimResponsibilityGetEntities,
     PostEntities as PimResponsibilityPostEntities, PostEntitiesPimResponsabilityParamsModel,
     PutEntities as PimResponsibilityPutEntities, PutEntitiesPimResponsabilityParamsModel
 )
-from idosell.pim.sizecharts import (
+from src.idosell.pim.sizecharts import (
     Delete as PimSizechartsDelete, DeletePimSizechartsParamsModel,
     Get as PimSizechartsGet,
     Put as PimSizechartsPut,
     PutPimSizechartsParamsModel
 )
-from idosell.pim.sizes import (
+from src.idosell.pim.sizes import (
     Get as PimSizesGet,
     Put as PimSizesPut,
     PutPimSizesParamsModel
 )
-from idosell.pim.warranties import (
+from src.idosell.pim.warranties import (
     Delete as PimWarrantiesDelete, DeletePimWarrantiesParamsModel,
     GetCountTotal as PimWarrantiesGetCountTotal, Get as PimWarrantiesGet,
     Post as PimWarrantiesPost, PostPimWarrantiesParamsModel,

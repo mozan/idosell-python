@@ -27,9 +27,9 @@ class Get(PageableCamelGateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/categories')
 
     ids: List[int] | None = Field(None, description="List of product category identifiers in the panel")
-    # TODO check the languages here
+    # xTODO check the languages here
     languages: List[str] | None = Field(None, description="Array of languages categories names should be returned in. 'Defaults' value returns categories names in store default language. Not using languages parameter causes a situation, that categories names are returned in all available languages")
-    # TODO check the correctnes of this field
+    # xTODO check the correctnes of this field
     return_last_changed_time: str | None = Field(None, description="Returns the date of last modification (YYYY-MM-DD HH-MM-SS)")
 
 class Put(AppendableGateway):

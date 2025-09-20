@@ -1,44 +1,44 @@
 from typing import List, Any
 
-from idosell._common import BooleanStrShortEnum
-from idosell.cms.cpa.campaign import PostCampaignModel, PutCampaignModel
-from idosell.cms.cpa.campaign import (
+from src.idosell._common import BooleanStrShortEnum
+from src.idosell.cms.cpa.campaign import PostCampaignModel, PutCampaignModel
+from src.idosell.cms.cpa.campaign import (
     Delete as DeleteCmsCpaCampaign,
     Get as GetCmsCpaCampaign,
     Post as PostCmsCpaCampaign, PostCmsCpaCampaignParamsModel,
     Put as PutCmsCpaCampaign, PutCmsCpaCampaignParamsModel
 )
-from idosell.cms.cpa.cpa import (
+from src.idosell.cms.cpa.cpa import (
     Delete as DeleteCmsCpaCpa,
     Get as GetCmsCpaCpa,
     Post as PostCmsCpaCpa, PostCmsCpaCpaParamsModel, PostCpaModel,
     Put, PutCmsCpaCpaParamsModel, PutCpaModel
 )
-from idosell.cms.snippets.campaign import (
+from src.idosell.cms.snippets.campaign import (
     Delete as DeleteCmsSnippetsCampaign,
     Get as GetCmsSnippetsCampaign,
     Post as PostCmsCpaSnippetsCampaign, PostCmsSnippetsCampaignParamsModel, PostSnippetsCampaignModel,
     Put as PutCmsSnippetsCampaign, PutCmsSnippetsCampaignParamsModel, PutSnippetsCampaignModel
 )
-from idosell.cms.snippets.cookies import (
+from src.idosell.cms.snippets.cookies import (
     Delete as DeleteCmsSnippetsCookies,
     Get as GetCmsSnippetsCookies,
     Post as PostCmsCpaSnippetsCookies, PostCmsSnippetsCookiesParamsModel, PostCookiesModel,
     Put as PutCmsSnippetsCookies, PutCmsSnippetsCookiesParamsModel, PutCookiesModel
 )
-from idosell.cms.snippets.snippets import (
+from src.idosell.cms.snippets.snippets import (
     Delete as DeleteCmsSnippetsSnippets,
     Get as GetCmsSnippetsSnippets,
     Post as PostCmsCpaSnippetsSnippets, PostSnippetsModel, PostCmsSnippetsSnippetsParamsModel,
     Put as PutCmsSnippetsSnippets, PutCmsSnippetsSnippetsParamsModel, PutSnippetsModel
 )
-from idosell.cms.config_variables import (
+from src.idosell.cms.config_variables import (
     Delete as DeleteCmsConfigVariables,
     Get as GetCmsConfigVariables,
     Put as PutCmsConfigVariables, PutCmsConfigVariablesModel, PutVariablesModel,
     TypeConfigVariablesEnum
 )
-from idosell.cms.entries import (
+from src.idosell.cms.entries import (
     Delete as DeleteCmsEntries, DeleteCmsEntriesParamsModel,
     Get as GetCmsEntries, GetPagesToDisplay as GetCmsEntriesGetPagesToDisplay, GetSources as GetCmsEntriesGetSources,
     Post as PostCmsCpaEntries, PostCmsEntriesParamsModel,

@@ -1,7 +1,7 @@
 from typing import List, Any
 
-from idosell._common import BooleanStrShortEnum
-from idosell.pim.products._common import (
+from src.idosell._common import BooleanStrShortEnum
+from src.idosell.pim.products._common import (
     IdentTypeEnum, ViewEnum, SortModeGridEnum, MetaSettingsEnum,
     MetaRobotsSettingsIndexEnum, MetaRobotsSettingsFollowEnum,
     ProducerPostModel, ProducerPutModel, ProductsBundleDeleteProductsModel, ProductIdentTypeCodeExistanceEnum, ProductIdentBundlesModel,
@@ -26,7 +26,7 @@ from idosell.pim.products._common import (
     ProductCardImagesConfigurationModel, ShopsConfigurationsModel, GraphicTypeEnum,
     FilterActiveModel, FilterDisplayEnum, FilterValueSortEnum
 )
-from idosell.pim.products.brands import (
+from src.idosell.pim.products.brands import (
     Delete as PimProductsBrandsDelete,
     DeletePimProductsBrandsParamsModel,
     GetFilter as PimProductsBrandsGetFilter, Get as PimProductsBrandsGet,
@@ -34,19 +34,19 @@ from idosell.pim.products.brands import (
     PostPimProductsBrandsParamsModel,
     PutFilterPimProductsBrandsParamsModel, PutPimProductsBrandsParamsModel
 )
-from idosell.pim.products.bundles import (
+from src.idosell.pim.products.bundles import (
     DeleteProducts as PimProductsBundlesDeleteProducts,
     DeleteProductsPimProductsBundlesParamsModel,
     PostBundles as PimProductsBundlesPostBundles, PostProducts as PimProductsBundlesPostProducts,
     PutProductsQuantity as PimProductsBundlesPutProductsQuantity, PutRenew as PimProductsBundlesPutRenew,
     PostBundlesPimProductsBundlesParamsModel, PostProductsPimProductsBundlesParamsModel, PutProductsQuantityPimProductsBundlesParamsModel, PutRenewPimProductsBundlesParamsModel
 )
-from idosell.pim.products.categories import (
+from src.idosell.pim.products.categories import (
     Get as PimProductsCategoriesGet, SearchIdosell as PimProductsCategoriesSearchIdosell,
     Put as PimProductsCategoriesPut, SearchIdosellPimProductsCategoriesParamsModel,
     PutPimProductsCategoriesParamsModel
 )
-from idosell.pim.products.collections import (
+from src.idosell.pim.products.collections import (
     DeleteProducts as PimProductsCollectionsDeleteProducts,
     DeleteProductsPimProductsCollectionsParamsModel,
     PostProducts as PimProductsCollectionsPostProducts,
@@ -54,21 +54,20 @@ from idosell.pim.products.collections import (
     PostProductsPimProductsCollectionsParamsModel, PutProductsPimProductsCollectionsParamsModel,
     PutRenewPimProductsCollectionsParamsModel
 )
-from idosell.pim.products.descriptions import Get as PimProductsDescriptionsGet, Put as PimProductsDescriptionsPut, PutPimProductsDescriptionsParamsModel
-from idosell.pim.products.groups import (
+from src.idosell.pim.products.descriptions import Get as PimProductsDescriptionsGet, Put as PimProductsDescriptionsPut, PutPimProductsDescriptionsParamsModel
+from src.idosell.pim.products.groups import (
     PutMainProduct as PimProductsGroupsPutMainProduct, PutOrder as PimProductsGroupsPutOrder, PutSettings as PimProductsGroupsPutSettings,
     PutMainProductPimProductsGroupsParamsModel, PutOrderPimProductsGroupsParamsModel, PutSettingsPimProductsGroupsParamsModel
 )
-from idosell.pim.products.images import (
+from src.idosell.pim.products.images import (
     Delete as PimProductsImagesDelete, DeletePimProductsImagesParamsModel,
     Put as PimProductsImagesPut, PutPimProductsImagesParamsModel
 )
-from idosell.pim.products.marketing import (
+from src.idosell.pim.products.marketing import (
     GetAllFacebookCatalogIds as PimProductsMarketingGetAllFacebookCatalogIds, GetPromotion as PimProductsMarketingGetPromotion, GetZones as PimProductsMarketingGetZones,
-    # PostPromotion as PimProductsMarketingPostPromotion, PostPromotionPimProductsMarketingParamsModel,
     PutPromotion as PimProductsMarketingPutPromotion, PutZones as PimProductsMarketingPutZones, PutPromotionPimProductsMarketingParamsModel, PutZonesPimProductsMarketingParamsModel
 )
-from idosell.pim.products.miscs import (
+from src.idosell.pim.products.miscs import (
     GetProductsAuctions as PimProductsMiscsGetProductsAuctions, GetProductsCodeExistence as PimProductsMiscsGetProductsCodeExistence,
     GetProductsIdBySizecode as PimProductsMiscsGetProductsIdBySizecode, GetProductsReservations as PimProductsMiscsGetProductsReservations,
     GetProductsSKUbyBarcode as PimProductsMiscsGetProductsSKUbyBarcode,
@@ -76,34 +75,34 @@ from idosell.pim.products.miscs import (
     SearchProductsDeliveryTime as PimProductsMiscsSearchProductsDeliveryTime, SearchProductsDeliveryTimePimProductsMiscsParamsModel,
     PutProductsAttachmentsPimProductsMiscsParamsModel
 )
-from idosell.pim.products.parameters import (
+from src.idosell.pim.products.parameters import (
     Delete as PimProductsParametersDelete,
     DeletePimProductsParametersParamsModel,
     Put as PimProductsParametersPut,
     Search as PimProductsParametersSearch,
     SearchPimProductsParametersParamsModel
 )
-from idosell.pim.products.omnibus import GetPrices as PimProductsOmnibusGetPrices, PutPrices as PimProductsOmnibusPutPrices, PutPricesPimProductsOmnibusParamsModel
-from idosell.pim.products.opinions import (
+from src.idosell.pim.products.omnibus import GetPrices as PimProductsOmnibusGetPrices, PutPrices as PimProductsOmnibusPutPrices, PutPricesPimProductsOmnibusParamsModel
+from src.idosell.pim.products.opinions import (
     Delete as PimProductsOpinionsDelete,
     DeletePimProductsOpinionsParamsModel,
     Get as PimProductsOpinionsGet, GetRate as PimProductsOpinionsGetRate,
     # Post as PimProductsOpinionsPost,
     Put as PimProductsOpinionsPut, PutPimProductsOpinionsParamsModel
 )
-from idosell.pim.products.questions import (
+from src.idosell.pim.products.questions import (
     Get as PimProductsQuestionsGet,
     Put as PimProductsQuestionsPut,
     PutPimProductsQuestionsParamsModel
 )
-from idosell.pim.products.series import (
+from src.idosell.pim.products.series import (
     Delete as PimProductsSeriesDelete,
     DeletePimProductsSeriesParamsModel,
     GetFilter as PimProductsSeriesGetFilter, Get as PimProductsSeriesGet,
     Put as PimProductsSeriesPut,
     PutPimProductsSeriesParamsModel
 )
-from idosell.pim.products.sizes import (
+from src.idosell.pim.products.sizes import (
     Delete as PimProductsSizesDelete,
     Get as PimProductsSizesGet,
     Put as PimProductsSizesPut,
@@ -115,24 +114,24 @@ from idosell.pim.products.sizes import (
     IndexesDataSizesPutModel,
     SizeDataModel
 )
-from idosell.pim.products.stocks import (
+from src.idosell.pim.products.stocks import (
     ErrorModel,
     Get as PimProductsStocksGet,
     IdentStocksModel,
     Put as PimProductsStocksPut, PutPimProductsStocksParamsModel, PutPimProductsStocksSettingsModel,
     ProductsStocksModel, SizesStocksModel, QuantityStocksModel, StocksModel, QuantityOperationModel, OperationStocksEnum
 )
-from idosell.pim.products.strikethrough import (
+from src.idosell.pim.products.strikethrough import (
     GetPrices as PimProductsStrikethroughGetPrices,
     PutPrices as PimProductsStrikethroughPutPrices, PutPricesPimProductsStrikethroughParamsModel, PutPricesPimProductsStrikethroughSettingsModel,
     CalculateBasePriceSizesStrikethroughEnum, PriceModeStrikethroughEnum, ProductsStrikethroughModel, SizesStrikethroughModel, StpSettingsModel, ShopsStrikethroughModel,
     PriceChangeModeStrikethroughEnum, PriceChangeBasevalueStrikethroughEnum
 )
-from idosell.pim.products.supplier import (
+from src.idosell.pim.products.supplier import (
     PutCode as PimProductsSupplierPutCode, PutProductData as PimProductsSupplierPutProductData,
     PutCodePimProductsSupplierParamsModel, PutProductDataPimProductsSupplierParamsModel, ProductsSupplierPutCodeModel, ProductsSupplierPutProductDataModel
 )
-from idosell.pim.products.synchronization import (
+from src.idosell.pim.products.synchronization import (
     PostFile as PimSynchronizationPostFile, PostFilePimProductsSynchronizationParamsModel,
     PutFinishUpload as PimSynchronizationPutFinishUpload, PutFinishUploadPimProductsSynchronizationParamsModel
 )

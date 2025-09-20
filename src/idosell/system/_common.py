@@ -1,8 +1,12 @@
 from enum import StrEnum
 from typing import List
-from pydantic import BaseModel, Field, StrictInt
+from pydantic import BaseModel, Field, StrictInt, constr
 
 from src.idosell._common import BooleanStrShortEnum
+
+
+# --- Types
+Currency = constr(pattern=r'^[A-Z]{3}$', min_length=3, max_length=3)
 
 
 # --- Enums
@@ -96,7 +100,7 @@ class BlockIfIncorrectStockQuantitiesModel(BaseModel):
     finished: BooleanStrShortEnum = Field(..., description="y/n")
 
 class CurrenciesModel(BaseModel):
-    id: str = Field(..., description="Currency code in ISO 4217 standard") # TODO Currency
+    id: Currency = Field(..., description="Currency code in ISO 4217 standard")
     rate: float = Field(..., le=10000, description="Currency exchange rate. Maximal value is 10000")
     scale: StrictInt = Field(..., ge=1, description="Currency smaller unit")
 

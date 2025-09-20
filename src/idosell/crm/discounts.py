@@ -1,6 +1,6 @@
 from enum import StrEnum
 from typing import List, Optional
-from pydantic import BaseModel, Field, PrivateAttr, StrictInt
+from pydantic import BaseModel, Field, PrivateAttr, StrictInt, model_validator
 
 from src.idosell._common import Gateway, PageableCamelGateway
 
@@ -56,13 +56,20 @@ class PutGroupsCrmDiscountsParamsModel(BaseModel):
     discountGroupName: str = Field(..., description="Discount group name")
 
 class DeleteGroupsProductsCrmDiscountsParamsModel(BaseModel):
-    # TODO at least one of the fields must be present
     discountGroupId: StrictInt | None = Field(None, ge=1, description="Discount group ID")
     products: List[int] | None = Field(None, description="Products list")
     producers: List[int] | None = Field(None, description="Brands")
     series: List[int] | None = Field(None, description="Series")
     categories: List[int] | None = Field(None, description="List of categories in which sought products are present")
     menuItems: List[int] | None = Field(None, description="Menu elements")
+
+    @model_validator(mode='after')
+    def validate_at_least_one_field(self):
+        """Validate that at least one field is provided for the delete operation."""
+        fields_to_check = [self.discountGroupId, self.products, self.producers, self.series, self.categories, self.menuItems]
+        if not any(field is not None for field in fields_to_check):
+            raise ValueError("At least one field must be provided")
+        return self
 
 class PutGroupsProductsCrmDiscountsParamsModel(BaseModel):
     discountGroupId: StrictInt = Field(..., ge=1, description="Discount group ID")

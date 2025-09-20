@@ -1,5 +1,5 @@
 from typing import List
-from pydantic import BaseModel, Field, PrivateAttr, StrictInt
+from pydantic import BaseModel, Field, PrivateAttr, StrictInt, model_validator
 
 from src.idosell._common import BooleanStrShortEnum, AppendableGateway, Gateway, OrdersBySearchModel, PageableCamelGateway
 from src.idosell.pim.products.product._common import (
@@ -107,8 +107,14 @@ class Get(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/products')
 
-    # TODO try to validate as in description
     productIds: List[str] = Field(..., min_length=1, max_length=100, description="List of the unique, indexed product codes (IAI code / External system code / Producer code). You can transfer a maximum of 100 products IDs in one request") # type: ignore
+
+    @model_validator(mode='after')
+    def validate_product_ids(self):
+        """Validate that product IDs are unique with no duplicates."""
+        if len(self.productIds) != len(set(self.productIds)):
+            raise ValueError("Product IDs must be unique - duplicates are not allowed")
+        return self
 
 class Post(AppendableGateway):
     """

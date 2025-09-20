@@ -61,7 +61,6 @@ class PutCmsCpaCpaParamsModel(BaseModel):
 
 
 # --- ENDPOINTS
-# TODO - read again the Get() params
 class Get(PageableCamelGateway):
     """
     This call returns all cpa programs

@@ -1,5 +1,5 @@
 from enum import StrEnum
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway
@@ -65,14 +65,16 @@ class PutPimProductsStocksParamsModel(BaseModel):
     products: List[ProductsStocksModel] = Field(..., description="Products list")
 
 class ProductsStocksPutQuantityModel(BaseModel):
-    productIndex: str = Field(..., description="Product index")
-    productSizeCodeProducer: str = Field(..., description="Product size code producer")
-    productSizeCodeExternal: str = Field(..., description="External product system code for size")
-    stockId: StrictInt = Field(..., ge=1, description="Stock ID") # type: ignore
-    productSizeQuantity: float = Field(..., gt=0, description="Product stock quantity")
-    productPurchasePrice: float = Field(..., ge=0, description="Cost price")
-    productPurchasePriceNet: float = Field(..., ge=0, description="Net purchase price")
+    productIndex: Optional[str] = Field(None, description="Product index")
+    productSizeCodeProducer: Optional[str] = Field(None, description="Product size code producer")
+    productSizeCodeExternal: Optional[str] = Field(None, description="External product system code for size")
+    stockId: Optional[StrictInt] = Field(None, ge=1, description="Stock ID") # type: ignore
+    productSizeQuantity: Optional[float] = Field(None, gt=0, description="Product stock quantity")
+    productPurchasePrice: Optional[float] = Field(None, ge=0, description="Cost price")
+    productPurchasePriceNet: Optional[float] = Field(None, ge=0, description="Net purchase price")
 
+class PutQuantityPimProductsStocksParamsModel(BaseModel):
+    products: List[ProductsStocksPutQuantityModel] = Field(..., min_length=1, description="Products list") # type: ignore
 
 # --- ENDPOINTS
 class PutQuantity(AppendableGateway):
@@ -83,8 +85,8 @@ class PutQuantity(AppendableGateway):
 
     _method: str = PrivateAttr(default='PUT')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/stockQuantity')
-# TODO - params
-    products: List[ProductsStocksPutQuantityModel] = Field(..., min_length=1, description="Products list") # type: ignore
+
+    params: PutQuantityPimProductsStocksParamsModel | None = Field(None, description="Parameters transmitted to method")
 
 class Get(Gateway):
     """

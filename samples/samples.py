@@ -1,12 +1,9 @@
+import asyncio
 import os
 import sys
 from typing import List, Any
 from pathlib import Path
 from dotenv import load_dotenv
-
-# Add the project root to the Python path
-project_root = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(project_root))
 
 from .cms_dtos import cms_delete, cms_get, cms_post, cms_put
 from .crm_dtos import crm_delete, crm_get, crm_post, crm_put, crm_search
@@ -16,8 +13,11 @@ from .pim_products_dtos import pim_products_delete, pim_products_get, pim_produc
 from .system_dtos import system_delete, system_get, system_post, system_put
 from .wms_dtos import wms_delete, wms_get, wms_post, wms_put
 from .pim_products_product_dtos import pim_products_product_delete, pim_products_product_get, pim_products_product_post, pim_products_product_put, pim_products_product_search
-from idosell.api_request import ApiRequest
+from src.idosell.api_request import ApiRequest
 
+# Add the project root to the Python path
+project_root = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(project_root))
 
 if __name__ == "__main__":
     # Load environment variables from .env files
@@ -75,6 +75,7 @@ if __name__ == "__main__":
                 print(method + ": " + endpoint)
                 if method == "GET":
                     res = api.request(d)
+                    # res = asyncio.run(api.async_request(d))
                     print(method + ": " + endpoint + ":\nresponse:\n", res)
                 else:
                     print(method + ": " + endpoint + ":\nSKIPPED (POST/PUT/DELETE)\n")

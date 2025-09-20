@@ -128,8 +128,9 @@ class TestDeleteGroupsProductsCrmDiscountsParamsModel:
         assert dto.products == [1, 2, 3]
 
     def test_valid_none(self):
-        dto = DeleteGroupsProductsCrmDiscountsParamsModel()
-        assert dto.discountGroupId is None
+        # Test that all None values should raise validation error
+        with pytest.raises(ValidationError, match="At least one field must be provided"):
+            DeleteGroupsProductsCrmDiscountsParamsModel()
 
 class TestPutGroupsProductsCrmDiscountsParamsModel:
     def test_valid(self):

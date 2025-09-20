@@ -1,11 +1,11 @@
 from typing import List, Any
 
-from idosell._common import BooleanStrShortEnum
-from idosell.pim.products._common import (
+from src.idosell._common import BooleanStrShortEnum
+from src.idosell.pim.products._common import (
     ProductLongDescriptionsLangDataModel, ProductLongDescriptionsModel
 )
-from idosell.pim.products._common import PriceRoundModeEnum
-from idosell.pim.products.product._common import (
+from src.idosell.pim.products._common import PriceRoundModeEnum
+from src.idosell.pim.products.product._common import (
     AssociatedProductsModel, AvailablePaymentFormsModel, ContextValueEnum, ConverterUnitValueEnum, DispatchSettingsModel, FreeShippingSettingsModel,
     MinQuantityPerOrderModel, ModeEnum, PicturesSettingInputTypeEnum, PriceChangeModeEnum, PriceFormulaModel, ProductAuctionPricesModel, ProductDeliveryTimeChangeModeEnum,
     ProductDeliveryTimeModel, ProductDimensionsModel, ProductNamesLangDataModel, ProductNamesModel, ProductParametersDistinctionChangeModeEnum,
@@ -24,14 +24,14 @@ from idosell.pim.products.product._common import (
     ProductAvailabilityManagementTypeEnum, ProducerCodesStandardEnum, SerialNumbersOptionEnum, ProductInExportToStrefaMarekAllegroEnum,
     SettingDeleteIndividualDescriptionsByShopsMaskModel, SettingDeleteIndividualMetaByShopsMaskModel, SettingsPostModel, SettingsPutModel
 )
-from idosell.pim.products.product.facebook import (
+from src.idosell.pim.products.product.facebook import (
     DeleteToFacebookCatalog as PimProductsProductDeleteToFacebookCatalog,
     DeleteToFacebookCatalogPimProductsProductFacebookParamsModel,
     GetToFacebookCatalog as PimProductsProductGetToFacebookCatalog,
     PostToFacebookCatalog as PimProductsProductPostToFacebookCatalog,
     PostToFacebookCatalogPimProductsProductFacebookParamsModel
 )
-from idosell.pim.products.product.product import (
+from src.idosell.pim.products.product.product import (
     Delete as PimProductsProductDelete,
     DeletePimProductsProductProductParamsModel,
     Get as PimProductsProductGet,
@@ -42,7 +42,7 @@ from idosell.pim.products.product.product import (
     Search as PimProductsProductSearch,
     SearchPimProductsProductProductParamsModel
 )
-from idosell.pim.products.product.promotion import (
+from src.idosell.pim.products.product.promotion import (
     DeleteProductsToPromotion as PimProductsProductDeleteProductsToPromotion,
     DeleteProductsToPromotionPimProductsProductPromotionParamsModel,
     PostProductsToPromotion as PimProductsProductPostProductsToPromotion,

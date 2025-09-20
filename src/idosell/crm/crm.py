@@ -88,7 +88,6 @@ class PostParamsSearchModel(BaseModel):
     settingsExactSearch: bool | None = Field(None, description="Determines, if data - that will be returned - will be exactly as entered values, or values should be fragment of customer data")
 
 
-# TODO VALIDATORS
 # --- ENDPOINTS
 class Search(PageableCamelGateway):
     """

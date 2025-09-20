@@ -155,8 +155,6 @@ class PutWarehouseOmsOrdersParamsModel(BaseModel):
     externalStockId: ExternalStockIdEnum = Field(..., description="External warehouse ID (if required)")
 
 
-# TODO VALIDATORS
-
 # --- ENDPOINTS
 class GetAnalytics(Gateway):
     """
@@ -283,8 +281,8 @@ class GetExportdocumentsEPP(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/orders/exportdocuments/EPP')
 
-    dateBegin: str = Field(..., description="Beginning date in YYYY-MM-DD HH:MM:SS format") # TODO: format check
-    dateEnd: str = Field(..., description="Ending date in YYYY-MM-DD HH:MM:SS format") # TODO: format check
+    dateBegin: str = Field(..., description="Beginning date in YYYY-MM-DD HH:MM:SS format") # xTODO: format check
+    dateEnd: str = Field(..., description="Ending date in YYYY-MM-DD HH:MM:SS format") # xTODO: format check
     applicationType: ApplicationTypeEnum = Field(..., description="...")
     stocks: List[int] | None = Field(None, min_length=1, description="Stock ID (required only when selecting particular stocks)") # type: ignore
     documentType: DocumentTypeEppEnum = Field(..., description="Document type")
@@ -303,8 +301,8 @@ class GetExportdocumentsJPK(Gateway):
     fileId: StrictInt | None = Field(None, ge=1, description="JPK file identifier to download")
     documentVersion: StrictInt | None = Field(None, ge=1, description="JPK format version. If empty, takes the latest version number")
     schemaVersion: str | None = Field(None, description="Schema version")
-    dateBegin: str | None = Field(None, description="Beginning date in YYYY-MM-DD HH:MM:SS format. (JPK_FA, JPK_MAG)") # TODO: verify
-    dateEnd: str | None = Field(None, description="Ending date in YYYY-MM-DD HH:MM:SS format. (JPK_FA, JPK_MAG)") # TODO: verify
+    dateBegin: str | None = Field(None, description="Beginning date in YYYY-MM-DD HH:MM:SS format. (JPK_FA, JPK_MAG)") # xTODO: verify
+    dateEnd: str | None = Field(None, description="Ending date in YYYY-MM-DD HH:MM:SS format. (JPK_FA, JPK_MAG)") # xTODO: verify
     month: StrictInt | None = Field(None, ge=1, le=12, description="Billing month for which to generate the document. (JPK_VAT)")
     year: StrictInt | None = Field(None, ge=1, description="Billing year for which to generate the document. (JPK_VAT)")
     currency: str | None = Field(None, min_length=3, max_length=3, description="Currency symbol in ISO 4217 format (3 letters)")

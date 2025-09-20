@@ -1,13 +1,13 @@
 from typing import List, Any
 
-from idosell._common import BooleanStrShortEnum
-from idosell.system._common import (
+from src.idosell._common import BooleanStrShortEnum
+from src.idosell.system._common import (
     AddressModel, CoordinatesModel, CurrenciesModel, CurrencyRateEnum, DescriptionsCouriersModel, DescriptionsSystemModel, MainStockSystemEnum, OperatingDaysModel,
     OperatingModeEnum, PaymentFormsEnum, PickupPointDeleteRequestsPostModel,
     PickupPointsPostModel, PickupPointsPutModel, ServiceStatusEnum, PanelSettingsModel, ShopsModel,
     StockStateConfigEnum, TaxSettingsModel, SaleDateEnum, RestrictionsModel, BlockIfIncorrectStockQuantitiesModel, OrdersModel, UnitsModel
 )
-from idosell.system.couriers import (
+from src.idosell.system.couriers import (
     DeletePickupPoint as SystemCouriersDeletePickupPoint,
     DeletePickupPointSystemCouriersParamsModel,
     Get as SystemCouriersGet, GetAssignedToShippingProfiles as SystemCouriersGetAssignedToShippingProfiles,
@@ -17,14 +17,14 @@ from idosell.system.couriers import (
     PostPickupPointsSystemCouriersParamsModel,
     PutPickupPointsSystemCouriersParamsModel
 )
-from idosell.system.deliveries import (
+from src.idosell.system.deliveries import (
     GetProfiles as SystemDeliveriesGetProfiles, GetRegions as SystemDeliveriesGetRegions,
     PostRegions as SystemDeliveriesPostRegions,
     PutDefaultProfiles as SystemDeliveriesPutDefaultProfiles,
     PostRegionsSystemDeliveriesParamsModel, PutDefaultProfilesSystemDeliveriesParamsModel
 )
-from idosell.system.shops import GetCurrencies as SystemShopsGetCurrencies, GetLanguages as SystemShopsGetLanguages
-from idosell.system.system import (
+from src.idosell.system.shops import GetCurrencies as SystemShopsGetCurrencies, GetLanguages as SystemShopsGetLanguages
+from src.idosell.system.system import (
     GetCurrencies as SystemSystemGetCurrencies, GetConfig as SystemSystemGetConfig, GetProcessesAutomation as SystemSystemGetProcessesAutomation,
     GetServerLoad as SystemSystemGetServerLoad, GetServerTime as SystemSystemGetServerTime, GetShopsData as SystemSystemGetShopsData,
     GetUnits as SystemSystemGetUnits, GetUsers as SystemSystemGetUsers,
