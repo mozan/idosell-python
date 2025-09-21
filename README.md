@@ -1,3 +1,5 @@
+# WARNING - it's still a work in progress
+
 # Idosell Python API v6 wrapper (`/api/admin/v6/`)
 
 A Python 3 API wrapper for the Idosell REST API ([official documentation](https://idosell.readme.io/docs/apps) and [reference](https://idosell.readme.io/reference)).
