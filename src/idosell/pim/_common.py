@@ -271,7 +271,7 @@ class SizeChartsPutModel(BaseModel):
 
 # --- Sizes DTOs
 class LangDataSizesModel(BaseModel):
-    lang_id: str = Field(..., description="Language code. Codes are compliant with ISO-639-3 standard")
+    lang_id: str = Field(..., description="Language code. Codes are compliant with ISO-639-3")
     name: str = Field(..., description="Category plural name")
 
 class SizesPutModel(BaseModel):

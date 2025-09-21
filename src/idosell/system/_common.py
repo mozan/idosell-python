@@ -52,14 +52,14 @@ class AddressModel(BaseModel):
     street: str = Field(..., description="Address")
     zipCode: str = Field(..., description="ZIP / Post code")
     city: str = Field(..., description="Town / City")
-    provinceCode: str = Field(..., description="Administrative region (code in ISO 3166-2)")
+    provinceCode: str = Field(..., description="Administrative region (code in ISO-3166-2)")
 
 class CoordinatesModel(BaseModel):
     longitude: float = Field(..., description="Longitude")
     latitude: float = Field(..., description="Latitude")
 
 class DescriptionsCouriersModel(BaseModel):
-    languageId: str = Field(..., description="Language ID (code in ISO 639-2)")
+    languageId: str = Field(..., description="Language ID (code in ISO-639-2)")
     name: str = Field(..., description="Name of the pickup point")
     description: str = Field(..., description="collection point description ")
 
@@ -100,12 +100,12 @@ class BlockIfIncorrectStockQuantitiesModel(BaseModel):
     finished: BooleanStrShortEnum = Field(..., description="y/n")
 
 class CurrenciesModel(BaseModel):
-    id: Currency = Field(..., description="Currency code in ISO 4217 standard")
+    id: Currency = Field(..., description="Currency code in ISO-4217 (3 letters)")
     rate: float = Field(..., le=10000, description="Currency exchange rate. Maximal value is 10000")
     scale: StrictInt = Field(..., ge=1, description="Currency smaller unit")
 
 class DescriptionsSystemModel(BaseModel):
-    language: str = Field(..., description="ISO-639-3 Language")
+    language: str = Field(..., description="ISO-639-3")
     nameSingular: str = Field(..., max_length=30, description="Name (singular) (limit of 30 characters)")
     namePlural: str = Field(..., max_length=30, description="Name (plural) (limit of 30 characters)")
     nameFractions: str = Field(..., description="Name (by fractions) (limit of 30 characters)")
@@ -137,7 +137,7 @@ class RestictionModel(BaseModel):
     blockIfIncorrectStockQuantities: BlockIfIncorrectStockQuantitiesModel = Field(..., description="Block the ability of selecting a status, if there are products in the warehouse from which the order is being processed, with insufficient stock level")
 
 class UnitDescriptionModel(BaseModel):
-    language: str = Field(..., max_length=30, description="ISO-639-3 Language")
+    language: str = Field(..., max_length=30, description="ISO-639-3")
     nameSingular: str = Field(..., max_length=30, description="Name (singular) (limit of 30 characters)")
     namePlural: str = Field(..., max_length=30, description="Name (plural) (limit of 30 characters)")
     nameFractions: str = Field(..., max_length=30, description="Name (plural) (limit of 30 characters)")

@@ -477,7 +477,7 @@ class ProductsBaseModel(BaseModel):
     producerId: StrictInt = Field(..., ge=1, description="Brand Id")
     producerName: str = Field(..., description="Brand name")
     cnTaricCode: str = Field(..., description="CN/TARIC")
-    countryOfOrigin: str = Field(..., description="Country of origin. Country code in the ISO 3166-1 A2 standard")
+    countryOfOrigin: str = Field(..., description="Country of origin. Country code in the ISO-3166-1 alpha-2 standard (2 letters)")
     unitId: StrictInt = Field(..., ge=1, description="Product unit of measure ID")
     seriesId: StrictInt = Field(..., ge=1, description="ID of series, to which product belongs")
     seriesPanelName: str = Field(..., description="Name of series, to which the product belongs, visible in panel")

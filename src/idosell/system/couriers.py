@@ -35,7 +35,7 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/couriers/couriers')
 
-    countryCode: str = Field(..., min_length=2, max_length=2, pattern=r'^[A-Za-z]{2}$', description="Country code in ISO 3166-1 alpha-2 format (two letters)")  # type: ignore
+    countryCode: str = Field(..., min_length=2, max_length=2, pattern=r'^[A-Za-z]{2}$', description="Country code in ISO-3166-1 alpha-2 format (2 letters)")  # type: ignore
 
 class DeletePickupPoint(AppendableGateway):
     """

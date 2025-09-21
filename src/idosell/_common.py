@@ -80,7 +80,7 @@ class PayerAddressBaseModel(BaseModel):
     payerAddressStreet: str = Field(..., description="Buyer's street name and house number")
     payerAddressZipCode: str = Field(..., description="Buyer's postal code")
     payerAddressCity: str = Field(..., description="Buyer's city")
-    payerAddressCountryId: str = Field(..., description="Country code in the ISO 3166-1 A2 standard")
+    payerAddressCountryId: str = Field(..., description="Country code in the ISO-3166-1 alpha-2 standard (2 letters)")
     payerAddressPhone: str = Field(..., description="Buyer's telephone number")
 
 class OrdersBySearchModel(BaseModel):
@@ -212,8 +212,6 @@ class IdoSellDateValidator:
     @staticmethod
     def validate_date_format(v: str, pattern: str, format_name: str) -> str:
         """Validate string matches date pattern"""
-        if not isinstance(v, str):
-            raise ValueError(f'{format_name} must be a string')
         if not re.match(pattern, v):
             raise ValueError(f'{format_name} must be in correct format')
         return v
@@ -221,36 +219,28 @@ class IdoSellDateValidator:
 # Date field types with proper validation
 def validate_date_format(v: str) -> str:
     """Validate YYYY-MM-DD format"""
-    if not isinstance(v, str):
-        raise ValueError('Date must be a string')
     if not re.match(IdoSellDateValidator.DATE_PATTERN, v):
         raise ValueError('Date must be in YYYY-MM-DD format')
     return v
 
 def validate_datetime_format(v: str) -> str:
     """Validate YYYY-MM-DD HH:MM:SS format"""
-    if not isinstance(v, str):
-        raise ValueError('DateTime must be a string')
     if not re.match(IdoSellDateValidator.DATETIME_PATTERN, v):
         raise ValueError('DateTime must be in YYYY-MM-DD HH:MM:SS format')
     return v
 
 def validate_php_datetime_format(v: str) -> str:
     """Validate Y-m-d H:i:s format"""
-    if not isinstance(v, str):
-        raise ValueError('PHP DateTime must be a string')
     if not re.match(IdoSellDateValidator.PHP_DATETIME_PATTERN, v):
         raise ValueError('DateTime must be in Y-m-d H:i:s format')
     return v
 
 def validate_language_id(v: str) -> str:
-    """Validate ISO 639-2 language code (3 letters)"""
-    if not isinstance(v, str):
-        raise ValueError('Language ID must be a string')
+    """Validate ISO-639-2 language code (3 letters)"""
     if len(v) != 3:
-        raise ValueError('Language ID must be exactly 3 characters (ISO 639-2)')
+        raise ValueError('Language ID must be exactly 3 characters (ISO-639-2)')
     if not v.isalpha():
-        raise ValueError('Language ID must contain only letters (ISO 639-2)')
+        raise ValueError('Language ID must contain only letters (ISO-639-2)')
     return v.lower()
 
 # Date field type for YYYY-MM-DD format
@@ -274,9 +264,9 @@ IdoSellPhpDateTime = Annotated[
     BeforeValidator(validate_php_datetime_format)
 ]
 
-# Language ID field type for ISO 639-2 codes (3-letter language codes)
+# Language ID field type for ISO-639-2 codes (3-letter language codes)
 IdoSellLanguageId = Annotated[
     str,
-    Field(min_length=3, max_length=3, description="Language ID (code in ISO 639-2)"),
+    Field(min_length=3, max_length=3, description="Language ID (code in ISO-639-2)"),
     BeforeValidator(validate_language_id)
 ]

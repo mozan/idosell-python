@@ -13,4 +13,4 @@ class Get(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/clients/provinceList')
 
-    country_code: str | None = Field(None, min_length=2, max_length=2, pattern=r'^[A-Za-z]{2}$', description="Country code in ISO 3166-1 alpha-2 standard (2 letters)") # type: ignore
+    country_code: str | None = Field(None, min_length=2, max_length=2, pattern=r'^[A-Za-z]{2}$', description="Country code in ISO-3166-1 alpha-2 standard (2 letters)") # type: ignore

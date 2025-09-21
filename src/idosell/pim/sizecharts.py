@@ -1,7 +1,7 @@
 from typing import List
 from pydantic import BaseModel, Field, PrivateAttr
 
-from src.idosell._common import AppendableGateway, Gateway, PageableCamelGateway
+from src.idosell._common import AppendableGateway, Gateway, IdoSellLanguageId, PageableCamelGateway
 from src.idosell.pim._common import SizeChartsPutModel
 
 
@@ -36,7 +36,7 @@ class Get(PageableCamelGateway):
 
     ids: List[int] | None = Field(None, description="IDs")
     names: List[str] | None = Field(None, description="Names of size charts")
-    languages: List[str] | None = Field(None, description="List of languages")
+    languages: List[IdoSellLanguageId] | None = Field(None, description="List of languages")
 
 class Put(AppendableGateway):
     """

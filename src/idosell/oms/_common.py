@@ -266,7 +266,7 @@ class ShippingStoreCostsModel(BaseModel):
 # --- Orders DTOs
 class AdditionalDataModel(BaseModel):
     documentId: str = Field(..., description="Document number")
-    documentIssuedDate: str = Field(..., description="The date document was issued in the ISO 8601 format (YYYY-MM-DD)")
+    documentIssuedDate: str = Field(..., description="The date document was issued in the ISO-8601 format (YYYY-MM-DD)")
 
 class AuctionsParamsModel(BaseModel):
     auctionsServicesNames: List[AuctionsServicesNamesEnum] = Field(..., description="Auction sites names") # Auction sites listing: "allegro" - Allegro.pl, "testwebapi" - Allegro.pl test site, "ebay" - eBay
@@ -453,7 +453,7 @@ class OrdersPostModel(BaseModel):
     clientRequestInvoice: ClientRequestInvoiceEnum = Field(..., description="")
     billingCurrency: str = Field(..., description="")
     billingCurrencyRate: float = Field(..., description="")
-    purchaseDate: str = Field(..., description="Sale date. ISO 8602 format")
+    purchaseDate: str = Field(..., description="Sale date. ISO-8602 format")
 
 class OrdersPutModel(BaseModel):
     orderId: str = Field(..., description="Order ID")
@@ -473,7 +473,7 @@ class OrdersPutModel(BaseModel):
     clientRequestInvoice: ClientRequestInvoiceEnum = Field(..., description="Customer asked for invoice")
     billingCurrency: str = Field(..., description="Order settlement currency")
     billingCurrencyRate: float = Field(..., description="Panel billing currency exchange rate in relation to billing currency in the shop")
-    purchaseDate: str = Field(..., description="Sale date. ISO 8602 format")
+    purchaseDate: str = Field(..., description="Sale date. ISO-8602 format")
     estimatedDeliveryDate: str = Field(..., description="Estimated date of shipment of the order in format Y-m-d H:i")
 
 class OrdersSerialNumberRangeModel(BaseModel):

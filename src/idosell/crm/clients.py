@@ -90,7 +90,7 @@ class PostCrmClientsClientsModel(BaseModel):
     street: str = Field(..., description="Address")
     zipcode: str = Field(..., description="Customer's postal code")
     city: str = Field(..., description="Customer's city")
-    country_code: str = Field(..., description="Customer country (ISO 3166-1 alfa-2 code)")
+    country_code: str = Field(..., description="Customer country (ISO-3166-1 alpha-2 standard (2 letters))")
     province_code: str = Field(..., description="Administrative region code")
     password: str = Field(..., description="Customer password (min. 8 characters)")
     birth_date: str = Field(..., description="Date of birth")
@@ -102,7 +102,7 @@ class PostCrmClientsClientsModel(BaseModel):
     language: str = Field(..., description="Customer language ID")
     shops: List[int] = Field(..., description="Determines, in which store account should be active")
     block_autosigning_to_shops: bool = Field(..., description="Defines availability of log in to other pages than the ones given in the element: shops ")
-    currency: str = Field(..., description="Customer default currency (ISO 4217 code)")
+    currency: str = Field(..., description="Customer default currency (ISO-4217 (3 letters))")
     delivery_dates: List[str] = Field(..., description="...")
     external_balance_value: float = Field(..., description="Customer account balance in external system")
     external_trade_credit_limit_value: float = Field(..., description="Debt limit")
@@ -171,6 +171,7 @@ class SettingsPostModel(BaseModel):
 class SettingsPostPutModel(BaseModel):
     clientSettingSendMail: bool = Field(False, description="Inform the customer about the introduced changes via an e-mail")
     clientSettingSendSms: bool = Field(False, description="Inform the customer about the introduced changes via a text message")
+
 
 # --- ENDPOINTS
 class GetBalance(PageableCamelGateway):
@@ -244,15 +245,3 @@ class Put(AppendableGateway):
 
     params: PutCrmClientsParamsModel = Field(..., description="Parameters transmitted to method")
     clientsSettings: SettingsPostPutModel = Field(..., description="Settings")
-
-# DELETE_JSON = {}
-# class Delete(AppendableGateway):
-#     # TODO - what's that???
-#     # DOCS:
-#     # DOCS_URL:
-#     # ENDPOINT:
-
-#     _method: str = PrivateAttr(default='')
-#     _endpoint: str = PrivateAttr(default='')
-
-#     clientId: StrictInt = Field(..., ge=1, description="Client's ID")

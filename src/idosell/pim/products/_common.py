@@ -443,7 +443,7 @@ class ProductCardImagesConfigurationModel(BaseModel):
 class LanguagesConfigurationsModel(BaseModel):
     productsListImagesConfiguration: ProductsListImagesConfigurationModel = Field(..., description="...")
     productCardImagesConfiguration: ProductCardImagesConfigurationModel = Field(..., description="Graphic displayed on product card")
-    languageId: str = Field(..., description="Language ID (code in ISO 639-2)")
+    languageId: str = Field(..., description="Language ID (code in ISO-639-2)")
     shopsConfigurations: List[ShopsConfigurationsModel] = Field(..., description="...")
 
 class ImagesSettingsModel(BaseModel):
@@ -634,7 +634,7 @@ class MarketingZonesModel(BaseModel):
 class NewPriceSettingsModel(BaseModel):
     type: TypeEnum = Field(..., description="...")
     discountValue: float = Field(..., gt=0, description="Discount value")
-    currencyId: str = Field(..., description="ISO 4217 currency")
+    currencyId: str = Field(..., description="ISO-4217 (3 letters)")
     mode: ModeEnum = Field(..., description="Edition mode")
     endValue: str = Field(..., description="Fractional price value")
 

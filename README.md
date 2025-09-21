@@ -85,7 +85,7 @@ pytest
 ### Linting
 
 ```sh
-pylint idosell/
+pylint src/idosell/
 ```
 
 ### Building
@@ -96,13 +96,13 @@ uv build
 
 ### Project Structure
 
-- `idosell/cms/`: Content Management System
-- `idosell/crm/`: Customer Relationship Management
-- `idosell/oms/`: Order Management System
-- `idosell/pim/`: Product Information Management
-- `idosell/system/`: System-related
-- `idosell/wms/`: Warehouse Management System
-- `idosell/samples/`: Sample/test DTOs usage for all modules
-- `idosell/_common.py`: Shared enumerations, models and utilities
-- `idosell/api_request.py`: HTTP client for API requests
+- `src/idosell/cms/`: Content Management System
+- `src/idosell/crm/`: Customer Relationship Management
+- `src/idosell/oms/`: Order Management System
+- `src/idosell/pim/`: Product Information Management
+- `src/idosell/system/`: System-related
+- `src/idosell/wms/`: Warehouse Management System
+- `src/idosell/_common.py`: Shared enumerations, models and utilities
+- `src/idosell/api_request.py`: HTTP client for API requests
+- `samples/`: Sample/test DTOs usage for all modules
 - `tests/`: Pytest-based tests

@@ -11,7 +11,7 @@ class DeletePimProductsSeriesParamsModel(BaseModel):
 
 class PutFilterPimProductsSeriesParamsModel(BaseModel):
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    languageId: IdoSellLanguageId = Field(..., description="Language ID (code in ISO 639-2)")
+    languageId: IdoSellLanguageId = Field(..., description="Language ID (code in ISO-639-2)")
     serieId: StrictInt = Field(..., ge=1, description="Series Id")
     filterForNodeIsDefault: BooleanStrShortEnum = Field(..., description="...")
     filtersActive: List[FiltersActiveSeriesModel] = Field(..., min_length=1, description="Active filters") # type: ignore
@@ -42,7 +42,7 @@ class GetFilter(Gateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/series/filter')
 
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    languageId: IdoSellLanguageId = Field(..., description="Language ID (code in ISO 639-2)")
+    languageId: IdoSellLanguageId = Field(..., description="Language ID (code in ISO-639-2)")
     serieId: StrictInt = Field(..., ge=1, description="Series Id")
 
 class PutFilter(AppendableGateway):

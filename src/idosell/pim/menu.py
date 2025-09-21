@@ -11,7 +11,7 @@ from src.idosell.pim._common import (
 # --- DTOs
 class PutFilterPimMenuParamsModel(BaseModel):
     shopId: StrictInt = Field(..., description="Shop Id")
-    languageId: str = Field(..., description="Language ID (code in ISO 639-2)")
+    languageId: str = Field(..., description="Language ID (code in ISO-639-2)")
     productMenuTreeId: StrictInt = Field(..., description="Tree menu ID")
     productMenuNodeId: StrictInt = Field(..., description="Menu element ID")
     filterForMenuNodeIsDefault: BooleanStrShortEnum = Field(..., description="Default filter settings")
@@ -29,7 +29,7 @@ class GetFilter(Gateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/menu/filter')
 
     shopId: StrictInt | None = Field(None, ge=1, description="Shop Id")
-    languageId: str | None = Field(None, description="Language ID (code in ISO 639-2)")
+    languageId: str | None = Field(None, description="Language ID (code in ISO-639-2)")
     productMenuTreeId: StrictInt | None = Field(None, ge=1,description="Tree menu ID")
     productMenuNodeId: StrictInt | None = Field(None, ge=1, description="Menu element ID")
 

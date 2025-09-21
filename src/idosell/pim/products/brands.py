@@ -17,7 +17,7 @@ class PutPimProductsBrandsParamsModel(BaseModel):
 
 class PutFilterPimProductsBrandsParamsModel(BaseModel):
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    languageId: str = Field(..., description="Language ID (code in ISO 639-2)")
+    languageId: str = Field(..., description="Language ID (code in ISO-639-2)")
     producerId: StrictInt = Field(..., ge=1, description="Brand ID")
     filterForNodeIsDefault: BooleanStrShortEnum = Field(..., description="...")
     filtersActive: List[FilterActiveModel] = Field(..., description="Active filters")
@@ -45,7 +45,7 @@ class GetFilter(Gateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/brands/filter')
 
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    languageId: str = Field(..., description="Language ID (code in ISO 639-2)")
+    languageId: str = Field(..., description="Language ID (code in ISO-639-2)")
     producerId: StrictInt = Field(..., ge=1, description="Brand ID")
 
 class PutFilter(AppendableGateway):
