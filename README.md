@@ -3,7 +3,6 @@
 # Idosell Python API v6 wrapper (`/api/admin/v6/`)
 
 A Python 3 API wrapper for the Idosell REST API ([official documentation](https://idosell.readme.io/docs/apps) and [reference](https://idosell.readme.io/reference)).
-Inspired by the [@ltung7/idosell](https://github.com/ltung7/idosell) TypeScript library.
 
 This library provides access to Idosell e-commerce platform APIs, enabling management of customers (CRM), orders (OMS), products (PIM), CMS content, system settings, and warehouse operations (WMS).
 
@@ -17,21 +16,14 @@ This library provides access to Idosell e-commerce platform APIs, enabling manag
 
 ### Using uv (recommended)
 
-[uv](https://github.com/astral-sh/uv) is a fast Python package/dependency manager.  
-To prepare a virtual environment and install all dependencies:
-
 ```sh
-uv venv .venv
-source .venv/bin/activate
-uv pip install -e .
+uv add idosell-api
 ```
 
 ### Using pip
 
 ```sh
-python -m venv .venv
-source .venv/bin/activate
-pip install -e .
+pip install idosell-api
 ```
 
 ## Quick Start
@@ -112,3 +104,6 @@ uv build
 - `src/idosell/api_request.py`: HTTP client for API requests
 - `samples/`: Sample/test DTOs usage for all modules
 - `tests/`: Pytest-based tests
+
+### Thank you...
+[@ltung7/idosell](https://github.com/ltung7/idosell) for your TypeScript library. A lot of this code is loosely based on that library.

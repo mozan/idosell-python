@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name            = "idosell-api"
-version         = "0.8.1b1"
+version         = "0.8.1.1b1"
 description     = "Python SDK for Idosell REST API"
 readme          = "README.md"
 license         = "MIT"

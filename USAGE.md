@@ -1,6 +1,6 @@
 # Idosell Python API - Usage examples
 
-This guide shows **real-world usage examples** for the Idosell Python SDK across all modules: PIM, CRM, OMS, CMS, System and WMS.
+This guide shows **real-world usage examples** for the Idosell Python API across all modules: PIM, CRM, OMS, CMS, System and WMS.
 
 > **Note**: See [README.md](README.md) for basic setup. This file focuses on practical examples.
 
