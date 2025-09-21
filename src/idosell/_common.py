@@ -216,6 +216,13 @@ class IdoSellDateValidator:
             raise ValueError(f'{format_name} must be in correct format')
         return v
 
+    @staticmethod
+    def validate_datetime_format(v: str) -> str:
+        """Validate YYYY-MM-DD HH:MM:SS format"""
+        if not re.match(IdoSellDateValidator.DATETIME_PATTERN, v):
+            raise ValueError('DateTime must be in YYYY-MM-DD HH:MM:SS format')
+        return v
+
 # Date field types with proper validation
 def validate_date_format(v: str) -> str:
     """Validate YYYY-MM-DD format"""
