@@ -86,6 +86,10 @@ pytest
 
 ```sh
 pylint src/idosell/
+
+or (recommended)
+
+ruff check src/idosell/
 ```
 
 ### Building
