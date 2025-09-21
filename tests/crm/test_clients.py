@@ -341,7 +341,7 @@ class TestSettingsPostModel:
             send_mail=False,
             send_sms=True
         )
-        assert dto.send_mail == False
+        assert not dto.send_mail
 
 class TestSettingsPostPutModel:
     def test_valid(self):
@@ -349,7 +349,7 @@ class TestSettingsPostPutModel:
             clientSettingSendMail=True,
             clientSettingSendSms=False
         )
-        assert dto.clientSettingSendMail == True
+        assert dto.clientSettingSendMail
 
 
 # --- Tests for Endpoints

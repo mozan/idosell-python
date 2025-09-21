@@ -128,8 +128,8 @@ class TestPaymentsDTOs:
             sendMail=True,
             sendSms=False
         )
-        assert model.sendMail == True
-        assert model.sendSms == False
+        assert model.sendMail
+        assert not model.sendSms
 
     def test_post_cancel_oms_payments_params_model(self):
         """Test PostCancelOmsPaymentsParamsModel validation."""
@@ -268,7 +268,7 @@ class TestPaymentsEndpoints:
         assert endpoint._method == 'PUT'
         assert endpoint._endpoint == '/api/admin/v6/payments/confirm'
         assert endpoint.params.sourceType == EventSourceTypeEnum.ORDER
-        assert endpoint.settings.sendMail == True
+        assert endpoint.settings.sendMail
 
     def test_get_forms_endpoint(self):
         """Test the GetForms endpoint."""

@@ -1,5 +1,3 @@
-import pytest
-from pydantic import ValidationError
 
 from src.idosell.crm.crm import (
     ClientAffiliateProgramEnum, ClientHasLoyaltyCardEnum, SearchByShopEnum,

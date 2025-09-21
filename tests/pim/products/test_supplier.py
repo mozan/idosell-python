@@ -119,7 +119,7 @@ class TestPutProductDataPimProductsSupplierParamsModel:
         assert dto.products[0].productId == 1
 
     def test_clear_all_quantities_true(self):
-        from src.idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel, ProductSizesProductDeliverersProductsPutProductDataModelModel
+        from src.idosell.pim.products._common import ProductsSupplierPutProductDataModel, ProductDeliverersProductsPutProductDataModel
 
         dto = PutProductDataPimProductsSupplierParamsModel(
             products=[ProductsSupplierPutProductDataModel(
@@ -201,7 +201,6 @@ class TestPutProductDataPimProductsSupplierParamsModel:
 class TestPutCode:
     def test_invalid_empty_products(self):
         with pytest.raises(ValidationError):
-            from src.idosell.pim.products._common import ProductsSupplierPutCodeModel, ProductDeliverersSupplierModel, ProductSizesSupplierModel
             PutCodePimProductsSupplierParamsModel(products=[])
 
     def test_instantiate_with_products(self):
@@ -232,7 +231,6 @@ class TestPutCode:
 class TestPutProductData:
     def test_invalid_empty_products(self):
         with pytest.raises(ValidationError):
-            from src.idosell.pim.products._common import ProductsSupplierPutProductDataModel
             PutProductDataPimProductsSupplierParamsModel(products=[])
 
     def test_instantiate_with_products(self):

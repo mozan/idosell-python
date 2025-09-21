@@ -326,7 +326,7 @@ class TestSubscriptionsDTOs:
         )
         assert len(model.subscriptionIds) == 3
         assert model.upcomingDeliveryDate == "2023-11-15"
-        assert model.changeNextDeliveryDate == True
+        assert model.changeNextDeliveryDate
 
     def test_subscriptions_auto_price_model(self):
         """Test SubscriptionsAutoPriceModel validation."""
@@ -335,7 +335,7 @@ class TestSubscriptionsDTOs:
             autoPriceUpdate=True
         )
         assert len(model.subscriptionIds) == 3
-        assert model.autoPriceUpdate == True
+        assert model.autoPriceUpdate
 
     def test_subscription_delete_products(self):
         """Test SubscriptionDeleteProducts validation."""
@@ -574,7 +574,7 @@ class TestSubscriptionsEndpoints:
         endpoint = PostChangePriceAutoUpdate(subscriptionsAutoPriceModel=auto_price)
         assert endpoint._method == 'POST'
         assert endpoint._endpoint == '/api/admin/v6/subscriptions/changePriceAutoUpdate'
-        assert endpoint.subscriptionsAutoPriceModel.autoPriceUpdate == False
+        assert not endpoint.subscriptionsAutoPriceModel.autoPriceUpdate
 
     def test_post_change_status_endpoint(self):
         """Test the PostChangeStatus endpoint."""

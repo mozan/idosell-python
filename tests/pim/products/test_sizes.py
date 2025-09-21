@@ -19,8 +19,6 @@ from src.idosell.pim.products.sizes import (
     DeleteModeSizesEnum,
     PutModeSizesEnum,
 )
-from src.idosell.pim.products._common import ProductSizesBundlesCollectionsModel
-from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for DTOs

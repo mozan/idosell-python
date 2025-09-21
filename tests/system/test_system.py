@@ -11,14 +11,14 @@ from src.idosell.system._common import (
 )
 from src.idosell._common import BooleanStrShortEnum
 from src.idosell.system._common import (
-    MainStockSystemEnum, StockStateConfigEnum, TaxSettingsModel, ShopsModel, RestrictionsModel, UserTypeEnum
+    MainStockSystemEnum, StockStateConfigEnum, TaxSettingsModel, ShopsModel, UserTypeEnum
 )
 
 
 # --- Tests for DTOs
 class TestPutConfigSystemSystemParamsModel:
     def test_valid(self):
-        from src.idosell.system._common import MainStockSystemEnum, StockStateConfigEnum, TaxSettingsModel, CurrencyRateEnum, SaleDateEnum, ShopsModel
+        from src.idosell.system._common import CurrencyRateEnum, SaleDateEnum
         dto = PutConfigSystemSystemParamsModel(
             panelSettings=PanelSettingsModel(
                 mainStockSystem=MainStockSystemEnum.OTHER,

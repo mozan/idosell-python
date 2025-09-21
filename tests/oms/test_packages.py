@@ -242,7 +242,7 @@ class TestPackagesDTOs:
         )
         assert model.deliveryPackageNumbers == ["SHIP001", "SHIP002"]
         assert len(model.events) == 1
-        assert model.returnLabels == True
+        assert model.returnLabels
 
         # Test None defaults
         empty_model = SearchOmsPackagesParamsModel()
@@ -340,4 +340,4 @@ class TestPackagesEndpoints:
         assert endpoint._endpoint == '/api/admin/v6/packages/packages/search'
         if endpoint.params.events is not None:
             assert len(endpoint.params.events) == 1
-        assert endpoint.params.returnLabels == False
+        assert not endpoint.params.returnLabels

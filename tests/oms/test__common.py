@@ -64,13 +64,10 @@ from src.idosell.oms._common import (
     OpinionSearchModel,
     OrdersSearchModel,
     OrderBySearchModel,
-    OrderPackagesPostPutModel,
     OrderProductsModel,
     OrderSourceModel,
     OrderSourceSearchUnfinishedModel,
     OrdersDateRangeModel,
-    OrdersPostModel,
-    OrdersPutModel,
     OrdersSerialNumberRangeModel,
     OrdersRangeModel,
     OrdersBySearchUnfinishedModel,
@@ -418,7 +415,7 @@ class TestCommonDTOs:
         )
         assert model.id == 1
         assert model.language == "pl"
-        assert model.confirmed == True
+        assert model.confirmed
 
     def test_order_by_search_model(self):
         model = OrderBySearchModel(
@@ -526,8 +523,8 @@ class TestCommonDTOs:
 
     def test_settings_model(self):
         model = SettingsModel(settingSendMail=True, settingSendSMS=False)
-        assert model.settingSendMail == True
-        assert model.settingSendSMS == False
+        assert model.settingSendMail
+        assert not model.settingSendSMS
 
     def test_settings_put_model(self):
         model = SettingsPutModel(
@@ -698,7 +695,6 @@ class TestCommonDTOs:
             sizePanelName="Large",
             productIndex="IDX002"
         )
-        discount_code = DiscountCodeModel(name="DISCOUNT10")
         model = ProductsModel(
             productId=1,
             sizeId="M",
@@ -809,5 +805,5 @@ class TestCommonDTOs:
         )
         assert model.orderSerialNumber == 123
         assert len(model.products) == 1
-        assert model.isProductsErrors == False
+        assert not model.isProductsErrors
         assert model.errors.faultString == "Test error"

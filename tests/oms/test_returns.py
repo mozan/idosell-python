@@ -163,7 +163,7 @@ class TestReturnsDTOs:
         assert model.status == 2
         assert model.apiFlag == ApiFlagReturnsEnum.REGISTERED
         assert len(model.products) == 1
-        assert model.tryCorrectInvoice == True
+        assert model.tryCorrectInvoice
 
         # Test validation - ge=1 constraints
         with pytest.raises(ValueError):
@@ -205,9 +205,9 @@ class TestReturnsDTOs:
         assert model.stock_id == 10
         assert len(model.products) == 1
         assert model.status == 1
-        assert model.client_received == True
+        assert model.client_received
         assert model.courier_id == 100
-        assert model.tryCorrectInvoice == True
+        assert model.tryCorrectInvoice
 
         # Test validation - ge=1 constraints
         with pytest.raises(ValueError):
@@ -324,7 +324,7 @@ class TestReturnsEndpoints:
         assert endpoint.status == StatusEnum.RETURN_ACCEPTED
         assert endpoint.return_ids == [111, 222, 333]
         assert endpoint.stock_id == 20
-        assert endpoint.bundleAsProducts == True
+        assert endpoint.bundleAsProducts
 
         # Test None values with pagination parameters
         endpoint_none = Get(

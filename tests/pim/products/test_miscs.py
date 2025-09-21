@@ -26,7 +26,7 @@ class TestMiscsEndpoints:
 
         try:
             # Note: This endpoint likely requires multiple parameters
-            endpoint = GetProductsAuctions()
+            GetProductsAuctions()
         except Exception as e:
             # Expected to fail due to missing parameters - that's OK
             assert isinstance(e, (ValidationError, TypeError))
@@ -36,7 +36,7 @@ class TestMiscsEndpoints:
         from src.idosell.pim.products.miscs import GetProductsCodeExistence
 
         try:
-            endpoint = GetProductsCodeExistence()
+            GetProductsCodeExistence()
         except Exception as e:
             # Expected to fail due to missing parameters - that's OK
             assert isinstance(e, (ValidationError, TypeError))
@@ -46,7 +46,7 @@ class TestMiscsEndpoints:
         from src.idosell.pim.products.miscs import GetProductsIdBySizecode
 
         try:
-            endpoint = GetProductsIdBySizecode()
+            GetProductsIdBySizecode()
         except Exception as e:
             # Expected to fail due to missing parameters - that's OK
             assert isinstance(e, (ValidationError, TypeError))
@@ -56,7 +56,7 @@ class TestMiscsEndpoints:
         from src.idosell.pim.products.miscs import GetProductsReservations
 
         try:
-            endpoint = GetProductsReservations()
+            GetProductsReservations()
         except Exception as e:
             # Expected to fail due to missing parameters - that's OK
             assert isinstance(e, (ValidationError, TypeError))
@@ -66,7 +66,7 @@ class TestMiscsEndpoints:
         from src.idosell.pim.products.miscs import GetProductsSKUbyBarcode
 
         try:
-            endpoint = GetProductsSKUbyBarcode()
+            GetProductsSKUbyBarcode()
         except Exception as e:
             # Expected to fail due to missing parameters - that's OK
             assert isinstance(e, (ValidationError, TypeError))
@@ -77,7 +77,7 @@ class TestMiscsEndpoints:
 
         try:
             # This likely requires productId parameter
-            endpoint = PostProductsRestore()
+            PostProductsRestore()
         except Exception as e:
             # Expected to fail due to missing parameters - that's OK
             assert isinstance(e, (ValidationError, TypeError))
@@ -87,7 +87,7 @@ class TestMiscsEndpoints:
         from src.idosell.pim.products.miscs import PutProductsAttachments
 
         try:
-            endpoint = PutProductsAttachments()
+            PutProductsAttachments()
         except Exception as e:
             # Expected to fail due to missing params - that's OK
             assert isinstance(e, (ValidationError, TypeError))
@@ -97,7 +97,7 @@ class TestMiscsEndpoints:
         from src.idosell.pim.products.miscs import SearchProductsDeliveryTime
 
         try:
-            endpoint = SearchProductsDeliveryTime()
+            SearchProductsDeliveryTime()
         except Exception as e:
             # Expected to fail due to missing params - that's OK
             assert isinstance(e, (ValidationError, TypeError))

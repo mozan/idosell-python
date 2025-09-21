@@ -5,7 +5,6 @@ from src.idosell.wms.suppliers import (
     Delete, DeleteWmsSuppliersParamsModel, Get, Put, PutWmsSuppliersParamsModel
 )
 from src.idosell.wms._common import SuppliersModel
-from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for DTOs

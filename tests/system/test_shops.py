@@ -1,5 +1,3 @@
-import pytest
-from pydantic import ValidationError
 
 from src.idosell.system.shops import GetCurrencies, GetLanguages
 

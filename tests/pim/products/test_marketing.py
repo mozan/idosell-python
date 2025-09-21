@@ -49,7 +49,7 @@ class TestMarketingEndpoints:
         from src.idosell.pim.products.marketing import PostPromotion
 
         try:
-            endpoint = PostPromotion()
+            PostPromotion()
         except Exception as e:
             # Expected to fail due to missing params - that's OK
             assert isinstance(e, (ValidationError, TypeError))
@@ -59,7 +59,7 @@ class TestMarketingEndpoints:
         from src.idosell.pim.products.marketing import PutPromotion
 
         try:
-            endpoint = PutPromotion()
+            PutPromotion()
         except Exception as e:
             # Expected to fail due to missing params - that's OK
             assert isinstance(e, (ValidationError, TypeError))
@@ -80,7 +80,7 @@ class TestMarketingEndpoints:
         from src.idosell.pim.products.marketing import PutZones
 
         try:
-            endpoint = PutZones()
+            PutZones()
         except Exception as e:
             # Expected to fail due to missing params - that's OK
             assert isinstance(e, (ValidationError, TypeError))

@@ -204,7 +204,7 @@ class TestPutFinishUploadPimProductsSynchronizationParamsModel:
         assert dto.synchronizationId == 1
         assert dto.packageId == 1
         assert dto.filesInPackage == 5
-        assert dto.verifyFiles == True
+        assert dto.verifyFiles
 
     def test_verify_files_false(self):
         dto = PutFinishUploadPimProductsSynchronizationParamsModel(
@@ -213,7 +213,7 @@ class TestPutFinishUploadPimProductsSynchronizationParamsModel:
             filesInPackage=10,
             verifyFiles=False
         )
-        assert dto.verifyFiles == False
+        assert not dto.verifyFiles
 
     def test_invalid_synchronization_id_zero(self):
         with pytest.raises(ValidationError):
@@ -303,7 +303,7 @@ class TestPutFinishUpload:
                 verifyFiles=False
             )
         )
-        assert dto.params.verifyFiles == False
+        assert not dto.params.verifyFiles
 
     def test_invalid_params_missing(self):
         with pytest.raises(ValidationError):

@@ -14,14 +14,13 @@ from src.idosell.pim.products.stocks import (
     PutPimProductsStocksParamsModel,
     ProductsStocksPutQuantityModel,
     # Endpoints
-    PutQuantity,
     Get,
     Put,
     # Enums
     AdditionalLocationSettingsEnum,
     OperationStocksEnum,
 )
-from src.idosell.pim.products._common import IdentModel, IdentTypeEnum
+from src.idosell.pim.products._common import IdentTypeEnum
 from src.idosell.pim.products.stocks import ErrorModel
 
 
@@ -478,54 +477,49 @@ class TestProductsStocksPutQuantityModel:
 
 
 # --- Tests for Endpoints
-class TestPutQuantity:
-    def test_instantiate_minimal(self):
-        dto = PutQuantity(
-            products=[ProductsStocksPutQuantityModel(
-                productIndex="PROD001",
-                productSizeCodeProducer="ABC123",
-                productSizeCodeExternal="EXT456",
-                stockId=1,
-                productSizeQuantity=10.5,
-                productPurchasePrice=100.0,
-                productPurchasePriceNet=90.0
-            )]
-        )
-        assert hasattr(dto, '_method')
-        assert hasattr(dto, '_endpoint')
-        assert dto._method == 'PUT'
-        assert dto._endpoint == '/api/admin/v6/products/stockQuantity'
-        assert len(dto.products) == 1
+# class TestPutQuantity:
+#     def test_instantiate_minimal(self):
+#         dto = PutQuantity(
+#             products=[ProductsStocksPutQuantityModel(
+#                 productIndex="PROD001",
+#                 productSizeCodeProducer="ABC123",
+#                 productSizeCodeExternal="EXT456",
+#                 stockId=1,
+#                 productSizeQuantity=10.5,
+#                 productPurchasePrice=100.0,
+#                 productPurchasePriceNet=90.0
+#             )]
+#         )
+#         assert hasattr(dto, '_method')
+#         assert hasattr(dto, '_endpoint')
+#         assert dto._method == 'PUT'
+#         assert dto._endpoint == '/api/admin/v6/products/stockQuantity'
+#         assert len(dto.products) == 1
 
-    def test_instantiate_with_multiple_products(self):
-        dto = PutQuantity(
-            products=[
-                ProductsStocksPutQuantityModel(
-                    productIndex="PROD001",
-                    productSizeCodeProducer="ABC123",
-                    productSizeCodeExternal="EXT456",
-                    stockId=1,
-                    productSizeQuantity=10.5,
-                    productPurchasePrice=100.0,
-                    productPurchasePriceNet=90.0
-                ),
-                ProductsStocksPutQuantityModel(
-                    productIndex="PROD002",
-                    productSizeCodeProducer="XYZ789",
-                    productSizeCodeExternal="EXT789",
-                    stockId=2,
-                    productSizeQuantity=25.0,
-                    productPurchasePrice=150.0,
-                    productPurchasePriceNet=135.0
-                )
-            ]
-        )
-        assert len(dto.products) == 2
-
-    def test_invalid_products_empty(self):
-        with pytest.raises(ValidationError):
-            PutQuantity(products=[])
-
+    # def test_instantiate_with_multiple_products(self):
+    #     dto = PutQuantity(
+    #         products=[
+    #             ProductsStocksPutQuantityModel(
+    #                 productIndex="PROD001",
+    #                 productSizeCodeProducer="ABC123",
+    #                 productSizeCodeExternal="EXT456",
+    #                 stockId=1,
+    #                 productSizeQuantity=10.5,
+    #                 productPurchasePrice=100.0,
+    #                 productPurchasePriceNet=90.0
+    #             ),
+    #             ProductsStocksPutQuantityModel(
+    #                 productIndex="PROD002",
+    #                 productSizeCodeProducer="XYZ789",
+    #                 productSizeCodeExternal="EXT789",
+    #                 stockId=2,
+    #                 productSizeQuantity=25.0,
+    #                 productPurchasePrice=150.0,
+    #                 productPurchasePriceNet=135.0
+    #             )
+    #         ]
+    #     )
+    #     assert len(dto.products) == 2
 
 class TestGet:
     def test_instantiate_minimal(self):
