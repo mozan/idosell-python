@@ -4,14 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name            = "idosell-api"
-version         = "0.8.0"
+version         = "0.8.1b1"
 description     = "Python SDK for Idosell REST API"
 readme          = "README.md"
 license         = "MIT"
 license-files   = ["LICENSE"]
 requires-python = ">=3.12"
 authors         = [
-    {name = "Bartłomiej Moszyński"}
+    {name = "Bartłomiej Moszyński", email = "bartekm@gmail.com" }
 ]
 keywords        = ["idosell", "api", "ecommerce", "client", "sdk", "rest", "cms", "crm", "oms", "pim", "system", "wms"]
 classifiers     = [
@@ -20,7 +20,7 @@ classifiers     = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
-    "Topic :: Internet :: WWW/HTTP :: HTTP Libraries",
+    "Topic :: Internet :: WWW/HTTP",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: System :: Distributed Computing"
 ]
@@ -40,6 +40,7 @@ dev = [
     "pytest>=8.4.1",
     "pytest-cov>=6.2.1",
     "pylint>=3.3.8",
+    "ruff>=0.13.1",
 ]
 
 [project.urls]
