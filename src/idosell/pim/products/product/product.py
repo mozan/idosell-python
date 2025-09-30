@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field, PrivateAttr, StrictInt, model_validator
 
 from src.idosell._common import BooleanStrShortEnum, AppendableGateway, Gateway, OrdersBySearchModel, PageableCamelGateway
 from src.idosell.pim.products.product._common import (
-    CategoriesSearchModel, DispatchSettingsSearchModel, PicturesDataSearchModel, PoductMenuItemsSearchModel, ProducersSearchModel,
+    CategoriesSearchModel, DispatchSettingsSearchModel, PicturesDataSearchModel, ProductMenuItemsSearchModel, ProducersSearchModel,
     ProductAvailableInAuctionsSearchModel, ProductAvailableInStocksSearchModel, ProductDateSearchModel, ProductInExportToPriceComparisonSitesSearchEnum,
     ProductIndexesSearchModel, ProductParametersParamsSearchModel, ProductParamsSearchModel, ProductSearchPriceRangeSearchModel, ProductSeriesParams,
     ProductShopsSearchModel, ProductTypeSearchModel, ProductUnitsSearchModel, ProductWarrantiesSearchModel, ReturnElementsSearchEnum,
@@ -76,7 +76,7 @@ class SearchPimProductsProductProductParamsModel(BaseModel):
     returnProductsVersions: ReturnProductsVersionsSearchEnum | None = Field(None, description="Settings of products returned with variants. All products with variants are returned by default")
     productInSumInBasket: BooleanStrShortEnum | None = Field(None, description="Do You wish to sum up the products in the basket as a one order?")
     productType: ProductTypeSearchModel | None = Field(None, description="Product type")
-    productMenuItems: List[PoductMenuItemsSearchModel] | None = Field(None, description="An array of menu elements")
+    productMenuItems: List[ProductMenuItemsSearchModel] | None = Field(None, description="An array of menu elements")
     productLocationId: StrictInt | None = Field(None, ge=1, description="Warehouse location ID")
     productLocationTextId: str | None = Field(None, description="Warehouse location full path. Use a backslash () as a separator, for example: M1\Section name\Location name. If location_id parameter is provided, the full warehouse location path will not be taken into account") # type: ignore
     alwaysReturnProductShopSizesAttributes: bool | None = Field(None, description="Return all size attributes regardless of whether product prices are the same as the base price or if they differ from it")

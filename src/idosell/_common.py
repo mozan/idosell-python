@@ -5,7 +5,6 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, BeforeValidator
 from typing_extensions import Annotated
 
 
-# --- Constraints
 NAME_MAX_LEN = 255
 DESC_MAX_LEN = 2000
 BATCH_MIN = 1
@@ -90,6 +89,14 @@ class OrdersBySearchModel(BaseModel):
 class PageableCamelModel(BaseModel):
     resultsPage: StrictInt | None = Field(None, ge=0, description="Page with results number. Numeration starts from 0")
     resultsLimit: StrictInt | None = Field(None, ge=BATCH_MIN, le=BATCH_MAX, description="Number of results on page. Value from 1 to 100")
+
+class ErrorsModel(BaseModel):
+    """
+    Common error model used across all API endpoints in 207 Multi-Status responses.
+    Based on IdoSell API specification where errors have consistent structure.
+    """
+    faultCode: int | None = Field(None, description="Error code")
+    faultString: str | None = Field(None, description="Error description")
 
 
 # --- Paged Responses
@@ -184,16 +191,6 @@ def build_query_params(model: "BaseModel", *, exclude_none: bool = True, by_alia
     """
     raw = model.model_dump(exclude_none=exclude_none, by_alias=by_alias)
     return {k: _serialize_param_value(v) for k, v in raw.items()}
-
-
-# --- Common Models
-class ErrorsModel(BaseModel):
-    """
-    Common error model used across all API endpoints in 207 Multi-Status responses.
-    Based on IdoSell API specification where errors have consistent structure.
-    """
-    faultCode: int | None = Field(None, description="Error code")
-    faultString: str | None = Field(None, description="Error description")
 
 
 # --- Date Types and Validators

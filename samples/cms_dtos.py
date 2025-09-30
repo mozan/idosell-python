@@ -17,19 +17,19 @@ from src.idosell.cms.cpa.cpa import (
 from src.idosell.cms.snippets.campaign import (
     Delete as DeleteCmsSnippetsCampaign,
     Get as GetCmsSnippetsCampaign,
-    Post as PostCmsCpaSnippetsCampaign, PostCmsSnippetsCampaignParamsModel, PostSnippetsCampaignModel,
+    Post as PostCmsSnippetsCampaign, PostCmsSnippetsCampaignParamsModel, PostSnippetsCampaignModel,
     Put as PutCmsSnippetsCampaign, PutCmsSnippetsCampaignParamsModel, PutSnippetsCampaignModel
 )
 from src.idosell.cms.snippets.cookies import (
     Delete as DeleteCmsSnippetsCookies,
     Get as GetCmsSnippetsCookies,
-    Post as PostCmsCpaSnippetsCookies, PostCmsSnippetsCookiesParamsModel, PostCookiesModel,
+    Post as PostCmsSnippetsCookies, PostCmsSnippetsCookiesParamsModel, PostCookiesModel,
     Put as PutCmsSnippetsCookies, PutCmsSnippetsCookiesParamsModel, PutCookiesModel
 )
 from src.idosell.cms.snippets.snippets import (
     Delete as DeleteCmsSnippetsSnippets,
     Get as GetCmsSnippetsSnippets,
-    Post as PostCmsCpaSnippetsSnippets, PostSnippetsModel, PostCmsSnippetsSnippetsParamsModel,
+    Post as PostCmsSnippetsSnippets, PostSnippetsModel, PostCmsSnippetsSnippetsParamsModel,
     Put as PutCmsSnippetsSnippets, PutCmsSnippetsSnippetsParamsModel, PutSnippetsModel
 )
 from src.idosell.cms.config_variables import (
@@ -41,7 +41,7 @@ from src.idosell.cms.config_variables import (
 from src.idosell.cms.entries import (
     Delete as DeleteCmsEntries, DeleteCmsEntriesParamsModel,
     Get as GetCmsEntries, GetPagesToDisplay as GetCmsEntriesGetPagesToDisplay, GetSources as GetCmsEntriesGetSources,
-    Post as PostCmsCpaEntries, PostCmsEntriesParamsModel,
+    Post as PostCmsEntries, PostCmsEntriesParamsModel,
     Put as PutCmsEntries, PutCmsEntriesParamsModel
 )
 
@@ -81,16 +81,16 @@ cms_post: List[Any] = [
     PostCmsCpaCpa(
         params = PostCmsCpaCpaParamsModel(cpa = [PostCpaModel(name = "Test CPA", campaign = 1)]) # type: ignore
     ),
-    PostCmsCpaSnippetsCampaign(
+    PostCmsSnippetsCampaign(
         params = PostCmsSnippetsCampaignParamsModel(campaigns = [PostSnippetsCampaignModel(name = "Test snippet campaign name")]) # type: ignore
     ),
-    PostCmsCpaSnippetsCookies(
+    PostCmsSnippetsCookies(
         params = PostCmsSnippetsCookiesParamsModel(cookies = [PostCookiesModel(snippetId = 1, deliverer = 'Test deliverer')]) # type: ignore
     ),
-    PostCmsCpaSnippetsSnippets(
+    PostCmsSnippetsSnippets(
         params = PostCmsSnippetsSnippetsParamsModel(snippets = [PostSnippetsModel(name = 'Test snippet name', campaign = 1)]) # type: ignore
     ),
-    PostCmsCpaEntries(
+    PostCmsEntries(
         params = PostCmsEntriesParamsModel() # type: ignore
     )
 ]

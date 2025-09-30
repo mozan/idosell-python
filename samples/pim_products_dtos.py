@@ -1,6 +1,6 @@
 from typing import List, Any
 
-from src.idosell._common import BooleanStrShortEnum
+from src.idosell._common import BooleanStrShortEnum, ErrorsModel
 from src.idosell.pim.products._common import (
     IdentTypeEnum, ViewEnum, SortModeGridEnum, MetaSettingsEnum,
     MetaRobotsSettingsIndexEnum, MetaRobotsSettingsFollowEnum,
@@ -14,7 +14,7 @@ from src.idosell.pim.products._common import (
     ProductsImages, ProductImagesModel, MarketingZonesPromotionModel, NewPriceSettingsModel, TypeEnum,
     ModeEnum, BasePricingEnum, CalculationMethodEnum, PromotionElementsModel, ElementTypeEnum,
     ProductsMarketingModel, IdentModel, AssignmentModeEnum, MarketingZonesModel, BooleanStrLongEnum,
-    ShopsPutZonesModel, ProductAttachmentPutModel, ErrorsModel, ProductsOmnibusModel, SizesOmnibusModel,
+    ShopsPutZonesModel, ProductAttachmentPutModel, ProductsOmnibusModel, SizesOmnibusModel,
     OmnibusPricesModel, OmnibusPriceManagementEnum, ShopsModel, IconsInputTypeParametersEnum,
     QuestionsPutModel, ProductIdentQuestionsModel, ProductIdentTypeQuestionsEnum,
     ItemTextIdsParametersModel, NamesParametersModel, DescriptionsParametersModel, SearchDescriptionParametersModel,
@@ -82,7 +82,12 @@ from src.idosell.pim.products.parameters import (
     Search as PimProductsParametersSearch,
     SearchPimProductsParametersParamsModel
 )
-from src.idosell.pim.products.omnibus import GetPrices as PimProductsOmnibusGetPrices, PutPrices as PimProductsOmnibusPutPrices, PutPricesPimProductsOmnibusParamsModel
+from src.idosell.pim.products.omnibus import (
+    GetPrices as PimProductsOmnibusGetPrices,
+    PutPrices as PimProductsOmnibusPutPrices,
+    PutPricesPimProductsOmnibusParamsModel
+)
+
 from src.idosell.pim.products.opinions import (
     Delete as PimProductsOpinionsDelete,
     DeletePimProductsOpinionsParamsModel,

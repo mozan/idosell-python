@@ -11,10 +11,6 @@ class AdditionalLocationSettingsEnum(StrEnum):
     ADD = 'add'
     REMOVE = 'remove'
 
-class ErrorModel(BaseModel):
-    faultCode: StrictInt = Field(..., description="Error code")
-    faultString: str = Field(..., description="Error description")
-
 class OperationStocksEnum(StrEnum):
     ADD = 'add'
     SET = 'set'
@@ -22,6 +18,11 @@ class OperationStocksEnum(StrEnum):
 
 
 # --- DTOs
+class ErrorModel(BaseModel):
+    faultCode: StrictInt = Field(..., description="Error code")
+    faultString: str = Field(..., description="Error description")
+
+
 class IdentStocksModel(BaseModel):
     identType: IdentTypeEnum = Field(..., description="...")
     identValue: str = Field(..., description="ID value")

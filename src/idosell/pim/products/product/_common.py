@@ -1127,7 +1127,7 @@ class PicturesDataSearchModel(BaseModel):
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
     serviceId: StrictInt = Field(..., ge=1, description="External service identifier")
 
-class PoductMenuItemsSearchModel(BaseModel):
+class ProductMenuItemsSearchModel(BaseModel):
     menuItemsIds: List[int] = Field(..., description="An array of IDs")
     menuItemsTextIds: List[MenuItemsTextIdsSearchModel] = Field(..., description="An array of text IDs")
 
