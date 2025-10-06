@@ -163,7 +163,7 @@ wms_put: List[Any] = [
                 ),
                 workDays = [WorkDaysModel(
                     day = 1,
-                    type = "work",
+                    type = "deliverer_open_hours",
                     **{"from": "09:00", "to": "17:00"}
                 )] # type: ignore
             )]

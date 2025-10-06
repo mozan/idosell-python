@@ -2,6 +2,7 @@ import pytest
 from pydantic import ValidationError
 from src.idosell.wms._common import (
     DateTypeEnum,
+    DateTypeOpenedDocumentsEnum,
     DateRangeOpenedDocumentsModel,
     DocumentTypeEnum,
     DocumentTypeFullEnum,
@@ -13,6 +14,8 @@ from src.idosell.wms._common import (
     DocumentsCurrencyForPurchasePriceRateTypeEnum,
     OpenedDocumentsStatusEnum,
     ReturnElementsEnum,
+    WorkDaysTypeEnum,
+    TimeUnitEnum,
     DateRangeModel,
     ProductsDeleteModel,
     ProductsModel,
@@ -37,13 +40,13 @@ class TestDateTypeEnum:
         assert str(DateTypeEnum.OPEN) == 'open'
 
 
-class TestDateRangeOpenedDocumentsModel:
+class TestDateTypeOpenedDocumentsEnum:
     def test_enum_values(self):
-        assert DateRangeOpenedDocumentsModel.OPEN == 'open'
-        assert DateRangeOpenedDocumentsModel.MODIFY == 'modify'
+        assert DateTypeOpenedDocumentsEnum.OPEN == 'open'
+        assert DateTypeOpenedDocumentsEnum.MODIFY == 'modify'
 
     def test_enum_members(self):
-        assert len(DateRangeOpenedDocumentsModel) == 2
+        assert len(DateTypeOpenedDocumentsEnum) == 2
 
 
 class TestDocumentTypeEnum:
@@ -74,9 +77,11 @@ class TestStockDocumentStatusEnum:
         assert StockDocumentStatusEnum.OPEN == 'open'
         assert StockDocumentStatusEnum.ON_THE_WAY == 'on_the_way'
         assert StockDocumentStatusEnum.CLOSE == 'close'
+        assert StockDocumentStatusEnum.CLOSE_DELIVERED == 'close_delivered'
+        assert StockDocumentStatusEnum.CLOSE_RETURNED == 'close_returned'
 
     def test_enum_members(self):
-        assert len(StockDocumentStatusEnum) == 3
+        assert len(StockDocumentStatusEnum) == 5
 
 
 class TestDocumentsWntEnum:
@@ -150,6 +155,27 @@ class TestReturnElementsEnum:
         assert len(ReturnElementsEnum) == 5
 
 
+class TestWorkDaysTypeEnum:
+    def test_enum_values(self):
+        assert WorkDaysTypeEnum.DELIVERER_CLOSED == 'deliverer_closed'
+        assert WorkDaysTypeEnum.DELIVERER_OPEN_HOURS == 'deliverer_open_hours'
+        assert WorkDaysTypeEnum.DELIVERER_OPEN_24H == 'deliverer_open_24h'
+
+    def test_enum_members(self):
+        assert len(WorkDaysTypeEnum) == 3
+
+
+class TestTimeUnitEnum:
+    def test_enum_values(self):
+        assert TimeUnitEnum.MINUTES == 'minutes'
+        assert TimeUnitEnum.HOURS == 'hours'
+        assert TimeUnitEnum.DAYS == 'days'
+        assert TimeUnitEnum.IMMEDIATELY == 'immediately'
+
+    def test_enum_members(self):
+        assert len(TimeUnitEnum) == 4
+
+
 # Test Models
 class TestDateRangeModel:
     def test_valid_model(self):
@@ -179,6 +205,36 @@ class TestDateRangeModel:
         }
         with pytest.raises(ValidationError):
             DateRangeModel(**data)
+
+
+class TestDateRangeOpenedDocumentsModel:
+    def test_valid_model(self):
+        data = {
+            'dateType': 'open',
+            'dateBegin': '2023-01-01 00:00:00',
+            'dateEnd': '2023-01-02 00:00:00'
+        }
+        model = DateRangeOpenedDocumentsModel(**data)
+        assert model.dateType == DateTypeOpenedDocumentsEnum.OPEN
+        assert model.dateBegin == '2023-01-01 00:00:00'
+        assert model.dateEnd == '2023-01-02 00:00:00'
+
+    def test_invalid_date_type(self):
+        data = {
+            'dateType': 'invalid',
+            'dateBegin': '2023-01-01 00:00:00',
+            'dateEnd': '2023-01-02 00:00:00'
+        }
+        with pytest.raises(ValidationError):
+            DateRangeOpenedDocumentsModel(**data)
+
+    def test_missing_required_field(self):
+        data = {
+            'dateType': 'open',
+            'dateEnd': '2023-01-02 00:00:00'
+        }
+        with pytest.raises(ValidationError):
+            DateRangeOpenedDocumentsModel(**data)
 
 
 class TestProductsDeleteModel:
@@ -278,6 +334,22 @@ class TestProductsPostPutModel:
         with pytest.raises(ValidationError):
             ProductsPostPutModel(**data)
 
+    def test_optional_location_fields(self):
+        data = {
+            'product': 1,
+            'size': 'M',
+            'quantity': 10,
+            'productPurchasePrice': 100.0
+        }
+        model = ProductsPostPutModel(**data)
+        assert model.product == 1
+        assert model.size == 'M'
+        assert model.quantity == 10
+        assert model.productPurchasePrice == 100.0
+        assert model.locationId is None
+        assert model.locationCode is None
+        assert model.locationTextId is None
+
 
 class TestAverageDeliveryTimeModel:
     def test_valid_model(self):
@@ -321,20 +393,30 @@ class TestWorkDaysModel:
     def test_valid_model(self):
         data = {
             'day': 1,
-            'type': 'work',
+            'type': 'deliverer_open_hours',
             'from': '08:00',
             'to': '17:00'
         }
         model = WorkDaysModel(**data)
         assert model.day == 1
-        assert model.type == 'work'
+        assert model.type == WorkDaysTypeEnum.DELIVERER_OPEN_HOURS
         assert model.start_time == '08:00'
         assert model.end_time == '17:00'
 
     def test_invalid_day(self):
         data = {
             'day': 0,
-            'type': 'work',
+            'type': 'deliverer_open_hours',
+            'from': '08:00',
+            'to': '17:00'
+        }
+        with pytest.raises(ValidationError):
+            WorkDaysModel(**data)
+
+    def test_invalid_type(self):
+        data = {
+            'day': 1,
+            'type': 'invalid_type',
             'from': '08:00',
             'to': '17:00'
         }
@@ -359,7 +441,7 @@ class TestSuppliersModel:
             'description': 'A supplier',
             'orderCompletionTime': {'value': 1, 'unit': 'days'},
             'workDays': [
-                {'day': 1, 'type': 'work', 'from': '08:00', 'to': '17:00'}
+                {'day': 1, 'type': 'deliverer_open_hours', 'from': '08:00', 'to': '17:00'}
             ]
         }
         model = SuppliersModel(**data)
@@ -374,12 +456,13 @@ class TestSuppliersModel:
         assert model.country == 1
         assert model.taxCode == '1234567890123'
         assert model.averageDeliveryTime.value == 3
-        assert model.averageDeliveryTime.unit == 'days'
+        assert model.averageDeliveryTime.unit == TimeUnitEnum.DAYS
         assert model.description == 'A supplier'
         assert model.orderCompletionTime.value == 1
-        assert model.orderCompletionTime.unit == 'days'
+        assert model.orderCompletionTime.unit == TimeUnitEnum.DAYS
         assert len(model.workDays) == 1
         assert model.workDays[0].day == 1
+        assert model.workDays[0].type == WorkDaysTypeEnum.DELIVERER_OPEN_HOURS
         assert model.workDays[0].start_time == '08:00'
         assert model.workDays[0].end_time == '17:00'
 
@@ -399,7 +482,7 @@ class TestSuppliersModel:
             'description': 'A supplier',
             'orderCompletionTime': {'value': 1, 'unit': 'days'},
             'workDays': [
-                {'day': 1, 'type': 'work', 'from': '08:00', 'to': '17:00'}
+                {'day': 1, 'type': 'deliverer_open_hours', 'from': '08:00', 'to': '17:00'}
             ]
         }
         with pytest.raises(ValidationError):

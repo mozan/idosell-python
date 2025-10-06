@@ -64,7 +64,14 @@ from src.idosell.pim.products.product._common import (
     ProductMetaTitlesModel,
     ProductMetaDescriptionsModel,
     ProductMetaKeywordsModel,
+    ProductMetaTitlesLangDataModel,
+    ProductMetaDescriptionsLangDataModel,
+    ProductMetaKeywordsLangDataModel,
     ProductsBaseModel,
+    SettingDefaultCategoryModel,
+    SettingDefaultSizesGroupModel,
+    PictureSettingsPostModel,
+    PriceComparisonSitesModel,
 )
 from src.idosell._common import BooleanStrShortEnum
 from src.idosell.pim.products._common import ProductLongDescriptionsModel
@@ -649,6 +656,792 @@ class TestProductsBaseModel:
                 productMetaKeywords=ProductMetaKeywordsModel(productMetaKeywordsLangData=[]),
                 productUrl=ProductUrlModel(productUrlsLangData=[])
             )
+
+
+# --- Additional Model Tests for Better Coverage
+class TestSettingDefaultCategoryModel:
+    def test_valid(self):
+        dto = SettingDefaultCategoryModel(categoryId=10, categoryName="Electronics")
+        assert dto.categoryId == 10
+        assert dto.categoryName == "Electronics"
+
+    def test_invalid_category_id_zero(self):
+        with pytest.raises(ValidationError):
+            SettingDefaultCategoryModel(categoryId=0, categoryName="Test")
+
+
+class TestSettingDefaultSizesGroupModel:
+    def test_valid(self):
+        dto = SettingDefaultSizesGroupModel(sizesGroupId=5, sizesGroupName="Standard Sizes")
+        assert dto.sizesGroupId == 5
+        assert dto.sizesGroupName == "Standard Sizes"
+
+    def test_invalid_sizes_group_id_zero(self):
+        with pytest.raises(ValidationError):
+            SettingDefaultSizesGroupModel(sizesGroupId=0, sizesGroupName="Test")
+
+
+class TestPictureSettingsPostModel:
+    def test_valid_url_type(self):
+        from src.idosell.pim.products.product._common import PicturesSettingInputTypeEnum
+        dto = PictureSettingsPostModel(
+            picturesSettingInitialUrlPart="http://example.com/images/",
+            picturesSettingInputType=PicturesSettingInputTypeEnum.URL,
+            picturesSettingOverwrite=BooleanStrShortEnum.NO,
+            picturesSettingScaling=BooleanStrShortEnum.YES
+        )
+        assert dto.picturesSettingInputType == PicturesSettingInputTypeEnum.URL
+        assert dto.picturesSettingOverwrite == BooleanStrShortEnum.NO
+
+    def test_valid_base64_type(self):
+        from src.idosell.pim.products.product._common import PicturesSettingInputTypeEnum
+        dto = PictureSettingsPostModel(
+            picturesSettingInitialUrlPart="",
+            picturesSettingInputType=PicturesSettingInputTypeEnum.BASE64,
+            picturesSettingOverwrite=BooleanStrShortEnum.YES,
+            picturesSettingScaling=BooleanStrShortEnum.NO
+        )
+        assert dto.picturesSettingInputType == PicturesSettingInputTypeEnum.BASE64
+        assert dto.picturesSettingScaling == BooleanStrShortEnum.NO
+
+
+class TestPictureSettingsPutModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import (
+            PicturesSettingInputTypeEnum, PictureSettingsPutModel,
+            PicturesSettingDeleteIconEnum, PicturesSettingCreateIconFromPictureEnum,
+            PicturesSettingRestoreOriginalIconsEnum, PicturesSettingDeleteOriginalIconsEnum,
+            PicturesSettingApplyMacroForIconModel
+        )
+        dto = PictureSettingsPutModel(
+            picturesSettingInitialUrlPart="http://example.com/",
+            picturesSettingInputType=PicturesSettingInputTypeEnum.URL,
+            picturesSettingOverwrite=BooleanStrShortEnum.YES,
+            picturesSettingDeleteProductPictures=BooleanStrShortEnum.NO,
+            picturesSettingDeleteProductIcons=BooleanStrShortEnum.NO,
+            picturesSettingDeleteIcon=PicturesSettingDeleteIconEnum.DEFAULT,
+            picturesSettingCreateIconFromPicture=PicturesSettingCreateIconFromPictureEnum.DEFAULT,
+            picturesSettingRestoreOriginalPictures=BooleanStrShortEnum.NO,
+            picturesSettingRestoreOriginalIcons=PicturesSettingRestoreOriginalIconsEnum.DEFAULT,
+            picturesSettingApplyMacroForIcon=PicturesSettingApplyMacroForIconModel(
+                iconType="default",
+                macroId=1
+            ),
+            picturesSettingShopId="1",
+            picturesSettingServiceId=1,
+            picturesSettingScaling=BooleanStrShortEnum.YES,
+            picturesSettingDeleteOriginalPictures=BooleanStrShortEnum.NO,
+            picturesSettingDeleteOriginalIcons=PicturesSettingDeleteOriginalIconsEnum.ALL
+        )
+        assert dto.picturesSettingDeleteProductPictures == BooleanStrShortEnum.NO
+        assert dto.picturesSettingDeleteProductIcons == BooleanStrShortEnum.NO
+
+
+class TestPriceComparisonSitesPostModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import PriceComparisonSitesPostModel
+        dto = PriceComparisonSitesPostModel(shopId=1, priceComparisonSiteId=10)
+        assert dto.shopId == 1
+        assert dto.priceComparisonSiteId == 10
+
+    def test_invalid_shop_id_zero(self):
+        from src.idosell.pim.products.product._common import PriceComparisonSitesPostModel
+        with pytest.raises(ValidationError):
+            PriceComparisonSitesPostModel(shopId=0, priceComparisonSiteId=10)
+
+    def test_invalid_price_comparison_site_id_zero(self):
+        from src.idosell.pim.products.product._common import PriceComparisonSitesPostModel
+        with pytest.raises(ValidationError):
+            PriceComparisonSitesPostModel(shopId=1, priceComparisonSiteId=0)
+
+
+class TestPriceComparisonSitesModel:
+    def test_valid(self):
+        dto = PriceComparisonSitesModel(
+            priceComparisonSiteId=20,
+            productPriceComparisonSitePrice=99.99,
+            productPriceComparisonSitePriceNet=80.00
+        )
+        assert dto.priceComparisonSiteId == 20
+        assert dto.productPriceComparisonSitePrice == 99.99
+
+    def test_invalid_price_comparison_site_id_zero(self):
+        with pytest.raises(ValidationError):
+            PriceComparisonSitesModel(
+                priceComparisonSiteId=0,
+                productPriceComparisonSitePrice=99.99,
+                productPriceComparisonSitePriceNet=80.00
+            )
+
+
+class TestProductsDeleteModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductsDeleteModel
+        dto = ProductsDeleteModel(productId=100, productSizeCodeExternal="EXT100")
+        assert dto.productId == 100
+        assert dto.productSizeCodeExternal == "EXT100"
+
+    def test_invalid_product_id_zero(self):
+        from src.idosell.pim.products.product._common import ProductsDeleteModel
+        with pytest.raises(ValidationError):
+            ProductsDeleteModel(productId=0, productSizeCodeExternal="EXT100")
+
+    def test_invalid_product_id_negative(self):
+        from src.idosell.pim.products.product._common import ProductsDeleteModel
+        with pytest.raises(ValidationError):
+            ProductsDeleteModel(productId=-1, productSizeCodeExternal="EXT100")
+
+
+class TestSettingDeleteIndividualDescriptionsByShopsMaskModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import SettingDeleteIndividualDescriptionsByShopsMaskModel
+        dto = SettingDeleteIndividualDescriptionsByShopsMaskModel(shopsMask=5)
+        assert dto.shopsMask == 5
+
+
+class TestSettingDeleteIndividualMetaByShopsMaskModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import SettingDeleteIndividualMetaByShopsMaskModel
+        dto = SettingDeleteIndividualMetaByShopsMaskModel(shopsMask=3)
+        assert dto.shopsMask == 3
+
+
+class TestProductMetaTitlesLangDataModel:
+    def test_valid(self):
+        dto = ProductMetaTitlesLangDataModel(
+            langId="eng",
+            langName="English",
+            productMetaTitle="Product Title"
+        )
+        assert dto.langId == "eng"
+        assert dto.productMetaTitle == "Product Title"
+
+
+class TestProductMetaDescriptionsLangDataModel:
+    def test_valid(self):
+        dto = ProductMetaDescriptionsLangDataModel(
+            langId="pol",
+            langName="Polish",
+            productMetaDescription="Product Description"
+        )
+        assert dto.langId == "pol"
+        assert dto.productMetaDescription == "Product Description"
+
+
+class TestProductMetaKeywordsLangDataModel:
+    def test_valid(self):
+        dto = ProductMetaKeywordsLangDataModel(
+            langId="eng",
+            langName="English",
+            productMetaKeyword="laptop,computer,electronics"
+        )
+        assert dto.langId == "eng"
+        assert dto.productMetaKeyword == "laptop,computer,electronics"
+
+
+class TestVersionNamesLangDataModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import VersionNamesLangDataModel
+        dto = VersionNamesLangDataModel(
+            langId="eng",
+            versionName="Red"
+        )
+        assert dto.langId == "eng"
+        assert dto.versionName == "Red"
+
+
+class TestVersionNamesModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import VersionNamesModel, VersionNamesLangDataModel
+        dto = VersionNamesModel(
+            versionNamesLangData=[
+                VersionNamesLangDataModel(langId="eng", versionName="Red"),
+                VersionNamesLangDataModel(langId="pol", versionName="Czerwony")
+            ]
+        )
+        assert len(dto.versionNamesLangData) == 2
+
+
+class TestVersionGroupNamesLangDataModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import VersionGroupNamesLangDataModel
+        dto = VersionGroupNamesLangDataModel(
+            langId="eng",
+            versionGroupName="Color"
+        )
+        assert dto.langId == "eng"
+        assert dto.versionGroupName == "Color"
+
+
+class TestVersionGroupNamesModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import VersionGroupNamesModel, VersionGroupNamesLangDataModel
+        dto = VersionGroupNamesModel(
+            versionGroupNamesLangData=[
+                VersionGroupNamesLangDataModel(langId="eng", versionGroupName="Color")
+            ]
+        )
+        assert len(dto.versionGroupNamesLangData) == 1
+
+
+class TestProductHotspotsZonesModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductHotspotsZonesModel
+        dto = ProductHotspotsZonesModel(
+            productHotspotIsEnabled=True,
+            shopId=1,
+            productIsPromotion=True,
+            productIsDiscount=False,
+            productIsDistinguished=True,
+            productIsSpecial=False
+        )
+        assert dto.shopId == 1
+        assert dto.productIsPromotion == True
+
+
+class TestPriceInPointsModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import PriceInPointsModel
+        dto = PriceInPointsModel(
+            priceInPointsOperation=PriceInPointsOperationEnum.CLIENTS_COST,
+            shopId=1,
+            priceInPointsPrice=100.0,
+            priceInPointsClients=PriceInPointsClientsEnum.BOTH
+        )
+        assert dto.shopId == 1
+        assert dto.priceInPointsPrice == 100.0
+
+    def test_invalid_shop_id_zero(self):
+        from src.idosell.pim.products.product._common import PriceInPointsModel
+        with pytest.raises(ValidationError):
+            PriceInPointsModel(
+                priceInPointsOperation=PriceInPointsOperationEnum.CLIENTS_COST,
+                shopId=0,
+                priceInPointsPrice=100.0,
+                priceInPointsClients=PriceInPointsClientsEnum.BOTH
+            )
+
+
+class TestLoyaltyPointsModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import LoyaltyPointsModel
+        dto = LoyaltyPointsModel(
+            shopId=1,
+            loyaltyPointsClientsType=LoyaltyPointsClientsTypeEnum.BOTH,
+            loyaltyPointsOperation=LoyaltyPointsOperationEnum.AWARDCLIENT,
+            loyaltyPointsType=LoyaltyPointsTypeEnum.AWARDCLIENT,
+            numberOfLoyaltyPoints=50.0
+        )
+        assert dto.shopId == 1
+        assert dto.numberOfLoyaltyPoints == 50.0
+
+    def test_invalid_shop_id_zero(self):
+        from src.idosell.pim.products.product._common import LoyaltyPointsModel
+        with pytest.raises(ValidationError):
+            LoyaltyPointsModel(
+                shopId=0,
+                loyaltyPointsClientsType=LoyaltyPointsClientsTypeEnum.BOTH,
+                loyaltyPointsOperation=LoyaltyPointsOperationEnum.AWARDCLIENT,
+                loyaltyPointsType=LoyaltyPointsTypeEnum.AWARDCLIENT,
+                numberOfLoyaltyPoints=50.0
+            )
+
+
+class TestAttachmentsModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import AttachmentsModel
+        from src.idosell.pim.products._common import AttachmentFileTypeEnum, AttachmentNameModel, DocumentTypesModel, AttachmentLanguagesModel, DocumentTypeEnum
+        dto = AttachmentsModel(
+            attachmentUrl="http://example.com/file.pdf",
+            attachmentName=AttachmentNameModel(
+                attachmentLanguages=[
+                    AttachmentLanguagesModel(langId="eng", langName="English", langValue="Document")
+                ]
+            ),
+            attachmentFileType=AttachmentFileTypeEnum.DOC,
+            attachmentEnable=AttachmentEnableEnum.ALL,
+            attachmentId=1,
+            attachmentDownloadLog=BooleanStrShortEnum.YES,
+            attachmentFileExtension="pdf",
+            attachmentPriority=1,
+            documentTypes=[DocumentTypesModel(documentType=DocumentTypeEnum.USER_MANUAL, description="Product manual")]
+        )
+        assert dto.attachmentId == 1
+        assert dto.attachmentFileType == AttachmentFileTypeEnum.DOC
+
+    def test_invalid_attachment_id_zero(self):
+        from src.idosell.pim.products.product._common import AttachmentsModel
+        from src.idosell.pim.products._common import AttachmentFileTypeEnum, AttachmentNameModel, DocumentTypesModel
+        with pytest.raises(ValidationError):
+            AttachmentsModel(
+                attachmentUrl="http://example.com/file.pdf",
+                attachmentName=AttachmentNameModel(attachmentNameLangData=[]),
+                attachmentFileType=AttachmentFileTypeEnum.DOC,
+                attachmentEnable=AttachmentEnableEnum.ALL,
+                attachmentId=0,
+                attachmentDownloadLog=BooleanStrShortEnum.YES,
+                attachmentFileExtension="pdf",
+                attachmentPriority=1,
+                documentTypes=[DocumentTypesModel(documentType="invoice")]
+            )
+
+
+class TestRemoveAttachmentsModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import RemoveAttachmentsModel
+        dto = RemoveAttachmentsModel(langId="eng")
+        assert dto.langId == "eng"
+
+
+class TestProductMenuItemsModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductMenuItemsModel
+        dto = ProductMenuItemsModel(
+            productMenuOperation=ProductMenuOperationEnum.ADD_PRODUCT,
+            menuItemId=10,
+            menuItemTextId="menu\\item1",
+            shopId=1,
+            menuId=5
+        )
+        assert dto.menuItemId == 10
+        assert dto.shopId == 1
+
+    def test_invalid_menu_item_id_zero(self):
+        from src.idosell.pim.products.product._common import ProductMenuItemsModel
+        with pytest.raises(ValidationError):
+            ProductMenuItemsModel(
+                productMenuOperation=ProductMenuOperationEnum.ADD_PRODUCT,
+                menuItemId=0,
+                menuItemTextId="menu\\item1",
+                shopId=1,
+                menuId=5
+            )
+
+
+class TestProductPriorityInMenuNodesModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductPriorityInMenuNodesModel
+        dto = ProductPriorityInMenuNodesModel(
+            productMenuNodeId=5,
+            shopId=1,
+            productPriority=10,
+            productMenuTreeId=1
+        )
+        assert dto.productMenuNodeId == 5
+        assert dto.productPriority == 10
+
+
+class TestProductParametersModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import (
+            ProductParametersModel, ProductParametersDescriptionsLangDataModel,
+            ProductParameterTextIdsLangDataModel
+        )
+        dto = ProductParametersModel(
+            productParameterOperation=ProductParameterOperationEnum.ADD_PARAMETER,
+            productParameterId=100,
+            productParameterTextIdsLangData=[
+                ProductParameterTextIdsLangDataModel(langId="eng", productParameterTextId="size")
+            ],
+            langId="eng",
+            productParametersDescriptionsLangData=[
+                ProductParametersDescriptionsLangDataModel(
+                    langId="eng",
+                    productParametersDescription="Product size"
+                )
+            ]
+        )
+        assert dto.productParameterId == 100
+        assert dto.productParameterOperation == ProductParameterOperationEnum.ADD_PARAMETER
+
+
+class TestChangeParametersDistinctionModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ChangeParametersDistinctionModel
+        dto = ChangeParametersDistinctionModel(
+            productParameterId=10,
+            productParameterTextIdent="color",
+            langId="eng",
+            productParameterDescriptionType=ProductParameterDescriptionTypeEnum.DISTINCTION,
+            parameterDistinctionValue=BooleanStrShortEnum.YES
+        )
+        assert dto.productParameterId == 10
+        assert dto.langId == "eng"
+
+
+class TestProductParametersDistinctionModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductParametersDistinctionModel
+        dto = ProductParametersDistinctionModel(
+            parameterId=5,
+            parameterName="Material",
+            parameterValueId=15,
+            parameterValueName="Cotton"
+        )
+        assert dto.parameterId == 5
+        assert dto.parameterValueId == 15
+
+
+class TestPriceModifierValuesModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import PriceModifierValuesModel
+        dto = PriceModifierValuesModel(
+            parameterId=100,
+            modifierValue=200,
+            modifierType=ModifierTypeEnum.AMOUNT
+        )
+        assert dto.parameterId == 100
+        assert dto.modifierValue == 200
+
+
+class TestParametersConfigurableModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ParametersConfigurableModel, PriceModifierValuesModel
+        dto = ParametersConfigurableModel(
+            parameterId=50,
+            priceConfigurableType=PriceConfigurableTypeEnum.CHECKBOX,
+            priceModifierValues=[
+                PriceModifierValuesModel(
+                    parameterId=100,
+                    modifierValue=200,
+                    modifierType=ModifierTypeEnum.AMOUNT
+                )
+            ]
+        )
+        assert dto.parameterId == 50
+        assert len(dto.priceModifierValues) == 1
+
+
+class TestProductCurrenciesShopsModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductCurrenciesShopsModel
+        dto = ProductCurrenciesShopsModel(
+            shopId=1,
+            currencyId="USD"
+        )
+        assert dto.shopId == 1
+        assert dto.currencyId == "USD"
+
+
+class TestProductNamesInAuctionLangDataModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductNamesInAuctionLangDataModel
+        dto = ProductNamesInAuctionLangDataModel(
+            langId="eng",
+            productNameInAuction="Auction Product Name"
+        )
+        assert dto.langId == "eng"
+        assert dto.productNameInAuction == "Auction Product Name"
+
+
+class TestProductNamesInPriceComparerLangDataModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductNamesInPriceComparerLangDataModel
+        dto = ProductNamesInPriceComparerLangDataModel(
+            langId="pol",
+            productNameInPriceComparer="Price Comparer Name"
+        )
+        assert dto.langId == "pol"
+        assert dto.productNameInPriceComparer == "Price Comparer Name"
+
+
+class TestSearchByShopsModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import SearchByShopsModel
+        dto = SearchByShopsModel(
+            searchModeInShops=SearchModeInShopsEnum.IN_ONE_OF_SELECTED,
+            shopsMask=5,
+            shopsIds=[1, 2]
+        )
+        assert dto.shopsMask == 5
+        assert dto.searchModeInShops == SearchModeInShopsEnum.IN_ONE_OF_SELECTED
+
+
+class TestVersionParentModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import VersionParentModel
+        dto = VersionParentModel(
+            versionParentId="12345",
+            versionParentType=VersionParentTypeEnum.ID
+        )
+        assert dto.versionParentId == "12345"
+        assert dto.versionParentType == VersionParentTypeEnum.ID
+
+
+class TestJavaScriptInTheItemCardModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import JavaScriptInTheItemCardModel
+        dto = JavaScriptInTheItemCardModel(
+            shopId=1,
+            scriptCode="console.log('test');"
+        )
+        assert dto.shopId == 1
+        assert dto.scriptCode == "console.log('test');"
+
+
+class TestClearStockQuantitiesModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ClearStockQuantitiesModel
+        dto = ClearStockQuantitiesModel(
+            clearAllStockQuantities=True,
+            stocksListToClear=[1, 2, 3]
+        )
+        assert dto.clearAllStockQuantities == True
+        assert len(dto.stocksListToClear) == 3
+
+
+class TestRemoveAllProductsAssignedToMenuModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import RemoveAllProductsAssignedToMenuModel
+        dto = RemoveAllProductsAssignedToMenuModel(
+            shopId=1,
+            menuId=5
+        )
+        assert dto.shopId == 1
+        assert dto.menuId == 5
+
+
+class TestSubscriptionModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import SubscriptionModel
+        dto = SubscriptionModel(
+            shopId=1,
+            enabled=True,
+            daysInPeriod=[1, 15, 30],
+            unitsNumberRetail=10.0,
+            unitsNumberWholesale=8.0
+        )
+        assert dto.shopId == 1
+        assert dto.enabled == True
+        assert len(dto.daysInPeriod) == 3
+
+    def test_invalid_shop_id_zero(self):
+        from src.idosell.pim.products.product._common import SubscriptionModel
+        with pytest.raises(ValidationError):
+            SubscriptionModel(
+                shopId=0,
+                enabled=True,
+                daysInPeriod=[1],
+                unitsNumberRetail=10.0,
+                unitsNumberWholesale=8.0
+            )
+
+
+class TestProductNamesLangDataModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductNamesLangDataModel
+        dto = ProductNamesLangDataModel(
+            langId="eng",
+            productName="Test Product"
+        )
+        assert dto.langId == "eng"
+        assert dto.productName == "Test Product"
+
+
+class TestProductNamesModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductNamesModel, ProductNamesLangDataModel
+        dto = ProductNamesModel(
+            productNamesLangData=[
+                ProductNamesLangDataModel(langId="eng", productName="Product"),
+                ProductNamesLangDataModel(langId="pol", productName="Produkt")
+            ]
+        )
+        assert len(dto.productNamesLangData) == 2
+
+
+class TestProductStockQuantitiesModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductStockQuantitiesModel
+        dto = ProductStockQuantitiesModel(
+            stockId=1,
+            productSizeQuantity=100,
+            productSizeQuantityToAdd=10,
+            productSizeQuantityToSubstract=5
+        )
+        assert dto.stockId == 1
+        assert dto.productSizeQuantity == 100
+
+    def test_invalid_stock_id_zero(self):
+        from src.idosell.pim.products.product._common import ProductStockQuantitiesModel
+        with pytest.raises(ValidationError):
+            ProductStockQuantitiesModel(
+                stockId=0,
+                productSizeQuantity=100,
+                productSizeQuantityToAdd=10,
+                productSizeQuantityToSubstract=5
+            )
+
+
+class TestProductSizesModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import (
+            ProductSizesModel, ProductStocksDataModel, ShopsSizeAttributesModel
+        )
+        dto = ProductSizesModel(
+            sizeId="M",
+            sizePanelName="Medium",
+            productWeight=500,
+            productWeightNet=450,
+            productRetailPrice=99.99,
+            productWholesalePrice=79.99,
+            productMinimalPrice=69.99,
+            productAutomaticCalculationPrice=89.99,
+            productPosPrice=99.99,
+            productAuctionPrices=[],
+            productCode="CODE-M",
+            productInPersistent=BooleanStrShortEnum.YES,
+            productStocksData=ProductStocksDataModel(
+                productStockQuantities=[]
+            ),
+            shopsSizeAttributes=[]
+        )
+        assert dto.sizeId == "M"
+        assert dto.sizePanelName == "Medium"
+
+
+class TestVersionSettingsBaseModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import VersionSettingsBaseModel
+        dto = VersionSettingsBaseModel(
+            versionDisplayAllInShop=BooleanStrShortEnum.YES,
+            versionCommonCode=BooleanStrShortEnum.NO,
+            versionCommonProducer=BooleanStrShortEnum.YES,
+            versionCommonNote=BooleanStrShortEnum.NO,
+            versionCommonWarranty=BooleanStrShortEnum.YES
+        )
+        assert dto.versionDisplayAllInShop == BooleanStrShortEnum.YES
+        assert dto.versionCommonProducer == BooleanStrShortEnum.YES
+
+
+class TestVersionParentPutModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import VersionParentPutModel
+        dto = VersionParentPutModel(
+            versionParentId="12345",
+            versionParentType=VersionParentTypeEnum.ID
+        )
+        assert dto.versionParentId == "12345"
+        assert dto.versionParentType == VersionParentTypeEnum.ID
+
+
+class TestProductPicturesReplaceModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductPicturesReplaceModel
+        dto = ProductPicturesReplaceModel(
+            productPictureNumber=1,
+            productPictureSource="http://example.com/image.jpg"
+        )
+        assert dto.productPictureNumber == 1
+        assert dto.productPictureSource == "http://example.com/image.jpg"
+
+    def test_invalid_picture_number_zero(self):
+        from src.idosell.pim.products.product._common import ProductPicturesReplaceModel
+        with pytest.raises(ValidationError):
+            ProductPicturesReplaceModel(
+                productPictureNumber=0,
+                productPictureSource="http://example.com/image.jpg"
+            )
+
+
+class TestSeriesDescriptionsLangDataSearchModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import SeriesDescriptionsLangDataSearchModel
+        dto = SeriesDescriptionsLangDataSearchModel(
+            seriesName="Series Name",
+            langId="eng"
+        )
+        assert dto.langId == "eng"
+        assert dto.seriesName == "Series Name"
+
+
+class TestSearchByShopsModelExtended:
+    def test_visible_mode(self):
+        from src.idosell.pim.products.product._common import SearchByShopsModel
+        dto = SearchByShopsModel(
+            searchModeInShops=SearchModeInShopsEnum.IN_ALL_OF_SELECTED,
+            shopsMask=3,
+            shopsIds=[3]
+        )
+        assert dto.shopsMask == 3
+        assert dto.searchModeInShops == SearchModeInShopsEnum.IN_ALL_OF_SELECTED
+
+
+class TestProductPriceComparisonSitesPricesModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductPriceComparisonSitesPricesModel
+        dto = ProductPriceComparisonSitesPricesModel(
+            productPriceComparisonSitePrice=99.99,
+            productPriceComparisonSitePriceNet=80.00,
+            priceComparisonSiteId=1,
+            shopId=1
+        )
+        assert dto.productPriceComparisonSitePrice == 99.99
+        assert dto.priceComparisonSiteId == 1
+
+
+class TestProductParamDescriptionsLangDataModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductParamDescriptionsLangDataModel
+        dto = ProductParamDescriptionsLangDataModel(
+            langId="pol",
+            productParamDescriptions="Parameter Description",
+            shopId=1,
+            serviceId=1
+        )
+        assert dto.langId == "pol"
+        assert dto.productParamDescriptions == "Parameter Description"
+
+
+class TestProductParameterTextIdsLangDataModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductParameterTextIdsLangDataModel
+        dto = ProductParameterTextIdsLangDataModel(
+            langId="eng",
+            productParameterTextId="param_text_id"
+        )
+        assert dto.langId == "eng"
+        assert dto.productParameterTextId == "param_text_id"
+
+
+class TestProductParametersDescriptionsLangDataModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import ProductParametersDescriptionsLangDataModel
+        dto = ProductParametersDescriptionsLangDataModel(
+            langId="eng",
+            productParametersDescription="Description of parameter"
+        )
+        assert dto.langId == "eng"
+        assert dto.productParametersDescription == "Description of parameter"
+
+
+class TestFreeShippingSettingsModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import FreeShippingSettingsModel
+        dto = FreeShippingSettingsModel(
+            mode=ModeEnum.WHOLEBASKET,
+            availablePaymentForms=AvailablePaymentFormsModel(
+                prepaid=True,
+                cashOnDelivery=False,
+                tradeCredit=False
+            ),
+            availableCouriers=[1, 2, 3],
+            availableRegions=[1]
+        )
+        assert dto.mode == ModeEnum.WHOLEBASKET
+        assert len(dto.availableCouriers) == 3
+
+
+class TestStandardUnitModel:
+    def test_valid(self):
+        from src.idosell.pim.products.product._common import StandardUnitModel
+        dto = StandardUnitModel(
+            contextValue=ContextValueEnum.CONTEXT_STD_UNIT_WEIGHT,
+            standardUnitValue=10.0,
+            converterUnitValue=ConverterUnitValueEnum.VAL1000
+        )
+        assert dto.contextValue == ContextValueEnum.CONTEXT_STD_UNIT_WEIGHT
+        assert dto.standardUnitValue == 10.0
 
 
 # Tests created for enums and basic models.

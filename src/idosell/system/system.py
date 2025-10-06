@@ -47,8 +47,8 @@ class GetCurrencies(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/system/currencies')
 
-    symbol: str = Field(..., description="Currency symbol in ISO-4217 (3 letters)")
-    date: str = Field(..., description="Date in format YYYY-MM-DD-HH MM:SS")
+    symbol: str | None = Field(None, description="Currency symbol in ISO-4217 (3 letters)")
+    date: str | None = Field(None, description="Date in format YYYY-MM-DD-HH MM:SS")
 
 class PutCurrencies(AppendableGateway):
     """

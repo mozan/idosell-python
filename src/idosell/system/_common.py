@@ -78,7 +78,7 @@ class PickupPointsPostModel(BaseModel):
     pickupPointExternalId: str = Field(..., description="external system code")
     courierId: StrictInt = Field(..., description="Courier ID")
     descriptions: List[DescriptionsCouriersModel] = Field(..., description="collection point details")
-    paymentForms: List[str] = Field(..., description="Accepted payment types")
+    paymentForms: List[PaymentFormsEnum] = Field(..., description="Accepted payment types")
     serviceStatus: ServiceStatusEnum = Field(..., description="Collection point activity. Available values: available, outOfService ")
     address: AddressModel = Field(..., description="Pickup point address")
     coordinates: CoordinatesModel = Field(..., description="Geographic coordinates")
@@ -108,7 +108,7 @@ class DescriptionsSystemModel(BaseModel):
     language: str = Field(..., description="ISO-639-3")
     nameSingular: str = Field(..., max_length=30, description="Name (singular) (limit of 30 characters)")
     namePlural: str = Field(..., max_length=30, description="Name (plural) (limit of 30 characters)")
-    nameFractions: str = Field(..., description="Name (by fractions) (limit of 30 characters)")
+    nameFractions: str = Field(..., max_length=30, description="Name (by fractions) (limit of 30 characters)")
 
 class RestrictionsModel(BaseModel):
     blockIfIncorrectStockQuantities: BlockIfIncorrectStockQuantitiesModel = Field(..., description="Block the ability of selecting a status, if there are products in the warehouse from which the order is being processed, with insufficient stock level")

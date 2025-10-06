@@ -18,7 +18,7 @@ class PutVariablesModel(BaseModel):
     itemId: StrictInt = Field(..., ge=1, description="Identifier of the item in used module")
 
 class PutCmsConfigVariablesModel(BaseModel):
-    variables: List[PutVariablesModel] = Field(..., description="...")
+    variables: List[PutVariablesModel] = Field(..., min_length=1, max_length=100, description="...")
 
 
 # --- ENDPOINTS

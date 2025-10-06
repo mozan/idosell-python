@@ -2,19 +2,17 @@ from typing import List, Any
 
 from src.idosell.pim._common import (
     EntityTypeEnum, LangDataModel, MenuListPostModel, SettingsModel, MenuListPutModel,
-    MenuListPutSortModel, SettingsPutSortModel, EntitiesResponsibilityPostModel, EntitiesResponsibilityPutModel,
-    ItemTypeEnum, HrefTargetEnum, DefaultViewEnum, ActionEnum, DisplayAllTypeEnum,
+    MenuListPutSortModel, SettingsPutSortModel, ItemTypeEnum, HrefTargetEnum, DefaultViewEnum, ActionEnum, DisplayAllTypeEnum,
     MetaRobotsIndexEnum, MetaRobotsFollowEnum, GfxModel, FormatEnum,
     WarrantiesPostModel, TypeEnum, ShopnameWarrantiesModel, LanguagesWarrantiesModel, DescriptionWarrantiesModel,
     MenuFiltersActivePutFilterModel, MenuFilterDisplayEnum, MenuFilterValueSortEnum,
     SizeChartsPutModel, LanguagesDataModel, ColumnsModel, SizesModel, DescriptionsModel, DisplayModeEnum,
     SizesPutModel, LangDataSizesModel, OperationSizesEnum,
     LangDataWarrantiesModel, LangWarrantiesModel, IconSettingsModel, FormatWarrantiesEnum, DataTypeEnum, WarrantiesPutModel,
-    SortLangDataModelModel, DisplayLimitLangDataModel, ViewEnum, SortByEnum, SortOrderEnum, MenuListDeleteModel
+    SortLangDataModelModel, DisplayLimitLangDataModel, ViewEnum, SortByEnum, SortOrderEnum, MenuListDeleteModel, GraphicTypeEnum
 )
 
 from src.idosell._common import BooleanStrShortEnum
-from src.idosell.pim.products._common import GraphicTypeEnum
 
 from src.idosell.pim.menu import (
     Delete as PimMenuDelete, GetFilter as PimMenuGetFilter, Get as PimMenuGet,
@@ -22,7 +20,7 @@ from src.idosell.pim.menu import (
     PutFilter as PimMenuPutFilter, Put as PimMenuPut, PutFilterPimMenuParamsModel, PutSort as PimMenuPutSort
 )
 from src.idosell.pim.responsibility import (
-    DeleteEntities as PimResponsibilityDeleteEntities, GetEntities as PimResponsibilityGetEntities,
+    DeleteEntities as PimResponsibilityDeleteEntities, EntitiesResponsibilityPostModel, EntitiesResponsibilityPutModel, GetEntities as PimResponsibilityGetEntities,
     PostEntities as PimResponsibilityPostEntities, PostEntitiesPimResponsabilityParamsModel,
     PutEntities as PimResponsibilityPutEntities, PutEntitiesPimResponsabilityParamsModel
 )

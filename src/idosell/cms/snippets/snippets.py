@@ -60,10 +60,10 @@ class PutSnippetsModel(SnippetsModel):
     campaign: StrictInt | None = Field(None, ge=1, description="Snippet campaign id")
 
 class PostCmsSnippetsSnippetsParamsModel(BaseModel):
-    snippets: List[PostSnippetsModel] = Field(..., description="...") # array of objects length between 1 and 100
+    snippets: List[PostSnippetsModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 class PutCmsSnippetsSnippetsParamsModel(BaseModel):
-    snippets: List[PutSnippetsModel] = Field(..., description="...") # array of objects length between 1 and 100
+    snippets: List[PutSnippetsModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 
 # --- ENDPOINTS
@@ -112,4 +112,4 @@ class Delete(Gateway):
     _method: str = PrivateAttr(default='DELETE')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/snippets/snippets')
 
-    id: List[int] = Field(..., description="List of identifiers")
+    id: List[int] = Field(..., min_length=1, max_length=100, description="List of identifiers") # type: ignore

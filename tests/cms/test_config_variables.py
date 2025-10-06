@@ -95,6 +95,23 @@ class TestPutCmsConfigVariablesModel:
         assert dto.variables[0].key == "key1"
         assert dto.variables[1].value is None
 
+    def test_invalid_variables_empty_list(self):
+        with pytest.raises(ValidationError):
+            PutCmsConfigVariablesModel(variables=[])
+
+    def test_invalid_variables_too_long(self):
+        with pytest.raises(ValidationError):
+            variables = [
+                PutVariablesModel(
+                    key=f"key{i}",
+                    value=f"value{i}",
+                    type="snippet",
+                    itemId=i+1
+                )
+                for i in range(101)
+            ]
+            PutCmsConfigVariablesModel(variables=variables)
+
 
 # --- Tests for Endpoints
 class TestGet:

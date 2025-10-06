@@ -2,7 +2,7 @@ import pytest
 from pydantic import ValidationError
 
 from src.idosell.cms.entries import (
-    PictureFormatEntriesEnum,
+    PictureFormatEntriesEnum, EntrySourceTypeEnum,
     LangsEntriesModel, VisibleOnSitesListEntriesModel, ProductsEntriesModel,
     PictureEntriesDataModel, EntitiesModel, DeleteCmsEntriesParamsModel,
     PostCmsEntriesParamsModel, PutCmsEntriesParamsModel,
@@ -18,6 +18,15 @@ class TestPictureFormatEntriesEnum:
         assert PictureFormatEntriesEnum.JPEG == 'jpeg'
         assert PictureFormatEntriesEnum.PNG == 'png'
         assert PictureFormatEntriesEnum.GIF == 'gif'
+
+class TestEntrySourceTypeEnum:
+    def test_valid_values(self):
+        assert EntrySourceTypeEnum.SEARCH == 'search'
+        assert EntrySourceTypeEnum.ADVERT == 'advert'
+        assert EntrySourceTypeEnum.PRICE_COMPARERS == 'priceComparers'
+        assert EntrySourceTypeEnum.CPA == 'cpa'
+        assert EntrySourceTypeEnum.NEWSLETTER == 'newsletter'
+        assert EntrySourceTypeEnum.SOCIAL == 'social'
 
 
 # --- Tests for DTOs
@@ -115,6 +124,14 @@ class TestPutCmsEntriesParamsModel:
         assert dto.entryId == 1
         assert dto.deletePicture == BooleanStrShortEnum.NO
 
+    def test_valid_deletePicture_optional(self):
+        dto = PutCmsEntriesParamsModel(
+            entryId=1,
+            shopId=2
+        )
+        assert dto.entryId == 1
+        assert dto.deletePicture is None
+
     def test_invalid_entryId_zero(self):
         with pytest.raises(ValidationError):
             PutCmsEntriesParamsModel(
@@ -204,8 +221,8 @@ class TestGetSources:
         assert dto.type is None
 
     def test_instantiate_with_params(self):
-        dto = GetSources(type=["blog", "news"])
-        assert dto.type == ["blog", "news"]
+        dto = GetSources(type=[EntrySourceTypeEnum.SEARCH, EntrySourceTypeEnum.CPA])
+        assert dto.type == [EntrySourceTypeEnum.SEARCH, EntrySourceTypeEnum.CPA]
 
     def test_invalid_type_empty_list(self):
         with pytest.raises(ValidationError):

@@ -63,7 +63,7 @@ class Get(PageableSnakeGateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/warranties/warranties')
 
     warranty_ids: List[str] | None = Field(None, description="...")
-    resultsOrder: ResultsOrderWarrantiesGetModel | None = Field(None, description="...")
+    results_order: ResultsOrderWarrantiesGetModel | None = Field(None, description="...")
 
 class Post(AppendableGateway):
     """

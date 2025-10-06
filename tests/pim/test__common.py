@@ -13,9 +13,6 @@ from src.idosell.pim._common import (
     MenuFiltersActivePutFilterModel, MenuListPutSortModel, SettingsPutSortModel,
     SortLangDataModelModel, DisplayLimitLangDataModel, GfxModel, LangDataModel,
     MenuListDeleteModel, MenuListPutModel, MenuListPostModel, SettingsModel,
-    # Responsibility DTOs
-    EntitiesResponsibilityModel, EntitiesResponsibilityPostModel,
-    EntitiesResponsibilityPutModel,
     # Sizecharts DTOs
     ColumnsModel, DescriptionsModel, SizesModel, LanguagesDataModel,
     SizeChartsPutModel,
@@ -26,6 +23,11 @@ from src.idosell.pim._common import (
     LangWarrantiesModel, LangDataWarrantiesModel, ResultsOrderWarrantiesGetModel,
     ShopnameWarrantiesModel, WarrantiesPostModel, WarrantiesPutModel,
 )
+
+from src.idosell.pim.responsibility import (
+    EntitiesResponsibilityModel, EntitiesResponsibilityPostModel, EntitiesResponsibilityPutModel
+)
+
 from src.idosell._common import BooleanStrShortEnum
 from src.idosell.pim.products._common import GraphicTypeEnum
 

@@ -360,175 +360,6 @@ class SearchModeInShopsEnum(StrEnum):
     IN_ALL_OF_SELECTED = 'in_all_of_selected' # in all indicated stores
 
 
-# --- Models
-class AssociatedProductsModel(BaseModel):
-    associatedProductId: StrictInt = Field(..., ge=1, description="Recommended product ID")
-    associatedProductName: str = Field(..., description="Recommended product name")
-    associatedProductCode: str = Field(..., description="Recommended product code. External system code")
-
-class AvailablePaymentFormsModel(BaseModel):
-    prepaid: bool = Field(..., description="Prepayment")
-    cashOnDelivery: bool = Field(..., description="Cash on delivery")
-    tradeCredit: bool = Field(..., description="Trade credit")
-
-class MinQuantityPerOrderModel(BaseModel):
-    minQuantityPerOrderRetail: float = Field(..., gt=0, description="Minimum number of products in a retail order")
-    minQuantityPerOrderWholesale: float = Field(..., gt=0, description="Minimum number of products in a wholesale order")
-
-class PriceFormulaModel(BaseModel):
-    priceFormulaParameters: str = Field(..., description="Formula parameters for calculating price")
-    priceFormulaFunction: str = Field(..., description="Formula function for calculating price")
-
-# --- Product lang related
-class ProductUrlsLangDataModel(BaseModel):
-    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    langId: str = Field(..., description="Language ID")
-    url: str = Field(..., description="...")
-
-class ProductUrlModel(BaseModel):
-    productUrlsLangData: List[ProductUrlsLangDataModel] = Field(..., description="...")
-
-class ProductDeliveryTimeModel(BaseModel):
-    productDeliveryTimeChangeMode: ProductDeliveryTimeChangeModeEnum = Field(..., description="Operation type")
-    productDeliveryTimeValue: StrictInt = Field(..., ge=0, le=999, description="The amount of time it takes to get goods from the supplier to the store. The maximum time is 99 for the unit 'days' or 999 for the unit 'hours' and 'minutes'")
-
-    @model_validator(mode='after')
-    def validate_delivery_time(self):
-        """Validate delivery time constraints based on mode."""
-        if self.productDeliveryTimeChangeMode == ProductDeliveryTimeChangeModeEnum.PRODUCT:
-            if self.productDeliveryTimeValue < 0 or self.productDeliveryTimeValue > 999:
-                raise ValueError("Delivery time value must be between 0 and 999")
-        return self
-
-class ProductDimensionsModel(BaseModel):
-    productWidth: float = Field(..., gt=0, description="The width of a product in centimeters")
-    productHeight: float = Field(..., gt=0, description="Height of a product in centimeters")
-    productLength: float = Field(..., gt=0, description="The length of a product in centimeters")
-
-class ProductDiscountModel(BaseModel):
-    promoteInEnabled: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Object determines if the promotion should be active")
-    promoteItemNormalPrice: float = Field(..., description="Strikethrough price")
-    promoteItemWholesaleNormalPrice: float = Field(..., description="Strikethrough wholesale price")
-    promoteItemEndingDate: str = Field(..., description="Switching off date")
-
-class ProductDistinguishedModel(BaseModel):
-    promoteInEnabled: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Object determines if the promotion should be active")
-    promoteItemNormalPrice: float = Field(..., description="Strikethrough price")
-    promoteItemWholesaleNormalPrice: float = Field(..., description="Strikethrough wholesale price")
-    promoteItemEndingDate: str = Field(..., description="Switching off date")
-
-class ProductParametersDistinctionModel(BaseModel):
-    parameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
-    parameterName: str = Field(..., description="Parameter name")
-    parameterValueId: StrictInt = Field(..., ge=1, description="Parameter value ID")
-    parameterValueName: str = Field(..., description="Attributes group name")
-
-class ProductPriceComparisonSitesPricesModel(BaseModel):
-    priceComparisonSiteId: StrictInt = Field(..., ge=1, description="Price comparison website ID")
-    productPriceComparisonSitePrice: float = Field(..., description="Price for a price comparison website in a shop")
-
-class ProductPromotionModel(BaseModel):
-    promoteInEnabled: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Object determines if the promotion should be active")
-    promoteItemNormalPrice: float = Field(..., description="Strikethrough price")
-    promoteItemWholesaleNormalPrice: float = Field(..., description="Strikethrough wholesale price")
-    promoteItemEndingDate: str = Field(..., description="Switching off date")
-
-class ProductSpecialModel(BaseModel):
-    promoteInEnabled: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Object determines if the promotion should be active")
-    promoteItemNormalPrice: float = Field(..., description="Strikethrough price")
-    promoteItemWholesaleNormalPrice: float = Field(..., description="Strikethrough wholesale price")
-    promoteItemEndingDate: str = Field(..., description="Switching off date")
-
-class ProductMetaTitlesLangDataModel(BaseModel):
-    langId: str = Field(..., description="Language ID")
-    langName: str = Field(..., description="Language name")
-    productMetaTitle: str = Field(..., description="Product meta title")
-
-class ProductMetaTitlesModel(BaseModel):
-    productMetaTitlesLangData: List[ProductMetaTitlesLangDataModel] = Field(..., description="...")
-
-class ProductMetaDescriptionsLangDataModel(BaseModel):
-    langId: str = Field(..., description="Language ID")
-    langName: str = Field(..., description="Language name")
-    productMetaDescription: str = Field(..., description="Product meta description")
-
-class ProductMetaDescriptionsModel(BaseModel):
-    productMetaDescriptionsLangData: List[ProductMetaDescriptionsLangDataModel] = Field(..., description="...")
-
-# --- Meta related
-class ProductMetaKeywordsLangDataModel(BaseModel):
-    langId: str = Field(..., description="Language ID")
-    langName: str = Field(..., description="Language name")
-    productMetaKeyword: str = Field(..., description="Product meta keywords")
-
-class ProductMetaKeywordsModel(BaseModel):
-    productMetaKeywordsLangData: List[ProductMetaKeywordsLangDataModel] = Field(..., description="...")
-
-class ProductsBaseModel(BaseModel):
-    productDisplayedCode: str = Field(..., description="External product system code")
-    productTaxCode: str = Field(..., description="PKWiU [PCPandS]")
-    productInWrapper: StrictInt = Field(..., ge=1, description="Number of items in package data")
-    productSellByRetail: float = Field(..., gt=0, description="Sold at - for retailers")
-    productSellByWholesale: float = Field(..., gt=0, description="Sold at - for wholesalers")
-    categoryIdoSellId: StrictInt = Field(..., ge=1, description="IdoSell Category ID")
-    categoryIdoSellPath: str = Field(..., description="IdoSell Category pathname")
-    categoryId: StrictInt = Field(..., ge=1, description="Category Id")
-    categoryName: str = Field(..., description="Category name")
-    producerId: StrictInt = Field(..., ge=1, description="Brand Id")
-    producerName: str = Field(..., description="Brand name")
-    cnTaricCode: str = Field(..., description="CN/TARIC")
-    countryOfOrigin: str = Field(..., description="Country of origin. Country code in the ISO-3166-1 alpha-2 standard (2 letters)")
-    unitId: StrictInt = Field(..., ge=1, description="Product unit of measure ID")
-    seriesId: StrictInt = Field(..., ge=1, description="ID of series, to which product belongs")
-    seriesPanelName: str = Field(..., description="Name of series, to which the product belongs, visible in panel")
-    # WARNING: Changing sizesGroupId has critical business implications:
-    # - Changes zero ALL stock quantities in ALL stocks
-    # - Changes only allowed if product is NOT in unhandled orders or auction listings
-    # - This field change should be used with extreme caution
-    sizesGroupId: StrictInt = Field(..., ge=1, description="Size group ID. Change of one size group to another results in zeroing all stock quantities in all stocks. Change of size group can be made, if product is not present in any unhandled orders nor listed on auctions")
-    productVat: float = Field(..., gt=0, description="Value of VAT")
-    productVatFree: BooleanStrShortEnum = Field(..., description="Is product VAT free")
-    productPriceComparisonSitesPrices: List[ProductPriceComparisonSitesPricesModel] = Field(..., description="Different prices for price comparison websites")
-    productEnableInPos: BooleanStrShortEnum = Field(..., description="Object determines if the product is available in POS sale")
-    productAdvancePrice: float = Field(..., ge=0, description="Required advance payment in percents")
-    productNote: str = Field(..., description="Annotation")
-    shopsMask: int | None = Field(None, description="Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
-    productComplexNotes: ProductComplexNotesEnum = Field(..., description="Complex rating")
-    productInExportToPriceComparisonSites: YNSelectedEnum = Field(..., description="Product visibility in export to price comparison and marketplaces")
-    productInExportToAmazonMarketplace: YNSelectedEnum = Field(..., description="Visibility of an item in an export to Amazon Marketplace")
-    productPromotion: ProductPromotionModel = Field(..., description="Reduced price")
-    productDiscount: ProductDiscountModel = Field(..., description="Discount for shop")
-    productDistinguished: ProductDistinguishedModel = Field(..., description="Distinguished product in store")
-    productSpecial: ProductSpecialModel = Field(..., description="Special product in store")
-    productParametersDistinction: List[ProductParametersDistinctionModel] = Field(..., description="Parameters (distinguished)")
-    productLongDescriptions: ProductLongDescriptionsModel = Field(..., description="Long product description")
-    productAuctionDescriptionsData: List[ProductAuctionDescriptionsDataModel] = Field(..., description="Product data for auction services")
-    productMetaTitles: ProductMetaTitlesModel = Field(..., description="Product meta title")
-    productMetaDescriptions: ProductMetaDescriptionsModel = Field(..., description="Product meta description")
-    productMetaKeywords: ProductMetaKeywordsModel = Field(..., description="Product meta keywords")
-    productUrl: ProductUrlModel = Field(..., description="!AdresURLDlaTowaru!#")
-
-class StandardUnitModel(BaseModel):
-    contextValue: ContextValueEnum = Field(..., description="Possible special contexts corresponding to standard units")
-    standardUnitValue: float = Field(..., gt=0, description="Total length/volume/area/weight of product")
-    converterUnitValue: ConverterUnitValueEnum = Field(..., description="Price converter per unit")
-
-class SettingDefaultCategoryModel(BaseModel):
-    categoryId: StrictInt = Field(..., ge=1, description="Category id")
-    categoryName: str = Field(..., description="Category name")
-
-class SettingDefaultSizesGroupModel(BaseModel):
-    sizesGroupId: StrictInt = Field(..., ge=1, description="Size group ID. Change of one size group to another results in zeroing all stock quantities in all stocks. Change of size group can be made, if product is not present in any unhandled orders nor listed on auctions")
-    sizesGroupName: str = Field(..., description="Size group name")
-
-class SubscriptionModel(BaseModel):
-    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    enabled: bool = Field(False, description="Is subscription enabled for product")
-    daysInPeriod: List[int] = Field(..., description="Days in period")
-    unitsNumberRetail: float = Field(..., gt=0, description="Sold at - for retailers")
-    unitsNumberWholesale: float = Field(..., gt=0, description="Sold at - for wholesalers")
-
-
 # --- Versions related
 class VersionNamesLangDataModel(BaseModel):
     langId: str = Field(..., description="Language ID")
@@ -582,6 +413,365 @@ class VersionSettingsCommonModel(VersionSettingsBaseModel):
     versionCommonTraits: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="DEPRECATED")
     versionCommonPersistent: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Same display when not in stock")
     versionCommonUnit: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="The same unit of measure")
+
+class VersionParentPutModel(BaseModel):
+    versionParentId: str = Field(..., description="Value")
+    versionParentType: VersionParentTypeEnum = Field(..., description="Identifier type")
+
+# --- Miscs Models
+class PriceComparisonSitesModel(BaseModel):
+    priceComparisonSiteId: StrictInt = Field(..., ge=1, description="price comparison website ID")
+    productPriceComparisonSitePrice: float = Field(..., gt=0, description="Price for a price comparison website in a shop")
+    productPriceComparisonSitePriceNet: float = Field(..., gt=0, description="Net price for price comparison service in shop")
+
+class ProductHotspotsZonesModel(BaseModel):
+    productHotspotIsEnabled: bool = Field(..., description="Is attribute set")
+    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
+    productIsPromotion: bool = Field(..., description="Promotion for shop")
+    productIsDiscount: bool = Field(..., description="Discount for shop")
+    productIsDistinguished: bool = Field(..., description="Distinguished product in store")
+    productIsSpecial: bool = Field(..., description="Special product in store")
+
+class PriceInPointsModel(BaseModel):
+    priceInPointsOperation: PriceInPointsOperationEnum = Field(..., description="Element determines what kind of operation should be performed")
+    shopId: StrictInt = Field(..., ge=1, description="ShopId")
+    priceInPointsPrice: float = Field(..., ge=0, description="Price in points for manual points quantity configuration. Price in points will be calculated on basis of default exchange rates set for indicated store, when this value is 0")
+    priceInPointsClients: PriceInPointsClientsEnum = Field(..., description="Element determines for which customers prices will be changed")
+
+class LoyaltyPointsModel(BaseModel):
+    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
+    loyaltyPointsClientsType: LoyaltyPointsClientsTypeEnum = Field(..., description="Customer type")
+    loyaltyPointsOperation: LoyaltyPointsOperationEnum = Field(..., description="Operation")
+    loyaltyPointsType: LoyaltyPointsTypeEnum = Field(..., description="Loyalty points type")
+    numberOfLoyaltyPoints: float = Field(..., ge=0, description="Number of points")
+
+class ProductPriorityInMenuNodesModel(BaseModel):
+    productMenuNodeId: StrictInt = Field(..., ge=1, description="Menu element ID")
+    productPriority: StrictInt = Field(..., ge=1, description="Priority")
+    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
+    productMenuTreeId: StrictInt = Field(..., ge=1, description="Tree menu ID")
+
+class ProductPicturesReplaceModel(BaseModel):
+    productPictureNumber: StrictInt = Field(..., ge=1, description="A product photo's number")
+    productPictureSource: str = Field(..., description="A picture in url or base64 (depends on pictures_input_type")
+
+class PriceModifierValuesModel(BaseModel):
+    parameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
+    modifierValue: StrictInt = Field(..., ge=1, description="...")
+    modifierType: ModifierTypeEnum = Field(..., description="Available values")
+
+class ParametersConfigurableModel(BaseModel):
+    parameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
+    priceConfigurableType: PriceConfigurableTypeEnum = Field(..., description="Parameter type")
+    priceModifierValues: List[PriceModifierValuesModel] = Field(..., description="Price modifier value")
+
+class SeriesDescriptionsLangDataSearchModel(BaseModel):
+    seriesName: str = Field(..., description="Name of series in indicated language")
+    langId: str = Field(..., description="Language ID")
+
+class ProductSeriesParams(BaseModel):
+    seriesId: StrictInt = Field(..., ge=1, description="ID of series, to which product belongs")
+    seriesPanelName: str = Field(..., description="Name of series, to which the product belongs, visible in panel")
+    seriesDescriptionsLangData: List[SeriesDescriptionsLangDataSearchModel] = Field(..., description="Names of series in indicated language visible in shop")
+
+class SearchByShopsModel(BaseModel):
+    searchModeInShops: SearchModeInShopsEnum = Field(..., description="Determine data search method on basis of options set for stores. Available values: 'in_one_of_selected' - in one of indicated stores, 'in_all_of_selected' - in all indicated stores, This parameter is optional. When it's lacking, search is performed by option: in one of indicated stores (in_one_of_selected)")
+    shopsMask: StrictInt = Field(..., ge=1, description="it mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
+    shopsIds: List[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
+
+    @model_validator(mode='after')
+    def validate_shops_mask(self):
+        """Validate that shopsMask is a positive value."""
+        if self.shopsMask <= 0:
+            raise ValueError("shopsMask must be positive")
+        return self
+
+class ProductPriceComparisonSitesPricesModel(BaseModel):
+    priceComparisonSiteId: StrictInt = Field(..., ge=1, description="Price comparison website ID")
+    productPriceComparisonSitePrice: float = Field(..., description="Price for a price comparison website in a shop")
+
+class ProductPromotionModel(BaseModel):
+    promoteInEnabled: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Object determines if the promotion should be active")
+    promoteItemNormalPrice: float = Field(..., description="Strikethrough price")
+    promoteItemWholesaleNormalPrice: float = Field(..., description="Strikethrough wholesale price")
+    promoteItemEndingDate: str = Field(..., description="Switching off date")
+
+class ProductDiscountModel(BaseModel):
+    promoteInEnabled: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Object determines if the promotion should be active")
+    promoteItemNormalPrice: float = Field(..., description="Strikethrough price")
+    promoteItemWholesaleNormalPrice: float = Field(..., description="Strikethrough wholesale price")
+    promoteItemEndingDate: str = Field(..., description="Switching off date")
+
+class ProductDistinguishedModel(BaseModel):
+    promoteInEnabled: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Object determines if the promotion should be active")
+    promoteItemNormalPrice: float = Field(..., description="Strikethrough price")
+    promoteItemWholesaleNormalPrice: float = Field(..., description="Strikethrough wholesale price")
+    promoteItemEndingDate: str = Field(..., description="Switching off date")
+
+class ProductSpecialModel(BaseModel):
+    promoteInEnabled: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Object determines if the promotion should be active")
+    promoteItemNormalPrice: float = Field(..., description="Strikethrough price")
+    promoteItemWholesaleNormalPrice: float = Field(..., description="Strikethrough wholesale price")
+    promoteItemEndingDate: str = Field(..., description="Switching off date")
+
+class ProductParametersDistinctionModel(BaseModel):
+    parameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
+    parameterName: str = Field(..., description="Parameter name")
+    parameterValueId: StrictInt = Field(..., ge=1, description="Parameter value ID")
+    parameterValueName: str = Field(..., description="Attributes group name")
+
+
+# --- Meta related
+class ProductMetaKeywordsLangDataModel(BaseModel):
+    langId: str = Field(..., description="Language ID")
+    langName: str = Field(..., description="Language name")
+    productMetaKeyword: str = Field(..., description="Product meta keywords")
+
+class ProductMetaKeywordsModel(BaseModel):
+    productMetaKeywordsLangData: List[ProductMetaKeywordsLangDataModel] = Field(..., description="...")
+
+class ProductMetaTitlesLangDataModel(BaseModel):
+    langId: str = Field(..., description="Language ID")
+    langName: str = Field(..., description="Language name")
+    productMetaTitle: str = Field(..., description="Product meta title")
+
+class ProductMetaTitlesModel(BaseModel):
+    productMetaTitlesLangData: List[ProductMetaTitlesLangDataModel] = Field(..., description="...")
+
+class ProductMetaDescriptionsLangDataModel(BaseModel):
+    langId: str = Field(..., description="Language ID")
+    langName: str = Field(..., description="Language name")
+    productMetaDescription: str = Field(..., description="Product meta description")
+
+class ProductMetaDescriptionsModel(BaseModel):
+    productMetaDescriptionsLangData: List[ProductMetaDescriptionsLangDataModel] = Field(..., description="...")
+
+# --- Products related
+class ProductUrlsLangDataModel(BaseModel):
+    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
+    langId: str = Field(..., description="Language ID")
+    url: str = Field(..., description="...")
+
+class ProductUrlModel(BaseModel):
+    productUrlsLangData: List[ProductUrlsLangDataModel] = Field(..., description="...")
+
+class ProductsBaseModel(BaseModel):
+    productDisplayedCode: str = Field(..., description="External product system code")
+    productTaxCode: str = Field(..., description="PKWiU [PCPandS]")
+    productInWrapper: StrictInt = Field(..., ge=1, description="Number of items in package data")
+    productSellByRetail: float = Field(..., gt=0, description="Sold at - for retailers")
+    productSellByWholesale: float = Field(..., gt=0, description="Sold at - for wholesalers")
+    categoryIdoSellId: StrictInt = Field(..., ge=1, description="IdoSell Category ID")
+    categoryIdoSellPath: str = Field(..., description="IdoSell Category pathname")
+    categoryId: StrictInt = Field(..., ge=1, description="Category Id")
+    categoryName: str = Field(..., description="Category name")
+    producerId: StrictInt = Field(..., ge=1, description="Brand Id")
+    producerName: str = Field(..., description="Brand name")
+    cnTaricCode: str = Field(..., description="CN/TARIC")
+    countryOfOrigin: str = Field(..., description="Country of origin. Country code in the ISO-3166-1 alpha-2 standard (2 letters)")
+    unitId: StrictInt = Field(..., ge=1, description="Product unit of measure ID")
+    seriesId: StrictInt = Field(..., ge=1, description="ID of series, to which product belongs")
+    seriesPanelName: str = Field(..., description="Name of series, to which the product belongs, visible in panel")
+    # WARNING: Changing sizesGroupId has critical business implications:
+    # - Changes zero ALL stock quantities in ALL stocks
+    # - Changes only allowed if product is NOT in unhandled orders or auction listings
+    # - This field change should be used with extreme caution
+    sizesGroupId: StrictInt = Field(..., ge=1, description="Size group ID. Change of one size group to another results in zeroing all stock quantities in all stocks. Change of size group can be made, if product is not present in any unhandled orders nor listed on auctions")
+    productVat: float = Field(..., gt=0, description="Value of VAT")
+    productVatFree: BooleanStrShortEnum = Field(..., description="Is product VAT free")
+    productPriceComparisonSitesPrices: List[ProductPriceComparisonSitesPricesModel] = Field(..., description="Different prices for price comparison websites")
+    productEnableInPos: BooleanStrShortEnum = Field(..., description="Object determines if the product is available in POS sale")
+    productAdvancePrice: float = Field(..., ge=0, description="Required advance payment in percents")
+    productNote: str = Field(..., description="Annotation")
+    shopsMask: int | None = Field(None, description="Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
+    productComplexNotes: ProductComplexNotesEnum = Field(..., description="Complex rating")
+    productInExportToPriceComparisonSites: YNSelectedEnum = Field(..., description="Product visibility in export to price comparison and marketplaces")
+    productInExportToAmazonMarketplace: YNSelectedEnum = Field(..., description="Visibility of an item in an export to Amazon Marketplace")
+    productPromotion: ProductPromotionModel = Field(..., description="Reduced price")
+    productDiscount: ProductDiscountModel = Field(..., description="Discount for shop")
+    productDistinguished: ProductDistinguishedModel = Field(..., description="Distinguished product in store")
+    productSpecial: ProductSpecialModel = Field(..., description="Special product in store")
+    productParametersDistinction: List[ProductParametersDistinctionModel] = Field(..., description="Parameters (distinguished)")
+    productLongDescriptions: ProductLongDescriptionsModel = Field(..., description="Long product description")
+    productAuctionDescriptionsData: List[ProductAuctionDescriptionsDataModel] = Field(..., description="Product data for auction services")
+    productMetaTitles: ProductMetaTitlesModel = Field(..., description="Product meta title")
+    productMetaDescriptions: ProductMetaDescriptionsModel = Field(..., description="Product meta description")
+    productMetaKeywords: ProductMetaKeywordsModel = Field(..., description="Product meta keywords")
+    productUrl: ProductUrlModel = Field(..., description="!AdresURLDlaTowaru!#")
+
+
+
+
+
+
+
+class AttachmentsModel(BaseModel):
+    attachmentUrl: str = Field(..., description="Attachment file link")
+    attachmentName: AttachmentNameModel = Field(..., description="Attachment name")
+    attachmentFileType: AttachmentFileTypeEnum = Field(..., description="File type: audio, video, doc, other")
+    attachmentEnable: AttachmentEnableEnum = Field(..., description="Type of customer, attachment should be available for")
+    attachmentId: StrictInt = Field(..., ge=1, description="Attachment ID")
+    attachmentDownloadLog: BooleanStrShortEnum = Field(..., description="Attachment downloads record")
+    attachmentFileExtension: str = Field(..., description="Attachment file extension")
+    attachmentPriority: StrictInt = Field(..., ge=1, description="Attachment number")
+    documentTypes: List[DocumentTypesModel] = Field(..., description="Attachment document types list")
+
+class RemoveAttachmentsModel(BaseModel):
+    langId: str = Field(..., description="Language ID")
+
+class VirtualAttachmentsModel(VirtualAttachmentsBaseModel):
+    pass
+
+class ProductNamesInAuctionLangDataModel(BaseModel):
+    langId: str = Field(..., description="Language ID")
+    productNameInAuction: str = Field(..., description="...")
+
+class ProductNamesInAuctionModel(BaseModel):
+    productNamesInAuctionLangData: List[ProductNamesInAuctionLangDataModel] = Field(..., description="...")
+
+class ProductNamesInPriceComparerLangDataModel(BaseModel):
+    langId: str = Field(..., description="Language ID")
+    productNameInPriceComparer: str = Field(..., description="Product name for price comparison websites")
+
+class ProductNamesInPriceComparerModel(BaseModel):
+    productNamesInPriceComparerLangData: List[ProductNamesInPriceComparerLangDataModel] = Field(..., description="...")
+
+class ProductParamDescriptionsLangDataModel(BaseModel):
+    langId: str = Field(..., description="Language ID")
+    productParamDescriptions: str = Field(..., description="Product short description")
+    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
+    serviceId: StrictInt = Field(..., ge=1, description="External service identifier")
+
+class ProductParamDescriptionsModel(BaseModel):
+    productParamDescriptionsLangData: List[ProductParamDescriptionsLangDataModel] = Field(..., description="...")
+
+class ProductLongDescriptionsInAuctionModel(BaseModel):
+    langId: str = Field(..., description="Language ID")
+    productLongDescriptionsInAuction: str = Field(..., description="...")
+
+class ProductVersionPutModel(BaseModel):
+    versionParent: VersionParentPutModel = Field(..., description="ID of the main item (variant) in the group")
+    versionPriority: StrictInt = Field(..., ge=1, description="The order of products in the group. Value needs to be more than 0")
+    versionSettings: VersionSettingsCommonModel = Field(..., description="Settings for groups of items (variants)")
+    versionNames: VersionNamesModel = Field(..., description="Parameter value names")
+    versionGroupNames: VersionGroupNamesModel = Field(..., description="Parameter names")
+
+class ProductCurrenciesShopsModel(BaseModel):
+    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
+    currencyId: str = Field(..., description="Currency ID")
+
+class ProductParameterTextIdsLangDataModel(BaseModel):
+    langId: str = Field(..., description="Language ID")
+    productParameterTextId: str = Field(..., description="Parameter ID")
+
+class ProductParametersDescriptionsLangDataModel(BaseModel):
+    langId: str = Field(..., description="Language ID")
+    productParametersDescription: str = Field(..., description="Parameter description")
+
+class ProductParametersModel(BaseModel):
+    productParameterOperation: ProductParameterOperationEnum = Field(..., description="...")
+    productParameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
+    productParameterPriority: int | None = Field(None, description="Determines where the parameter will be added. If no value is specified, the parameter will be placed at the end of the list. If a value of e.g. 5 is set, the value of all priorities >= 5 will be increased by 1 to provide a unique priority value")
+    productParameterTextIdsLangData: List[ProductParameterTextIdsLangDataModel] = Field(..., description="Allows to enter parameter name i multiple languages at the same time. If it is used, item_textid and lang_id are ingored")
+    langId: str = Field(..., description="Language ID")
+    productParametersDescriptionsLangData: List[ProductParametersDescriptionsLangDataModel] = Field(..., description="Parameters descriptions in indicated language versions")
+
+class ChangeParametersDistinctionModel(BaseModel):
+    productParameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
+    productParameterTextIdent: str = Field(..., description="Parameter name (if ID was not used")
+    langId: str = Field(..., description="Language ID")
+    productParameterDescriptionType: ProductParameterDescriptionTypeEnum = Field(..., description="...")
+    parameterDistinctionValue: BooleanStrShortEnum = Field(..., description="Value")
+
+class ProductMenuItemsModel(BaseModel):
+    productMenuOperation: ProductMenuOperationEnum = Field(..., description="Menu element operation type")
+    menuItemId: StrictInt = Field(..., ge=1, description="ID of the menu node to which the product is to be assigned")
+    menuItemTextId: str = Field(..., description="Menu element text identifier. Example: item1\item2\item3") # type: ignore
+    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
+    menuId: StrictInt = Field(..., ge=1, description="ID of the menu zone displayed in the mask")
+
+class RemoveAllProductsAssignedToMenuModel(BaseModel):
+    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
+    menuId: StrictInt = Field(..., ge=1, description="ID of the menu zone displayed in the mask")
+
+class JavaScriptInTheItemCardModel(BaseModel):
+    shopId: StrictInt = Field(..., description="Shop Id")
+    scriptCode: str = Field(..., description="JavaScript code displayed in the product page of the IdoSell Shop")
+
+class ClearStockQuantitiesModel(BaseModel):
+    clearAllStockQuantities: bool = Field(..., description="The setting allows you to reset the inventories of warehouse M0 and all your own warehouses")
+    stocksListToClear: List[int] = Field(..., description="List of warehouses for which inventories are to be reset")
+
+class PicturesSettingApplyMacroForIconModel(BaseModel):
+    iconType: str = Field(..., description="Icon type")
+    macroId: StrictInt = Field(..., ge=1, description="Macro identifier")
+
+class VersionParentModel(BaseModel):
+    versionParentId: str = Field(..., description="Value")
+    versionParentType: VersionParentTypeEnum = Field(..., description="Identifier type")
+
+class SettingDeleteIndividualDescriptionsByShopsMaskModel(BaseModel):
+    shopsMask: StrictInt = Field(..., description="Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
+
+class SettingDeleteIndividualMetaByShopsMaskModel(BaseModel):
+    shopsMask: StrictInt = Field(..., description="Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
+
+class AssociatedProductsModel(BaseModel):
+    associatedProductId: StrictInt = Field(..., ge=1, description="Recommended product ID")
+    associatedProductName: str = Field(..., description="Recommended product name")
+    associatedProductCode: str = Field(..., description="Recommended product code. External system code")
+
+class AvailablePaymentFormsModel(BaseModel):
+    prepaid: bool = Field(..., description="Prepayment")
+    cashOnDelivery: bool = Field(..., description="Cash on delivery")
+    tradeCredit: bool = Field(..., description="Trade credit")
+
+class MinQuantityPerOrderModel(BaseModel):
+    minQuantityPerOrderRetail: float = Field(..., gt=0, description="Minimum number of products in a retail order")
+    minQuantityPerOrderWholesale: float = Field(..., gt=0, description="Minimum number of products in a wholesale order")
+
+class PriceFormulaModel(BaseModel):
+    priceFormulaParameters: str = Field(..., description="Formula parameters for calculating price")
+    priceFormulaFunction: str = Field(..., description="Formula function for calculating price")
+
+class ProductDeliveryTimeModel(BaseModel):
+    productDeliveryTimeChangeMode: ProductDeliveryTimeChangeModeEnum = Field(..., description="Operation type")
+    productDeliveryTimeValue: StrictInt = Field(..., ge=0, le=999, description="The amount of time it takes to get goods from the supplier to the store. The maximum time is 99 for the unit 'days' or 999 for the unit 'hours' and 'minutes'")
+
+    @model_validator(mode='after')
+    def validate_delivery_time(self):
+        """Validate delivery time constraints based on mode."""
+        if self.productDeliveryTimeChangeMode == ProductDeliveryTimeChangeModeEnum.PRODUCT:
+            if self.productDeliveryTimeValue < 0 or self.productDeliveryTimeValue > 999:
+                raise ValueError("Delivery time value must be between 0 and 999")
+        return self
+
+class ProductDimensionsModel(BaseModel):
+    productWidth: float = Field(..., gt=0, description="The width of a product in centimeters")
+    productHeight: float = Field(..., gt=0, description="Height of a product in centimeters")
+    productLength: float = Field(..., gt=0, description="The length of a product in centimeters")
+
+
+
+class StandardUnitModel(BaseModel):
+    contextValue: ContextValueEnum = Field(..., description="Possible special contexts corresponding to standard units")
+    standardUnitValue: float = Field(..., gt=0, description="Total length/volume/area/weight of product")
+    converterUnitValue: ConverterUnitValueEnum = Field(..., description="Price converter per unit")
+
+class SettingDefaultCategoryModel(BaseModel):
+    categoryId: StrictInt = Field(..., ge=1, description="Category id")
+    categoryName: str = Field(..., description="Category name")
+
+class SettingDefaultSizesGroupModel(BaseModel):
+    sizesGroupId: StrictInt = Field(..., ge=1, description="Size group ID. Change of one size group to another results in zeroing all stock quantities in all stocks. Change of size group can be made, if product is not present in any unhandled orders nor listed on auctions")
+    sizesGroupName: str = Field(..., description="Size group name")
+
+class SubscriptionModel(BaseModel):
+    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
+    enabled: bool = Field(False, description="Is subscription enabled for product")
+    daysInPeriod: List[int] = Field(..., description="Days in period")
+    unitsNumberRetail: float = Field(..., gt=0, description="Sold at - for retailers")
+    unitsNumberWholesale: float = Field(..., gt=0, description="Sold at - for wholesalers")
 
 # --- Product Shops related
 class ProductShopPriceComparisonSitesPricesModel(BaseModel):
@@ -671,13 +861,16 @@ class DispatchSettingsModel(BaseModel):
     freeShippingSettings: FreeShippingSettingsModel = Field(..., description="Free shipping settings")
     returnProductSettings: ReturnProductSettingsModel = Field(..., description="Return and complaint settings")
 
-
+#
 # --- Delete DTOs
+#
 class ProductsDeleteModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Products list")
     productSizeCodeExternal: str = Field(..., description="External product system code for size")
 
+#
 # --- Post DTOs
+#
 class PictureSettingsPostModel(BaseModel):
     picturesSettingInitialUrlPart: str = Field(..., description="Object determines photo URL")
     picturesSettingInputType: PicturesSettingInputTypeEnum = Field(..., description="Object determines the method of adding photos in 'pictures' object")
@@ -756,209 +949,9 @@ class SettingsPostModel(BaseModel):
     settingsAddingDefaultShopMaskAllowed: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="The item shall determine whether the default visibility in stores can be set if a new commodity is to be created and no parameters have been uploaded to set visibility in at least one store") # just in case set to NO
     settingsAddingManuallySelectedShopMaskAllowed: int | None = Field(None, description="Element specifying whether the default visibility in stores can be set according to the list of stores indicated in the web import source configuration, if a new product will be created and no parameters have been sent to set visibility in at least one store")
 
-
+#
 # --- Put DTOs
-class AttachmentsModel(BaseModel):
-    attachmentUrl: str = Field(..., description="Attachment file link")
-    attachmentName: AttachmentNameModel = Field(..., description="Attachment name")
-    attachmentFileType: AttachmentFileTypeEnum = Field(..., description="File type: audio, video, doc, other")
-    attachmentEnable: AttachmentEnableEnum = Field(..., description="Type of customer, attachment should be available for")
-    attachmentId: StrictInt = Field(..., ge=1, description="Attachment ID")
-    attachmentDownloadLog: BooleanStrShortEnum = Field(..., description="Attachment downloads record")
-    attachmentFileExtension: str = Field(..., description="Attachment file extension")
-    attachmentPriority: StrictInt = Field(..., ge=1, description="Attachment number")
-    documentTypes: List[DocumentTypesModel] = Field(..., description="Attachment document types list")
-
-class PriceModifierValuesModel(BaseModel):
-    parameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
-    modifierValue: StrictInt = Field(..., ge=1, description="...")
-    modifierType: ModifierTypeEnum = Field(..., description="Available values")
-
-class ParametersConfigurableModel(BaseModel):
-    parameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
-    priceConfigurableType: PriceConfigurableTypeEnum = Field(..., description="Parameter type")
-    priceModifierValues: List[PriceModifierValuesModel] = Field(..., description="Price modifier value")
-
-class PicturesSettingApplyMacroForIconModel(BaseModel):
-    iconType: str = Field(..., description="Icon type")
-    macroId: StrictInt = Field(..., ge=1, description="Macro identifier")
-
-class PictureSettingsPutModel(BaseModel):
-    picturesSettingInitialUrlPart: str = Field(..., description="Object determines photo URL")
-    picturesSettingInputType: PicturesSettingInputTypeEnum = Field(..., description="Object determines the method of adding photos in 'pictures' object")
-    picturesSettingOverwrite: BooleanStrShortEnum = Field(..., description="Object determines the method of adding product photos. Allowed values 'n' - photos are uploaded from the first free place, 'y' - photos are uploaded from the first place")
-    picturesSettingDeleteProductPictures: BooleanStrShortEnum = Field(..., description="Element determining whether or not to delete existing merchandise images")
-    picturesSettingDeleteProductIcons: BooleanStrShortEnum = Field(..., description="Element determining whether to delete existing commodity icons")
-    picturesSettingDeleteIcon: PicturesSettingDeleteIconEnum = Field(..., description="Element determining whether to remove the selected icon")
-    picturesSettingCreateIconFromPicture: PicturesSettingCreateIconFromPictureEnum = Field(..., description="Element determining whether or not to create icon from the selected photo")
-    picturesSettingRestoreOriginalPictures: BooleanStrShortEnum = Field(..., description="Element determining whether to restore existing original images")
-    picturesSettingRestoreOriginalIcons: PicturesSettingRestoreOriginalIconsEnum = Field(..., description="Element determining the type of icon whose original is to be restored, if any")
-    picturesSettingApplyMacroForPictures: int | None = Field(None, ge=1, description="Macro ID to be applied to images on the product")
-    picturesSettingApplyMacroForIcon: PicturesSettingApplyMacroForIconModel = Field(..., description="Macro for the selected icon")
-    picturesSettingShopId: str = Field(..., description="Identifier of the shop for which the action is to be performed")
-    picturesSettingServiceId: StrictInt = Field(..., ge=1, description="Identifier of an external service for which the action is to be performed on photos in the goods")
-    picturesSettingScaling: BooleanStrShortEnum = Field(..., description="Object determines if the photo should be scaled. Allowed values 'n' - no scaling allowance, 'y' - scaling allowance")
-    picturesSettingDeleteOriginalPictures: BooleanStrShortEnum = Field(..., description="Element determining whether to delete existing original images")
-    picturesSettingDeleteOriginalIcons: PicturesSettingDeleteOriginalIconsEnum = Field(..., description="Element specifying the type of icon whose original is to be deleted")
-    picturesSettingRestoreBackupPicturesAndIconsByDateTime: str | None = Field(None, description="...")
-
-class VersionGroupNamesPutModel(BaseModel):
-    versionGroupNamesLangData: List[VersionGroupNamesLangDataModel] = Field(..., description="Parameter name")
-
-class VersionNamesPutModel(BaseModel):
-    versionNamesLangData: List[VersionNamesLangDataModel] = Field(..., description="Array of languages, values are displayed in")
-
-class VersionParentModel(BaseModel):
-    versionParentId: str = Field(..., description="Value")
-    versionParentType: VersionParentTypeEnum = Field(..., description="Identifier type")
-
-class VersionParentPutModel(BaseModel):
-    versionParentId: str = Field(..., description="Value")
-    versionParentType: VersionParentTypeEnum = Field(..., description="Identifier type")
-
-class VersionSettingsPutModel(VersionSettingsBaseModel):
-    versionDisplayAllInPanel: BooleanStrShortEnum = Field(..., description="Show in panel")
-    versionDisplayRelCanonicalInShop: BooleanStrShortEnum = Field(..., description="Adding the canonical links to the site")
-    versionCommonAuctionName: BooleanStrShortEnum = Field(..., description="The same product's name for Internet auctions")
-    versionCommonMetaTags: BooleanStrShortEnum = Field(..., description="The same meta settings")
-    versionCommonCurrency: BooleanStrShortEnum = Field(..., description="The same currency")
-    versionCommonPriceFormula: BooleanStrShortEnum = Field(..., description="The same formula for calculating prices")
-    versionCommonPromotions: BooleanStrShortEnum = Field(..., description="Same promotions")
-    versionCommonJavaScriptOnCard: BooleanStrShortEnum = Field(..., description="The same JavaScript displayed on the product card")
-    versionCommonMenuItems: BooleanStrShortEnum = Field(..., description="The same objects in menu")
-    versionCommonDeliverer: BooleanStrShortEnum = Field(..., description="The same supplier")
-    versionCommonAttachments: BooleanStrShortEnum = Field(..., description="The same attachments")
-    versionCommonAuctionIcon: BooleanStrShortEnum = Field(..., description="The same icons for auctions")
-    versionCommonSerialNumbers: BooleanStrShortEnum = Field(..., description="The same serial numbers")
-
-class ProductVersionPutModel(BaseModel):
-    versionParent: VersionParentPutModel = Field(..., description="ID of the main item (variant) in the group")
-    versionPriority: StrictInt = Field(..., ge=1, description="The order of products in the group. Value needs to be more than 0")
-    versionSettings: VersionSettingsCommonModel = Field(..., description="Settings for groups of items (variants)")
-    versionNames: VersionNamesModel = Field(..., description="Parameter value names")
-    versionGroupNames: VersionGroupNamesModel = Field(..., description="Parameter names")
-
-class VirtualAttachmentsModel(VirtualAttachmentsBaseModel):
-    pass
-
-class ChangeParametersDistinctionModel(BaseModel):
-    productParameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
-    productParameterTextIdent: str = Field(..., description="Parameter name (if ID was not used")
-    langId: str = Field(..., description="Language ID")
-    productParameterDescriptionType: ProductParameterDescriptionTypeEnum = Field(..., description="...")
-    parameterDistinctionValue: BooleanStrShortEnum = Field(..., description="Value")
-
-class ClearStockQuantitiesModel(BaseModel):
-    clearAllStockQuantities: bool = Field(..., description="The setting allows you to reset the inventories of warehouse M0 and all your own warehouses")
-    stocksListToClear: List[int] = Field(..., description="List of warehouses for which inventories are to be reset")
-
-class JavaScriptInTheItemCardModel(BaseModel):
-    shopId: StrictInt = Field(..., description="Shop Id")
-    scriptCode: str = Field(..., description="JavaScript code displayed in the product page of the IdoSell Shop")
-
-class LoyaltyPointsModel(BaseModel):
-    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    loyaltyPointsClientsType: LoyaltyPointsClientsTypeEnum = Field(..., description="Customer type")
-    loyaltyPointsOperation: LoyaltyPointsOperationEnum = Field(..., description="Operation")
-    loyaltyPointsType: LoyaltyPointsTypeEnum = Field(..., description="Loyalty points type")
-    numberOfLoyaltyPoints: float = Field(..., ge=0, description="Number of points")
-
-class PriceInPointsModel(BaseModel):
-    priceInPointsOperation: PriceInPointsOperationEnum = Field(..., description="Element determines what kind of operation should be performed")
-    shopId: StrictInt = Field(..., ge=1, description="ShopId")
-    priceInPointsPrice: float = Field(..., ge=0, description="Price in points for manual points quantity configuration. Price in points will be calculated on basis of default exchange rates set for indicated store, when this value is 0")
-    priceInPointsClients: PriceInPointsClientsEnum = Field(..., description="Element determines for which customers prices will be changed")
-
-class ProductCurrenciesShopsModel(BaseModel):
-    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    currencyId: str = Field(..., description="Currency ID")
-
-class ProductHotspotsZonesModel(BaseModel):
-    productHotspotIsEnabled: bool = Field(..., description="Is attribute set")
-    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    productIsPromotion: bool = Field(..., description="Promotion for shop")
-    productIsDiscount: bool = Field(..., description="Discount for shop")
-    productIsDistinguished: bool = Field(..., description="Distinguished product in store")
-    productIsSpecial: bool = Field(..., description="Special product in store")
-
-class ProductPicturesReplaceModel(BaseModel):
-    productPictureNumber: StrictInt = Field(..., ge=1, description="A product photo's number")
-    productPictureSource: str = Field(..., description="A picture in url or base64 (depends on pictures_input_type")
-
-class ProductLongDescriptionsInAuctionModel(BaseModel):
-    langId: str = Field(..., description="Language ID")
-    productLongDescriptionsInAuction: str = Field(..., description="...")
-
-class ProductPriorityInMenuNodesModel(BaseModel):
-    productMenuNodeId: StrictInt = Field(..., ge=1, description="Menu element ID")
-    productPriority: StrictInt = Field(..., ge=1, description="Priority")
-    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    productMenuTreeId: StrictInt = Field(..., ge=1, description="Tree menu ID")
-
-class ProductNamesInAuctionLangDataModel(BaseModel):
-    langId: str = Field(..., description="Language ID")
-    productNameInAuction: str = Field(..., description="...")
-
-class ProductNamesInAuctionModel(BaseModel):
-    productNamesInAuctionLangData: List[ProductNamesInAuctionLangDataModel] = Field(..., description="...")
-
-class ProductNamesInPriceComparerLangDataModel(BaseModel):
-    langId: str = Field(..., description="Language ID")
-    productNameInPriceComparer: str = Field(..., description="Product name for price comparison websites")
-
-class ProductNamesInPriceComparerModel(BaseModel):
-    productNamesInPriceComparerLangData: List[ProductNamesInPriceComparerLangDataModel] = Field(..., description="...")
-
-class ProductParamDescriptionsLangDataModel(BaseModel):
-    langId: str = Field(..., description="Language ID")
-    productParamDescriptions: str = Field(..., description="Product short description")
-    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    serviceId: StrictInt = Field(..., ge=1, description="External service identifier")
-
-class ProductParamDescriptionsModel(BaseModel):
-    productParamDescriptionsLangData: List[ProductParamDescriptionsLangDataModel] = Field(..., description="...")
-
-class ProductMenuItemsModel(BaseModel):
-    productMenuOperation: ProductMenuOperationEnum = Field(..., description="Menu element operation type")
-    menuItemId: StrictInt = Field(..., ge=1, description="ID of the menu node to which the product is to be assigned")
-    menuItemTextId: str = Field(..., description="Menu element text identifier. Example: item1\item2\item3") # type: ignore
-    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    menuId: StrictInt = Field(..., ge=1, description="ID of the menu zone displayed in the mask")
-
-class RemoveAllProductsAssignedToMenuModel(BaseModel):
-    shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    menuId: StrictInt = Field(..., ge=1, description="ID of the menu zone displayed in the mask")
-
-class RemoveAttachmentsModel(BaseModel):
-    langId: str = Field(..., description="Language ID")
-
-class SettingDeleteIndividualDescriptionsByShopsMaskModel(BaseModel):
-    shopsMask: StrictInt = Field(..., description="Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
-
-class SettingDeleteIndividualMetaByShopsMaskModel(BaseModel):
-    shopsMask: StrictInt = Field(..., description="Bit mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
-
-class PriceComparisonSitesModel(BaseModel):
-    priceComparisonSiteId: StrictInt = Field(..., ge=1, description="price comparison website ID")
-    productPriceComparisonSitePrice: float = Field(..., gt=0, description="Price for a price comparison website in a shop")
-    productPriceComparisonSitePriceNet: float = Field(..., gt=0, description="Net price for price comparison service in shop")
-
-class ProductParameterTextIdsLangDataModel(BaseModel):
-    langId: str = Field(..., description="Language ID")
-    productParameterTextId: str = Field(..., description="Parameter ID")
-
-class ProductParametersDescriptionsLangDataModel(BaseModel):
-    langId: str = Field(..., description="Language ID")
-    productParametersDescription: str = Field(..., description="Parameter description")
-
-class ProductParametersModel(BaseModel):
-    productParameterOperation: ProductParameterOperationEnum = Field(..., description="...")
-    productParameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
-    productParameterPriority: int | None = Field(None, description="Determines where the parameter will be added. If no value is specified, the parameter will be placed at the end of the list. If a value of e.g. 5 is set, the value of all priorities >= 5 will be increased by 1 to provide a unique priority value")
-    productParameterTextIdsLangData: List[ProductParameterTextIdsLangDataModel] = Field(..., description="Allows to enter parameter name i multiple languages at the same time. If it is used, item_textid and lang_id are ingored")
-    langId: str = Field(..., description="Language ID")
-    productParametersDescriptionsLangData: List[ProductParametersDescriptionsLangDataModel] = Field(..., description="Parameters descriptions in indicated language versions")
-
+#
 class ProductsPutModel(ProductsBaseModel):
     priceComparisonSites: List[PriceComparisonSitesModel] = Field(..., description="Selection of comparison sites for which the product visibility will be changed")
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
@@ -1055,6 +1048,46 @@ class ProductsPutModel(ProductsBaseModel):
     responsibleProducerCode: str = Field(..., description="Responsible producer code")
     responsiblePersonCode: str = Field(..., description="Responsible person code")
 
+class PictureSettingsPutModel(BaseModel):
+    picturesSettingInitialUrlPart: str = Field(..., description="Object determines photo URL")
+    picturesSettingInputType: PicturesSettingInputTypeEnum = Field(..., description="Object determines the method of adding photos in 'pictures' object")
+    picturesSettingOverwrite: BooleanStrShortEnum = Field(..., description="Object determines the method of adding product photos. Allowed values 'n' - photos are uploaded from the first free place, 'y' - photos are uploaded from the first place")
+    picturesSettingDeleteProductPictures: BooleanStrShortEnum = Field(..., description="Element determining whether or not to delete existing merchandise images")
+    picturesSettingDeleteProductIcons: BooleanStrShortEnum = Field(..., description="Element determining whether to delete existing commodity icons")
+    picturesSettingDeleteIcon: PicturesSettingDeleteIconEnum = Field(..., description="Element determining whether to remove the selected icon")
+    picturesSettingCreateIconFromPicture: PicturesSettingCreateIconFromPictureEnum = Field(..., description="Element determining whether or not to create icon from the selected photo")
+    picturesSettingRestoreOriginalPictures: BooleanStrShortEnum = Field(..., description="Element determining whether to restore existing original images")
+    picturesSettingRestoreOriginalIcons: PicturesSettingRestoreOriginalIconsEnum = Field(..., description="Element determining the type of icon whose original is to be restored, if any")
+    picturesSettingApplyMacroForPictures: int | None = Field(None, ge=1, description="Macro ID to be applied to images on the product")
+    picturesSettingApplyMacroForIcon: PicturesSettingApplyMacroForIconModel = Field(..., description="Macro for the selected icon")
+    picturesSettingShopId: str = Field(..., description="Identifier of the shop for which the action is to be performed")
+    picturesSettingServiceId: StrictInt = Field(..., ge=1, description="Identifier of an external service for which the action is to be performed on photos in the goods")
+    picturesSettingScaling: BooleanStrShortEnum = Field(..., description="Object determines if the photo should be scaled. Allowed values 'n' - no scaling allowance, 'y' - scaling allowance")
+    picturesSettingDeleteOriginalPictures: BooleanStrShortEnum = Field(..., description="Element determining whether to delete existing original images")
+    picturesSettingDeleteOriginalIcons: PicturesSettingDeleteOriginalIconsEnum = Field(..., description="Element specifying the type of icon whose original is to be deleted")
+    picturesSettingRestoreBackupPicturesAndIconsByDateTime: str | None = Field(None, description="...")
+
+class VersionGroupNamesPutModel(BaseModel):
+    versionGroupNamesLangData: List[VersionGroupNamesLangDataModel] = Field(..., description="Parameter name")
+
+class VersionNamesPutModel(BaseModel):
+    versionNamesLangData: List[VersionNamesLangDataModel] = Field(..., description="Array of languages, values are displayed in")
+
+class VersionSettingsPutModel(VersionSettingsBaseModel):
+    versionDisplayAllInPanel: BooleanStrShortEnum = Field(..., description="Show in panel")
+    versionDisplayRelCanonicalInShop: BooleanStrShortEnum = Field(..., description="Adding the canonical links to the site")
+    versionCommonAuctionName: BooleanStrShortEnum = Field(..., description="The same product's name for Internet auctions")
+    versionCommonMetaTags: BooleanStrShortEnum = Field(..., description="The same meta settings")
+    versionCommonCurrency: BooleanStrShortEnum = Field(..., description="The same currency")
+    versionCommonPriceFormula: BooleanStrShortEnum = Field(..., description="The same formula for calculating prices")
+    versionCommonPromotions: BooleanStrShortEnum = Field(..., description="Same promotions")
+    versionCommonJavaScriptOnCard: BooleanStrShortEnum = Field(..., description="The same JavaScript displayed on the product card")
+    versionCommonMenuItems: BooleanStrShortEnum = Field(..., description="The same objects in menu")
+    versionCommonDeliverer: BooleanStrShortEnum = Field(..., description="The same supplier")
+    versionCommonAttachments: BooleanStrShortEnum = Field(..., description="The same attachments")
+    versionCommonAuctionIcon: BooleanStrShortEnum = Field(..., description="The same icons for auctions")
+    versionCommonSerialNumbers: BooleanStrShortEnum = Field(..., description="The same serial numbers")
+
 class SettingsPutModel(BaseModel):
     settingModificationType: SettingModificationTypeEnum = Field(..., description="Object determines the products modification mode")
     settingPriceFormat: str | None = Field(None, description="Price format. Parameter is currently unused")
@@ -1078,8 +1111,9 @@ class SettingsPutModel(BaseModel):
     settingDeleteIndividualMetaByShopsMask: SettingDeleteIndividualMetaByShopsMaskModel = Field(..., description="Element that specifies the mask of stores for which individual meta updated products are to be removed")
     settingsSkipDuplicatedProducers: bool = Field(..., description="Automatically skip adding manufacturer code and external system code in the product when adding goods if a duplicate code is encountered in other products")
 
-
+#
 # --- Search DTOs
+#
 class AvailablePaymentFormsSearchModel(BaseModel):
     prepaid: bool = Field(..., description="...")
     cashOnDelivery: bool = Field(..., description="Cash on delivery")
@@ -1180,15 +1214,6 @@ class ProductParametersParamsSearchModel(BaseModel):
     parameterValuesNames: List[str] = Field(..., description="Parameters name")
     productParameterIds: ProductParameterIdsSearchModel = Field(..., description="Parameters group ID")
 
-class SeriesDescriptionsLangDataSearchModel(BaseModel):
-    seriesName: str = Field(..., description="Name of series in indicated language")
-    langId: str = Field(..., description="Language ID")
-
-class ProductSeriesParams(BaseModel):
-    seriesId: StrictInt = Field(..., ge=1, description="ID of series, to which product belongs")
-    seriesPanelName: str = Field(..., description="Name of series, to which the product belongs, visible in panel")
-    seriesDescriptionsLangData: List[SeriesDescriptionsLangDataSearchModel] = Field(..., description="Names of series in indicated language visible in shop")
-
 class ProductUnitsSearchModel(BaseModel):
     unitId: StrictInt = Field(..., ge=1, description="Product unit of measure ID")
     unitName: str = Field(..., description="Product unit of measure name")
@@ -1205,18 +1230,6 @@ class ProductAvailableInStocksSearchModel(BaseModel):
 class ProductAvailableInAuctionsSearchModel(BaseModel):
     productIsAvailableInAuctions: BooleanStrShortEnum = Field(..., description="Determines whether availability on auctions has been set")
     productAvailableInAuctionsAccountsIds: List[int] = Field(..., description="Narrow list of auction accounts sought through")
-
-class SearchByShopsModel(BaseModel):
-    searchModeInShops: SearchModeInShopsEnum = Field(..., description="Determine data search method on basis of options set for stores. Available values: 'in_one_of_selected' - in one of indicated stores, 'in_all_of_selected' - in all indicated stores, This parameter is optional. When it's lacking, search is performed by option: in one of indicated stores (in_one_of_selected)")
-    shopsMask: StrictInt = Field(..., ge=1, description="it mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
-    shopsIds: List[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
-
-    @model_validator(mode='after')
-    def validate_shops_mask(self):
-        """Validate that shopsMask is a positive value."""
-        if self.shopsMask <= 0:
-            raise ValueError("shopsMask must be positive")
-        return self
 
 class ProductSearchPriceRangeSearchModel(BaseModel):
     productSearchPriceMode: ProductSearchPriceModeEnum = Field(..., description="Determines price type for indicated values")

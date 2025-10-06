@@ -32,7 +32,7 @@ class TestPutWmsSuppliersParamsModel:
             orderCompletionTime=OrderCompletionTimeModel(value=1, unit="hours"),
             workDays=[SuppliersWorkDaysModel(
                 day=1,
-                type="work",
+                type="deliverer_open_hours",
                 **{"from": "09:00", "to": "17:00"}
             )]  # type: ignore
         )
@@ -112,7 +112,7 @@ class TestPut:
             orderCompletionTime=OrderCompletionTimeModel(value=1, unit="hours"),
             workDays=[SuppliersWorkDaysModel(
                 day=1,
-                type="work",
+                type="deliverer_open_hours",
                 **{"from": "09:00", "to": "17:00"}
             )]  # type: ignore
         )
@@ -137,7 +137,7 @@ class TestPut:
             orderCompletionTime=OrderCompletionTimeModel(value=1, unit="hours"),
             workDays=[SuppliersWorkDaysModel(
                 day=1,
-                type="work",
+                type="deliverer_open_hours",
                 **{"from": "09:00", "to": "17:00"}
             )]  # type: ignore
         )

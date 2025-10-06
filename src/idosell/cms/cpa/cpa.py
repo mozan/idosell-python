@@ -104,4 +104,4 @@ class Delete(Gateway):
     _method: str = PrivateAttr(default='DELETE')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/cpa/cpa')
 
-    id: List[int] = Field(..., description="List of identifiers")
+    id: List[int] = Field(..., min_length=1, max_length=100, description="List of identifiers")  # type: ignore

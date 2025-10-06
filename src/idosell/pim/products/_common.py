@@ -3,6 +3,7 @@ from typing import List
 from pydantic import BaseModel, Field, StrictInt, model_validator
 
 from src.idosell._common import BooleanStrLongEnum, BooleanStrShortEnum, ErrorsModel
+from src.idosell.pim._common import GraphicTypeEnum
 
 
 # --- Enums
@@ -89,10 +90,6 @@ class FilterDisplayEnum(StrEnum):
     NAME = 'name' # text
     GFX = 'gfx' # graphics
     NAMEGFX = 'namegfx' # text and graphics
-
-class GraphicTypeEnum(StrEnum):
-    IMG = 'img' # Image (one size for computers, tablets and smartphones, not recommended)
-    IMG_RWD = 'img_rwd' # Image (three sizes for RWD)
 
 class OperationEnum(StrEnum):
     ADD = 'add' # adds new category,

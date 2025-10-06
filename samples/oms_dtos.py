@@ -7,7 +7,7 @@ from src.idosell.oms._common import (
     DevideProductsPutModel, DiscountCodeModel, DocumentTypeEppEnum, DocumentTypeOrdersGetEnum, DocumentTypePostEnum, DocumentsDeleteModel, DocumentsPostModel,
     EmailProcessingConsentEnum, EventTypeEnum, ImagesDeleteModel, ImagesImagesPostModel, ImagesOrderModel, ImagesSettingsPostModel, ImagesTypeEnum,
     OpinionsRateEnum, OrderPackagesPostPutModel, OrderPaymentTypeEnum, OrderProductsModel, OrderSettledAtPriceEnum, OrderStatusEnum, OrderTypeEnum, OrdersPostModel,
-    OrdersPutModel, PackagesPostPutModel, ParameterValuesModel, PayerAddressModel, PriceFormulaParametersModel, ProductBundleItemsModel, ProductIdentModel, 
+    OrdersPutModel, PackagesPostPutModel, ParameterValuesModel, PayerAddressModel, PriceFormulaParametersModel, ProductBundleItemsModel, ProductIdentModel,
     ProductIdentTypeEnum, ProductQuantityOperationTypeEnum, ProductsModel, ProductsProfitMarginOrdersPutModel, ProductsPutModel, ProductsSerialNumbersOrdersPutModel,
     ProfitMarginOrdersPutModel, SettingsModel, SettingsPutModel, ShippingStoreCostsModel, TypeEnum, SourceTypeEnum, ExternalStockIdEnum
 )

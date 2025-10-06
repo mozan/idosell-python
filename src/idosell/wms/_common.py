@@ -10,7 +10,7 @@ class DateTypeEnum(StrEnum):
     CLOSE = 'close'
     STOCKOPERATION = 'stockOperation'
 
-class DateRangeOpenedDocumentsModel(StrEnum):
+class DateTypeOpenedDocumentsEnum(StrEnum):
     OPEN = 'open'
     MODIFY = 'modify'
 
@@ -36,6 +36,8 @@ class StockDocumentStatusEnum(StrEnum):
     OPEN = 'open'
     ON_THE_WAY = 'on_the_way'
     CLOSE = 'close'
+    CLOSE_DELIVERED = 'close_delivered'
+    CLOSE_RETURNED = 'close_returned'
 
 class DocumentsWntEnum(StrEnum):
     NATIONAL_VAT_INVOICE = 'national_VAT_invoice'
@@ -73,10 +75,26 @@ class ReturnElementsEnum(StrEnum):
     STOCKID = 'stockId'
     PRODUCTS = 'products'
 
+class WorkDaysTypeEnum(StrEnum):
+    DELIVERER_CLOSED = 'deliverer_closed'
+    DELIVERER_OPEN_HOURS = 'deliverer_open_hours'
+    DELIVERER_OPEN_24H = 'deliverer_open_24h'
+
+class TimeUnitEnum(StrEnum):
+    MINUTES = 'minutes'
+    HOURS = 'hours'
+    DAYS = 'days'
+    IMMEDIATELY = 'immediately'
+
 
 # --- Stocks DTOs
 class DateRangeModel(BaseModel):
     dateType: DateTypeEnum = Field(..., description="The type of date by which documents are searched")
+    dateBegin: str = Field(..., description="Beginning date in YYYY-MM-DD HH:MM:SS format")
+    dateEnd: str = Field(..., description="Ending date in YYYY-MM-DD HH:MM:SS format")
+
+class DateRangeOpenedDocumentsModel(BaseModel):
+    dateType: DateTypeOpenedDocumentsEnum = Field(..., description="The type of date by which documents are searched")
     dateBegin: str = Field(..., description="Beginning date in YYYY-MM-DD HH:MM:SS format")
     dateEnd: str = Field(..., description="Ending date in YYYY-MM-DD HH:MM:SS format")
 
@@ -93,24 +111,24 @@ class ProductsPostPutModel(BaseModel):
     size:  str = Field(..., description="Product size ID")
     quantity:  StrictInt = Field(..., ge=1, description="Product quantity")
     productPurchasePrice: float = Field(..., gt=0, description="Cost price")
-    locationId: StrictInt = Field(..., description="Warehouse location ID. The list of available warehouse locations can be downloaded via the method #get in gateway Locations")
-    locationCode: str = Field(..., description="Storage location code")
-    locationTextId: str = Field(..., description="Warehouse location full path. Use a backslash () as a separator, for example: M1\Section name\Location name. The list of available warehouse locations can be downloaded via the method #get in gateway Locations") # type: ignore
+    locationId: StrictInt | None = Field(None, description="Warehouse location ID. The list of available warehouse locations can be downloaded via the method #get in gateway Locations")
+    locationCode: str | None = Field(None, description="Storage location code")
+    locationTextId: str | None = Field(None, description=r"Warehouse location full path. Use a backslash (\) as a separator, for example: M1\Section name\Location name. The list of available warehouse locations can be downloaded via the method #get in gateway Locations") # type: ignore
 
 # --- Suppliers DTOs
 class AverageDeliveryTimeModel(BaseModel):
     value: StrictInt = Field(..., ge=1, description="value")
-    unit: str = Field(..., description="Unit")
+    unit: TimeUnitEnum = Field(..., description="Unit")
 
 class OrderCompletionTimeModel(BaseModel):
     value: StrictInt = Field(..., ge=1, description="value")
-    unit: str = Field(..., description="Unit")
+    unit: TimeUnitEnum = Field(..., description="Unit")
 
 class WorkDaysModel(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
     day: StrictInt = Field(..., ge=1, description="day")
-    type: str = Field(..., description="")
+    type: WorkDaysTypeEnum = Field(..., description="")
     start_time: str = Field(..., description="from", alias="from")
     end_time: str = Field(..., description="to", alias="to")
 

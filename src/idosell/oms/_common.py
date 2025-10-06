@@ -219,11 +219,11 @@ class OrdersStatusesSearchUnfinishedEnum(StrEnum):
     FINISHED_EXT = 'finished_ext' # handled in FA application
 
 class OrderTypeEnum(StrEnum):
-    RETAIL = 'reatil' # retail order
+    RETAIL = 'retail' # retail order
     WHOLESALE = 'wholesale' # wholesale order
 
 class OrderTypeSearchUnfinishedEnum(StrEnum):
-    RETAIL = 'reatil' # retail order
+    RETAIL = 'retail' # retail order
     WHOLESALE = 'wholesale' # wholesale order
     DROPSHIPPING = 'dropshipping' # order to be handled,
     DELIVERER = 'deliverer' # order sent to the supplier.

@@ -298,7 +298,10 @@ class TestDelete:
         dto = Delete(id=[1, 2, 3])
         assert dto.id == [1, 2, 3]
 
-    def test_empty_id_allowed(self):
-        # The Delete endpoint doesn't validate min_length for id, so empty lists are allowed
-        dto = Delete(id=[])
-        assert dto.id == []
+    def test_invalid_empty_id(self):
+        with pytest.raises(ValidationError):
+            Delete(id=[])
+
+    def test_invalid_too_many_ids(self):
+        with pytest.raises(ValidationError):
+            Delete(id=[1] * 101)

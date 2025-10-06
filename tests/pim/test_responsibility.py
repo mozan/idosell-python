@@ -8,11 +8,11 @@ from src.idosell.pim.responsibility import (
     # Endpoints
     GetEntities, PostEntities, PutEntities, DeleteEntities
 )
-from src.idosell.pim._common import (
-    EntityTypeEnum, EntitiesResponsibilityPostModel,
-    EntitiesResponsibilityPutModel
-)
+from src.idosell.pim._common import EntityTypeEnum
 
+from src.idosell.pim.responsibility import (
+    EntitiesResponsibilityPostModel, EntitiesResponsibilityPutModel
+)
 
 # --- Tests for DTOs
 class TestPostEntitiesPimResponsabilityParamsModel:

@@ -12,6 +12,14 @@ class PictureFormatEntriesEnum(StrEnum):
     PNG = 'png'
     GIF = 'gif'
 
+class EntrySourceTypeEnum(StrEnum):
+    SEARCH = 'search'
+    ADVERT = 'advert'
+    PRICE_COMPARERS = 'priceComparers'
+    CPA = 'cpa'
+    NEWSLETTER = 'newsletter'
+    SOCIAL = 'social'
+
 
 # --- DTOs
 class LangsEntriesModel(BaseModel):
@@ -51,7 +59,7 @@ class PostCmsEntriesParamsModel(EntitiesModel):
 
 class PutCmsEntriesParamsModel(EntitiesModel):
     entryId: StrictInt = Field(..., ge=1, description="Entry ID")
-    deletePicture: BooleanStrShortEnum = Field(..., description="Determines whether to delete an entry photo")
+    deletePicture: BooleanStrShortEnum | None = Field(None, description="Determines whether to delete an entry photo")
 
 
 # --- ENDPOINTS
@@ -120,4 +128,4 @@ class GetSources(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/entries/sources')
 
-    type: Optional[List[str]] = Field(None, min_length=1, description="The type of source for which we want to get service identifiers") # type: ignore
+    type: Optional[List[EntrySourceTypeEnum]] = Field(None, min_length=1, description="The type of source for which we want to get service identifiers") # type: ignore

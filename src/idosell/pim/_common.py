@@ -3,7 +3,6 @@ from typing import List
 from pydantic import BaseModel, Field, StrictInt
 
 from src.idosell._common import BooleanStrShortEnum
-from src.idosell.pim.products._common import GraphicTypeEnum
 
 
 # ---  Menu Enums
@@ -14,6 +13,10 @@ class FormatEnum(StrEnum):
     GIF = 'gif'
     SVG = 'svg'
     WEBP = 'webp'
+
+class GraphicTypeEnum(StrEnum):
+    IMG = 'img' # Image (one size for computers, tablets and smartphones, not recommended)
+    IMG_RWD = 'img_rwd' # Image (three sizes for RWD)
 
 class ItemTypeEnum(StrEnum):
     PRODUCTS = 'products'
@@ -219,28 +222,6 @@ class MenuListPostModel(BaseModel):
 
 class SettingsModel(BaseModel):
     textid_separator: str = Field(..., description="Default: ''")
-
-
-# --- Responsibility DTOs
-class EntitiesResponsibilityModel(BaseModel):
-    code: str = Field(..., description="Short name/code")
-    name: str = Field(..., description="Full name")
-    mail: str = Field(..., description="E-mail address")
-    street: str = Field(..., description="Street")
-    number: str | None = Field(None, description="Building number")
-    subnumber: str | None = Field(None, description="Apartment number")
-    zipcode: str = Field(..., description="Zipcode")
-    city: str = Field(..., description="City")
-    country: str = Field(..., description="2-letter ISO country code")
-    phone: str | None = Field(None, description="Phone number")
-    description: str | None = Field(None, description="Additional description")
-    url: str | None = Field(None, description="URL to contact page")
-
-class EntitiesResponsibilityPostModel(EntitiesResponsibilityModel):
-    id: int | None = Field(None, ge=1, description="Identificator of the entity")
-
-class EntitiesResponsibilityPutModel(EntitiesResponsibilityModel):
-    id: StrictInt = Field(..., ge=1, description="Identificator of the entity")
 
 
 # --- Sizecharts DTOs

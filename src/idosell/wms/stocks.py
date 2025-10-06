@@ -38,8 +38,8 @@ class PostDocumentsWmsStocksParamsModel(BaseModel):
 
 class PostProductsWmsStocksParamsModel(BaseModel):
     products: List[ProductsPostPutModel] = Field(..., description="Products list")
-    id: StrictInt | None = Field(None, description="Document identifier")
-    type: DocumentTypeEnum | None = Field(None, description="...")
+    type: DocumentTypeEnum = Field(..., description="...")
+    id: StrictInt = Field(..., description="Document identifier")
 
 class PutCloseWmsStocksParamsModel(BaseModel):
     type: DocumentTypeEnum = Field(..., description="...")

@@ -179,7 +179,7 @@ class TestGet:
         assert dto._method == 'GET'
         assert dto._endpoint == '/api/admin/v6/warranties/warranties'
         assert dto.warranty_ids is None
-        assert dto.resultsOrder is None
+        assert dto.results_order is None
 
     def test_instantiate_with_warranty_ids(self):
         dto = Get(warranty_ids=["w1", "w2"])
@@ -187,24 +187,24 @@ class TestGet:
 
     def test_instantiate_with_results_order(self):
         dto = Get(
-            resultsOrder=ResultsOrderWarrantiesGetModel(
+            results_order=ResultsOrderWarrantiesGetModel(
                 field=FieldEnum.WARRANTY_NAME,
                 order=OrderEnum.ASCENDING
             )
         )
-        assert dto.resultsOrder.field == FieldEnum.WARRANTY_NAME
-        assert dto.resultsOrder.order == OrderEnum.ASCENDING
+        assert dto.results_order.field == FieldEnum.WARRANTY_NAME
+        assert dto.results_order.order == OrderEnum.ASCENDING
 
     def test_instantiate_with_all_params(self):
         dto = Get(
             warranty_ids=["w1"],
-            resultsOrder=ResultsOrderWarrantiesGetModel(
+            results_order=ResultsOrderWarrantiesGetModel(
                 field=FieldEnum.WARRANTY_ID,
                 order=OrderEnum.DESCENDING
             )
         )
         assert dto.warranty_ids == ["w1"]
-        assert dto.resultsOrder.field == FieldEnum.WARRANTY_ID
+        assert dto.results_order.field == FieldEnum.WARRANTY_ID
 
 class TestPost:
     def test_instantiate_minimal(self):
