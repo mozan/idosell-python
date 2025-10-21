@@ -1276,7 +1276,7 @@ class TestProductStockQuantitiesModel:
 class TestProductSizesModel:
     def test_valid(self):
         from src.idosell.pim.products.product._common import (
-            ProductSizesModel, ProductStocksDataModel, ShopsSizeAttributesModel
+            ProductSizesModel, ProductStocksDataModel
         )
         dto = ProductSizesModel(
             sizeId="M",

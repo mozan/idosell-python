@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway, PageableCamelGateway
@@ -29,7 +28,7 @@ class DescriptionCookiesModel(BaseModel):
 
 class CookiesModel(BaseModel):
     category: CategoryEnum | None = Field(None, description="Category of the cookie")
-    description: List[DescriptionCookiesModel] | None = Field(None, description="Cookie description for each language")
+    description: list[DescriptionCookiesModel] | None = Field(None, description="Cookie description for each language")
     name: str | None = Field(None, description="Name of the cookie")
     type: TypeEnum | None = Field(None, description="Type of the cookie")
     lifeTimeType: LifeTimeTypeEnum | None = Field(None, description="Cookie lifetime mode")
@@ -46,10 +45,10 @@ class PutCookiesModel(CookiesModel):
     deliverer: str | None = Field(None, min_length=1, max_length=128, description="Name of the cookie vendor")
 
 class PostCmsSnippetsCookiesParamsModel(BaseModel):
-    cookies: List[PostCookiesModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
+    cookies: list[PostCookiesModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 class PutCmsSnippetsCookiesParamsModel(BaseModel):
-    cookies: List[PutCookiesModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
+    cookies: list[PutCookiesModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 
 # --- ENDPOINTS
@@ -62,7 +61,7 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/snippets/cookies')
 
-    id: Optional[List[int]] = Field(None, min_length=1, description="List of identifiers for specific cookies") # type: ignore
+    id: list[int] | None = Field(None, min_length=1, description="List of identifiers for specific cookies") # type: ignore
 
 class Post(AppendableGateway):
     """
@@ -95,4 +94,4 @@ class Delete(Gateway):
     _method: str = PrivateAttr(default='DELETE')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/snippets/cookies')
 
-    id: List[int] = Field(..., min_length=1, max_length=100, description="List of cookie identifiers") # type: ignore
+    id: list[int] = Field(..., min_length=1, max_length=100, description="List of cookie identifiers") # type: ignore

@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway
@@ -42,16 +41,16 @@ class ShopsStrikethroughModel(BaseModel):
 class SizesStrikethroughModel(BaseModel):
     ident: IdentModel = Field(..., description="Identifier type")
     stp_settings: StpSettingsModel = Field(..., description="...")
-    shops: List[ShopsStrikethroughModel] = Field(..., description="Strikethrough price settings for the page")
+    shops: list[ShopsStrikethroughModel] = Field(..., description="Strikethrough price settings for the page")
 
 class ProductsStrikethroughModel(BaseModel):
     ident: IdentModel = Field(..., description="Identifier type")
-    sizes: List[SizesStrikethroughModel] = Field(..., description="List of sizes")
+    sizes: list[SizesStrikethroughModel] = Field(..., description="List of sizes")
     stp_settings: StpSettingsModel = Field(..., description="...")
-    shops: List[ShopsStrikethroughModel] = Field(..., description="Strikethrough price settings for the page")
+    shops: list[ShopsStrikethroughModel] = Field(..., description="Strikethrough price settings for the page")
 
 class PutPricesPimProductsStrikethroughParamsModel(BaseModel):
-    products: List[ProductsStrikethroughModel] = Field(..., description="Products list")
+    products: list[ProductsStrikethroughModel] = Field(..., description="Products list")
 
 class PutPricesPimProductsStrikethroughSettingsModel(BaseModel):
     calculate_base_price_sizes: CalculateBasePriceSizesStrikethroughEnum = Field(..., description="...")
@@ -70,7 +69,7 @@ class GetPrices(Gateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/strikethroughPrices')
 
     identType: IdentTypeEnum | None = Field(None, description="Identifier type")
-    products: List[str] | None = Field(None, min_length=1, max_length=100, description="Products list") # type: ignore
+    products: list[str] | None = Field(None, min_length=1, max_length=100, description="Products list") # type: ignore
 
 class PutPrices(AppendableGateway):
     """

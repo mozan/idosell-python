@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 
 from src.idosell._common import BooleanStrShortEnum
 from src.idosell.system._common import (
@@ -32,7 +32,7 @@ from src.idosell.system.system import (
     PutConfigSystemSystemParamsModel, PutProcessesAutomationSystemSystemParamsModel, PutUnitsSystemSystemParamsModel
 )
 
-system_delete: List[Any] = [
+system_delete: list[Any] = [
     SystemCouriersDeletePickupPoint(
         params = DeletePickupPointSystemCouriersParamsModel(
             pickupPointDeleteRequests = [PickupPointDeleteRequestsPostModel(
@@ -44,7 +44,7 @@ system_delete: List[Any] = [
     ),
 ]
 
-system_get: List[Any] = [
+system_get: list[Any] = [
     SystemCouriersGetAssignedToShippingProfiles(), # type: ignore
     SystemCouriersGet(countryCode = 'pl'), # type: ignore
     SystemCouriersGetPickupPoints(courierId = 1), # type: ignore
@@ -62,7 +62,7 @@ system_get: List[Any] = [
     SystemSystemGetUsers(), # type: ignore
 ]
 
-system_post: List[Any] = [
+system_post: list[Any] = [
     SystemCouriersPostPickupPoints(
         params = PostPickupPointsSystemCouriersParamsModel(
             pickupPoints = [PickupPointsPostModel(
@@ -105,7 +105,7 @@ system_post: List[Any] = [
     ),
 ]
 
-system_put: List[Any] = [
+system_put: list[Any] = [
         SystemCouriersPutPickupPoints(
         params = PutPickupPointsSystemCouriersParamsModel(
             pickupPoints = [PickupPointsPutModel(

@@ -1,4 +1,3 @@
-
 from src.idosell.system.shops import GetCurrencies, GetLanguages
 
 

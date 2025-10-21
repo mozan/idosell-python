@@ -1,4 +1,4 @@
-from typing import List, Optional, Annotated
+from typing import Annotated
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway, PageableCamelGateway
@@ -11,10 +11,10 @@ class SnippetsCampaignConfigVariablesModel(BaseModel):
 
 class SnippetsCampaignModel(BaseModel):
     description: str | None  = Field(None, description="Snippet campaign internal description")
-    shop: List[int] | None  = Field(None, description="Shop ids where code snippets are active")
+    shop: list[int] | None  = Field(None, description="Shop ids where code snippets are active")
     active: BooleanStrShortEnum | None  = Field(None, description="Whether the snippet is active")
     order: StrictInt | None  = Field(None, description="Snippet order")
-    configVariables: List[SnippetsCampaignConfigVariablesModel] | None  = Field(None, description="...")
+    configVariables: list[SnippetsCampaignConfigVariablesModel] | None  = Field(None, description="...")
 
 class PostSnippetsCampaignModel(SnippetsCampaignModel):
     id: int | None = Field(None, ge=1, description="Snippet campaign id")
@@ -25,10 +25,10 @@ class PutSnippetsCampaignModel(SnippetsCampaignModel):
     name: str | None = Field(None, description="Snippet campaign name")
 
 class PostCmsSnippetsCampaignParamsModel(BaseModel):
-    campaigns: List[PostSnippetsCampaignModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
+    campaigns: list[PostSnippetsCampaignModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 class PutCmsSnippetsCampaignParamsModel(BaseModel):
-    campaigns: List[PutSnippetsCampaignModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
+    campaigns: list[PutSnippetsCampaignModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 
 # --- ENDPOINTS
@@ -41,9 +41,9 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/snippets/campaign')
 
-    shopId: Optional[List[Annotated[int, Field(ge=1)]]] = Field(default=None, min_length=1, description="List of shop identifiers") # type: ignore
-    id: Optional[List[Annotated[int, Field(ge=1)]]] = Field(default=None, min_length=1, description="List of identifiers") # type: ignore
-    omitDeleted: Optional[BooleanStrShortEnum] = Field(default=None, description="Whether to skip the return of deleted campaigns")
+    shopId: list[Annotated[int, Field(ge=1)]] | None = Field(default=None, min_length=1, description="List of shop identifiers") # type: ignore
+    id: list[Annotated[int, Field(ge=1)]] | None = Field(default=None, min_length=1, description="List of identifiers") # type: ignore
+    omitDeleted: BooleanStrShortEnum | None = Field(default=None, description="Whether to skip the return of deleted campaigns")
 
 class Post(AppendableGateway):
     """
@@ -76,4 +76,4 @@ class Delete(Gateway):
     _method: str = PrivateAttr(default='DELETE')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/snippets/campaign')
 
-    id: List[int] = Field(..., min_length=1, max_length=100, description="List of identifiers") # type: ignore
+    id: list[int] = Field(..., min_length=1, max_length=100, description="List of identifiers") # type: ignore

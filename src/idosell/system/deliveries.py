@@ -1,4 +1,3 @@
-from typing import Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import Gateway, PageableCamelGateway
@@ -49,7 +48,7 @@ class GetRegions(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/deliveries/regions')
 
-    shopId: Optional[StrictInt] = Field(None, ge=1, description="Shop Id (optional, integer, >= 1)")
+    shopId: StrictInt | None = Field(None, ge=1, description="Shop Id (optional, integer, >= 1)")
 
 class PostRegions(Gateway):
     """

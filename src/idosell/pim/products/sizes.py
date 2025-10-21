@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway
@@ -31,7 +30,7 @@ class SizeDataModel(BaseModel):
     productWeight: StrictInt = Field(..., gt=0, description="Weight")
     codeProducer: str = Field(..., description="Producer code")
     productSizeCodeExternal: str = Field(..., description="External product system code for size")
-    sitesData: List[SitesDataModel] = Field(..., description="Parameters set for shops")
+    sitesData: list[SitesDataModel] = Field(..., description="Parameters set for shops")
 
 class IndexesDataSizesPutModel(BaseModel):
     sizeIndex: str = Field(..., description="Product index")
@@ -43,7 +42,7 @@ class SizesParamsDeleteModel(BaseModel):
 
 class DeletePimProductsSizesParamsModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
-    sizes: List[SizesParamsDeleteModel] = Field(..., description="List of sizes")
+    sizes: list[SizesParamsDeleteModel] = Field(..., description="List of sizes")
 
 class SizesModel(BaseModel):
     sizeId: str = Field(..., description="Size identifier")
@@ -52,7 +51,7 @@ class SizesModel(BaseModel):
 
 class SizesProductsDataPutModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
-    sizes: List[SizesModel] = Field(..., description="List of sizes")
+    sizes: list[SizesModel] = Field(..., description="List of sizes")
 
 # --- ENDPOINTS
 class Delete(AppendableGateway):
@@ -66,7 +65,7 @@ class Delete(AppendableGateway):
 
     mode: DeleteModeSizesEnum = Field(..., description="Edition mode")
     params: DeletePimProductsSizesParamsModel = Field(..., description="Parameters transmitted to method")
-    deleteSizesIndexesData: List[str] = Field(..., min_length=1, description="Product parameters recognized by index") # type: ignore
+    deleteSizesIndexesData: list[str] = Field(..., min_length=1, description="Product parameters recognized by index") # type: ignore
 
 class Get(Gateway):
     """
@@ -90,5 +89,5 @@ class Put(AppendableGateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/sizes')
 
     mode: PutModeSizesEnum = Field(..., description="Edition mode")
-    sizesProductsData: List[SizesProductsDataPutModel] = Field(..., min_length=1, description="Product parameters recognized by product ID or its sizes") # type: ignore
-    indexesData: List[IndexesDataSizesPutModel] = Field(..., min_length=1, description="Product parameters recognized by index") # type: ignore
+    sizesProductsData: list[SizesProductsDataPutModel] = Field(..., min_length=1, description="Product parameters recognized by product ID or its sizes") # type: ignore
+    indexesData: list[IndexesDataSizesPutModel] = Field(..., min_length=1, description="Product parameters recognized by index") # type: ignore

@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway, PageableCamelGateway
@@ -10,12 +9,12 @@ from src.idosell.pim.products._common import (
 
 # --- DTOs
 class PutProductsAttachmentsPimProductsMiscsParamsModel(BaseModel):
-    productsAttachments: List[ProductAttachmentPutModel] = Field(..., min_length=1, description="List of product attachments") # type: ignore
+    productsAttachments: list[ProductAttachmentPutModel] = Field(..., min_length=1, description="List of product attachments") # type: ignore
 
 class SearchProductsDeliveryTimePimProductsMiscsParamsModel(BaseModel):
     stockId: StrictInt | None = Field(None, ge=1, description="Stock ID")
     isCollectionInPerson: bool | None = Field(None, description="Should products be prepared for personal collection?")
-    products: List[ProductsDeliveryTimeProductsSearchModel] | None = Field(None, min_length=1, description="Products list") # type: ignore
+    products: list[ProductsDeliveryTimeProductsSearchModel] | None = Field(None, min_length=1, description="Products list") # type: ignore
 
 
 # --- ENDPOINTS
@@ -29,8 +28,8 @@ class GetProductsAuctions(PageableCamelGateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/auctions')
 
     identType: IdentTypeEnum | None = Field(None, description="Product identifier type")
-    products: List[str] | None = Field(None, min_length=1, max_length=100, description="Products list") # type: ignore
-    auctionSites: List[str] | None = Field(None, description="Array of auction site IDs")
+    products: list[str] | None = Field(None, min_length=1, max_length=100, description="Products list") # type: ignore
+    auctionSites: list[str] | None = Field(None, description="Array of auction site IDs")
 
 class GetProductsCodeExistence(Gateway):
     """
@@ -42,7 +41,7 @@ class GetProductsCodeExistence(Gateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/codeExistence')
 
     identType: ProductIdentTypeCodeExistanceEnum | None = Field(None, description="Identifier type")
-    products: List[str] | None = Field(None, min_length=1, description="Products list") # type: ignore
+    products: list[str] | None = Field(None, min_length=1, description="Products list") # type: ignore
     delivererId: str | None = Field(None, min_length=1, description="Supplier ID")
 
 class GetProductsIdBySizecode(Gateway):
@@ -54,7 +53,7 @@ class GetProductsIdBySizecode(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/idBySizecode')
 
-    codes: List[str] | None = Field(None, min_length=1, description="Search codes") # type: ignore
+    codes: list[str] | None = Field(None, min_length=1, description="Search codes") # type: ignore
     type: ProductIdBySizeCodeEnum | None = Field(None, description="Type of codes")
 
 class GetProductsReservations(Gateway):
@@ -67,7 +66,7 @@ class GetProductsReservations(Gateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/reservations')
 
     identType: IdentTypeEnum | None = Field(None, description="Identifier type")
-    products: List[str] | None = Field(None, min_length=1, max_length=100, description="Products list") # type: ignore
+    products: list[str] | None = Field(None, min_length=1, max_length=100, description="Products list") # type: ignore
 
 class GetProductsSKUbyBarcode(Gateway):
     """
@@ -78,7 +77,7 @@ class GetProductsSKUbyBarcode(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/SKUbyBarcode')
 
-    productIndices: List[str] | None = Field(None, min_length=1, description="List of sought products by indexes") # type: ignore
+    productIndices: list[str] | None = Field(None, min_length=1, description="List of sought products by indexes") # type: ignore
     searchOnlyInCodeIai: bool | None = Field(None, description="Search for products only by IAI code")
 
 class PostProductsRestore(Gateway):

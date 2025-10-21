@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway
@@ -10,22 +9,22 @@ from src.idosell.pim.products._common import (
 
 # --- DTOs
 class DeleteProductsPimProductsCollectionsParamsModel(BaseModel):
-    products: List[ProductsCollectionsDeleteProductsModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsCollectionsDeleteProductsModel] = Field(..., min_length=1, description="Products list") # type: ignore
     collectionId: StrictInt = Field(..., ge=1, description="ID of a collection being modified")
 
 class PostPimProductsCollectionsParamsModel(BaseModel):
-    products: List[ProductsCollectionsPostModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsCollectionsPostModel] = Field(..., min_length=1, description="Products list") # type: ignore
 
 class PostProductsPimProductsCollectionsParamsModel(BaseModel):
-    products: List[ProductsCollectionsPostProductsModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsCollectionsPostProductsModel] = Field(..., min_length=1, description="Products list") # type: ignore
     collectionId: StrictInt = Field(..., ge=1, description="ID of a collection being modified")
 
 class PutProductsPimProductsCollectionsParamsModel(BaseModel):
-    products: List[ProductsCollectionsPutProductsModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsCollectionsPutProductsModel] = Field(..., min_length=1, description="Products list") # type: ignore
     collectionId: StrictInt = Field(..., ge=1, description="ID of a collection being modified")
 
 class PutRenewPimProductsCollectionsParamsModel(BaseModel):
-    products: List[ProductsCollectionsPutRenewModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsCollectionsPutRenewModel] = Field(..., min_length=1, description="Products list") # type: ignore
     collectionIdent: CollectionIdentModel = Field(..., description="ID of a collection being modified")
 
 
@@ -51,7 +50,7 @@ class DeleteProducts(AppendableGateway):
     _method: str = PrivateAttr(default='POST')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/collections/products/delete')
 
-    params: List[DeleteProductsPimProductsCollectionsParamsModel] = Field(..., description="Parameters transmitted to method")
+    params: list[DeleteProductsPimProductsCollectionsParamsModel] = Field(..., description="Parameters transmitted to method")
 
 class PostProducts(AppendableGateway):
     """

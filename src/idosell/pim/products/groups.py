@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr
 
 from src.idosell._common import AppendableGateway
@@ -7,13 +6,13 @@ from src.idosell.pim.products._common import GroupsPutSettingsModel, ProductIden
 
 # --- DTOs
 class PutMainProductPimProductsGroupsParamsModel(BaseModel):
-    groups: List[ProductIdentModel] = Field(..., min_length=1, description="List of product identifiers") # type: ignore
+    groups: list[ProductIdentModel] = Field(..., min_length=1, description="List of product identifiers") # type: ignore
 
 class PutOrderPimProductsGroupsParamsModel(BaseModel):
-    groups: List[ProductsInOrderModel] = Field(..., min_length=1, description="Groups with products and order priorities") # type: ignore
+    groups: list[ProductsInOrderModel] = Field(..., min_length=1, description="Groups with products and order priorities") # type: ignore
 
 class PutSettingsPimProductsGroupsParamsModel(BaseModel):
-    groups: List[GroupsPutSettingsModel] = Field(..., min_length=1, description="Groups display settings") # type: ignore
+    groups: list[GroupsPutSettingsModel] = Field(..., min_length=1, description="Groups display settings") # type: ignore
 
 
 # --- ENDPOINTS

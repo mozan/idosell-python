@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 from src.idosell._common import BooleanStrLongEnum, BooleanStrShortEnum
 from src.idosell.crm._common import BalanceModel, BalanceOperationTypeEnum, ClientTypeEnum
 from src.idosell.crm.clients import (
@@ -92,7 +92,7 @@ from src.idosell.crm.vouchers import (
 
 from src.idosell.crm.giftcards import GiftCardModel
 
-crm_delete: List[Any] = [ # type: ignore
+crm_delete: list[Any] = [ # type: ignore
     CrmDeliveryaddressDelete(
         params = DeleteCrmDeliveryaddressParamsModel(
             clients = ClientDeliveryAddressModel(
@@ -136,7 +136,7 @@ crm_delete: List[Any] = [ # type: ignore
         params = DeleteCrmVouchersParamsModel(vouchers=[VoucherModel(id=1, number='1234')]) # type: ignore
     ),
 ]
-crm_get: List[Any] = [ # type: ignore
+crm_get: list[Any] = [ # type: ignore
     CrmClientsGetBalance(), # type: ignore
     CrmClientsGet(), # type: ignore
     CrmDeliveryaddressGet(), # type: ignore
@@ -157,7 +157,7 @@ crm_get: List[Any] = [ # type: ignore
     CrmVouchersGet(), # type: ignore
 ]
 
-crm_post: List[Any] = [ # type: ignore
+crm_post: list[Any] = [ # type: ignore
     CrmClientsPostBalance(
         params = PostBalanceCrmClientsParamsModel(
             clientId = 1,
@@ -310,7 +310,7 @@ crm_post: List[Any] = [ # type: ignore
     ),
 ]
 
-crm_put: List[Any] = [ # type: ignore
+crm_put: list[Any] = [ # type: ignore
     CrmClientsPut(
         params = PutCrmClientsParamsModel(
             clients = [PutCrmClientsClientsModel(
@@ -538,7 +538,7 @@ crm_put: List[Any] = [ # type: ignore
     ),
 ]
 
-crm_search: List[Any] = [ # type: ignore
+crm_search: list[Any] = [ # type: ignore
     CrmCrmSearch(params = PostParamsSearchModel(clientCodeExternal = 'blah')), # type: ignore
     CrmGiftcardsSearch(
         params = SearchCrmGiftcardsParamsModel(

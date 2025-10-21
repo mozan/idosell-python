@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, StrictInt, model_validator
 
 from src.idosell._common import BooleanStrLongEnum, BooleanStrShortEnum, ErrorsModel
@@ -362,7 +361,7 @@ class AttachmentLanguagesModel(BaseModel):
     langValue: str = Field(..., description="Literal in selected language")
 
 class AttachmentNameModel(BaseModel):
-    attachmentLanguages: List[AttachmentLanguagesModel] = Field(..., description="List of languages")
+    attachmentLanguages: list[AttachmentLanguagesModel] = Field(..., description="List of languages")
 
 class DocumentTypesModel(BaseModel):
     documentType: DocumentTypeEnum = Field(..., description="Document type")
@@ -373,7 +372,7 @@ class ProductLongDescriptionsLangDataModel(BaseModel):
     productLongDescription: str = Field(..., description="Long product description")
 
 class ProductLongDescriptionsModel(BaseModel):
-    productLongDescriptionsLangData: List[ProductLongDescriptionsLangDataModel] = Field(..., description="...")
+    productLongDescriptionsLangData: list[ProductLongDescriptionsLangDataModel] = Field(..., description="...")
 
 class ProductAuctionDescriptionsDataModel(BaseModel):
     productAuctionId: str = Field(..., description="Auction system ID")
@@ -441,7 +440,7 @@ class LanguagesConfigurationsModel(BaseModel):
     productsListImagesConfiguration: ProductsListImagesConfigurationModel = Field(..., description="...")
     productCardImagesConfiguration: ProductCardImagesConfigurationModel = Field(..., description="Graphic displayed on product card")
     languageId: str = Field(..., description="Language ID (code in ISO-639-2)")
-    shopsConfigurations: List[ShopsConfigurationsModel] = Field(..., description="...")
+    shopsConfigurations: list[ShopsConfigurationsModel] = Field(..., description="...")
 
 class ImagesSettingsModel(BaseModel):
     sourceType: SourceTypeEnum = Field(..., description="Images source type. Available values: base64 - image data encoded using the base64 algorithm (default), url - image file link")
@@ -449,13 +448,13 @@ class ImagesSettingsModel(BaseModel):
 class ProducerPostModel(BaseModel):
     nameInPanel: str = Field(..., description="Name in panel")
     imagesSettings: ImagesSettingsModel = Field(..., description="...")
-    languagesConfigurations: List[LanguagesConfigurationsModel] = Field(..., description="...")
+    languagesConfigurations: list[LanguagesConfigurationsModel] = Field(..., description="...")
 
 class ProducerPutModel(BaseModel):
     id: StrictInt = Field(..., ge=1, description="Id")
     nameInPanel: str = Field(..., description="Name in panel")
     imagesSettings: ImagesSettingsModel = Field(..., description="...")
-    languagesConfigurations: List[LanguagesConfigurationsModel] = Field(..., description="...")
+    languagesConfigurations: list[LanguagesConfigurationsModel] = Field(..., description="...")
 
 # --- Bundles DTOs
 class ProductIdentBundlesModel(BaseModel):
@@ -474,7 +473,7 @@ class ProductsBundlesPostModel(BaseModel):
 
 class ProductPutRenewModel(BaseModel):
     productIdent: ProductIdentBundlesModel = Field(..., description="Stock keeping unit")
-    productSizes: List[ProductSizesBundlesCollectionsModel] = Field(..., description="Sizes available for products data")
+    productSizes: list[ProductSizesBundlesCollectionsModel] = Field(..., description="Sizes available for products data")
     addType: AddTypeEnum = Field(..., description="Way of adding a product to a set")
     quantity: StrictInt = Field(..., ge=1, description="Quantity of a component in a set")
 
@@ -514,18 +513,18 @@ class ProductIdentCollectionsModel(BaseModel):
 
 class ProductsCollectionsPostModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Component ID")
-    productSizes: List[ProductSizesPostModel] = Field(..., description="Size chart in which a product will be added as a collection component. Required in case of mode selectedSizes and selectedSizesAsSeparateItems in addType")
+    productSizes: list[ProductSizesPostModel] = Field(..., description="Size chart in which a product will be added as a collection component. Required in case of mode selectedSizes and selectedSizesAsSeparateItems in addType")
     quantity: StrictInt = Field(..., ge=1, description="Quantity of a component in a collection")
 
 class ProductsCollectionsPostProductsModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Component ID")
-    productSizes: List[ProductSizesPostModel] = Field(..., description="Size chart in which a product will be added as a collection component. Required in case of mode selectedSizes and selectedSizesAsSeparateItems in addType")
+    productSizes: list[ProductSizesPostModel] = Field(..., description="Size chart in which a product will be added as a collection component. Required in case of mode selectedSizes and selectedSizesAsSeparateItems in addType")
     addType: AddTypeEnum = Field(..., description="Way of adding a product to a collection")
     quantity: StrictInt = Field(..., ge=1, description="Quantity of a component in a collection")
 
 class ProductsCollectionsPutRenewModel(BaseModel):
     productIdent: ProductIdentCollectionsModel = Field(..., description="Stock keeping unit")
-    productSizes: List[ProductSizesBundlesCollectionsModel] = Field(..., description="Size chart in which a product will be added as a collection component. Required in case of mode selectedSizes and selectedSizesAsSeparateItems in addType")
+    productSizes: list[ProductSizesBundlesCollectionsModel] = Field(..., description="Size chart in which a product will be added as a collection component. Required in case of mode selectedSizes and selectedSizesAsSeparateItems in addType")
     addType: AddTypeEnum = Field(..., description="Way of adding a product to a collection")
     quantity: StrictInt = Field(..., ge=1, description="Quantity of a component in a collection")
 
@@ -551,7 +550,7 @@ class DescriptionSectionsModel(BaseModel):
     section_2: SectionModel = Field(..., description="...")
 
 class ProductDescriptionSectionsModel(BaseModel):
-    descriptionSections: List[DescriptionSectionsModel] = Field(..., description="...")
+    descriptionSections: list[DescriptionSectionsModel] = Field(..., description="...")
 
 class ProductDescriptionsLangDataModel(BaseModel):
     langId: str = Field(..., description="Language ID")
@@ -569,8 +568,8 @@ class ProductDescriptionsLangDataModel(BaseModel):
 
 class ProductsDescriptionsModel(BaseModel):
     productIdent: ProductIdentModel = Field(..., description="...")
-    productDescriptionsLangData: List[ProductDescriptionsLangDataModel] = Field(..., description="Array of language-dependent elements")
-    productAuctionDescriptionsData: List[ProductAuctionDescriptionsDataModel] = Field(..., description="Product data for auction services")
+    productDescriptionsLangData: list[ProductDescriptionsLangDataModel] = Field(..., description="Array of language-dependent elements")
+    productAuctionDescriptionsData: list[ProductAuctionDescriptionsDataModel] = Field(..., description="Product data for auction services")
 
 
 # --- Groups DTOs
@@ -604,9 +603,9 @@ class ProductImagesModel(BaseModel):
 class ProductsImages(BaseModel):
     productIdent: ProductIdentModel = Field(..., description="...")
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    otherShopsForPic: List[int] = Field(..., description="List of shops for which photos will be added (including shop provided in shopId). If parameter is empty or not provided, photos will be added to all shops")
-    productImages: List[ProductImagesModel] = Field(..., description="Product photos details")
-    productIcons: List[ProductIconsModel] = Field(..., description="Product icons list")
+    otherShopsForPic: list[int] = Field(..., description="List of shops for which photos will be added (including shop provided in shopId). If parameter is empty or not provided, photos will be added to all shops")
+    productImages: list[ProductImagesModel] = Field(..., description="Product photos details")
+    productIcons: list[ProductIconsModel] = Field(..., description="Product icons list")
     productImagesSettings: ProductsImagesSettingsModel = Field(..., description="Product settings")
 
 
@@ -658,7 +657,7 @@ class AttachmentsModel(BaseModel):
     attachmentFileExtension: str = Field(..., description="Attachment file extension")
     attachmentPriority: StrictInt = Field(..., ge=1, description="Attachment number")
     attachmentToDelete: bool = Field(..., description="Flag indicating if an attachment should be removed")
-    documentTypes: List[DocumentTypesModel] = Field(..., description="Attachment document types list")
+    documentTypes: list[DocumentTypesModel] = Field(..., description="Attachment document types list")
 
 class AttachmentLimitsModel(BaseModel):
     attachmentDownloadsLimit: StrictInt = Field(..., ge=1, description="Number of downloads limit")
@@ -686,8 +685,8 @@ class ProductsDeliveryTimeProductsSearchModel(BaseModel):
 
 class ProductAttachmentPutModel(BaseModel):
     productIdent: ProductIdentModel = Field(..., description="Stock keeping unit")
-    attachments: List[AttachmentsModel] = Field(..., description="Product attachments list")
-    virtualAttachments: List[VirtualAttachmentsModel] = Field(..., description="List of product's virtual attachments")
+    attachments: list[AttachmentsModel] = Field(..., description="Product attachments list")
+    virtualAttachments: list[VirtualAttachmentsModel] = Field(..., description="List of product's virtual attachments")
     errors: ErrorsModel | None = Field(None, description="Information on error that occurred during gate call")
     attachmentsErrorsOccurred: bool = Field(..., description="Flag indicating if there are errors in results of attachments settings")
     virtualAttachmentsErrorsOccurred: bool = Field(..., description="Flag indicating if there are errors in results of virtual attachments settings")
@@ -706,13 +705,13 @@ class ShopsModel(BaseModel):
 class SizesOmnibusModel(BaseModel):
     ident: IdentModel = Field(..., description="Identifier type")
     omnibusPrices: OmnibusPricesModel = Field(..., description="Strikethrough price settings")
-    shops: List[ShopsModel] = Field(..., description="Strikethrough price settings for the page")
+    shops: list[ShopsModel] = Field(..., description="Strikethrough price settings for the page")
 
 class ProductsOmnibusModel(BaseModel):
     ident: IdentModel = Field(..., description="Identifier type")
-    sizes: List[SizesOmnibusModel] = Field(..., description="List of sizes")
+    sizes: list[SizesOmnibusModel] = Field(..., description="List of sizes")
     omnibusPrices: OmnibusPricesModel = Field(..., description="Strikethrough price settings")
-    shops: List[ShopsModel] = Field(..., description="Strikethrough price settings for the page")
+    shops: list[ShopsModel] = Field(..., description="Strikethrough price settings for the page")
 
 
 # --- Opinions DTOs
@@ -827,12 +826,12 @@ class TextIdsParametersSearchModel(BaseModel):
 
 class ItemsParametersModel(BaseModel):
     id: StrictInt = Field(..., ge=1, description="Parameter ID")
-    item_text_ids: List[ItemTextIdsParametersModel] = Field(..., description="Element text ID - can be entered instead of 'id'. Recognized save format: 'section' (without backslash), 'parameter' (parameter without assigned value)")
-    names: List[NamesParametersModel] = Field(..., description="Names of section, parameter or value")
-    descriptions: List[DescriptionsParametersModel] = Field(..., description="Descriptions of section, parameter or value")
-    search_description: List[SearchDescriptionParametersModel] = Field(..., description="Search descriptions of parameter value")
-    card_icons: List[CardIconsParametersModel] = Field(..., description="Icons of section, parameter or value to display on the product card")
-    link_icons: List[LinkIconsParametersModel] = Field(..., description="Icons of section, parameter or value to display on the list of products")
+    item_text_ids: list[ItemTextIdsParametersModel] = Field(..., description="Element text ID - can be entered instead of 'id'. Recognized save format: 'section' (without backslash), 'parameter' (parameter without assigned value)")
+    names: list[NamesParametersModel] = Field(..., description="Names of section, parameter or value")
+    descriptions: list[DescriptionsParametersModel] = Field(..., description="Descriptions of section, parameter or value")
+    search_description: list[SearchDescriptionParametersModel] = Field(..., description="Search descriptions of parameter value")
+    card_icons: list[CardIconsParametersModel] = Field(..., description="Icons of section, parameter or value to display on the product card")
+    link_icons: list[LinkIconsParametersModel] = Field(..., description="Icons of section, parameter or value to display on the list of products")
     context_id: ContextIdParametersModel | None = Field(None, description="...")
     context_value_id: str | None = Field(None, description="value of additional feature - Values described in context_id")
 
@@ -886,7 +885,7 @@ class ShopsConfigurationsSeriesModel(ShopsConfigurationsBaseModel):
 class SeriesPutModel(BaseModel):
     id: StrictInt = Field(..., ge=1, description="Id")
     nameInPanel: str = Field(..., description="Name in panel")
-    shopsConfigurations: List[ShopsConfigurationsSeriesModel] = Field(..., description="...")
+    shopsConfigurations: list[ShopsConfigurationsSeriesModel] = Field(..., description="...")
 
 
 # --- Supplier DTOs
@@ -896,11 +895,11 @@ class ProductSizesSupplierModel(BaseModel):
 
 class ProductDeliverersSupplierModel(BaseModel):
     delivererId: StrictInt = Field(..., ge=1, description="Supplier ID")
-    productSizes: List[ProductSizesSupplierModel] = Field(..., description="Sizes available for products data")
+    productSizes: list[ProductSizesSupplierModel] = Field(..., description="Sizes available for products data")
 
 class ProductsSupplierPutCodeModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
-    productDeliverers: List[ProductDeliverersSupplierModel] = Field(..., description="Suppliers data")
+    productDeliverers: list[ProductDeliverersSupplierModel] = Field(..., description="Suppliers data")
 
 # sTODO - simplify class names, make them more readable
 class ProductSizesProductDeliverersProductsPutProductDataModelModel(ProductSizesSupplierModel):
@@ -910,9 +909,9 @@ class ProductSizesProductDeliverersProductsPutProductDataModelModel(ProductSizes
 
 class ProductDeliverersProductsPutProductDataModel(BaseModel):
     delivererId: StrictInt = Field(..., ge=1, description="Supplier ID")
-    productSizes: List[ProductSizesProductDeliverersProductsPutProductDataModelModel] = Field(..., description="Sizes available for products data")
+    productSizes: list[ProductSizesProductDeliverersProductsPutProductDataModelModel] = Field(..., description="Sizes available for products data")
     clearAllQuantities: bool = Field(..., description="!UstawieniePozwalaWyzerowacStanyMagazynowegoDostawcyDlaWszystkichRozmiarowDanegoProduktu!#")
 
 class ProductsSupplierPutProductDataModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
-    productDeliverers: List[ProductDeliverersProductsPutProductDataModel] = Field(..., description="Suppliers data")
+    productDeliverers: list[ProductDeliverersProductsPutProductDataModel] = Field(..., description="Suppliers data")

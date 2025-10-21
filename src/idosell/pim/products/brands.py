@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway, PageableCamelGateway
@@ -7,20 +6,20 @@ from src.idosell.pim.products._common import FilterActiveModel, ProducerPostMode
 
 # DTOs
 class DeletePimProductsBrandsParamsModel(BaseModel):
-    ids: List[int] = Field(..., description="!IdentyfikatoryProducentow!#")
+    ids: list[int] = Field(..., description="!IdentyfikatoryProducentow!#")
 
 class PostPimProductsBrandsParamsModel(BaseModel):
-    producers: List[ProducerPostModel] = Field(..., description="List of manufacturers assigned to sought products")
+    producers: list[ProducerPostModel] = Field(..., description="List of manufacturers assigned to sought products")
 
 class PutPimProductsBrandsParamsModel(BaseModel):
-    producers: List[ProducerPutModel] = Field(..., description="List of manufacturers assigned to sought products")
+    producers: list[ProducerPutModel] = Field(..., description="List of manufacturers assigned to sought products")
 
 class PutFilterPimProductsBrandsParamsModel(BaseModel):
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
     languageId: str = Field(..., description="Language ID (code in ISO-639-2)")
     producerId: StrictInt = Field(..., ge=1, description="Brand ID")
     filterForNodeIsDefault: BooleanStrShortEnum = Field(..., description="...")
-    filtersActive: List[FilterActiveModel] = Field(..., description="Active filters")
+    filtersActive: list[FilterActiveModel] = Field(..., description="Active filters")
 
 
 # --- ENDPOINTS
@@ -68,7 +67,7 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/brands')
 
-    languagesIds: List[str] | None = Field(None, description="List of languages")
+    languagesIds: list[str] | None = Field(None, description="List of languages")
 
 class Post(AppendableGateway):
     """

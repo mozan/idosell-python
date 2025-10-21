@@ -1,5 +1,4 @@
 from enum import IntEnum, StrEnum
-from typing import List
 from pydantic import BaseModel, Field, StrictInt, model_validator
 
 from src.idosell._common import BooleanStrLongEnum, BooleanStrShortEnum
@@ -366,14 +365,14 @@ class VersionNamesLangDataModel(BaseModel):
     versionName: str = Field(..., description="Name of the parameter value, e.g. orange, green, red")
 
 class VersionNamesModel(BaseModel):
-    versionNamesLangData: List[VersionNamesLangDataModel] = Field(..., description="Array of languages, values are displayed in")
+    versionNamesLangData: list[VersionNamesLangDataModel] = Field(..., description="Array of languages, values are displayed in")
 
 class VersionGroupNamesLangDataModel(BaseModel):
     langId: str = Field(..., description="Language ID")
     versionGroupName: str = Field(..., description="Parameter name, e.g. color, width")
 
 class VersionGroupNamesModel(BaseModel):
-    versionGroupNamesLangData: List[VersionGroupNamesLangDataModel] = Field(..., description="Parameter name")
+    versionGroupNamesLangData: list[VersionGroupNamesLangDataModel] = Field(..., description="Parameter name")
 
 class VersionSettingsBaseModel(BaseModel):
     versionDisplayAllInShop: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Show in shop")
@@ -463,7 +462,7 @@ class PriceModifierValuesModel(BaseModel):
 class ParametersConfigurableModel(BaseModel):
     parameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
     priceConfigurableType: PriceConfigurableTypeEnum = Field(..., description="Parameter type")
-    priceModifierValues: List[PriceModifierValuesModel] = Field(..., description="Price modifier value")
+    priceModifierValues: list[PriceModifierValuesModel] = Field(..., description="Price modifier value")
 
 class SeriesDescriptionsLangDataSearchModel(BaseModel):
     seriesName: str = Field(..., description="Name of series in indicated language")
@@ -472,12 +471,12 @@ class SeriesDescriptionsLangDataSearchModel(BaseModel):
 class ProductSeriesParams(BaseModel):
     seriesId: StrictInt = Field(..., ge=1, description="ID of series, to which product belongs")
     seriesPanelName: str = Field(..., description="Name of series, to which the product belongs, visible in panel")
-    seriesDescriptionsLangData: List[SeriesDescriptionsLangDataSearchModel] = Field(..., description="Names of series in indicated language visible in shop")
+    seriesDescriptionsLangData: list[SeriesDescriptionsLangDataSearchModel] = Field(..., description="Names of series in indicated language visible in shop")
 
 class SearchByShopsModel(BaseModel):
     searchModeInShops: SearchModeInShopsEnum = Field(..., description="Determine data search method on basis of options set for stores. Available values: 'in_one_of_selected' - in one of indicated stores, 'in_all_of_selected' - in all indicated stores, This parameter is optional. When it's lacking, search is performed by option: in one of indicated stores (in_one_of_selected)")
     shopsMask: StrictInt = Field(..., ge=1, description="it mask of shop IDs. Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up")
-    shopsIds: List[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
+    shopsIds: list[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
 
     @model_validator(mode='after')
     def validate_shops_mask(self):
@@ -528,7 +527,7 @@ class ProductMetaKeywordsLangDataModel(BaseModel):
     productMetaKeyword: str = Field(..., description="Product meta keywords")
 
 class ProductMetaKeywordsModel(BaseModel):
-    productMetaKeywordsLangData: List[ProductMetaKeywordsLangDataModel] = Field(..., description="...")
+    productMetaKeywordsLangData: list[ProductMetaKeywordsLangDataModel] = Field(..., description="...")
 
 class ProductMetaTitlesLangDataModel(BaseModel):
     langId: str = Field(..., description="Language ID")
@@ -536,7 +535,7 @@ class ProductMetaTitlesLangDataModel(BaseModel):
     productMetaTitle: str = Field(..., description="Product meta title")
 
 class ProductMetaTitlesModel(BaseModel):
-    productMetaTitlesLangData: List[ProductMetaTitlesLangDataModel] = Field(..., description="...")
+    productMetaTitlesLangData: list[ProductMetaTitlesLangDataModel] = Field(..., description="...")
 
 class ProductMetaDescriptionsLangDataModel(BaseModel):
     langId: str = Field(..., description="Language ID")
@@ -544,7 +543,7 @@ class ProductMetaDescriptionsLangDataModel(BaseModel):
     productMetaDescription: str = Field(..., description="Product meta description")
 
 class ProductMetaDescriptionsModel(BaseModel):
-    productMetaDescriptionsLangData: List[ProductMetaDescriptionsLangDataModel] = Field(..., description="...")
+    productMetaDescriptionsLangData: list[ProductMetaDescriptionsLangDataModel] = Field(..., description="...")
 
 # --- Products related
 class ProductUrlsLangDataModel(BaseModel):
@@ -553,7 +552,7 @@ class ProductUrlsLangDataModel(BaseModel):
     url: str = Field(..., description="...")
 
 class ProductUrlModel(BaseModel):
-    productUrlsLangData: List[ProductUrlsLangDataModel] = Field(..., description="...")
+    productUrlsLangData: list[ProductUrlsLangDataModel] = Field(..., description="...")
 
 class ProductsBaseModel(BaseModel):
     productDisplayedCode: str = Field(..., description="External product system code")
@@ -579,7 +578,7 @@ class ProductsBaseModel(BaseModel):
     sizesGroupId: StrictInt = Field(..., ge=1, description="Size group ID. Change of one size group to another results in zeroing all stock quantities in all stocks. Change of size group can be made, if product is not present in any unhandled orders nor listed on auctions")
     productVat: float = Field(..., gt=0, description="Value of VAT")
     productVatFree: BooleanStrShortEnum = Field(..., description="Is product VAT free")
-    productPriceComparisonSitesPrices: List[ProductPriceComparisonSitesPricesModel] = Field(..., description="Different prices for price comparison websites")
+    productPriceComparisonSitesPrices: list[ProductPriceComparisonSitesPricesModel] = Field(..., description="Different prices for price comparison websites")
     productEnableInPos: BooleanStrShortEnum = Field(..., description="Object determines if the product is available in POS sale")
     productAdvancePrice: float = Field(..., ge=0, description="Required advance payment in percents")
     productNote: str = Field(..., description="Annotation")
@@ -591,9 +590,9 @@ class ProductsBaseModel(BaseModel):
     productDiscount: ProductDiscountModel = Field(..., description="Discount for shop")
     productDistinguished: ProductDistinguishedModel = Field(..., description="Distinguished product in store")
     productSpecial: ProductSpecialModel = Field(..., description="Special product in store")
-    productParametersDistinction: List[ProductParametersDistinctionModel] = Field(..., description="Parameters (distinguished)")
+    productParametersDistinction: list[ProductParametersDistinctionModel] = Field(..., description="Parameters (distinguished)")
     productLongDescriptions: ProductLongDescriptionsModel = Field(..., description="Long product description")
-    productAuctionDescriptionsData: List[ProductAuctionDescriptionsDataModel] = Field(..., description="Product data for auction services")
+    productAuctionDescriptionsData: list[ProductAuctionDescriptionsDataModel] = Field(..., description="Product data for auction services")
     productMetaTitles: ProductMetaTitlesModel = Field(..., description="Product meta title")
     productMetaDescriptions: ProductMetaDescriptionsModel = Field(..., description="Product meta description")
     productMetaKeywords: ProductMetaKeywordsModel = Field(..., description="Product meta keywords")
@@ -614,7 +613,7 @@ class AttachmentsModel(BaseModel):
     attachmentDownloadLog: BooleanStrShortEnum = Field(..., description="Attachment downloads record")
     attachmentFileExtension: str = Field(..., description="Attachment file extension")
     attachmentPriority: StrictInt = Field(..., ge=1, description="Attachment number")
-    documentTypes: List[DocumentTypesModel] = Field(..., description="Attachment document types list")
+    documentTypes: list[DocumentTypesModel] = Field(..., description="Attachment document types list")
 
 class RemoveAttachmentsModel(BaseModel):
     langId: str = Field(..., description="Language ID")
@@ -627,14 +626,14 @@ class ProductNamesInAuctionLangDataModel(BaseModel):
     productNameInAuction: str = Field(..., description="...")
 
 class ProductNamesInAuctionModel(BaseModel):
-    productNamesInAuctionLangData: List[ProductNamesInAuctionLangDataModel] = Field(..., description="...")
+    productNamesInAuctionLangData: list[ProductNamesInAuctionLangDataModel] = Field(..., description="...")
 
 class ProductNamesInPriceComparerLangDataModel(BaseModel):
     langId: str = Field(..., description="Language ID")
     productNameInPriceComparer: str = Field(..., description="Product name for price comparison websites")
 
 class ProductNamesInPriceComparerModel(BaseModel):
-    productNamesInPriceComparerLangData: List[ProductNamesInPriceComparerLangDataModel] = Field(..., description="...")
+    productNamesInPriceComparerLangData: list[ProductNamesInPriceComparerLangDataModel] = Field(..., description="...")
 
 class ProductParamDescriptionsLangDataModel(BaseModel):
     langId: str = Field(..., description="Language ID")
@@ -643,7 +642,7 @@ class ProductParamDescriptionsLangDataModel(BaseModel):
     serviceId: StrictInt = Field(..., ge=1, description="External service identifier")
 
 class ProductParamDescriptionsModel(BaseModel):
-    productParamDescriptionsLangData: List[ProductParamDescriptionsLangDataModel] = Field(..., description="...")
+    productParamDescriptionsLangData: list[ProductParamDescriptionsLangDataModel] = Field(..., description="...")
 
 class ProductLongDescriptionsInAuctionModel(BaseModel):
     langId: str = Field(..., description="Language ID")
@@ -672,9 +671,9 @@ class ProductParametersModel(BaseModel):
     productParameterOperation: ProductParameterOperationEnum = Field(..., description="...")
     productParameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
     productParameterPriority: int | None = Field(None, description="Determines where the parameter will be added. If no value is specified, the parameter will be placed at the end of the list. If a value of e.g. 5 is set, the value of all priorities >= 5 will be increased by 1 to provide a unique priority value")
-    productParameterTextIdsLangData: List[ProductParameterTextIdsLangDataModel] = Field(..., description="Allows to enter parameter name i multiple languages at the same time. If it is used, item_textid and lang_id are ingored")
+    productParameterTextIdsLangData: list[ProductParameterTextIdsLangDataModel] = Field(..., description="Allows to enter parameter name i multiple languages at the same time. If it is used, item_textid and lang_id are ingored")
     langId: str = Field(..., description="Language ID")
-    productParametersDescriptionsLangData: List[ProductParametersDescriptionsLangDataModel] = Field(..., description="Parameters descriptions in indicated language versions")
+    productParametersDescriptionsLangData: list[ProductParametersDescriptionsLangDataModel] = Field(..., description="Parameters descriptions in indicated language versions")
 
 class ChangeParametersDistinctionModel(BaseModel):
     productParameterId: StrictInt = Field(..., ge=1, description="Parameter ID")
@@ -686,7 +685,7 @@ class ChangeParametersDistinctionModel(BaseModel):
 class ProductMenuItemsModel(BaseModel):
     productMenuOperation: ProductMenuOperationEnum = Field(..., description="Menu element operation type")
     menuItemId: StrictInt = Field(..., ge=1, description="ID of the menu node to which the product is to be assigned")
-    menuItemTextId: str = Field(..., description="Menu element text identifier. Example: item1\item2\item3") # type: ignore
+    menuItemTextId: str = Field(..., description=r"Menu element text identifier. Example: item1\item2\item3") # type: ignore
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
     menuId: StrictInt = Field(..., ge=1, description="ID of the menu zone displayed in the mask")
 
@@ -700,7 +699,7 @@ class JavaScriptInTheItemCardModel(BaseModel):
 
 class ClearStockQuantitiesModel(BaseModel):
     clearAllStockQuantities: bool = Field(..., description="The setting allows you to reset the inventories of warehouse M0 and all your own warehouses")
-    stocksListToClear: List[int] = Field(..., description="List of warehouses for which inventories are to be reset")
+    stocksListToClear: list[int] = Field(..., description="List of warehouses for which inventories are to be reset")
 
 class PicturesSettingApplyMacroForIconModel(BaseModel):
     iconType: str = Field(..., description="Icon type")
@@ -769,7 +768,7 @@ class SettingDefaultSizesGroupModel(BaseModel):
 class SubscriptionModel(BaseModel):
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
     enabled: bool = Field(False, description="Is subscription enabled for product")
-    daysInPeriod: List[int] = Field(..., description="Days in period")
+    daysInPeriod: list[int] = Field(..., description="Days in period")
     unitsNumberRetail: float = Field(..., gt=0, description="Sold at - for retailers")
     unitsNumberWholesale: float = Field(..., gt=0, description="Sold at - for wholesalers")
 
@@ -780,7 +779,7 @@ class ProductShopPriceComparisonSitesPricesModel(BaseModel):
 
 class ProductShopsAttributesModel(BaseModel):
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    productShopPriceComparisonSitesPrices: List[ProductShopPriceComparisonSitesPricesModel] = Field(..., description="Information about prices for price comparison websites dependent on a shop")
+    productShopPriceComparisonSitesPrices: list[ProductShopPriceComparisonSitesPricesModel] = Field(..., description="Information about prices for price comparison websites dependent on a shop")
 
 # --- Product Stocks related
 class ProductStockQuantitiesModel(BaseModel):
@@ -790,7 +789,7 @@ class ProductStockQuantitiesModel(BaseModel):
     productSizeQuantityToSubstract: StrictInt = Field(..., ge=0, description="Product quantity to subtract")
 
 class ProductStocksDataModel(BaseModel):
-    productStockQuantities: List[ProductStockQuantitiesModel] = Field(..., description="Object contains information on product quantity")
+    productStockQuantities: list[ProductStockQuantitiesModel] = Field(..., description="Object contains information on product quantity")
 
 # --- Product Sizes related
 class ProductAuctionPricesModel(BaseModel):
@@ -815,11 +814,11 @@ class ProductSizesModel(BaseModel):
     productMinimalPrice: float = Field(..., gt=0, description="Minimal price")
     productAutomaticCalculationPrice: float = Field(..., gt=0, description="")
     productPosPrice: float = Field(..., gt=0, description="price for POS")
-    productAuctionPrices: List[ProductAuctionPricesModel] = Field(..., description="Prices for marketplaces")
+    productAuctionPrices: list[ProductAuctionPricesModel] = Field(..., description="Prices for marketplaces")
     productCode: str = Field(..., description="External product system code")
     productInPersistent: BooleanStrShortEnum = Field(..., description="Product visible even though out of stock")
     productStocksData: ProductStocksDataModel = Field(..., description="Product stock quantity data")
-    shopsSizeAttributes: List[ShopsSizeAttributesModel] = Field(..., description="Object contains information dependent on shop and size")
+    shopsSizeAttributes: list[ShopsSizeAttributesModel] = Field(..., description="Object contains information dependent on shop and size")
 
 # --- Product Descriptions / Names related
 class ProductNamesLangDataModel(BaseModel):
@@ -827,14 +826,14 @@ class ProductNamesLangDataModel(BaseModel):
     productName: str = Field(..., description="Product name")
 
 class ProductNamesModel(BaseModel):
-    productNamesLangData: List[ProductNamesLangDataModel] = Field(..., description="...")
+    productNamesLangData: list[ProductNamesLangDataModel] = Field(..., description="...")
 
 # --- Dispatch related
 class FreeShippingSettingsModel(BaseModel):
     mode: ModeEnum = Field(..., description="Edition mode")
     availablePaymentForms: AvailablePaymentFormsModel = Field(..., description="Set free shipping for the payment method only")
-    availableCouriers: List[int] = Field(..., description="List of courier services for which shipping is free")
-    availableRegions: List[int] = Field(..., description="List of regions with free shipment")
+    availableCouriers: list[int] = Field(..., description="List of courier services for which shipping is free")
+    availableRegions: list[int] = Field(..., description="List of regions with free shipment")
 
 class ShippingSettingsModel(BaseModel):
     codDisabled: bool = Field(..., description="Disable cash on delivery orders")
@@ -842,7 +841,7 @@ class ShippingSettingsModel(BaseModel):
     atypicalSize: bool = Field(..., description="Oversized product")
     insuranceOnly: bool = Field(..., description="Insurance required")
     excludeSmileService: bool = Field(..., description="Exclusion from the Smile service")
-    disallowedCouriers: List[int] = Field(..., description="List of courier services which cannot be used to ship this product")
+    disallowedCouriers: list[int] = Field(..., description="List of courier services which cannot be used to ship this product")
 
 class ReturnOptionsModel(BaseModel):
     enabled: bool = Field(..., description="...")
@@ -886,7 +885,7 @@ class ProductDescriptionsLangDataPostModel(BaseModel):
     productDescription: str = Field(..., description="Short product description")
 
 class ProductDescriptionsModel(BaseModel):
-    productDescriptionsLangData: List[ProductDescriptionsLangDataPostModel] = Field(..., description="Array of language-dependent elements")
+    productDescriptionsLangData: list[ProductDescriptionsLangDataPostModel] = Field(..., description="Array of language-dependent elements")
 
 class ProductVersionPostModel(BaseModel):
     versionParentId: StrictInt = Field(..., description="ID of the main item (variant) in the group")
@@ -896,7 +895,7 @@ class ProductVersionPostModel(BaseModel):
     versionGroupNames: VersionGroupNamesModel = Field(..., description="Parameter names")
 
 class ProductsPostModel(ProductsBaseModel):
-    priceComparisonSites: List[PriceComparisonSitesPostModel] = Field(..., description="Selection of comparison sites for which the product visibility will be changed")
+    priceComparisonSites: list[PriceComparisonSitesPostModel] = Field(..., description="Selection of comparison sites for which the product visibility will be changed")
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
     productSizeCodeExternal: str = Field(..., description="External product system code for size")
     priceChangeMode: PriceChangeModeEnum = Field(..., description="Optional element, that determines prices edition mode. Default value is 'amount_set', when indicated element is omitted in API gate call")
@@ -917,12 +916,12 @@ class ProductsPostModel(ProductsBaseModel):
     productIcon: str = Field(..., description="Product icon details")
     productWatermarkId: StrictInt = Field(..., ge=1, description="Watermark ID")
     productWatermarkUrl: str = Field(..., description="Link to watermark")
-    productPictures: List[str] = Field(..., description="List of product photos")
-    productDescriptionPictures: List[str] = Field(..., description="List of photos descriptions")
-    associatedProducts: List[AssociatedProductsModel] = Field(..., description="List of products recommended with this product")
-    productSizes: List[ProductSizesModel] = Field(..., description="Sizes available for products data")
-    productShopsAttributes: List[ProductShopsAttributesModel] = Field(..., description="Data concerning attributes dependent on indicated stores with particular product assigned")
-    subscription: List[SubscriptionModel] = Field(..., description="Products subscription settings")
+    productPictures: list[str] = Field(..., description="List of product photos")
+    productDescriptionPictures: list[str] = Field(..., description="List of photos descriptions")
+    associatedProducts: list[AssociatedProductsModel] = Field(..., description="List of products recommended with this product")
+    productSizes: list[ProductSizesModel] = Field(..., description="Sizes available for products data")
+    productShopsAttributes: list[ProductShopsAttributesModel] = Field(..., description="Data concerning attributes dependent on indicated stores with particular product assigned")
+    subscription: list[SubscriptionModel] = Field(..., description="Products subscription settings")
     productNames: ProductNamesModel = Field(..., description="Product name")
     productDescriptions: ProductDescriptionsModel = Field(..., description="...")
     productVersion: ProductVersionPostModel = Field(..., description="Data on product groups (variants)")
@@ -953,7 +952,7 @@ class SettingsPostModel(BaseModel):
 # --- Put DTOs
 #
 class ProductsPutModel(ProductsBaseModel):
-    priceComparisonSites: List[PriceComparisonSitesModel] = Field(..., description="Selection of comparison sites for which the product visibility will be changed")
+    priceComparisonSites: list[PriceComparisonSitesModel] = Field(..., description="Selection of comparison sites for which the product visibility will be changed")
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
     productIndex: str = Field(..., description="One of the unique, indexed product codes (IAI code / External system code / Producer code)")
     productSizeCodeExternal: str = Field(..., description="External product system code for size")
@@ -976,9 +975,9 @@ class ProductsPutModel(ProductsBaseModel):
     productStrikethroughRetailPriceNet: float = Field(..., description="Strikethrough net retail price")
     productStrikethroughWholesalePrice: float = Field(..., description="Strikethrough gross wholesale price")
     productStrikethroughWholesalePriceNet: float = Field(..., description="Strikethrough net wholesale price")
-    productHotspotsZones: List[ProductHotspotsZonesModel] = Field(..., description="Settings of hotspots display")
-    priceInPoints: List[PriceInPointsModel] = Field(..., description="...")
-    loyaltyPoints: List[LoyaltyPointsModel] = Field(..., description="Loyalty points")
+    productHotspotsZones: list[ProductHotspotsZonesModel] = Field(..., description="Settings of hotspots display")
+    priceInPoints: list[PriceInPointsModel] = Field(..., description="...")
+    loyaltyPoints: list[LoyaltyPointsModel] = Field(..., description="Loyalty points")
     productWeight: StrictInt = Field(..., gt=0, description="Weight")
     productInVisible: BooleanStrShortEnum = Field(BooleanStrShortEnum.NO, description="Product visibility")
     exportToAmazonExportAllSizes: BooleanStrShortEnum = Field(..., description="Export sizes to Amazon. 'y' - all, 'n' - leave without change")
@@ -993,22 +992,22 @@ class ProductsPutModel(ProductsBaseModel):
     sizeChartId: StrictInt = Field(..., ge=1, description="Size chart ID")
     sizeChartName: str = Field(..., description="Size chart name")
     productPriority: StrictInt = Field(..., ge=1, lt=11, description="Priority")
-    productPriorityInMenuNodes: List[ProductPriorityInMenuNodesModel] = Field(..., description="Product priority in menu node")
+    productPriorityInMenuNodes: list[ProductPriorityInMenuNodesModel] = Field(..., description="Product priority in menu node")
     productIconLink: str = Field(..., description="Product icon link")
     productAuctionIconLink: str = Field(..., description="Photo without background")
     productGroupIconLink: str = Field(..., description="Icon for a product group")
-    productPictures: List[str] = Field(..., description="List of product photos")
-    productPicturesReplace: List[ProductPicturesReplaceModel] = Field(..., description="List of a product's photos with indication of a particular number of the photo")
-    parametersConfigurable: List[ParametersConfigurableModel] = Field(..., description="Configuration parameters")
-    associatedProducts: List[AssociatedProductsModel] = Field(..., description="List of products recommended with this product")
-    productSizes: List[ProductSizesModel] = Field(..., description="Sizes available for products data")
-    attachments: List[AttachmentsModel] = Field(..., description="Product attachments list")
-    removeAttachments: List[RemoveAttachmentsModel] = Field(..., description="The list of attachments to be deleted")
+    productPictures: list[str] = Field(..., description="List of product photos")
+    productPicturesReplace: list[ProductPicturesReplaceModel] = Field(..., description="List of a product's photos with indication of a particular number of the photo")
+    parametersConfigurable: list[ParametersConfigurableModel] = Field(..., description="Configuration parameters")
+    associatedProducts: list[AssociatedProductsModel] = Field(..., description="List of products recommended with this product")
+    productSizes: list[ProductSizesModel] = Field(..., description="Sizes available for products data")
+    attachments: list[AttachmentsModel] = Field(..., description="Product attachments list")
+    removeAttachments: list[RemoveAttachmentsModel] = Field(..., description="The list of attachments to be deleted")
     virtualAttachmentsToRemove: bool = Field(..., description="Do you want to delete attachments for digital files")
-    virtualAttachments: List[VirtualAttachmentsModel] = Field(..., description="List of product's virtual attachments")
+    virtualAttachments: list[VirtualAttachmentsModel] = Field(..., description="List of product's virtual attachments")
     attachmentOperationValues: AttachmentOperationValuesEnum = Field(..., description="Operation, that will be performed on attachments to product")
-    productShopsAttributes: List[ProductShopsAttributesModel] = Field(..., description="Data concerning attributes dependent on indicated stores with particular product assigned")
-    subscription: List[SubscriptionModel] = Field(..., description="Products subscription settings")
+    productShopsAttributes: list[ProductShopsAttributesModel] = Field(..., description="Data concerning attributes dependent on indicated stores with particular product assigned")
+    subscription: list[SubscriptionModel] = Field(..., description="Products subscription settings")
     productNames: ProductNamesModel = Field(..., description="Product name")
     productNamesInAuction: ProductNamesInAuctionModel = Field(..., description="DEPRECATED. This parameter is deprecated. Product name for online auctions")
     productNamesInPriceComparer: ProductNamesInPriceComparerModel = Field(..., description="Product name for price comparison websites")
@@ -1017,16 +1016,16 @@ class ProductsPutModel(ProductsBaseModel):
     productLongDescriptionsInAuction: ProductLongDescriptionsInAuctionModel = Field(..., description="DEPRECATED. This parameter is deprecated. Product description for marketplaces")
     productVersion: ProductVersionPutModel = Field(..., description="Data on product groups (variants)")
     currencyId: str = Field(..., description="Currency ID")
-    productCurrenciesShops: List[ProductCurrenciesShopsModel] = Field(..., description="Currency, in which product prices are stored")
+    productCurrenciesShops: list[ProductCurrenciesShopsModel] = Field(..., description="Currency, in which product prices are stored")
     delivererId: StrictInt = Field(..., ge=1, description="Supplier ID")
     delivererName: str = Field(..., description="Supplier name")
     productParametersDistinctionChangeMode: ProductParametersDistinctionChangeModeEnum = Field(..., description="This parameter is optional and it determines properties edition mode. Default value is 'replace'")
     productDeliveryTime: ProductDeliveryTimeModel = Field(..., description="Product delivery time from the producer to the shop")
-    productParameters: List[ProductParametersModel] = Field(..., description="Parameters")
+    productParameters: list[ProductParametersModel] = Field(..., description="Parameters")
     clearProductParameters: bool = Field(..., description="...")
-    changeParametersDistinction: List[ChangeParametersDistinctionModel] = Field(..., description="Change parameter distinction")
+    changeParametersDistinction: list[ChangeParametersDistinctionModel] = Field(..., description="Change parameter distinction")
     productPriceVatChangeMode: ProductPriceVatChangeModeEnum = Field(..., description="VAT rate change mode")
-    productMenuItems: List[ProductMenuItemsModel] = Field(..., description="An array of menu elements")
+    productMenuItems: list[ProductMenuItemsModel] = Field(..., description="An array of menu elements")
     removeAllProductsAssignedToMenu: RemoveAllProductsAssignedToMenuModel = Field(..., description="Deletes all items assigned to the product of the selected menu")
     productSumInBasket: BooleanStrShortEnum = Field(..., description="Do You wish to sum up the products in the basket as a one order?")
     productShopsPricesConfig: ProductShopsPricesConfigEnum = Field(..., description="Settings of prices for shop")
@@ -1034,10 +1033,10 @@ class ProductsPutModel(ProductsBaseModel):
     productType: ProductTypeEnum = Field(..., description="Product type")
     priceRoundMode: PriceRoundModeEnum = Field(..., description="Forced rounding up method")
     productAvailabilityManagementType: ProductAvailabilityManagementTypeEnum = Field(..., description="Product availability management method")
-    removeChooseSizesValues: List[str] = Field(..., description="List of unused sizes in product to be deleted")
+    removeChooseSizesValues: list[str] = Field(..., description="List of unused sizes in product to be deleted")
     removeAllUnusedProductSizes: bool = Field(..., description="Remove all unused sizes")
     producerCodesStandard: ProducerCodesStandardEnum = Field(..., description="Standard producer code")
-    javaScriptInTheItemCard: List[JavaScriptInTheItemCardModel] = Field(..., description="JavaScript code displayed in the product page of the IdoSell Shop")
+    javaScriptInTheItemCard: list[JavaScriptInTheItemCardModel] = Field(..., description="JavaScript code displayed in the product page of the IdoSell Shop")
     serialNumbersOption: SerialNumbersOptionEnum = Field(..., description="Saving serial numbers")
     dispatchSettings: DispatchSettingsModel = Field(..., description="Shipping, returns and complaints settings")
     standardUnit: StandardUnitModel = Field(..., description="Standard unit settings")
@@ -1068,10 +1067,10 @@ class PictureSettingsPutModel(BaseModel):
     picturesSettingRestoreBackupPicturesAndIconsByDateTime: str | None = Field(None, description="...")
 
 class VersionGroupNamesPutModel(BaseModel):
-    versionGroupNamesLangData: List[VersionGroupNamesLangDataModel] = Field(..., description="Parameter name")
+    versionGroupNamesLangData: list[VersionGroupNamesLangDataModel] = Field(..., description="Parameter name")
 
 class VersionNamesPutModel(BaseModel):
-    versionNamesLangData: List[VersionNamesLangDataModel] = Field(..., description="Array of languages, values are displayed in")
+    versionNamesLangData: list[VersionNamesLangDataModel] = Field(..., description="Array of languages, values are displayed in")
 
 class VersionSettingsPutModel(VersionSettingsBaseModel):
     versionDisplayAllInPanel: BooleanStrShortEnum = Field(..., description="Show in panel")
@@ -1121,10 +1120,10 @@ class AvailablePaymentFormsSearchModel(BaseModel):
 
 class FreeShippingSettingsSearchModel(BaseModel):
     mode: ModeSearchEnum = Field(..., description="Edition mode")
-    availablePaymentForms: List[AvailablePaymentFormsSearchModel] = Field(..., description="Set free shipping for the payment method only")
-    availableCouriers: List[int] = Field(..., description="List of courier services for which shipping is free. IDs couriers")
-    availableCouriersForSingleProduct: List[int] = Field(...,  description="List of courier services by which the products can be sent free of charge. IDs couriers")
-    availableRegions: List[int] = Field(..., description="List of regions with free shipment. IDs Delivery regions")
+    availablePaymentForms: list[AvailablePaymentFormsSearchModel] = Field(..., description="Set free shipping for the payment method only")
+    availableCouriers: list[int] = Field(..., description="List of courier services for which shipping is free. IDs couriers")
+    availableCouriersForSingleProduct: list[int] = Field(...,  description="List of courier services by which the products can be sent free of charge. IDs couriers")
+    availableRegions: list[int] = Field(..., description="List of regions with free shipment. IDs Delivery regions")
 
 class ReturnOptionsSearchModel(BaseModel):
     enabled: bool = Field(..., description="...")
@@ -1143,7 +1142,7 @@ class ShippingSettingsSearchModel(BaseModel):
     insuranceOnly: BooleanStrLongEnum = Field(..., description="...")
     atypicalSize: bool = Field(..., description="...")
     excludeSmileService: bool = Field(..., description="Exclusion from the Smile service")
-    disallowedCouriers: List[int] = Field(..., description="List of courier services which cannot be used to ship this product. IDs couriers")
+    disallowedCouriers: list[int] = Field(..., description="List of courier services which cannot be used to ship this product. IDs couriers")
 
 class DispatchSettingsSearchModel(BaseModel):
     enabled: bool = Field(..., description="...")
@@ -1152,7 +1151,7 @@ class DispatchSettingsSearchModel(BaseModel):
     returnProductSettings: ReturnProductSettingsSearchModel = Field(..., description="...")
 
 class MenuItemsTextIdsSearchModel(BaseModel):
-    menuItemTextId: str = Field(..., description="Menu element text identifier. Example: 'item1\item2\item3'") # type: ignore
+    menuItemTextId: str = Field(..., description=r"Menu element text identifier. Example: 'item1\item2\item3'") # type: ignore
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
     menuId: StrictInt = Field(..., ge=1, description="ID of the menu zone displayed in the mask")
     menuItemTextIdSeparator: str = Field(..., description="The separator separates the individual elements of a text id. Default: ''")
@@ -1162,8 +1161,8 @@ class PicturesDataSearchModel(BaseModel):
     serviceId: StrictInt = Field(..., ge=1, description="External service identifier")
 
 class ProductMenuItemsSearchModel(BaseModel):
-    menuItemsIds: List[int] = Field(..., description="An array of IDs")
-    menuItemsTextIds: List[MenuItemsTextIdsSearchModel] = Field(..., description="An array of text IDs")
+    menuItemsIds: list[int] = Field(..., description="An array of IDs")
+    menuItemsTextIds: list[MenuItemsTextIdsSearchModel] = Field(..., description="An array of text IDs")
 
 class CategoriesSearchModel(BaseModel):
     categoryId: StrictInt = Field(..., ge=1, description="Category id")
@@ -1205,13 +1204,13 @@ class ProductDateSearchModel(BaseModel):
     productDateEnd: str = Field(..., description="End date in the YYYY-MM-DD format")
 
 class ProductParameterIdsSearchModel(BaseModel):
-    productParameterIdsEnabled: List[int] = Field(..., description="Set properties groups ID")
-    productParameterIdsDisabled: List[int] = Field(..., description="Unset properties groups ID")
+    productParameterIdsEnabled: list[int] = Field(..., description="Set properties groups ID")
+    productParameterIdsDisabled: list[int] = Field(..., description="Unset properties groups ID")
 
 class ProductParametersParamsSearchModel(BaseModel):
-    parameterNames: List[str] = Field(..., description="Parameters group name")
-    parameterValuesIds: List[int]  = Field(..., description="Properties IDs")
-    parameterValuesNames: List[str] = Field(..., description="Parameters name")
+    parameterNames: list[str] = Field(..., description="Parameters group name")
+    parameterValuesIds: list[int]  = Field(..., description="Properties IDs")
+    parameterValuesNames: list[str] = Field(..., description="Parameters name")
     productParameterIds: ProductParameterIdsSearchModel = Field(..., description="Parameters group ID")
 
 class ProductUnitsSearchModel(BaseModel):
@@ -1225,11 +1224,11 @@ class ProductWarrantiesSearchModel(BaseModel):
 
 class ProductAvailableInStocksSearchModel(BaseModel):
     productIsAvailableInStocks: BooleanStrShortEnum = Field(..., description="Determines whether availability in stocks has been set")
-    productAvailableInStocksIds: List[int] = Field(..., description="Narrowing list to stocks sought trough Empty list concerns all stocks")
+    productAvailableInStocksIds: list[int] = Field(..., description="Narrowing list to stocks sought trough Empty list concerns all stocks")
 
 class ProductAvailableInAuctionsSearchModel(BaseModel):
     productIsAvailableInAuctions: BooleanStrShortEnum = Field(..., description="Determines whether availability on auctions has been set")
-    productAvailableInAuctionsAccountsIds: List[int] = Field(..., description="Narrow list of auction accounts sought through")
+    productAvailableInAuctionsAccountsIds: list[int] = Field(..., description="Narrow list of auction accounts sought through")
 
 class ProductSearchPriceRangeSearchModel(BaseModel):
     productSearchPriceMode: ProductSearchPriceModeEnum = Field(..., description="Determines price type for indicated values")

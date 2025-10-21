@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 
 from src.idosell._common import BooleanStrShortEnum
 from src.idosell.cms.cpa.campaign import PostCampaignModel, PutCampaignModel
@@ -45,7 +45,7 @@ from src.idosell.cms.entries import (
     Put as PutCmsEntries, PutCmsEntriesParamsModel
 )
 
-cms_delete: List[Any] = [ # type: ignore
+cms_delete: list[Any] = [ # type: ignore
     DeleteCmsCpaCampaign(id = [1]), # type: ignore
     DeleteCmsCpaCpa(id = [1]), # type: ignore
     DeleteCmsSnippetsCampaign(id = [1]), # type: ignore
@@ -62,7 +62,7 @@ cms_delete: List[Any] = [ # type: ignore
     ),
 ]
 
-cms_get: List[Any] = [ # type: ignore
+cms_get: list[Any] = [ # type: ignore
     GetCmsCpaCampaign(), # type: ignore
     GetCmsCpaCpa(), # type: ignore
     GetCmsSnippetsCampaign(), # type: ignore
@@ -74,7 +74,7 @@ cms_get: List[Any] = [ # type: ignore
     GetCmsEntriesGetSources(), # type: ignore
 ]
 
-cms_post: List[Any] = [
+cms_post: list[Any] = [
     PostCmsCpaCampaign(
         params = PostCmsCpaCampaignParamsModel(campaigns = [PostCampaignModel(name = "Test Campaign")]) # type: ignore
     ),
@@ -95,7 +95,7 @@ cms_post: List[Any] = [
     )
 ]
 
-cms_put: List[Any] = [
+cms_put: list[Any] = [
     PutCmsCpaCampaign(
         params = PutCmsCpaCampaignParamsModel(campaigns = [PutCampaignModel(id = 1)]) # type: ignore
     ),

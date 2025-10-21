@@ -1,5 +1,4 @@
 from enum import IntEnum, StrEnum
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway, PageableSnakeGateway
@@ -43,7 +42,7 @@ class ProductsReturnsPostModel(BaseModel):
     size: str = Field(..., description="...")
     quantity: float = Field(..., description="...")
     price: float = Field(..., description="...")
-    serialNumbers: List[str] = Field(..., description="...")
+    serialNumbers: list[str] = Field(..., description="...")
     productOrderAdditional: str = Field(..., description="Additional information")
 
 class ReturnProductsPutModel(BaseModel):
@@ -51,14 +50,14 @@ class ReturnProductsPutModel(BaseModel):
     size: str = Field(..., description="...")
     quantity: float = Field(..., description="...")
     price: float = Field(..., description="Price")
-    serialNumbers: List[str] = Field(..., description="...")
+    serialNumbers: list[str] = Field(..., description="...")
     productOrderAdditional: str = Field(..., description="Additional information")
 
 class ReturnsPutModel(BaseModel):
     id: StrictInt = Field(..., ge=1, description="...")
     status: StrictInt = Field(..., ge=1, description="...")
     apiFlag: ApiFlagReturnsEnum = Field(..., description="Flag informing on order registration or completion in external program through API")
-    products: List[ReturnProductsPutModel] = Field(..., description="Products list")
+    products: list[ReturnProductsPutModel] = Field(..., description="Products list")
     userNote: str = Field(..., description="...")
     clientNote: str = Field(..., description="...")
     tryCorrectInvoice: bool = Field(..., description="...")
@@ -66,7 +65,7 @@ class ReturnsPutModel(BaseModel):
 class PostOmsReturnsParamsModel(BaseModel):
     order_sn: StrictInt = Field(..., ge=1, description="...")
     stock_id: StrictInt = Field(..., ge=1, description="...")
-    products: List[ProductsReturnsPostModel] = Field(..., description="Products list")
+    products: list[ProductsReturnsPostModel] = Field(..., description="Products list")
     status: StrictInt = Field(..., description="...")
     client_received: bool = Field(..., description="...")
     change_status: bool = Field(..., description="...")
@@ -78,16 +77,16 @@ class PostOmsReturnsParamsModel(BaseModel):
     emptyReturn: str = Field(..., description="...")
 
 class PutOmsReturnsParamsModel(BaseModel):
-    returns: List[ReturnsPutModel] = Field(..., description="...")
+    returns: list[ReturnsPutModel] = Field(..., description="...")
 
 class SerialNumberProductsPutModel(BaseModel):
     id: StrictInt = Field(..., ge=1, description="Product ID")
     size: str = Field(..., description="Size ID")
-    serialNumbers: List[str] = Field(..., description="...")
+    serialNumbers: list[str] = Field(..., description="...")
 
 class PutSerialNumberOmsReturnsParamsModel(BaseModel):
     return_id: StrictInt = Field(..., ge=1, description="Return number")
-    products: List[SerialNumberProductsPutModel] = Field(..., description="Products list")
+    products: list[SerialNumberProductsPutModel] = Field(..., description="Products list")
 
 
 # --- ENDPOINTS
@@ -105,7 +104,7 @@ class Get(PageableSnakeGateway):
     return_shipping_number: str | None = Field(None, min_length=1, description="Search by a return shipment number from a customer to the shop")
     range: RangeModel | None = Field(None, description="Date range")
     status: StatusEnum | None = Field(None, description="Return status (optional)")
-    return_ids: List[StrictInt] | None = Field(None, min_length=1, description="Search by return IDs (list, each >= 1)") # type: ignore
+    return_ids: list[StrictInt] | None = Field(None, min_length=1, description="Search by return IDs (list, each >= 1)") # type: ignore
     stock_id: StrictInt | None = Field(None, ge=1, description="Search by ID of a stock to which a return is sent (>=1)")
     bundleAsProducts: bool = Field(False, description="Return a set as its constituent products")
 

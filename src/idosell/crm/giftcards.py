@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway, PageableCamelGateway, PageableCamelModel
@@ -22,7 +21,7 @@ class GiftCardPostPutModel(BaseModel):
     expirationDate: str = Field(..., description="Card expiration date")
     balanceOperationType: BalanceOperationTypeEnum = Field(..., description="Balance operation type")
     balance: BalanceModel = Field(..., description="Card balance")
-    shops: List[int] = Field(..., description="List of shops the card is active in")
+    shops: list[int] = Field(..., description="List of shops the card is active in")
     note: str = Field(..., description="...")
 
 class GiftCardPostModel(GiftCardPostPutModel):
@@ -43,24 +42,24 @@ class SearchGiftCardModel(PageableCamelModel):
     issueDateTo: str | None = Field(None, description="Created to")
 
 class PutBlockCrmGiftcardsParamsModel(BaseModel):
-    giftCards: List[GiftCardModel] = Field(..., min_length=1, description="List of gift cards") # type: ignore
+    giftCards: list[GiftCardModel] = Field(..., min_length=1, description="List of gift cards") # type: ignore
 
 class DeleteCrmGiftcardsParamsModel(BaseModel):
-    giftCards: List[GiftCardDeleteModel] = Field(..., min_length=1, description="List of gift cards") # type: ignore
+    giftCards: list[GiftCardDeleteModel] = Field(..., min_length=1, description="List of gift cards") # type: ignore
 
 class PostCrmGiftcardsParamsModel(BaseModel):
-    giftCards: List[GiftCardPostModel] = Field(..., min_length=1, description="List of cards to add") # type: ignore
+    giftCards: list[GiftCardPostModel] = Field(..., min_length=1, description="List of cards to add") # type: ignore
 
 class PutCrmGiftcardsParamsModel(BaseModel):
-    giftCards: List[GiftCardPutModel] = Field(..., min_length=1, description="List of cards to edit") # type: ignore
+    giftCards: list[GiftCardPutModel] = Field(..., min_length=1, description="List of cards to edit") # type: ignore
 
 class SearchCrmGiftcardsParamsModel(BaseModel):
     # search body: either giftCards (list) or searchGiftCards (filter) — require at least one
-    giftCards: List[GiftCardModel] | None = Field(default=None, min_length=1, description="List of gift cards")  # type: ignore
+    giftCards: list[GiftCardModel] | None = Field(default=None, min_length=1, description="List of gift cards")  # type: ignore
     searchGiftCards: SearchGiftCardModel | None = Field(default=None, description="element is an element array of type searchGiftCards")
 
 class PutUnblockCrmGiftcardsParamsModel(BaseModel):
-    giftCards: List[GiftCardModel] = Field(..., min_length=1, description="List of gift cards") # type: ignore
+    giftCards: list[GiftCardModel] = Field(..., min_length=1, description="List of gift cards") # type: ignore
 
 
 # --- ENDPOINTS

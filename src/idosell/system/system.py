@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway
@@ -7,7 +6,7 @@ from src.idosell.system._common import CurrenciesModel, OrdersModel, PanelSettin
 
 # --- DTOs
 class PutUnitsSystemSystemParamsModel(BaseModel):
-    units: List[UnitsModel] = Field(..., description="List of system units")
+    units: list[UnitsModel] = Field(..., description="List of system units")
 
 class PutProcessesAutomationSystemSystemParamsModel(BaseModel):
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
@@ -59,7 +58,7 @@ class PutCurrencies(AppendableGateway):
     _method: str = PrivateAttr(default='PUT')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/system/currencies')
 
-    currencies: List[CurrenciesModel] = Field(..., description="List of currencies")
+    currencies: list[CurrenciesModel] = Field(..., description="List of currencies")
 
 class GetProcessesAutomation(Gateway):
     """
@@ -119,7 +118,7 @@ class GetUnits(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/system/units')
 
-    languagesIds: List[str] | None = Field(None, description="List of languages")
+    languagesIds: list[str] | None = Field(None, description="List of languages")
 
 class PutUnits(AppendableGateway):
     """

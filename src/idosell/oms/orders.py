@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway, IdoSellDateTime, OrdersBySearchModel, PageableCamelGateway
@@ -32,11 +31,11 @@ class PutDeliveryAddressOmsOrdersParamsModel(BaseModel):
 
 class PutDevideOmsOrdersParamsModel(BaseModel):
     orderSerialNumber: StrictInt = Field(..., ge=1, description="Order serial number")
-    products: List[DevideProductsPutModel] = Field(..., description="Products list")
+    products: list[DevideProductsPutModel] = Field(..., description="Products list")
     splitPayments: bool = Field(..., description="Whether to split payments")
 
 class PostDocumentsCreateOmsOrdersParamsModel(BaseModel):
-    orderSerialNumbers: List[int] = Field(..., description="...")
+    orderSerialNumbers: list[int] = Field(..., description="...")
     actualize: bool = Field(..., description="...")
     documentType: DocumentTypePostEnum = Field(..., description="Document type")
     documentIssuedDate: str = Field(..., description="Document issued date")
@@ -44,7 +43,7 @@ class PostDocumentsCreateOmsOrdersParamsModel(BaseModel):
     printerId: StrictInt = Field(..., description="Printer id")
 
 class PostDocumentsOmsOrdersParamsModel(BaseModel):
-    documents: List[DocumentsPostModel] = Field(..., description="List of documents")
+    documents: list[DocumentsPostModel] = Field(..., description="List of documents")
 
 class PutHandlerOmsOrdersParamsModel(BaseModel):
     orderSerialNumber: StrictInt = Field(..., ge=1, description="Order serial number")
@@ -52,7 +51,7 @@ class PutHandlerOmsOrdersParamsModel(BaseModel):
 
 class DeleteImagesOmsOrdersParamsModel(BaseModel):
     order: ImagesOrderModel = Field(..., description="")
-    images: List[ImagesDeleteModel] = Field(..., description="List of attachment IDs to be removed from the details of the selected order")
+    images: list[ImagesDeleteModel] = Field(..., description="List of attachment IDs to be removed from the details of the selected order")
 
 class PostImagesOmsOrdersParamsModel(BaseModel):
     userName: str = Field(..., description="Login")
@@ -65,7 +64,7 @@ class SearchOpinionsOmsOrdersParamsModel(BaseModel):
     orders: OrdersSearchModel | None = Field(None, description="")
     clients: ClientsSearchModel | None = Field(None, description="")
     dateRange: DateRangeSearchModel | None = Field(None, description="")
-    ordersBy: List[OrderBySearchModel] | None = Field(None, description="Possibility of sorting returned list")
+    ordersBy: list[OrderBySearchModel] | None = Field(None, description="Possibility of sorting returned list")
 
 class PostOmsOrdersParamsModel(BaseModel):
     orders: OrdersPostModel = Field(..., description="Orders")
@@ -77,26 +76,26 @@ class SearchOmsOrdersParamsModel(BaseModel):
     orderPrepaidStatus: OrderPrepaidStatusEnum | None = Field(None, description="Prepayment status")
     ordersStatuses: OrdersStatusesEnum | None = Field(None, description="Order status")
     shippmentStatus: ShippmentStatusEnum | None = Field(None, description="None")
-    couriersName: List[str] | None = Field(None, description="Shipping companies (packages deliverers)")
-    couriersId: List[int] | None = Field(None, description="Courier service identifiers")
+    couriersName: list[str] | None = Field(None, description="Shipping companies (packages deliverers)")
+    couriersId: list[int] | None = Field(None, description="Courier service identifiers")
     orderPaymentType: OrderPaymentTypeEnum | None = Field(None, description="Order payment method")
-    withMissingSalesDocuments: List[str] | None = Field(None, description="None")
+    withMissingSalesDocuments: list[str] | None = Field(None, description="None")
     orderType: OrderTypeEnum | None = Field(None, description="Order type")
     dropshippingOrderStatus: DropshippingOrderStatusEnum | None = Field(None, description="None")
-    ordersIds: List[str] | None = Field(None, description="Orders IDs")
-    ordersSerialNumbers: List[int] | None = Field(None, description="Order serial numbers")
-    clients: List[ClientsModel] | None = Field(None, description="Customer data")
+    ordersIds: list[str] | None = Field(None, description="Orders IDs")
+    ordersSerialNumbers: list[int] | None = Field(None, description="Order serial numbers")
+    clients: list[ClientsModel] | None = Field(None, description="Customer data")
     ordersRange: OrdersRangeModel | None = Field(None, description="Ranges of dates or serial numbers")
     orderSource: OrderSourceModel | None = Field(None, description="Order source data")
-    products: List[ProductsSearchModel] | None = Field(None, description="Products list")
+    products: list[ProductsSearchModel] | None = Field(None, description="Products list")
     clientRequestInvoice: ClientRequestInvoiceEnum | None = Field(None, description="Customer asked for invoice")
     packages: PackagesSearchModel | None = Field(None, description="Information on consignments")
-    stocks: List[StocksSearachModel] | None = Field(None, description="Stock quantities data")
+    stocks: list[StocksSearachModel] | None = Field(None, description="Stock quantities data")
     campaign: CampaignSearchModel | None = Field(None, description="Used discount codes data")
     loyaltyPointsMode: LoyaltyPointsModeEnum | None = Field(None, description="Loyalty points")
     orderOperatorLogin: str | None = Field(None, description="Order handler")
     orderPackingPersonLogin: str | None = Field(None, description="Order picker")
-    ordersBy: List[OrdersBySearchModel] | None = Field(None, description="Possibility of sorting returned list")
+    ordersBy: list[OrdersBySearchModel] | None = Field(None, description="Possibility of sorting returned list")
     searchingOperatorTypeMatch: SearchingOperatorTypeMatchEnum | None = Field(None, description="Method of searching orders by handler")
     ordersDelayed: BooleanStrShortEnum | None = Field(None, description="Orders with the exceeded date of shipment")
     showBundles: bool | None = Field(None, description="Combine the components of the set into one item")
@@ -114,10 +113,10 @@ class PutPickupPointOmsOrdersParamsModel(BaseModel):
     pickupPointId: int | str = Field(..., description="Collection point ID")
 
 class PutProductsSerialNumbersOmsOrdersParamsModel(BaseModel):
-    orders: List[ProductsSerialNumbersOrdersPutModel] = Field(..., description="Orders")
+    orders: list[ProductsSerialNumbersOrdersPutModel] = Field(..., description="Orders")
 
 class PutProfitMarginOmsOrdersParamsModel(BaseModel):
-    orders: List[ProfitMarginOrdersPutModel] = Field(..., description="Orders")
+    orders: list[ProfitMarginOrdersPutModel] = Field(..., description="Orders")
 
 class PutShippingCostsOmsOrdersParamsModel(BaseModel):
     orderSerialNumber: StrictInt = Field(..., description="Order serial number")
@@ -127,24 +126,24 @@ class PutShippingCostsOmsOrdersParamsModel(BaseModel):
 class SearchUnfinishedOmsOrdersParamsModel(BaseModel):
     orderPrepaidStatus: OrderPrepaidStatusEnum | None = Field(None, description="Prepayment status")
     ordersStatuses: OrdersStatusesSearchUnfinishedEnum | None = Field(None, description="Order status")
-    couriersName: List[str] | None = Field(None, description="Shipping companies (packages deliverers)")
+    couriersName: list[str] | None = Field(None, description="Shipping companies (packages deliverers)")
     orderPaymentType: OrderPaymentTypeEnum | None = Field(None, description="Order payment method")
     orderType: OrderTypeSearchUnfinishedEnum | None = Field(None, description="Order type")
     dropshippingOrderStatus: DropshippingOrderStatusEnum | None = Field(None, description="Dropshipping order status in the supplier's system")
-    ordersIds: List[str] | None = Field(None, description="Orders IDs")
-    ordersSerialNumbers: List[int] | None = Field(None, description="Order serial numbers")
-    clients: List[ClientsSearchUnfinishedModel] | None = Field(None, description="Customer data")
+    ordersIds: list[str] | None = Field(None, description="Orders IDs")
+    ordersSerialNumbers: list[int] | None = Field(None, description="Order serial numbers")
+    clients: list[ClientsSearchUnfinishedModel] | None = Field(None, description="Customer data")
     ordersRange: OrdersRangeModel | None = Field(None, description="Ranges of dates or serial numbers")
     orderSource: OrderSourceSearchUnfinishedModel | None = Field(None, description="Bit mask of shop IDs")
-    products: List[ProductsSearchModel] | None = Field(None, description="Products list")
+    products: list[ProductsSearchModel] | None = Field(None, description="Products list")
     clientRequestInvoice: ClientRequestInvoiceSearchUnfinishedEnum | None = Field(None, description="Customer asked for invoice")
     packages: PackagesSearchUnfinishedModel | None = Field(None, description="Information on consignments")
-    stocks: List[StocksSearachModel] | None = Field(None, description="Stock quantities data")
+    stocks: list[StocksSearachModel] | None = Field(None, description="Stock quantities data")
     campaign: CampaignSearchModel | None = Field(None, description="Used discount codes data")
     loyaltyPointsMode: LoyaltyPointsModeEnum | None = Field(None, description="Loyalty points")
     orderOperatorLogin: str | None = Field(None, description="Order handler")
     orderPackingPersonLogin: str | None = Field(None, description="Order picker")
-    ordersBy: List[OrdersBySearchUnfinishedModel] | None = Field(None, description="Possibility of sorting returned list")
+    ordersBy: list[OrdersBySearchUnfinishedModel] | None = Field(None, description="Possibility of sorting returned list")
     searchingOperatorTypeMatch: SearchingOperatorTypeMatchEnum | None = Field(None, description="Method of searching orders by handler")
     ordersDelayed: BooleanStrShortEnum | None = Field(None, description="Orders with the exceeded date of shipment")
 
@@ -165,7 +164,7 @@ class GetAnalytics(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/orders/analytics')
 
-    orderSerialNumber: List[int] | None = Field(None, min_length=1, description="Array of order serial numbers (items must be >= 1)") # type: ignore
+    orderSerialNumber: list[int] | None = Field(None, min_length=1, description="Array of order serial numbers (items must be >= 1)") # type: ignore
 
 class GetAuctionDetails(Gateway):
     """
@@ -177,7 +176,7 @@ class GetAuctionDetails(Gateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/orders/auctionDetails')
 
     identType: IdentTypeEnum | None = Field(None, description="Identifier type")
-    orders: List[str] | None = Field(None, min_length=1, description="Orders Id values") # type: ignore
+    orders: list[str] | None = Field(None, min_length=1, description="Orders Id values") # type: ignore
 
 class PutClient(Gateway):
     """
@@ -202,7 +201,7 @@ class PutCourier(Gateway):
     params: PutCourierOmsOrdersParamsModel = Field(..., description="Parameters transmitted to method")
 
 class DeleteDocumentsOmsOrdersParamsModel(BaseModel):
-    documents: List[DocumentsDeleteModel] = Field(..., description="List of documents")
+    documents: list[DocumentsDeleteModel] = Field(..., description="List of documents")
 
 class PutDeliveryAddress(Gateway):
     """
@@ -257,9 +256,9 @@ class GetDocuments(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/orders/documents')
 
-    orderSerialNumber: List[str] = Field(..., min_length=1, description="Order serial number (at least 1)") # type: ignore
+    orderSerialNumber: list[str] = Field(..., min_length=1, description="Order serial number (at least 1)") # type: ignore
     documentType: DocumentTypeOrdersGetEnum = Field(..., min_length=1, description="Document type")
-    returnElements: List[str] | None = Field(None, description="Elements returned by api")
+    returnElements: list[str] | None = Field(None, description="Elements returned by api")
 
 class PostDocuments(AppendableGateway):
     """
@@ -284,7 +283,7 @@ class GetExportdocumentsEPP(Gateway):
     dateBegin: IdoSellDateTime = Field(..., description="Beginning date in YYYY-MM-DD HH:MM:SS format")
     dateEnd: IdoSellDateTime = Field(..., description="Ending date in YYYY-MM-DD HH:MM:SS format")
     applicationType: ApplicationTypeEnum = Field(..., description="...")
-    stocks: List[int] | None = Field(None, min_length=1, description="Stock ID (required only when selecting particular stocks)") # type: ignore
+    stocks: list[int] | None = Field(None, min_length=1, description="Stock ID (required only when selecting particular stocks)") # type: ignore
     documentType: DocumentTypeEppEnum = Field(..., description="Document type")
     invoiceFirstGeneratedDate: StrictInt | None = Field(None, ge=1, description="Date the document was first generated")
 
@@ -306,8 +305,8 @@ class GetExportdocumentsJPK(Gateway):
     month: StrictInt | None = Field(None, ge=1, le=12, description="Billing month for which to generate the document. (JPK_VAT)")
     year: StrictInt | None = Field(None, ge=1, description="Billing year for which to generate the document. (JPK_VAT)")
     currency: str | None = Field(None, min_length=3, max_length=3, description="Currency symbol in ISO-4217 (3 letters)")
-    shop: List[int] | None = Field(None, min_length=1, description="Store ID only required if a specific store is selected") # type: ignore
-    stockId: List[int] | None = Field(None, min_length=1, description="Stock ID") # type: ignore
+    shop: list[int] | None = Field(None, min_length=1, description="Store ID only required if a specific store is selected") # type: ignore
+    stockId: list[int] | None = Field(None, min_length=1, description="Stock ID") # type: ignore
     forceBackgroundGenerate: bool | None = Field(None, description="Forces the file to be generated by background tasks. The file will be generated later. Then, after it is generated, you will be able to download the given file using the returned ID. The file will be available 24h after the task is completed")
 
 class GetHandler(Gateway):
@@ -420,8 +419,8 @@ class Get(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/orders/orders')
 
-    ordersIds: List[str] | None = Field(None, min_length=1, description="Orders IDs") # type: ignore
-    ordersSerialNumbers: List[int] | None = Field(None, min_length=1, description="Order serial numbers. You can transfer a maximum of 100 items") # type: ignore
+    ordersIds: list[str] | None = Field(None, min_length=1, description="Orders IDs") # type: ignore
+    ordersSerialNumbers: list[int] | None = Field(None, min_length=1, description="Order serial numbers. You can transfer a maximum of 100 items") # type: ignore
     orderExternalId: str | None = Field(None, min_length=1, description="The order ID of the external service. You can transfer a maximum of 100 items in one request") # type: ignore
 
 class Post(AppendableGateway):
@@ -466,10 +465,10 @@ class GetPackages(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/orders/packages')
 
-    deliveryPackageNumbers: List[str] | None = Field(None, min_length=1, description="Consignments numbers") # type: ignore
-    orderNumbers: List[int] | None = Field(None, min_length=1, description="Order serial numbers") # type: ignore
-    returnNumbers: List[int] | None= Field(None, min_length=1, description="Returns numbers") # type: ignore
-    rmaNumbers: List[int] | None = Field(None, min_length=1, description="RMA numbers") # type: ignore
+    deliveryPackageNumbers: list[str] | None = Field(None, min_length=1, description="Consignments numbers") # type: ignore
+    orderNumbers: list[int] | None = Field(None, min_length=1, description="Order serial numbers") # type: ignore
+    returnNumbers: list[int] | None= Field(None, min_length=1, description="Returns numbers") # type: ignore
+    rmaNumbers: list[int] | None = Field(None, min_length=1, description="RMA numbers") # type: ignore
     returnLabels: bool | None = Field(None, description="Return parcel labels")
 
 class PostPackages(AppendableGateway):

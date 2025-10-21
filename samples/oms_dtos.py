@@ -1,10 +1,10 @@
 from datetime import datetime, date, time
-from typing import List, Any
+from typing import Any
 
 from src.idosell._common import BooleanStrShortEnum, ErrorsModel
 from src.idosell.oms._common import (
-    ApiFlagEnum, ApplicationTypeEnum, ClientDeliveryAddressModel, ClientRequestInvoiceEnum, ClientWithoutAccountDataModel, DeliveryPackageParametersModel,
-    DevideProductsPutModel, DiscountCodeModel, DocumentTypeEppEnum, DocumentTypeOrdersGetEnum, DocumentTypePostEnum, DocumentsDeleteModel, DocumentsPostModel,
+    ApiFlagEnum, ClientDeliveryAddressModel, ClientRequestInvoiceEnum, ClientWithoutAccountDataModel, DeliveryPackageParametersModel,
+    DevideProductsPutModel, DiscountCodeModel, DocumentTypeOrdersGetEnum, DocumentTypePostEnum, DocumentsDeleteModel, DocumentsPostModel,
     EmailProcessingConsentEnum, EventTypeEnum, ImagesDeleteModel, ImagesImagesPostModel, ImagesOrderModel, ImagesSettingsPostModel, ImagesTypeEnum,
     OpinionsRateEnum, OrderPackagesPostPutModel, OrderPaymentTypeEnum, OrderProductsModel, OrderSettledAtPriceEnum, OrderStatusEnum, OrderTypeEnum, OrdersPostModel,
     OrdersPutModel, PackagesPostPutModel, ParameterValuesModel, PayerAddressModel, PriceFormulaParametersModel, ProductBundleItemsModel, ProductIdentModel,
@@ -14,8 +14,7 @@ from src.idosell.oms._common import (
 from src.idosell.oms.orders import (
     DeleteDocuments as OmsOrdersDeleteDocuments, DeleteDocumentsOmsOrdersParamsModel, DeleteImages as OmsOrdersDeleteImages, DeleteImagesOmsOrdersParamsModel,
     GetAnalytics as OmsOrdersGetAnalytics, GetAuctionDetails as OmsOrdersGetAuctionDetails,
-    GetDocuments as OmsOrdersGetDocuments, GetExportdocumentsEPP as OmsOrdersGetExportdocumentsEPP,
-    GetExportdocumentsJPK as OmsOrdersGetExportdocumentsJPK, GetHandler as OmsOrdersGetHandler,
+    GetDocuments as OmsOrdersGetDocuments, GetExportdocumentsJPK as OmsOrdersGetExportdocumentsJPK, GetHandler as OmsOrdersGetHandler,
     GetHistory as OmsOrdersGetHistory, GetImages as OmsOrdersGetImages,
     GetLabels as OmsOrdersGetLabels,GetOpinionsRate as OmsOrdersGetOpinionsRate,
     Get as OmsOrdersGet, GetPackages as OmsOrdersGetPackages,
@@ -101,7 +100,7 @@ from src.idosell.oms.subscriptions import (
     ValueModel
 )
 
-oms_delete: List[Any] = [ # type: ignore
+oms_delete: list[Any] = [ # type: ignore
     OmsOrdersDeleteDocuments(
         params = DeleteDocumentsOmsOrdersParamsModel(
             documents = [DocumentsDeleteModel(orderSerialNumber = 1, id = 1)]
@@ -118,7 +117,7 @@ oms_delete: List[Any] = [ # type: ignore
     ),
 ]
 
-oms_get: List[Any] = [ # type: ignore
+oms_get: list[Any] = [ # type: ignore
     OmsOrdersGetAnalytics(), # type: ignore
     OmsOrdersGetAuctionDetails(), # type: ignore
     OmsOrdersGetDocuments(
@@ -192,7 +191,7 @@ oms_get: List[Any] = [ # type: ignore
     OmsRmaGetStatuses(), # type: ignore
 ]
 
-oms_post: List[Any] = [ # type: ignore
+oms_post: list[Any] = [ # type: ignore
     OmsOrdersPostDocumentsCreate(
         params = PostDocumentsCreateOmsOrdersParamsModel(
             orderSerialNumbers = [1],
@@ -669,7 +668,7 @@ oms_post: List[Any] = [ # type: ignore
     ),
 ]
 
-oms_put: List[Any] = [ # type: ignore
+oms_put: list[Any] = [ # type: ignore
     OmsOrdersPutClient(
         params = PutClientOmsOrdersParamsModel(
             orderSerialNumber = 1,
@@ -953,7 +952,7 @@ oms_put: List[Any] = [ # type: ignore
     ),
 ]
 
-oms_search: List[Any] = [ # type: ignore
+oms_search: list[Any] = [ # type: ignore
     OmsOrdersSearchOpinions(
         params = SearchOpinionsOmsOrdersParamsModel() # type: ignore
     ),

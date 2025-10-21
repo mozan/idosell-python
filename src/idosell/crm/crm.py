@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import BooleanStrLongEnum, BooleanStrShortEnum, PageableCamelGateway
@@ -68,23 +67,23 @@ class PostParamsSearchModel(BaseModel):
     clientRegistrationDate: ClientRegistrationDateModel | None = Field(None, description="Date range of customer registrations")
     clientLastLoginDate: ClientLastLoginDateModel | None = Field(None, description="Date of last customer login (YYYY-MM-DD)")
     clientType: ClientTypeEnum | None = Field(None, description="Customer type")
-    clientAffiliateProgram: List[ClientAffiliateProgramEnum] | None = Field(None, description="Information about the loyalty program")
+    clientAffiliateProgram: list[ClientAffiliateProgramEnum] | None = Field(None, description="Information about the loyalty program")
     newsletterEmailApproval: str | None = Field(None, description="Permission to E-mail Newsletter")
     newsletterSmsApproval: str | None = Field(None, description="Permission to SMS Newsletter")
     searchByShops: SearchByShopEnum | None = Field(None, description="Shops")
     clientLoyaltyCard: ClientLoyaltyCardModel | None = Field(None, description="Loyalty cards")
     clientCodeExternal: str | None = Field(None, description="External system code")
-    clientCodesExternal: List[str] | None = Field(None, description="External system codes list")
+    clientCodesExternal: list[str] | None = Field(None, description="External system codes list")
     clientFirstName: str | None = Field(None, description="Customer's first name")
     clientLastName: str | None = Field(None, description="Customer's last name")
     clientNip: str | None = Field(None, description="Customer Tax no")
     clientFirm: str | None = Field(None, description="Customer's company name")
     clientEmail: str | None = Field(None, description="E-mail address")
-    newsletterEmailApprovalsData: List[NewsletterEmailApprovalsDataModel] | None = Field(None, description="List of shops where a customer agreed or didn't agree to receive email newsletter")
-    newsletterSmsApprovalsData: List[NewsletterSmsApprovalsDataModel] | None = Field(None, description="List of shops where a customer agreed or didn't agree to receive sms newsletter")
+    newsletterEmailApprovalsData: list[NewsletterEmailApprovalsDataModel] | None = Field(None, description="List of shops where a customer agreed or didn't agree to receive email newsletter")
+    newsletterSmsApprovalsData: list[NewsletterSmsApprovalsDataModel] | None = Field(None, description="List of shops where a customer agreed or didn't agree to receive sms newsletter")
     clientLoyaltyCardNumber: str | None = Field(None, description="Customer loyalty card number, omitted when has_loyalty_card = no")
     orders: OrderModel | None = Field(None, description="Orders")
-    returnElements: List[str] | None = Field(None, description="Elements to be returned by the endpoint. By default all elements are returned")
+    returnElements: list[str] | None = Field(None, description="Elements to be returned by the endpoint. By default all elements are returned")
     settingsExactSearch: bool | None = Field(None, description="Determines, if data - that will be returned - will be exactly as entered values, or values should be fragment of customer data")
 
 

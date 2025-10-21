@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt, model_validator
 
 from src.idosell._common import Gateway, PageableCamelGateway
@@ -57,11 +56,11 @@ class PutGroupsCrmDiscountsParamsModel(BaseModel):
 
 class DeleteGroupsProductsCrmDiscountsParamsModel(BaseModel):
     discountGroupId: StrictInt | None = Field(None, ge=1, description="Discount group ID")
-    products: List[int] | None = Field(None, description="Products list")
-    producers: List[int] | None = Field(None, description="Brands")
-    series: List[int] | None = Field(None, description="Series")
-    categories: List[int] | None = Field(None, description="List of categories in which sought products are present")
-    menuItems: List[int] | None = Field(None, description="Menu elements")
+    products: list[int] | None = Field(None, description="Products list")
+    producers: list[int] | None = Field(None, description="Brands")
+    series: list[int] | None = Field(None, description="Series")
+    categories: list[int] | None = Field(None, description="List of categories in which sought products are present")
+    menuItems: list[int] | None = Field(None, description="Menu elements")
 
     @model_validator(mode='after')
     def validate_at_least_one_field(self):
@@ -73,11 +72,11 @@ class DeleteGroupsProductsCrmDiscountsParamsModel(BaseModel):
 
 class PutGroupsProductsCrmDiscountsParamsModel(BaseModel):
     discountGroupId: StrictInt = Field(..., ge=1, description="Discount group ID")
-    products: List[ProductsDiscountsModel] = Field(..., description="Products list")
-    producers: List[ProducersModel] = Field(..., description="Brands")
-    series: List[SeriesModel] = Field(..., description="Series")
-    categories: List[CategoriesModel] = Field(..., description="List of categories in which sought products are present")
-    menuItems: List[MenuItemsModel] = Field(..., description="Menu elements")
+    products: list[ProductsDiscountsModel] = Field(..., description="Products list")
+    producers: list[ProducersModel] = Field(..., description="Brands")
+    series: list[SeriesModel] = Field(..., description="Series")
+    categories: list[CategoriesModel] = Field(..., description="List of categories in which sought products are present")
+    menuItems: list[MenuItemsModel] = Field(..., description="Menu elements")
 
 
 # --- ENDPOINTS
@@ -112,8 +111,8 @@ class GetGroups(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/discounts/groups')
 
-    groupNumbers: Optional[List[int]] = Field(default=None, min_length=1, description="List of group numbers (each >=1)")  # type: ignore
-    returnElements: Optional[List[ReturnElementsEnum]] = Field(default=None, min_length=1, description="Elements to be returned by the endpoint. By default all elements are returned")  # type: ignore
+    groupNumbers: list[int] | None = Field(default=None, min_length=1, description="List of group numbers (each >=1)")  # type: ignore
+    returnElements: list[ReturnElementsEnum] | None = Field(default=None, min_length=1, description="Elements to be returned by the endpoint. By default all elements are returned")  # type: ignore
 
 class PostGroups(Gateway):
     """

@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 
 from src.idosell._common import BooleanStrShortEnum
 from src.idosell.pim.products._common import (
@@ -50,7 +50,7 @@ from src.idosell.pim.products.product.promotion import (
 )
 
 
-pim_products_product_delete: List[Any] = [
+pim_products_product_delete: list[Any] = [
     PimProductsProductDelete(
         params = DeletePimProductsProductProductParamsModel(
             products = [ProductsDeleteModel(productId = 1, productSizeCodeExternal = 'abcd')])
@@ -70,7 +70,7 @@ pim_products_product_delete: List[Any] = [
     ),
 ]
 
-pim_products_product_get: List[Any] = [
+pim_products_product_get: list[Any] = [
     PimProductsProductGetToFacebookCatalog(
         facebookCatalogId = 1,
         shopId = 1
@@ -80,7 +80,7 @@ pim_products_product_get: List[Any] = [
     ),
 ]
 
-pim_products_product_search: List[Any] = [
+pim_products_product_search: list[Any] = [
     PimProductsProductSearch(
         resultsPage = 0,
         resultsLimit = 10,
@@ -88,7 +88,7 @@ pim_products_product_search: List[Any] = [
     ),
 ]
 
-pim_products_product_post: List[Any] = [
+pim_products_product_post: list[Any] = [
     PimProductsProductPostToFacebookCatalog(
         params = PostToFacebookCatalogPimProductsProductFacebookParamsModel(
             facebookCatalogId = 1,
@@ -426,7 +426,7 @@ pim_products_product_post: List[Any] = [
     )
 ]
 
-pim_products_product_put: List[Any] = [
+pim_products_product_put: list[Any] = [
     PimProductsProductPut(
         params = PutPimProductsProductProductParamsModel(
             settings = SettingsPutModel(

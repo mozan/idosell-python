@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import Gateway
@@ -7,11 +6,11 @@ from src.idosell._common import Gateway
 # --- DTOs
 class DeleteProductsToPromotionPimProductsProductPromotionParamsModel(BaseModel):
     promotionId: StrictInt = Field(..., ge=1, description="Special offer ID")
-    products: List[int] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[int] = Field(..., min_length=1, description="Products list") # type: ignore
 
 class PostProductsToPromotionPimProductsProductPromotionParamsModel(BaseModel):
     promotionId: StrictInt = Field(..., description="Special offer ID")
-    products: List[int] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[int] = Field(..., min_length=1, description="Products list") # type: ignore
 
 
 # --- ENDPOINTS

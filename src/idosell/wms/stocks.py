@@ -1,5 +1,4 @@
 from __future__ import annotations
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt, StrictStr
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway, PageableCamelGateway, PageableSnakeGateway
@@ -16,7 +15,7 @@ class DeleteDocumentsWmsStocksParamsModel(BaseModel):
     id: int | str = Field(..., description="Document identifier")
 
 class DeleteProductsWmsStocksParamsModel(BaseModel):
-    products: List[ProductsDeleteModel] = Field(..., description="List of products")
+    products: list[ProductsDeleteModel] = Field(..., description="List of products")
     type: DocumentTypeEnum = Field(..., description="...")
     id: StrictInt = Field(..., description="Document identifier")
 
@@ -37,7 +36,7 @@ class PostDocumentsWmsStocksParamsModel(BaseModel):
     queueType: DocumentsQueueTypeEnum = Field(..., description="Methods of stock level correction")
 
 class PostProductsWmsStocksParamsModel(BaseModel):
-    products: List[ProductsPostPutModel] = Field(..., description="Products list")
+    products: list[ProductsPostPutModel] = Field(..., description="Products list")
     type: DocumentTypeEnum = Field(..., description="...")
     id: StrictInt = Field(..., description="Document identifier")
 
@@ -68,7 +67,7 @@ class PutDocumentsWmsStocksParamsModel(BaseModel):
     verificationUser: str = Field(..., description="Users verification")
 
 class PutProductsWmsStocksParamsModel(BaseModel):
-    products: List[ProductsPostPutModel] = Field(..., description="Products list")
+    products: list[ProductsPostPutModel] = Field(..., description="Products list")
     type: DocumentTypeEnum = Field(..., description="...")
     id: StrictInt = Field(..., ge=1, description="Document identifier")
 
@@ -124,8 +123,8 @@ class GetDocuments(PageableCamelGateway):
 
     stockDocumentType: DocumentTypeFullEnum | None = Field(None, description="Document type")
     stockDocumentStatus: StockDocumentStatusEnum | None = Field(None, description="Document type")
-    stockDocumentsIds: List[int] | None = Field(None, description="Document identifier")
-    stockDocumentsNumbers: List[StrictStr] | None = Field(None, description="Document number")
+    stockDocumentsIds: list[int] | None = Field(None, description="Document identifier")
+    stockDocumentsNumbers: list[StrictStr] | None = Field(None, description="Document number")
     productsInPreorder: BooleanStrShortEnum | None = Field(None, description="Products available in presales")
     dateRange: DateRangeModel | None = Field(None, description="Date range")
 

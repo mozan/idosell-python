@@ -1,5 +1,4 @@
 from enum import IntEnum
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway
@@ -36,7 +35,7 @@ class SettingsModel(BaseModel):
 class PutCardsCrmMembershipParamsModel(BaseModel):
     id: StrictInt = Field(..., ge=1, description="Customer ID")
     login: str = Field(..., min_length=1, description="Customer's login (non-empty)")
-    membership_cards: List[MembershipCardsModel] = Field(..., min_length=1, description="Membership cards to assign")  # type: ignore
+    membership_cards: list[MembershipCardsModel] = Field(..., min_length=1, description="Membership cards to assign")  # type: ignore
     settings: SettingsModel = Field(..., description="Settings")
 
 
@@ -50,8 +49,8 @@ class GetCards(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/clients/membershipCards')
 
-    id: Optional[StrictInt] = Field(default=None, ge=1, description="Customer ID (>=1)")
-    login: Optional[str] = Field(default=None, min_length=1, description="Customer's login (non-empty)")
+    id: StrictInt | None = Field(default=None, ge=1, description="Customer ID (>=1)")
+    login: str | None = Field(default=None, min_length=1, description="Customer's login (non-empty)")
 
 class PutCards(AppendableGateway):
     """

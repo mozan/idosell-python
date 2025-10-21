@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 
 from src.idosell.pim._common import (
     EntityTypeEnum, LangDataModel, MenuListPostModel, SettingsModel, MenuListPutModel,
@@ -42,7 +42,7 @@ from src.idosell.pim.warranties import (
     PutLanguageData as PimWarrantiesPutLanguageData, Put as PimWarrantiesPut, PutLanguageDataPimWarrantiesParamsModel, PutPimWarrantiesParamsModel
 )
 
-pim_delete: List[Any] = [
+pim_delete: list[Any] = [
     PimMenuDelete(menu_list=[MenuListDeleteModel(
         shop_id=1,
         menu_id=1,
@@ -58,7 +58,7 @@ pim_delete: List[Any] = [
     ),
 ]
 
-pim_get: List[Any] = [
+pim_get: list[Any] = [
     PimMenuGetFilter(), # type: ignore
     PimMenuGet(), # type: ignore
     PimResponsibilityGetEntities(), # type: ignore
@@ -68,7 +68,7 @@ pim_get: List[Any] = [
     PimWarrantiesGet() # type: ignore
 ]
 
-pim_post: List[Any] = [
+pim_post: list[Any] = [
     PimMenuPost(
         menu_list = [MenuListPostModel(
             shop_id = 1,
@@ -174,7 +174,7 @@ pim_post: List[Any] = [
     )
 ]
 
-pim_put: List[Any] = [
+pim_put: list[Any] = [
     PimMenuPutFilter(
         params = PutFilterPimMenuParamsModel(
             shopId=1,

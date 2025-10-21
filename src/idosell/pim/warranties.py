@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr
 
 from src.idosell._common import AppendableGateway, Gateway, PageableSnakeGateway
@@ -7,16 +6,16 @@ from src.idosell.pim._common import LangDataWarrantiesModel, ResultsOrderWarrant
 
 # --- DTOs
 class DeletePimWarrantiesParamsModel(BaseModel):
-    warranty_ids: List[str] = Field(..., description="...")
+    warranty_ids: list[str] = Field(..., description="...")
 
 class PostPimWarrantiesParamsModel(BaseModel):
-    warranties: List[WarrantiesPostModel] = Field(..., description="...")
+    warranties: list[WarrantiesPostModel] = Field(..., description="...")
 
 class PutLanguageDataPimWarrantiesParamsModel(BaseModel):
     lang_data: LangDataWarrantiesModel = Field(..., description="...")
 
 class PutPimWarrantiesParamsModel(BaseModel):
-    warranties: List[WarrantiesPutModel] = Field(..., description="...")
+    warranties: list[WarrantiesPutModel] = Field(..., description="...")
 
 
 # --- ENDPOINTS
@@ -29,7 +28,7 @@ class GetCountTotal(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/warranties/countTotal')
 
-    warranty_ids: List[str] | None = Field(None, description="...")
+    warranty_ids: list[str] | None = Field(None, description="...")
 
 class PutLanguageData(AppendableGateway):
     """
@@ -62,7 +61,7 @@ class Get(PageableSnakeGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/warranties/warranties')
 
-    warranty_ids: List[str] | None = Field(None, description="...")
+    warranty_ids: list[str] | None = Field(None, description="...")
     results_order: ResultsOrderWarrantiesGetModel | None = Field(None, description="...")
 
 class Post(AppendableGateway):

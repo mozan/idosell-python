@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 
 from src.idosell._common import BooleanStrShortEnum, ErrorsModel
 from src.idosell.pim.products._common import (
@@ -142,7 +142,7 @@ from src.idosell.pim.products.synchronization import (
 )
 
 
-pim_products_delete: List[Any] = [
+pim_products_delete: list[Any] = [
     PimProductsBrandsDelete(
         params = DeletePimProductsBrandsParamsModel(ids = [1])
     ),
@@ -194,7 +194,7 @@ pim_products_delete: List[Any] = [
 ]
 
 
-pim_products_get: List[Any] = [
+pim_products_get: list[Any] = [
     PimProductsBrandsGetFilter(
         shopId = 1,
         languageId = 'pol',
@@ -236,7 +236,7 @@ pim_products_get: List[Any] = [
     PimProductsStrikethroughGetPrices(), # type: ignore
 ]
 
-pim_products_post: List[Any] = [
+pim_products_post: list[Any] = [
     PimProductsBrandsPost(
         params = PostPimProductsBrandsParamsModel(producers=[ProducerPostModel(
             nameInPanel="Test Producer",
@@ -337,7 +337,7 @@ pim_products_post: List[Any] = [
     ),
 ]
 
-pim_products_put: List[Any] = [
+pim_products_put: list[Any] = [
     PimProductsBrandsPutFilter(
         params = PutFilterPimProductsBrandsParamsModel(
             shopId = 1,
@@ -936,7 +936,7 @@ pim_products_put: List[Any] = [
     ),
 ]
 
-pim_products_search: List[Any] = [
+pim_products_search: list[Any] = [
     PimProductsCategoriesSearchIdosell(
         params = SearchIdosellPimProductsCategoriesParamsModel(
             languagesIds = None,

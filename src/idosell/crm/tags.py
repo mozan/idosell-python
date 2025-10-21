@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway
@@ -32,7 +31,7 @@ class PostCrmTagsParamsModel(BaseModel):
 
 class PutCrmTagsParamsModel(BaseModel):
     clientId: StrictInt = Field(..., ge=1, description="Unique client's number")
-    clientTags: List[ClientTagsModel] = Field(..., description="...")
+    clientTags: list[ClientTagsModel] = Field(..., description="...")
 
 
 # --- ENDPOINTS
@@ -56,7 +55,7 @@ class Delete(AppendableGateway):
     _method: str = PrivateAttr(default='POST')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/clients/tags/delete')
 
-    params: List[DeleteCrmTagsParamsModel] = Field(..., description="Parameters transmitted to method")
+    params: list[DeleteCrmTagsParamsModel] = Field(..., description="Parameters transmitted to method")
 
 class Get(Gateway):
     """
@@ -67,7 +66,7 @@ class Get(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/clients/tags')
 
-    clientId: Optional[StrictInt] = Field(default=None, ge=1, description="Unique client's number")
+    clientId: StrictInt | None = Field(default=None, ge=1, description="Unique client's number")
 
 class Post(AppendableGateway):
     """

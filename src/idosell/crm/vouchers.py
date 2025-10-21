@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AllYNEnum, AppendableGateway, PageableCamelGateway
@@ -28,7 +27,7 @@ class VoucherPostPutBaseModel(BaseModel):
     name: str = Field(..., description="Name")
     expirationDate: str = Field(..., description="Voucher expiration date")
     balance: BalanceModel = Field(..., description="Voucher balance")
-    shops: List[int] = Field(..., description="List of shops the voucher is active in")
+    shops: list[int] = Field(..., description="List of shops the voucher is active in")
     note: str = Field(..., description="...")
 
 class VoucherPostModel(VoucherPostPutBaseModel):
@@ -44,16 +43,16 @@ class PutBlockCrmVouchersParamsModel(BaseModel):
     number: str = Field(..., min_length=1, description="Number")
 
 class PutUnblockCrmVouchersParamsModel(BaseModel):
-    vouchers: List[VoucherModel] = Field(..., min_length=1, description="...") # type: ignore
+    vouchers: list[VoucherModel] = Field(..., min_length=1, description="...") # type: ignore
 
 class DeleteCrmVouchersParamsModel(BaseModel):
-    vouchers: List[VoucherModel] = Field(..., min_length=1, description="...") # type: ignore
+    vouchers: list[VoucherModel] = Field(..., min_length=1, description="...") # type: ignore
 
 class PostCrmVouchersParamsModel(BaseModel):
-    vouchers: List[VoucherPostModel] = Field(..., min_length=1, description="...") # type: ignore
+    vouchers: list[VoucherPostModel] = Field(..., min_length=1, description="...") # type: ignore
 
 class PutCrmVouchersParamsModel(BaseModel):
-    vouchers: List[VoucherPutModel] = Field(..., min_length=1, description="...") # type: ignore
+    vouchers: list[VoucherPutModel] = Field(..., min_length=1, description="...") # type: ignore
 
 
 # --- ENDPOINTS
@@ -108,20 +107,20 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/vouchers/vouchers')
 
-    vouchers: Optional[List[VoucherModel]] = Field(default=None, min_length=1, description="List of vouchers to search (min 1)")  # type: ignore
-    voucherTypeId: Optional[StrictInt] = Field(default=None, ge=1, description="Discount code campaign ID (>=1)")
-    name: Optional[str] = Field(default=None, min_length=1, description="Name (non-empty)")
-    status: Optional[StatusFullEnum] = Field(default=None, description="Status")
-    generetedFromAffiliateProgram: Optional[AllYNEnum] = Field(default=None, description="Generated in the affiliate program (y/n)")
-    noteContain: Optional[str] = Field(default=None, min_length=1, description="Notes contain (non-empty)")
-    balanceFrom: Optional[float] = Field(default=None, ge=0, description="Value from (>=0)")
-    balanceTo: Optional[float] = Field(default=None, ge=0, description="Value to (>=0)")
-    expirationDateFrom: Optional[str] = Field(default=None, min_length=1, description="Expiration date from (non-empty)")
-    expirationDateTo: Optional[str] = Field(default=None, min_length=1, description="Expiration date to (non-empty)")
-    issueDateFrom: Optional[str] = Field(default=None, min_length=1, description="Created from (non-empty)")
-    issueDateTo: Optional[str] = Field(default=None, min_length=1, description="Created to (non-empty)")
-    usageDateFrom: Optional[str] = Field(default=None, min_length=1, description="To be used from (non-empty)")
-    usageDateTo: Optional[str] = Field(default=None, min_length=1, description="To be used to (non-empty)")
+    vouchers: list[VoucherModel] | None = Field(default=None, min_length=1, description="List of vouchers to search (min 1)")  # type: ignore
+    voucherTypeId: StrictInt | None = Field(default=None, ge=1, description="Discount code campaign ID (>=1)")
+    name: str | None = Field(default=None, min_length=1, description="Name (non-empty)")
+    status: StatusFullEnum | None = Field(default=None, description="Status")
+    generetedFromAffiliateProgram: AllYNEnum | None = Field(default=None, description="Generated in the affiliate program (y/n)")
+    noteContain: str | None = Field(default=None, min_length=1, description="Notes contain (non-empty)")
+    balanceFrom: float | None = Field(default=None, ge=0, description="Value from (>=0)")
+    balanceTo: float | None = Field(default=None, ge=0, description="Value to (>=0)")
+    expirationDateFrom: str | None = Field(default=None, min_length=1, description="Expiration date from (non-empty)")
+    expirationDateTo: str | None = Field(default=None, min_length=1, description="Expiration date to (non-empty)")
+    issueDateFrom: str | None = Field(default=None, min_length=1, description="Created from (non-empty)")
+    issueDateTo: str | None = Field(default=None, min_length=1, description="Created to (non-empty)")
+    usageDateFrom: str | None = Field(default=None, min_length=1, description="To be used from (non-empty)")
+    usageDateTo: str | None = Field(default=None, min_length=1, description="To be used to (non-empty)")
 
 class Post(AppendableGateway):
     """

@@ -1,4 +1,3 @@
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway
@@ -8,7 +7,7 @@ from src.idosell._common import AppendableGateway, Gateway
 class ClientsPostPutModel(BaseModel):
     clientLogin: str = Field(..., description="Customer's login")
     clientCodeExternal: str = Field(..., description="External system code")
-    shopsIds: List[StrictInt] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
+    shopsIds: list[StrictInt] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
     currencyId: str = Field(..., description="Currency ID")
     clientDeliveryAddressFirstName: str = Field(..., description="Recipient's first name")
     clientDeliveryAddressLastName: str = Field(..., description="Recipient's last name")
@@ -40,11 +39,11 @@ class DeleteCrmDeliveryaddressParamsModel(BaseModel):
     clients: ClientDeliveryAddressModel = Field(..., description="Customer data")
 
 class PostCrmDeliveryaddressParamsModel(BaseModel):
-    clients: List[ClientsDeliveryAddressPostModel] = Field(..., description="Customer data")
+    clients: list[ClientsDeliveryAddressPostModel] = Field(..., description="Customer data")
     clientsSettings: ClientSettingsDeliveryAddressModel = Field(..., description="Settings")
 
 class PutCrmDeliveryaddressParamsModel(BaseModel):
-    clients: List[ClientsDeliveryAddressPutModel] = Field(..., description="Customer data")
+    clients: list[ClientsDeliveryAddressPutModel] = Field(..., description="Customer data")
     clientsSettings: ClientSettingsDeliveryAddressModel = Field(..., description="Settings")
 
 
@@ -69,9 +68,9 @@ class Get(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/clients/deliveryAddress')
 
-    clientCodesExternal: Optional[List[str]] = Field(default=None, min_length=1, description="External system codes list") # type: ignore
-    clientIds: Optional[List[int]] = Field(default=None, min_length=1, description="Customer ID (each >= 1)") # type: ignore
-    clientLogins: Optional[List[str]] = Field(default=None, min_length=1, description="Customer's login") # type: ignore
+    clientCodesExternal: list[str] | None = Field(default=None, min_length=1, description="External system codes list") # type: ignore
+    clientIds: list[int] | None = Field(default=None, min_length=1, description="Customer ID (each >= 1)") # type: ignore
+    clientLogins: list[str] | None = Field(default=None, min_length=1, description="Customer's login") # type: ignore
 
 class Post(AppendableGateway):
     """

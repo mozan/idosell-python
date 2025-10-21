@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway, PageableCamelGateway
@@ -27,11 +26,11 @@ class EntitiesResponsibilityPutModel(EntitiesResponsibilityModel):
     id: StrictInt = Field(..., ge=1, description="Identificator of the entity")
 
 class PostEntitiesPimResponsabilityParamsModel(BaseModel):
-    entities: List[EntitiesResponsibilityPostModel] = Field(..., min_length=1, max_length=100, description="...")
+    entities: list[EntitiesResponsibilityPostModel] = Field(..., min_length=1, max_length=100, description="...")
     type: EntityTypeEnum = Field(..., description="Type of entity")
 
 class PutEntitiesPimResponsabilityParamsModel(BaseModel):
-    entities: List[EntitiesResponsibilityPutModel] = Field(..., min_length=1, max_length=100, description="...")
+    entities: list[EntitiesResponsibilityPutModel] = Field(..., min_length=1, max_length=100, description="...")
     type: EntityTypeEnum = Field(..., description="Type of entity")
 
 
@@ -45,7 +44,7 @@ class GetEntities(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/responsibility/entities')
 
-    code: List[str] | None = Field(None, description="List of codes")
+    code: list[str] | None = Field(None, description="List of codes")
     type: str | None = Field(None, description="Type of entity")
 
 class PostEntities(AppendableGateway):
@@ -79,5 +78,5 @@ class DeleteEntities(Gateway):
     _method: str = PrivateAttr(default='DELETE')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/responsibility/entities')
 
-    code: List[str] = Field(..., description="List of codes")
+    code: list[str] = Field(..., description="List of codes")
     type: str = Field(..., description="Type of entity")

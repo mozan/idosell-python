@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway
@@ -44,10 +43,10 @@ class EntitiesModel(BaseModel):
     shopId: StrictInt | None = Field(None, description="Shop Id")
     date: str | None = Field(None, description="Date of creating an entry")
     visible: BooleanStrShortEnum | None = Field(None, description="Entry visibility")
-    visibleOnSitesList: List[VisibleOnSitesListEntriesModel] | None = Field(None, description="List of pages on which the entry is to be published")
-    products: List[ProductsEntriesModel] | None = Field(None, description="Products list")
+    visibleOnSitesList: list[VisibleOnSitesListEntriesModel] | None = Field(None, description="List of pages on which the entry is to be published")
+    products: list[ProductsEntriesModel] | None = Field(None, description="Products list")
     pictureData: PictureEntriesDataModel | None = Field(None, description="Photo")
-    langs: List[LangsEntriesModel] | None = Field(None, description="Element including entry content in selected languages")
+    langs: list[LangsEntriesModel] | None = Field(None, description="Element including entry content in selected languages")
     titleLinkType: str | None = Field(None, description="Type of title and shortcut linking: fullContentLink - link to the subpage with full content, givenUrlLink - link to the given URL, noLink - static element")
     link: str | None = Field(None, description="Provided URL (for link to specified URL option)")
 
@@ -83,8 +82,8 @@ class Get(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/entries/entries')
 
-    entryId: Optional[StrictInt] = Field(None, ge=1, description="Entry ID")
-    langId: Optional[str] = Field(None, min_length=1, description="Language ID")
+    entryId: StrictInt | None = Field(None, ge=1, description="Entry ID")
+    langId: str | None = Field(None, min_length=1, description="Language ID")
 
 class Post(AppendableGateway):
     """
@@ -128,4 +127,4 @@ class GetSources(Gateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/entries/sources')
 
-    type: Optional[List[EntrySourceTypeEnum]] = Field(None, min_length=1, description="The type of source for which we want to get service identifiers") # type: ignore
+    type: list[EntrySourceTypeEnum] | None = Field(None, min_length=1, description="The type of source for which we want to get service identifiers") # type: ignore

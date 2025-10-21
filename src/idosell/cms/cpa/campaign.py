@@ -1,4 +1,4 @@
-from typing import Annotated, List, Optional
+from typing import Annotated
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway, PageableCamelGateway
@@ -7,7 +7,7 @@ from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway,
 # --- DTOs
 class CampaignModel(BaseModel):
     description: str | None = Field(None, description="Snippet campaign internal description")
-    shop: List[StrictInt] | None = Field(None, min_length=1, description="Shop ids where code snippets are active") # type: ignore
+    shop: list[StrictInt] | None = Field(None, min_length=1, description="Shop ids where code snippets are active") # type: ignore
     active: BooleanStrShortEnum | None = Field(None, description="Whether the snippet is active")
 
 class PostCampaignModel(CampaignModel):
@@ -19,10 +19,10 @@ class PutCampaignModel(CampaignModel):
     name: str | None = Field(None, description="Snippet campaign name")
 
 class PostCmsCpaCampaignParamsModel(BaseModel):
-    campaigns: List[PostCampaignModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
+    campaigns: list[PostCampaignModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 class PutCmsCpaCampaignParamsModel(BaseModel):
-    campaigns: List[PutCampaignModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
+    campaigns: list[PutCampaignModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 
 # --- ENDPOINTS
@@ -35,8 +35,8 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/cpa/campaign')
 
-    shopId: Optional[List[Annotated[int, Field(ge=1)]]] = Field(default=None, min_length=1, description="List of shop identifiers")  # type: ignore
-    id: Optional[List[Annotated[int, Field(ge=1)]]] = Field(default=None, min_length=1, description="List of identifiers")  # type: ignore
+    shopId: list[Annotated[int, Field(ge=1)]] | None = Field(default=None, min_length=1, description="List of shop identifiers")  # type: ignore
+    id: list[Annotated[int, Field(ge=1)]] | None = Field(default=None, min_length=1, description="List of identifiers")  # type: ignore
 
 class Post(AppendableGateway):
     """
@@ -69,4 +69,4 @@ class Delete(Gateway):
     _method: str = PrivateAttr(default='DELETE')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/cpa/campaign')
 
-    id: List[int] = Field(..., min_length=1, max_length=100, description="List of identifiers")  # type: ignore
+    id: list[int] = Field(..., min_length=1, max_length=100, description="List of identifiers")  # type: ignore

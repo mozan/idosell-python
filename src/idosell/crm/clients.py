@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrLongEnum, BooleanStrShortEnum, Gateway, PageableCamelGateway
@@ -67,7 +66,7 @@ class ClientLastModificationDateModel(BaseModel):
 
 class DeliveryDateModel(BaseModel):
     deliveryDate: str = Field(..., description="Delivery date in format: Y-m-d")
-    deliveryHours: List[str] = Field(..., description="Delivery time in format: H:i")
+    deliveryHours: list[str] = Field(..., description="Delivery time in format: H:i")
 
 class LastPurchaseDateModel(BaseModel):
     from_: str = Field(..., description="Start date (YYYY-MM-DD)", alias="from")
@@ -100,18 +99,18 @@ class PostCrmClientsClientsModel(BaseModel):
     wholesaler: bool = Field(False, description="Determines, whether client is a wholesaler")
     client_type: ClientTypeEnum = Field(..., description="Customer type")
     language: str = Field(..., description="Customer language ID")
-    shops: List[int] = Field(..., description="Determines, in which store account should be active")
+    shops: list[int] = Field(..., description="Determines, in which store account should be active")
     block_autosigning_to_shops: bool = Field(..., description="Defines availability of log in to other pages than the ones given in the element: shops ")
     currency: str = Field(..., description="Customer default currency (ISO-4217 (3 letters))")
-    delivery_dates: List[str] = Field(..., description="...")
+    delivery_dates: list[str] = Field(..., description="...")
     external_balance_value: float = Field(..., description="Customer account balance in external system")
     external_trade_credit_limit_value: float = Field(..., description="Debt limit")
     email_newsletter: BooleanStrShortEnum = Field(..., description="Have customer agreed to a newsletter. List of allowed parameters: 'y' - yes, 'n' - no. The value will be set in all shops in which the customer account is active")
     sms_newsletter: BooleanStrShortEnum = Field(..., description="Have customer agreed to a newsletter. List of allowed parameters: 'y' - yes, 'n' - no. The value will be set in all shops in which the customer account is active")
     client_group: StrictInt = Field(..., ge=1, description="Discount group ID")
     request_reference: str = Field(..., description="Field used for identifying request-response pairs for the endpoint")
-    newsletter_email_approvals: List[NewsletterEmailApprovalModel] = Field(..., description="List of shops where a customer agreed or didn't agree to receive email newsletter")
-    newsletter_sms_approvals: List[NewsletterSmsApprovalModel] = Field(..., description="List of shops where a customer agreed or didn't agree to receive sms newsletter")
+    newsletter_email_approvals: list[NewsletterEmailApprovalModel] = Field(..., description="List of shops where a customer agreed or didn't agree to receive email newsletter")
+    newsletter_sms_approvals: list[NewsletterSmsApprovalModel] = Field(..., description="List of shops where a customer agreed or didn't agree to receive sms newsletter")
     block_group_auto_assignment: bool = Field(..., description="Block assigning of discount groups automatically based on order history")
 
 class PutCrmClientsClientsModel(BaseModel):
@@ -133,18 +132,18 @@ class PutCrmClientsClientsModel(BaseModel):
     clientType: ClientTypeEnum = Field(..., description="Customer type")
     langId: str = Field(..., description="Customer language ID")
     blockLoginToOtherShops: bool = Field(..., description="Defines availability of log in to other pages than the ones given in the element: shops ")
-    shopsIds: List[int] = Field(..., description="Determines, in which store account should be active")
+    shopsIds: list[int] = Field(..., description="Determines, in which store account should be active")
     currencyId: str = Field(..., description="Currency ID")
     clientCodeExternal: str = Field(..., description="External system code")
-    deliveryDates: List[DeliveryDateModel] = Field(..., description="List with delivery dates and times")
+    deliveryDates: list[DeliveryDateModel] = Field(..., description="List with delivery dates and times")
     clientBalanceAmountExternal: float = Field(..., description="Customer account balance in external system")
     clientTradeCreditLimitExternal: float = Field(..., description="Debt limit")
     newsletterEmailApproval: bool = Field(..., description="Permission to E-mail Newsletter")
     newsletterSmsApproval: bool = Field(..., description="Permission to SMS Newsletter")
     clientGroupDiscountNumber: StrictInt = Field(..., ge=1, description="Discount group ID")
     requestReference: str = Field(..., description="Field used for identifying request-response pairs for the endpoint")
-    newsletterEmailApprovalsData: List[NewsletterEmailApprovalModel] = Field(..., description="List of shops where a customer agreed or didn't agree to receive email newsletter")
-    newsletterSmsApprovalsData: List[NewsletterSmsApprovalModel] = Field(..., description="List of shops where a customer agreed or didn't agree to receive sms newsletter")
+    newsletterEmailApprovalsData: list[NewsletterEmailApprovalModel] = Field(..., description="List of shops where a customer agreed or didn't agree to receive email newsletter")
+    newsletterSmsApprovalsData: list[NewsletterSmsApprovalModel] = Field(..., description="List of shops where a customer agreed or didn't agree to receive sms newsletter")
     clientActive: bool = Field(..., description="Is the customer active")
     numberOfDaysToPay: StrictInt = Field(..., ge=1, description="Number of days to pay for invoice")
     affiliateLogin: str = Field(..., description="ID of a partner who acquired a given customer")
@@ -159,10 +158,10 @@ class PostBalanceCrmClientsParamsModel(BaseModel):
     prepaidId: StrictInt = Field(..., ge=1, description="Order payment identifier")
 
 class PostCrmClientsParamsModel(BaseModel):
-    clients: List[PostCrmClientsClientsModel] = Field(..., description="Customer data")
+    clients: list[PostCrmClientsClientsModel] = Field(..., description="Customer data")
 
 class PutCrmClientsParamsModel(BaseModel):
-    clients: List[PutCrmClientsClientsModel] = Field(..., description="Customer data")
+    clients: list[PutCrmClientsClientsModel] = Field(..., description="Customer data")
 
 class SettingsPostModel(BaseModel):
     send_mail: bool = Field(False, description="Inform the customer with an email about the newly created account")
@@ -183,12 +182,12 @@ class GetBalance(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/clients/balance')
 
-    clientNumbers: Optional[List[int]] = Field(default=None, min_length=1, description="Customer Id (list, each >=1)") # type: ignore
-    textSearch: Optional[str] = Field(default=None, min_length=1, description="Text search through customer data")
-    active: Optional[BooleanStrLongEnum] = Field(default=None, description="Active (yes/no)")
-    hasTradeCredit: Optional[TradeCreditEnum] = Field(default=None, description="Trade credit")
-    lastPurchaseDate: Optional[LastPurchaseDateModel] = Field(default=None, description="Start and end date (YYYY-MM-DD)")
-    returnElements: Optional[List[str]] = Field(default=None, min_length=1, description="Elements to be returned by the endpoint. By default all elements are returned. Allowed: clientId, clientBalance, clientBalanceHistory") # type: ignore
+    clientNumbers: list[int] | None = Field(default=None, min_length=1, description="Customer Id (list, each >=1)") # type: ignore
+    textSearch: str | None = Field(default=None, min_length=1, description="Text search through customer data")
+    active: BooleanStrLongEnum | None = Field(default=None, description="Active (yes/no)")
+    hasTradeCredit: TradeCreditEnum | None = Field(default=None, description="Trade credit")
+    lastPurchaseDate: LastPurchaseDateModel | None = Field(default=None, description="Start and end date (YYYY-MM-DD)")
+    returnElements: list[str] | None = Field(default=None, min_length=1, description="Elements to be returned by the endpoint. By default all elements are returned. Allowed: clientId, clientBalance, clientBalanceHistory") # type: ignore
 
 class PostBalance(Gateway):
     """
@@ -211,16 +210,16 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/clients/clients')
 
-    clientsIds: Optional[List[int]] = Field(default=None, min_length=1, description="Customer numbers (each >=1)") # type: ignore
-    clientCodesExternal: Optional[List[str]] = Field(default=None, min_length=1, description="External system codes list (non-empty strings)") # type: ignore
-    clientTextSearch: Optional[str] = Field(default=None, min_length=1, description="Text search through customer data")
-    clientIsActive: Optional[BooleanStrLongEnum] = Field(default=None, description="Active (yes/no)")
-    clientHasTradeCredit: Optional[TradeCreditEnum] = Field(default=None, description="Trade credit")
-    clientLastPurchaseDate: Optional[ClientLastPurchaseDateModel] = Field(default=None, description="Date of last purchase")
-    clientsLastModificationDate: Optional[ClientLastModificationDateModel] = Field(default=None, description="Last modification date")
-    returnElements: Optional[List[str]] = Field(default=None, min_length=1, description="Elements to be returned by the endpoint. By default all elements are returned") # type: ignore
-    clientRegistrationDate: Optional[ClientRegistrationDateModel] = Field(default=None, description="Client Registration Date")
-    shopId: Optional[str] = Field(default=None, min_length=1, description="The ID of the shop, that client is assigned to")
+    clientsIds: list[int] | None = Field(default=None, min_length=1, description="Customer numbers (each >=1)") # type: ignore
+    clientCodesExternal: list[str] | None = Field(default=None, min_length=1, description="External system codes list (non-empty strings)") # type: ignore
+    clientTextSearch: str | None = Field(default=None, min_length=1, description="Text search through customer data")
+    clientIsActive: BooleanStrLongEnum | None = Field(default=None, description="Active (yes/no)")
+    clientHasTradeCredit: TradeCreditEnum | None = Field(default=None, description="Trade credit")
+    clientLastPurchaseDate: ClientLastPurchaseDateModel | None = Field(default=None, description="Date of last purchase")
+    clientsLastModificationDate: ClientLastModificationDateModel | None = Field(default=None, description="Last modification date")
+    returnElements: list[str] | None = Field(default=None, min_length=1, description="Elements to be returned by the endpoint. By default all elements are returned") # type: ignore
+    clientRegistrationDate: ClientRegistrationDateModel | None = Field(default=None, description="Client Registration Date")
+    shopId: str | None = Field(default=None, min_length=1, description="The ID of the shop, that client is assigned to")
 
 class Post(AppendableGateway):
     """

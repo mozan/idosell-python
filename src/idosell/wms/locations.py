@@ -1,5 +1,4 @@
 from __future__ import annotations
-from typing import List
 
 from pydantic import Field, PrivateAttr, StrictInt, StrictStr
 
@@ -20,4 +19,4 @@ class GetLocations(PageableCamelGateway):
     locationId: StrictInt | None = Field(None, ge=1, description="Warehouse location ID")
     locationCode: StrictStr | None = Field(None, min_length=1, description="Storage location code")
     stockId: StrictInt | None = Field(None, ge=1, description="Stock ID")
-    returnElements: List[ReturnElementsEnum] | None = Field(None, description="Elements to be returned by the endpoint. By default all elements are returned. Available values: locationName, locationPath, locationCode, stockId, products")
+    returnElements: list[ReturnElementsEnum] | None = Field(None, description="Elements to be returned by the endpoint. By default all elements are returned. Available values: locationName, locationPath, locationCode, stockId, products")

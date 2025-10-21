@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway, PageableCamelGateway
@@ -18,7 +17,7 @@ class PutVariablesModel(BaseModel):
     itemId: StrictInt = Field(..., ge=1, description="Identifier of the item in used module")
 
 class PutCmsConfigVariablesModel(BaseModel):
-    variables: List[PutVariablesModel] = Field(..., min_length=1, max_length=100, description="...")
+    variables: list[PutVariablesModel] = Field(..., min_length=1, max_length=100, description="...")
 
 
 # --- ENDPOINTS
@@ -32,8 +31,8 @@ class Get(PageableCamelGateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/config/variables')
 
     type: TypeConfigVariablesEnum = Field(TypeConfigVariablesEnum.SNIPPETS_CAMPAIGN, description="Which component is affected by the configuration")
-    item: List[int] | None = Field(None, min_length=1, description="List of item identifiers for given configuration type. Eg. snippet campaign identifiers") # type: ignore
-    key: List[str] | None = Field(None, min_length=1, description="List of configuration keys") # type: ignore
+    item: list[int] | None = Field(None, min_length=1, description="List of item identifiers for given configuration type. Eg. snippet campaign identifiers") # type: ignore
+    key: list[str] | None = Field(None, min_length=1, description="List of configuration keys") # type: ignore
 
 class Put(AppendableGateway):
     """
@@ -56,5 +55,5 @@ class Delete(Gateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/config/variables')
 
     type: TypeConfigVariablesEnum = Field(..., description="Which component is affected by the configuration")
-    item: List[int] | None = Field(None, description="List of item identifiers for given configuration type. Eg. snippet campaign identifiers")
-    key: List[str] | None = Field(None, description="List of configuration keys")
+    item: list[int] | None = Field(None, description="List of item identifiers for given configuration type. Eg. snippet campaign identifiers")
+    key: list[str] | None = Field(None, description="List of configuration keys")

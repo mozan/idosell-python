@@ -17,16 +17,12 @@ from src.idosell.pim.products.product.product import (
 from src.idosell.pim.products.product._common import (
     ProductsDeleteModel,
     SettingsPostModel, SettingsPutModel,
-    PictureSettingsPostModel, PictureSettingsPutModel,
-    SettingDefaultCategoryModel, SettingDefaultSizesGroupModel,
-    ProductsPostModel, ProductsPutModel,
+    PictureSettingsPostModel, SettingDefaultCategoryModel, SettingDefaultSizesGroupModel,
     PicturesSettingInputTypeEnum, SettingModificationTypeEnum, SettingCalculateBasePriceSizesEnum,
-    PriceChangeModeEnum, SettingActualizeDelivererModeEnum,
-    SettingDeleteIndividualDescriptionsByShopsMaskModel, SettingDeleteIndividualMetaByShopsMaskModel,
-    PriceComparisonSitesPostModel, PriceComparisonSitesModel, PriceFormulaModel,
-    ReturnElementsSearchEnum, ProductDateModeSearchEnum
+    SettingActualizeDelivererModeEnum,
+    SettingDeleteIndividualDescriptionsByShopsMaskModel, SettingDeleteIndividualMetaByShopsMaskModel
 )
-from src.idosell._common import BooleanStrShortEnum, OrdersBySearchModel
+from src.idosell._common import BooleanStrShortEnum
 
 
 # --- Tests for DTOs

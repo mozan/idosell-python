@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr
 
 from src.idosell._common import AppendableGateway, Gateway, IdoSellLanguageId, PageableCamelGateway
@@ -7,10 +6,10 @@ from src.idosell.pim._common import SizeChartsPutModel
 
 # --- DTOs
 class DeletePimSizechartsParamsModel(BaseModel):
-    ids: List[int] = Field(..., description="!identyfikatory!#")
+    ids: list[int] = Field(..., description="!identyfikatory!#")
 
 class PutPimSizechartsParamsModel(BaseModel):
-    sizeCharts: List[SizeChartsPutModel] = Field(..., description="...")
+    sizeCharts: list[SizeChartsPutModel] = Field(..., description="...")
 
 
 # --- ENDPOINTS
@@ -34,9 +33,9 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/sizecharts/sizecharts')
 
-    ids: List[int] | None = Field(None, description="IDs")
-    names: List[str] | None = Field(None, description="Names of size charts")
-    languages: List[IdoSellLanguageId] | None = Field(None, description="List of languages")
+    ids: list[int] | None = Field(None, description="IDs")
+    names: list[str] | None = Field(None, description="Names of size charts")
+    languages: list[IdoSellLanguageId] | None = Field(None, description="List of languages")
 
 class Put(AppendableGateway):
     """

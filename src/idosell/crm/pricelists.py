@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import BooleanStrLongEnum, Gateway, PageableCamelGateway
@@ -41,7 +40,7 @@ class MenuItemsPriceListsModel(BaseModel):
 
 class PutClientsCrmPricelistsParamsModel(BaseModel):
     priceListId: StrictInt = Field(..., ge=1, description="Individual price list ID")
-    clientsIds: List[int] = Field(..., description="Customer numbers")
+    clientsIds: list[int] = Field(..., description="Customer numbers")
 
 class DeleteCrmPricelistsParamsModel(BaseModel):
     priceListId: StrictInt = Field(..., ge=1, description="Individual price list ID")
@@ -59,11 +58,11 @@ class PutCrmPricelistsParamsModel(BaseModel):
 
 class PutProductsCrmPricelistsParamsModel(BaseModel):
     priceListId: StrictInt = Field(..., ge=1, description="Individual price list ID")
-    products: List[ProductsModel] = Field(..., description="Products list")
-    producers: List[ProducersPriceListsModel] = Field(..., description="List of manufacturers assigned to sought products")
-    series: List[SeriesPriceListsModel] = Field(..., description="Series list")
-    categories: List[CategoriesPriceListsModel] = Field(..., description="List of categories in which sought products are present")
-    menuItems: List[MenuItemsPriceListsModel] = Field(..., description="...")
+    products: list[ProductsModel] = Field(..., description="Products list")
+    producers: list[ProducersPriceListsModel] = Field(..., description="List of manufacturers assigned to sought products")
+    series: list[SeriesPriceListsModel] = Field(..., description="Series list")
+    categories: list[CategoriesPriceListsModel] = Field(..., description="List of categories in which sought products are present")
+    menuItems: list[MenuItemsPriceListsModel] = Field(..., description="...")
 
 class PutRenameCrmPricelistsParamsModel(BaseModel):
     priceListName: str = Field(..., description="Name of individual price list")
@@ -113,8 +112,8 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/clients/pricelists')
 
-    priceListIds: Optional[List[int]] = Field(default=None, min_length=1, description="List of individual price lists (each >=1)")  # type: ignore
-    returnElements: Optional[List[ReturnElementsPriceListsEnum]] = Field(default=None, min_length=1, description="Elements to be returned by the endpoint. By default all elements are returned. Available elements: priceListId, priceListName, onlyOrderProductsWithManuallySetPrices, onlySeeProductsWithManuallySetPrices")  # type: ignore
+    priceListIds: list[int] | None = Field(default=None, min_length=1, description="List of individual price lists (each >=1)")  # type: ignore
+    returnElements: list[ReturnElementsPriceListsEnum] | None = Field(default=None, min_length=1, description="Elements to be returned by the endpoint. By default all elements are returned. Available elements: priceListId, priceListName, onlyOrderProductsWithManuallySetPrices, onlySeeProductsWithManuallySetPrices")  # type: ignore
 
 class Post(Gateway):
     """

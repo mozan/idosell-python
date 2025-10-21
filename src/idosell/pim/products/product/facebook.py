@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import Gateway
@@ -8,12 +7,12 @@ from src.idosell._common import Gateway
 class DeleteToFacebookCatalogPimProductsProductFacebookParamsModel(BaseModel):
     facebookCatalogId: StrictInt = Field(..., ge=1, description="You can read the Facebook Catalog ID in the Marketing & Integrations/Facebook/Facebook Product Catalog admin panel")
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    products: List[int] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[int] = Field(..., min_length=1, description="Products list") # type: ignore
 
 class PostToFacebookCatalogPimProductsProductFacebookParamsModel(BaseModel):
     facebookCatalogId: StrictInt = Field(..., description="You can read the Facebook Catalog ID in the Marketing & Integrations/Facebook/Facebook Product Catalog admin panel")
     shopId: StrictInt = Field(..., description="Shop Id")
-    products: List[int] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[int] = Field(..., min_length=1, description="Products list") # type: ignore
 
 
 # --- ENDPOINTS

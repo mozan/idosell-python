@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway
@@ -7,7 +6,7 @@ from src.idosell.pim.products._common import QuestionsPutModel
 
 # --- DTOs
 class PutPimProductsQuestionsParamsModel(BaseModel):
-    questions: List[QuestionsPutModel] = Field(..., description="Question Board")
+    questions: list[QuestionsPutModel] = Field(..., description="Question Board")
 
 
 # --- ENDPOINTS

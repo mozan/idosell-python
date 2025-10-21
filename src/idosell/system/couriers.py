@@ -1,4 +1,3 @@
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway, PageableCamelGateway
@@ -7,13 +6,13 @@ from src.idosell.system._common import PickupPointDeleteRequestsPostModel, Picku
 
 # --- DTOs
 class DeletePickupPointSystemCouriersParamsModel(BaseModel):
-    pickupPointDeleteRequests: List[PickupPointDeleteRequestsPostModel] = Field(..., description="List of pickupPoints to delete")
+    pickupPointDeleteRequests: list[PickupPointDeleteRequestsPostModel] = Field(..., description="List of pickupPoints to delete")
 
 class PostPickupPointsSystemCouriersParamsModel(BaseModel):
-    pickupPoints: List[PickupPointsPostModel] = Field(..., min_length=1, description="List of pickup points") # type: ignore
+    pickupPoints: list[PickupPointsPostModel] = Field(..., min_length=1, description="List of pickup points") # type: ignore
 
 class PutPickupPointsSystemCouriersParamsModel(BaseModel):
-    pickupPoints: List[PickupPointsPutModel] = Field(..., min_length=1, description="List of pickup points") # type: ignore
+    pickupPoints: list[PickupPointsPutModel] = Field(..., min_length=1, description="List of pickup points") # type: ignore
 
 
 # --- ENDPOINTS
@@ -58,8 +57,8 @@ class GetPickupPoints(PageableCamelGateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/couriers/pickupPoints')
 
     courierId: StrictInt = Field(..., ge=1, description="Courier ID")
-    pickupPointId: Optional[str] = Field(None, min_length=1, description="Collection point ID")
-    pickupPointExternalId: Optional[str] = Field(None, min_length=1, description="External system code")
+    pickupPointId: str | None = Field(None, min_length=1, description="Collection point ID")
+    pickupPointExternalId: str | None = Field(None, min_length=1, description="External system code")
 
 class PostPickupPoints(AppendableGateway):
     """

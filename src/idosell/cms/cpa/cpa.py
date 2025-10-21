@@ -1,5 +1,5 @@
 from enum import StrEnum
-from typing import Annotated, List, Optional
+from typing import Annotated
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway, PageableCamelGateway
@@ -24,13 +24,13 @@ class PageModel(BaseModel):
     active: BooleanStrShortEnum = Field(..., description="...")
     page: PageEnum = Field(..., description="...")
     zone: ZoneEnum = Field(..., description="The place where the cpa code is loaded. (For 'all' mode)")
-    body: List[BodyModel] = Field(..., description="...")
+    body: list[BodyModel] = Field(..., description="...")
 
 class PageSettingsModel(BaseModel):
     mode: PageSettingsModeEnum = Field(..., description="Whether to display to all sites")
     zone: ZoneEnum | None = Field(None, description="The place where the cpa code is loaded. (For 'all' mode)")
-    body: List[BodyModel] | None = Field(None, description="Snippet content for each language. (For 'all' mode)")
-    pages: List[PageModel] | None = Field(None, description="Page setting for advance mode")
+    body: list[BodyModel] | None = Field(None, description="Snippet content for each language. (For 'all' mode)")
+    pages: list[PageModel] | None = Field(None, description="Page setting for advance mode")
 
 class VariableModel(BaseModel):
     name: str = Field(..., max_length=150, description="...")
@@ -41,7 +41,7 @@ class CpaModel(BaseModel):
     pageSettings: PageSettingsModel | None = Field(None, description="CPA program page settings simple or advanced, depending on the mode")
     display: DisplayModel | None = Field(None, description="...")
     sources: SourceModel | None = Field(None, description="Snippet entry source filter")
-    variables: List[VariableModel] | None = Field(None, description="List of variables that can be used in a body template")
+    variables: list[VariableModel] | None = Field(None, description="List of variables that can be used in a body template")
 
 class PostCpaModel(CpaModel):
     id: int | None = Field(None, description="Id of the CPA program")
@@ -54,10 +54,10 @@ class PutCpaModel(CpaModel):
     campaign: StrictInt | None = Field(None, ge=1, description="CPA campaign id")
 
 class PostCmsCpaCpaParamsModel(BaseModel):
-    cpa: List[PostCpaModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
+    cpa: list[PostCpaModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 class PutCmsCpaCpaParamsModel(BaseModel):
-    cpa: List[PutCpaModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
+    cpa: list[PutCpaModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 
 # --- ENDPOINTS
@@ -70,8 +70,8 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/cpa/cpa')
 
-    campaign: Optional[List[Annotated[int, Field(ge=1)]]] = Field(default=None, min_length=1, description="List of campaign identifiers") # type: ignore
-    id: Optional[List[Annotated[int, Field(ge=1)]]] = Field(default=None, min_length=1, description="List of identifiers") # type: ignore
+    campaign: list[Annotated[int, Field(ge=1)]] | None = Field(default=None, min_length=1, description="List of campaign identifiers") # type: ignore
+    id: list[Annotated[int, Field(ge=1)]] | None = Field(default=None, min_length=1, description="List of identifiers") # type: ignore
 
 class Post(AppendableGateway):
     """
@@ -104,4 +104,4 @@ class Delete(Gateway):
     _method: str = PrivateAttr(default='DELETE')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/cpa/cpa')
 
-    id: List[int] = Field(..., min_length=1, max_length=100, description="List of identifiers")  # type: ignore
+    id: list[int] = Field(..., min_length=1, max_length=100, description="List of identifiers")  # type: ignore

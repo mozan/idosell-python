@@ -1,6 +1,5 @@
 from __future__ import annotations
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, StrictInt
 
 from src.idosell._common import BooleanStrShortEnum, ElementNameSearchEnum, ErrorsModel, PayerAddressBaseModel, SortDirectionSearchEnum
@@ -269,7 +268,7 @@ class AdditionalDataModel(BaseModel):
     documentIssuedDate: str = Field(..., description="The date document was issued in the ISO-8601 format (YYYY-MM-DD)")
 
 class AuctionsParamsModel(BaseModel):
-    auctionsServicesNames: List[AuctionsServicesNamesEnum] = Field(..., description="Auction sites names") # Auction sites listing: "allegro" - Allegro.pl, "testwebapi" - Allegro.pl test site, "ebay" - eBay
+    auctionsServicesNames: list[AuctionsServicesNamesEnum] = Field(..., description="Auction sites names") # Auction sites listing: "allegro" - Allegro.pl, "testwebapi" - Allegro.pl test site, "ebay" - eBay
 
 class AuctionsAccountsModel(BaseModel):
     auctionsAccountId: StrictInt = Field(..., ge=1, description="Auction service account Id")
@@ -281,7 +280,7 @@ class AuctionsClientsModel(BaseModel):
 
 class CampaignSearchModel(BaseModel):
     campaignId: StrictInt = Field(..., description="Campaign ID")
-    discountCodes: List[str] = Field(..., description="Discount codes")
+    discountCodes: list[str] = Field(..., description="Discount codes")
 
 class ClientDeliveryAddressModel(BaseModel):
     clientDeliveryAddressFirstName: str = Field(..., description="Recipient's first name")
@@ -398,34 +397,34 @@ class OrderBySearchModel(BaseModel):
 class OrderPackagesPostPutModel(BaseModel):
     eventId: str = Field(..., description="Id")
     eventType: EventTypeEnum = Field(..., description="Type")
-    packages: List[PackagesPostPutModel] = Field(..., description="Information on consignments")
+    packages: list[PackagesPostPutModel] = Field(..., description="Information on consignments")
 
 class OrderProductsModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
     sizeId: str = Field(..., description="Size identifier")
-    productSerialNumbers: List[str] = Field(..., description="Serial numbers")
+    productSerialNumbers: list[str] = Field(..., description="Serial numbers")
 
 class OrderSourceModel(BaseModel):
     # Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. https://idosell.readme.io/reference/ordersorderssearchpost
     shopsMask: StrictInt = Field(..., description="Bit mask of shop IDs")
-    shopsIds: List[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
+    shopsIds: list[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
     auctionsParams: AuctionsParamsModel = Field(..., description="Object used for order searching based on auctions' parameters")
-    auctionsItemsIds: List[int] = Field(..., description="Auctions' numbers")
-    auctionsAccounts: List[AuctionsAccountsModel] = Field(..., description="Auction sites accounts' data")
-    auctionsClients: List[AuctionsClientsModel] = Field(..., description="Client's account on auction site data")
+    auctionsItemsIds: list[int] = Field(..., description="Auctions' numbers")
+    auctionsAccounts: list[AuctionsAccountsModel] = Field(..., description="Auction sites accounts' data")
+    auctionsClients: list[AuctionsClientsModel] = Field(..., description="Client's account on auction site data")
 
 class OrderSourceSearchUnfinishedModel(BaseModel):
     # Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. https://idosell.readme.io/reference/ordersorderssearchpost
     shopsMask: StrictInt = Field(..., description="Bit mask of shop IDs")
-    shopsIds: List[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
+    shopsIds: list[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
     auctionsParams: AuctionsParamsModel = Field(..., description="Object used for order searching based on auctions' parameters")
-    auctionsItemsIds: List[int] = Field(..., description="Auctions' numbers")
-    auctionsAccounts: List[AuctionsAccountsModel] = Field(..., description="Auction sites accounts' data")
-    auctionsClients: List[AuctionsClientsModel] = Field(..., description="Client's account on auction site data")
+    auctionsItemsIds: list[int] = Field(..., description="Auctions' numbers")
+    auctionsAccounts: list[AuctionsAccountsModel] = Field(..., description="Auction sites accounts' data")
+    auctionsClients: list[AuctionsClientsModel] = Field(..., description="Client's account on auction site data")
 
 class OrdersDateRangeModel(BaseModel):
     ordersDateType: OrdersDateTypeEnum = Field(..., description="Type of date according to the orders are searched")
-    ordersDatesTypes: List[OrdersDatesTypesEnum] = Field(..., description="Date chart according to which orders are searched")
+    ordersDatesTypes: list[OrdersDatesTypesEnum] = Field(..., description="Date chart according to which orders are searched")
 
 class OrdersPostModel(BaseModel):
     orderType: OrderTypeEnum = Field(..., description="")
@@ -497,12 +496,12 @@ class PackagesPostPutModel(BaseModel):
     shippingStoreCosts: ShippingStoreCostsModel = Field(..., description="Cost for shop")
 
 class PackagesSearchModel(BaseModel):
-    packagesNumbers: List[str] = Field(..., description="Consignments numbers")
+    packagesNumbers: list[str] = Field(..., description="Consignments numbers")
     orderHasPackageNumbers: BooleanStrShortEnum = Field(..., description="Does order have consignment number assigned")
     hasMultiPackages: BooleanStrShortEnum = Field(..., description="Multipack order")
 
 class PackagesSearchUnfinishedModel(BaseModel):
-    packagesNumbers: List[str] = Field(..., description="Consignments numbers")
+    packagesNumbers: list[str] = Field(..., description="Consignments numbers")
     orderHasPackageNumbers: BooleanStrShortEnum = Field(..., description="Does order have consignment number assigned")
 
 class ParameterValuesModel(BaseModel):
@@ -520,7 +519,7 @@ class ProductBundleItemsModel(BaseModel):
 class PriceFormulaParametersModel(BaseModel):
     parameterId: str = Field(..., description="Parameter ID")
     parameterValue: str = Field(..., description="...")
-    parameterValues: List[ParameterValuesModel] = Field(..., description="Parameter values")
+    parameterValues: list[ParameterValuesModel] = Field(..., description="Parameter values")
 
 class ProductsModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
@@ -554,11 +553,11 @@ class ProductsPutModel(BaseModel):
     remarksToProduct: str = Field(..., description="Client's remarks on product")
     label: str = Field(..., description="Label for grouping products")
     productBundleItems: ProductBundleItemsModel = Field(..., description="List of components if a products is a set or collection")
-    priceFormulaParameters: List[PriceFormulaParametersModel] = Field(..., description="Information about the selected parameters in the configurator")
+    priceFormulaParameters: list[PriceFormulaParametersModel] = Field(..., description="Information about the selected parameters in the configurator")
 
 class ProductsSerialNumbersOrdersPutModel(BaseModel):
     orderSerialNumber: StrictInt = Field(..., ge=1, description="Order serial number")
-    orderProducts: List[OrderProductsModel] = Field(..., description="Products list")
+    orderProducts: list[OrderProductsModel] = Field(..., description="Products list")
 
 class ProductIdentModel(BaseModel):
     identValue: str = Field(..., description="ID value")
@@ -573,7 +572,7 @@ class ProductsProfitMarginOrdersPutModel(BaseModel):
 
 class ProfitMarginOrdersPutModel(BaseModel):
     orderSerialNumber: StrictInt = Field(..., ge=1, description="Order serial number")
-    products: List[ProductsProfitMarginOrdersPutModel] = Field(..., description="Products list")
+    products: list[ProductsProfitMarginOrdersPutModel] = Field(..., description="Products list")
     errors: ErrorsModel | None = Field(None, description="Information on error that occurred during gate call")
     isProductsErrors: bool = Field(..., description="Flag marking errors in the result")
 

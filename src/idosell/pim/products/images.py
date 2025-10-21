@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway
@@ -10,11 +9,11 @@ class DeletePimProductsImagesParamsModel(BaseModel):
     deleteAll: bool = Field(..., description="Delete all images")
     productId: StrictInt = Field(..., ge=1, description="Product IAI code")
     shopId: StrictInt = Field(..., ge=1, description="Shop Id")
-    productImagesId: List[str] = Field(..., min_length=1, description="List of product image IDs") # type: ignore
+    productImagesId: list[str] = Field(..., min_length=1, description="List of product image IDs") # type: ignore
 
 class PutPimProductsImagesParamsModel(BaseModel):
     productsImagesSettings: ProductsImagesSettingsModel = Field(..., description="Product images settings")
-    productsImages: List[ProductsImages] = Field(..., min_length=1, description="Information on product images") # type: ignore
+    productsImages: list[ProductsImages] = Field(..., min_length=1, description="Information on product images") # type: ignore
 
 
 # --- ENDPOINTS
@@ -27,7 +26,7 @@ class Delete(AppendableGateway):
     _method: str = PrivateAttr(default='POST')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/images/delete')
 
-    params: List[DeletePimProductsImagesParamsModel] = Field(..., description="Parameters for deleting product images")
+    params: list[DeletePimProductsImagesParamsModel] = Field(..., description="Parameters for deleting product images")
 
 class Put(AppendableGateway):
     """

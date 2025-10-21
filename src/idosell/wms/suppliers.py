@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt, StrictStr
 
 from src.idosell._common import Gateway, PageableCamelGateway
@@ -7,10 +6,10 @@ from src.idosell.wms._common import SuppliersModel
 
 # --- DTOs
 class DeleteWmsSuppliersParamsModel(BaseModel):
-    ids: List[StrictInt] = Field(..., description="List of ids")
+    ids: list[StrictInt] = Field(..., description="List of ids")
 
 class PutWmsSuppliersParamsModel(BaseModel):
-    suppliers: List[SuppliersModel] = Field(..., description="List of suppliers")
+    suppliers: list[SuppliersModel] = Field(..., description="List of suppliers")
 
 
 # --- ENDPOINTS
@@ -35,8 +34,8 @@ class Get(PageableCamelGateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/wms/suppliers/suppliers')
 
     returnProductsCount: bool | None = Field(None, description="Return quantity of products assigned to supplier")
-    names: List[StrictStr] | None = Field(None, min_length=1, description="List of names") # type: ignore
-    ids: List[StrictInt] | None = Field(None, min_length=1, description="List of ids") # type: ignore
+    names: list[StrictStr] | None = Field(None, min_length=1, description="List of names") # type: ignore
+    ids: list[StrictInt] | None = Field(None, min_length=1, description="List of ids") # type: ignore
 
 class Put(Gateway):
     """

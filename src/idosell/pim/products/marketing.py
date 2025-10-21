@@ -1,4 +1,3 @@
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway, IdoSellPhpDateTime
@@ -11,7 +10,7 @@ from src.idosell.pim.products._common import (
 # DTOs
 class PostPromotionPimProductsMarketingParamsModel(BaseModel):
     promotionName: str = Field(..., min_length=1, description="Promotion name")
-    shopsIds: Optional[List[StrictInt]] = Field(None, min_length=1, description="List of stores IDs (min 1 item when provided)") # type: ignore
+    shopsIds: list[StrictInt] | None = Field(None, min_length=1, description="List of stores IDs (min 1 item when provided)") # type: ignore
     marketingZones: MarketingZonesPromotionModel = Field(..., description="Special zones")
     newPriceSettings: NewPriceSettingsModel = Field(..., description="Promotional price settings")
     startDate: IdoSellPhpDateTime = Field(..., description="Promotion start date in Y-m-d H:i:s format")
@@ -21,12 +20,12 @@ class PostPromotionPimProductsMarketingParamsModel(BaseModel):
     removeProductsAfterOwnStockLevelRunsDown: BooleanStrShortEnum = Field(..., description="After running out of own stock, automatically remove from the promotion products added separately (does not apply to series, producers, categories and menu)")
     reduceBasingPrice: BasePricingEnum = Field(..., description="Reduce based on price (net/gross)")
     calculationMethod: CalculationMethodEnum = Field(..., description="Price reduction calculation method")
-    promotionElements: List[PromotionElementsModel] = Field(..., description="Elements to be affected by the promotion")
+    promotionElements: list[PromotionElementsModel] = Field(..., description="Elements to be affected by the promotion")
 
 class PutPromotionPimProductsMarketingParamsModel(BaseModel):
     promotionId: str = Field(..., description="Promotion ID")
     promotionName: str = Field(..., description="Promotion ID")
-    shopsIds: Optional[List[StrictInt]] = Field(None, min_length=1, description="List of stores IDs (min 1 item when provided)") # type: ignore
+    shopsIds: list[StrictInt] | None = Field(None, min_length=1, description="List of stores IDs (min 1 item when provided)") # type: ignore
     marketingZones: MarketingZonesPromotionModel = Field(..., description="Special zones")
     newPriceSettings: NewPriceSettingsModel = Field(..., description="Promotional price settings")
     startDate: IdoSellPhpDateTime = Field(..., description="Promotion start date in Y-m-d H:i:s format")
@@ -37,13 +36,13 @@ class PutPromotionPimProductsMarketingParamsModel(BaseModel):
     reduceBasingPrice: BasePricingEnum = Field(..., description="Reduce based on price (net/gross)")
     calculationMethod: CalculationMethodEnum = Field(..., description="Price reduction calculation method")
     removeAllPromotionElements: BooleanStrShortEnum = Field(..., description="Specifies whether to remove all existing promotion elements")
-    promotionElements: List[PromotionElementsModel] = Field(..., description="Elements to be affected by the promotion")
+    promotionElements: list[PromotionElementsModel] = Field(..., description="Elements to be affected by the promotion")
 
 class PutZonesPimProductsMarketingParamsModel(BaseModel):
-    products: List[ProductsMarketingModel] = Field(..., description="Products list")
+    products: list[ProductsMarketingModel] = Field(..., description="Products list")
     assignment_mode: AssignmentModeEnum = Field(..., description="...")
-    marketing_zones: Optional[MarketingZonesModel] = Field(None, description="Marketing zones (optional)")
-    shops: List[ShopsPutZonesModel] = Field(..., min_length=1, description="Marketing hotspots in shops") # type: ignore
+    marketing_zones: MarketingZonesModel | None = Field(None, description="Marketing zones (optional)")
+    shops: list[ShopsPutZonesModel] = Field(..., min_length=1, description="Marketing hotspots in shops") # type: ignore
 
 
 # --- ENDPOINTS
@@ -68,7 +67,7 @@ class GetPromotion(Gateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/marketing/promotion')
 
     shopId: StrictInt | None = Field(None, ge=1, description="Shop Id")
-    products: List[int] | None = Field(None, min_length=1, description="Products list") # type: ignore
+    products: list[int] | None = Field(None, min_length=1, description="Products list") # type: ignore
 
 class PostPromotion(AppendableGateway):
     """
@@ -102,7 +101,7 @@ class GetZones(Gateway):
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/marketingZones')
 
     identType: IdentTypeEnum | None = Field(None, description="Identifier type")
-    products: Optional[List[str]] = Field(None, min_length=1, description="Products list (array of strings), min 1 when provided") # type: ignore
+    products: list[str] | None = Field(None, min_length=1, description="Products list (array of strings), min 1 when provided") # type: ignore
 
 class PutZones(AppendableGateway):
     """

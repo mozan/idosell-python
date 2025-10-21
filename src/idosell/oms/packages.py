@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, Gateway
@@ -16,7 +15,7 @@ class EventOrderTypeEnum(StrEnum):
 # --- DTOs
 class EventsSearchModel(BaseModel):
     eventType: EventOrderTypeEnum = Field(..., description="Type")
-    eventsIds: List[int] = Field(..., description="IDs")
+    eventsIds: list[int] = Field(..., description="IDs")
 
 class ParcelParametersModel(BaseModel):
     id: str = Field(..., description="Configuration option identifier for the shipment")
@@ -24,7 +23,7 @@ class ParcelParametersModel(BaseModel):
 
 class ParcelParametersByPackagesModel(BaseModel):
     packageId: str = Field(..., description="Package ID in system")
-    parcelParameters: List[ParcelParametersModel] = Field(..., description="Shipment configuration options available for a given courier")
+    parcelParameters: list[ParcelParametersModel] = Field(..., description="Shipment configuration options available for a given courier")
 
 class PackagesPackagesModel(BaseModel):
     packageId: StrictInt = Field(..., ge=1, description="Package ID in system")
@@ -37,29 +36,29 @@ class PackagesPackagesModel(BaseModel):
 class OrderPackagesPackagesPostModel(BaseModel):
     eventId: StrictInt = Field(..., description="Id")
     eventType: EventOrderTypeEnum = Field(..., description="")
-    parcelParameters: List[ParcelParametersModel] = Field(..., description="Shipment configuration options available for a given courier")
-    parcelParametersByPackages: List[ParcelParametersByPackagesModel] = Field(..., description="Shipment configuration options available for Inpost Smile courier")
+    parcelParameters: list[ParcelParametersModel] = Field(..., description="Shipment configuration options available for a given courier")
+    parcelParametersByPackages: list[ParcelParametersByPackagesModel] = Field(..., description="Shipment configuration options available for Inpost Smile courier")
 
 class OrderPackagesPackagesPutModel(BaseModel):
     orderId: str = Field(..., description="Order ID")
     orderType: EventOrderTypeEnum = Field(..., description="Order type")
-    packages: List[PackagesPackagesModel] = Field(..., description="Information on consignments")
+    packages: list[PackagesPackagesModel] = Field(..., description="Information on consignments")
 
 class PostLabelsOmsPackagesParamsModel(BaseModel):
     eventId: StrictInt = Field(..., description="Id")
     eventType: EventOrderTypeEnum = Field(..., description="Type")
-    parcelParameters: List[ParcelParametersModel] = Field(..., description="Shipment configuration options available for a given courier")
-    parcelParametersByPackages: List[ParcelParametersByPackagesModel] = Field(..., description="Shipment configuration options available for Inpost Smile courier")
+    parcelParameters: list[ParcelParametersModel] = Field(..., description="Shipment configuration options available for a given courier")
+    parcelParametersByPackages: list[ParcelParametersByPackagesModel] = Field(..., description="Shipment configuration options available for Inpost Smile courier")
 
 class PostOmsPackagesParamsModel(BaseModel):
-    orderPackages: List[OrderPackagesPackagesPostModel] = Field(..., min_length=1, max_length=100, description="List of parcels assigned to the order Maximum default number: 100 parcels")
+    orderPackages: list[OrderPackagesPackagesPostModel] = Field(..., min_length=1, max_length=100, description="List of parcels assigned to the order Maximum default number: 100 parcels")
 
 class PutOmsPackagesParamsModel(BaseModel):
-    orderPackages: List[OrderPackagesPackagesPutModel] = Field(..., min_length=1, max_length=100, description="List of parcels assigned to the order Maximum default number: 100 parcels")
+    orderPackages: list[OrderPackagesPackagesPutModel] = Field(..., min_length=1, max_length=100, description="List of parcels assigned to the order Maximum default number: 100 parcels")
 
 class SearchOmsPackagesParamsModel(BaseModel):
-    deliveryPackageNumbers: List[str] | None = Field(None, min_length=1, description="Consignments numbers") # type: ignore
-    events: List[EventsSearchModel] | None = Field(None, min_length=1, description="Element, package is assigned to") # type: ignore
+    deliveryPackageNumbers: list[str] | None = Field(None, min_length=1, description="Consignments numbers") # type: ignore
+    events: list[EventsSearchModel] | None = Field(None, min_length=1, description="Element, package is assigned to") # type: ignore
     returnLabels: bool | None = Field(None, description="Return parcel labels")
 
 

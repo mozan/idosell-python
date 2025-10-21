@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, StrictInt, constr
 
 from src.idosell._common import BooleanStrShortEnum
@@ -77,23 +76,23 @@ class PickupPointDeleteRequestsPostModel(BaseModel):
 class PickupPointsPostModel(BaseModel):
     pickupPointExternalId: str = Field(..., description="external system code")
     courierId: StrictInt = Field(..., description="Courier ID")
-    descriptions: List[DescriptionsCouriersModel] = Field(..., description="collection point details")
-    paymentForms: List[PaymentFormsEnum] = Field(..., description="Accepted payment types")
+    descriptions: list[DescriptionsCouriersModel] = Field(..., description="collection point details")
+    paymentForms: list[PaymentFormsEnum] = Field(..., description="Accepted payment types")
     serviceStatus: ServiceStatusEnum = Field(..., description="Collection point activity. Available values: available, outOfService ")
     address: AddressModel = Field(..., description="Pickup point address")
     coordinates: CoordinatesModel = Field(..., description="Geographic coordinates")
-    operatingDays: List[OperatingDaysModel] = Field(..., description="Personal collection point work hours")
+    operatingDays: list[OperatingDaysModel] = Field(..., description="Personal collection point work hours")
 
 class PickupPointsPutModel(BaseModel):
     pickupPointId: str = Field(..., description="Collection point ID")
     pickupPointExternalId: str = Field(..., description="External system code")
     courierId: StrictInt = Field(..., ge=1, description="Courier ID")
-    descriptions: List[DescriptionsCouriersModel] = Field(..., description="Collection point details")
-    paymentForms: List[PaymentFormsEnum] = Field(..., description="Accepted payment types")
+    descriptions: list[DescriptionsCouriersModel] = Field(..., description="Collection point details")
+    paymentForms: list[PaymentFormsEnum] = Field(..., description="Accepted payment types")
     serviceStatus: ServiceStatusEnum = Field(..., description="Collection point activity")
     address: AddressModel = Field(..., description="Pickup point address")
     coordinates: CoordinatesModel = Field(..., description="Geographic coordinates")
-    operatingDays: List[OperatingDaysModel] = Field(..., description="Personal collection point work hours")
+    operatingDays: list[OperatingDaysModel] = Field(..., description="Personal collection point work hours")
 
 # --- System DTOs
 class BlockIfIncorrectStockQuantitiesModel(BaseModel):
@@ -131,7 +130,7 @@ class PanelSettingsModel(BaseModel):
     mainStockSystem: MainStockSystemEnum = Field(..., description="The main warehouse and sales system")
     stockStateConfig: StockStateConfigEnum = Field(..., description="Stock quantities in third party application")
     taxSettings: TaxSettingsModel = Field(..., description="Fiscal and settlement settings")
-    shops: List[ShopsModel] = Field(..., description="...")
+    shops: list[ShopsModel] = Field(..., description="...")
 
 class RestictionModel(BaseModel):
     blockIfIncorrectStockQuantities: BlockIfIncorrectStockQuantitiesModel = Field(..., description="Block the ability of selecting a status, if there are products in the warehouse from which the order is being processed, with insufficient stock level")
@@ -147,4 +146,4 @@ class UnitsModel(BaseModel):
     nameInPanel: str = Field(..., max_length=30, description="Name in panel (limit of 30 characters)")
     precisionUnit: StrictInt = Field(..., description="Accuracy (number of places after comma)")
     visible: bool =  Field(..., description="Visibility")
-    descriptions: List[DescriptionsSystemModel] = Field(..., description="Unit names")
+    descriptions: list[DescriptionsSystemModel] = Field(..., description="Unit names")

@@ -1,7 +1,6 @@
 from __future__ import annotations
 from datetime import date, datetime, time
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import Gateway
@@ -91,30 +90,30 @@ class ProductAddModel(BaseModel):
     productId: StrictInt = Field(..., ge=1, description="ID of record in database")
     sizeId: str = Field(..., description="ID of size")
     quantity: QuantityModel = Field(..., description="A representation of a floating-point number with precise accuracy")
-    bundledProducts: List[BundledProductsModel] = Field(..., description="Bundled items")
+    bundledProducts: list[BundledProductsModel] = Field(..., description="Bundled items")
     comment: str = Field(..., description="Comment for product")
     splitBundleInOrderDocuments: bool = Field(..., description="Variable that determinates if bundle should be splitted to seperate positions on order documents")
 
 class AddProductProductsPostModel(BaseModel):
     subscriptionId: StrictInt = Field(..., ge=1, description="Id of subscription")
-    products: List[ProductAddModel] = Field(..., description="Collection of products to edit")
+    products: list[ProductAddModel] = Field(..., description="Collection of products to edit")
 
 class AddProducts(BaseModel):
     subscriptionId: StrictInt = Field(..., ge=1, description="Id of subscription")
-    products: List[AddProductProductsPostModel] = Field(..., min_length=1, description="Collection of products to edit") # type: ignore
+    products: list[AddProductProductsPostModel] = Field(..., min_length=1, description="Collection of products to edit") # type: ignore
 
 class SubscriptionsDeliveryDatesModel(BaseModel):
-    subscriptionIds: List[int] = Field(..., min_length=1, description="Subscription ids") # type: ignore
+    subscriptionIds: list[int] = Field(..., min_length=1, description="Subscription ids") # type: ignore
     upcomingDeliveryDate: str = Field(..., min_length=1, description="Settings that determinates if price should be updated automaticly")
     changeNextDeliveryDate: bool | None = Field(None, description="A setting that determines whether to also change the date of the next delivery")
 
 class SubscriptionsAutoPriceModel(BaseModel):
-    subscriptionIds: List[int] = Field(..., min_length=1, description="Subscription ids") # type: ignore
+    subscriptionIds: list[int] = Field(..., min_length=1, description="Subscription ids") # type: ignore
     autoPriceUpdate: bool | None = Field(None, description="Settings that determinates if price should be updated automaticly")
 
 class SubscriptionDeleteProducts(BaseModel):
     subscriptionId: StrictInt = Field(..., ge=1, description="Id of subscription")
-    idsToDelete: List[int] = Field(..., description="Ids in products table to delete")
+    idsToDelete: list[int] = Field(..., description="Ids in products table to delete")
 
 class RebatesThresholdModel(BaseModel):
     numberFrom: StrictInt = Field(..., ge=1, description="Number from")
@@ -138,11 +137,11 @@ class SubscriptionModel(BaseModel):
     sendMailAfterStatusChange: bool | None = Field(None, description="Option allowing sending e-mail after status change")
     sendSMSAfterStatusChange: bool | None = Field(None, description="Optian allowing sending SMS after status change")
     orderData: OrderDataModel | None = Field(None, description="...")
-    rebatesThresholds: List[RebatesThresholdModel] | None = Field(None, description="Thresholds rebates for newly created subscription orders")
+    rebatesThresholds: list[RebatesThresholdModel] | None = Field(None, description="Thresholds rebates for newly created subscription orders")
     paymentData: PaymentDataModel | None = Field(None, description="...")
 
 class SubscriptionsEditRequest(BaseModel):
-    subscriptionModels: List[SubscriptionModel] = Field(..., min_length=1, description="Subscription") # type: ignore
+    subscriptionModels: list[SubscriptionModel] = Field(..., min_length=1, description="Subscription") # type: ignore
 
 class PriceModel(BaseModel):
     value: str = Field(..., description="A decimal")
@@ -164,7 +163,7 @@ class EditProductPostModel(BaseModel):
 
 class SubscriptionEditProducts(BaseModel):
     subscriptionId: StrictInt = Field(..., description="Id of subscription")
-    products: List[EditProductPostModel] = Field(..., description="Collection of products to edit")
+    products: list[EditProductPostModel] = Field(..., description="Collection of products to edit")
 
 class OrderByModel(BaseModel):
     property: PropertyTypeEnum = Field(..., description="Order by property")
@@ -181,8 +180,8 @@ class ItemsListRequestPostModel(BaseModel):
     pagination: PaginationModel = Field(..., description="...")
 
 class ListViewFetchIdsFilterPostModel(BaseModel):
-    ids: List[int] = Field(..., description="Subscription IDs")
-    statuses: List[str] = Field(..., description="Subscription statuses")
+    ids: list[int] = Field(..., description="Subscription IDs")
+    statuses: list[str] = Field(..., description="Subscription statuses")
     clientId: StrictInt = Field(..., ge=1, description="Client ID")
     shopId: StrictInt = Field(..., ge=1, description="Shop ID")
     priceChangeMode: PriceChangeModeEnum = Field(..., description="Price change mode")
@@ -203,8 +202,8 @@ class ListViewSelectModel(BaseModel):
     payerAddress: bool = Field(..., description="...")
 
 class ListViewFilterModel(BaseModel):
-    ids: List[int] = Field(..., description="Subscription IDs")
-    statuses: List[str] = Field(..., description="Subscription statuses")
+    ids: list[int] = Field(..., description="Subscription IDs")
+    statuses: list[str] = Field(..., description="Subscription statuses")
     clientId: StrictInt = Field(..., ge=1, description="Client ID")
     shopId: StrictInt = Field(..., ge=1, description="Client ID")
     priceChangeMode: PriceChangeModeEnum = Field(..., description="Price change mode")
@@ -236,7 +235,7 @@ class UnsetRebateCodeRequestPostModel(BaseModel):
     id: StrictInt = Field(..., description="Subscription ID")
 
 class SubscriptionsStatusModel(BaseModel):
-    subscriptionIds: List[int] = Field(..., description="Subscription ids")
+    subscriptionIds: list[int] = Field(..., description="Subscription ids")
     subscriptionStatus: SubscriptionsStatusEnum = Field(..., description="Status to set")
     sendMailAfterStatusChange: bool = Field(..., description="Option allowing sending e-mail after status change")
     sendSMSAfterStatusChange: bool = Field(..., description="Optian allowing sending SMS after status change")

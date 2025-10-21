@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr
 
 from src.idosell._common import AppendableGateway, Gateway, PageableCamelGateway
@@ -7,12 +6,12 @@ from src.idosell.pim.products._common import ItemsParametersModel, SettingsParam
 
 # --- DTOs
 class DeletePimProductsParametersParamsModel(BaseModel):
-    ids: List[int] = Field(..., min_length=1, description="Parameter identifiers") # type: ignore
+    ids: list[int] = Field(..., min_length=1, description="Parameter identifiers") # type: ignore
 
 class SearchPimProductsParametersParamsModel(BaseModel):
-    ids: List[int] | None = Field(None, min_length=1, description="List of identifiers") # type: ignore
-    textIds: List[TextIdsParametersSearchModel] | None = Field(None, min_length=1, description="Element text ID - can be entered instead of 'id'") # type: ignore
-    languagesIds: List[str] | None = Field(None, min_length=1, description="List of languages") # type: ignore
+    ids: list[int] | None = Field(None, min_length=1, description="List of identifiers") # type: ignore
+    textIds: list[TextIdsParametersSearchModel] | None = Field(None, min_length=1, description="Element text ID - can be entered instead of 'id'") # type: ignore
+    languagesIds: list[str] | None = Field(None, min_length=1, description="List of languages") # type: ignore
     parameterValueIds: bool | None = Field(None, description="Whether to return a list of parameter value IDs")
 
 
@@ -37,7 +36,7 @@ class Put(AppendableGateway):
     _method: str = PrivateAttr(default='PUT')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/parameters')
 
-    items: List[ItemsParametersModel] = Field(..., min_length=1, description="Sections, parameters or valued to add or edit") # type: ignore
+    items: list[ItemsParametersModel] = Field(..., min_length=1, description="Sections, parameters or valued to add or edit") # type: ignore
     settings: SettingsParametersPutModel = Field(..., description="Settings")
 
 class Search(PageableCamelGateway):

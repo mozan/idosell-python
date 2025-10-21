@@ -1,4 +1,3 @@
-
 from src.idosell.crm.crm import (
     ClientAffiliateProgramEnum, ClientHasLoyaltyCardEnum, SearchByShopEnum,
     ClientLastLoginDateModel, ClientLoyaltyCardModel, NewsletterEmailApprovalsDataModel,

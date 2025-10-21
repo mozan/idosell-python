@@ -1,8 +1,8 @@
 import re
 from enum import Enum, StrEnum
-from typing import Any, Dict
+from typing import Any
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, BeforeValidator
-from typing_extensions import Annotated
+from typing import Annotated
 
 
 NAME_MAX_LEN = 255
@@ -118,7 +118,7 @@ class PagedSnakecaseResponse(BaseModel):
 class Gateway(BaseModel):
     model_config = ConfigDict(extra = "forbid")
 
-    def build_body(self) -> Dict: # type: ignore
+    def build_body(self) -> dict: # type: ignore
         """Build the request body for the API.
         The API expects all payload fields nested under a top-level "params" key.
         This method serializes the model into a dictionary (using the model's
@@ -182,7 +182,7 @@ def _serialize_param_value(value: Any) -> Any:
         return ",".join(parts) # type: ignore
     return value
 
-def build_query_params(model: "BaseModel", *, exclude_none: bool = True, by_alias: bool = True) -> Dict[str, Any]:
+def build_query_params(model: "BaseModel", *, exclude_none: bool = True, by_alias: bool = True) -> dict[str, Any]:
     """
     Dump a Pydantic model to a dict suitable for passing as HTTP query params:
     - excludes None values by default

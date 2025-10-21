@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway
@@ -53,7 +52,7 @@ class Delete(AppendableGateway):
     _method: str = PrivateAttr(default='POST')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/menu/menu/delete')
 
-    menu_list: List[MenuListDeleteModel] = Field(..., description="List of menus")
+    menu_list: list[MenuListDeleteModel] = Field(..., description="List of menus")
     settings: SettingsModel = Field(..., description="Settings")
 
 class Get(Gateway):
@@ -81,7 +80,7 @@ class Post(AppendableGateway):
     _method: str = PrivateAttr(default='POST')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/menu/menu')
 
-    menu_list: List[MenuListPostModel] = Field(..., description="...")
+    menu_list: list[MenuListPostModel] = Field(..., description="...")
     settings: SettingsModel = Field(..., description="Settings")
 
 class Put(AppendableGateway):
@@ -93,7 +92,7 @@ class Put(AppendableGateway):
     _method: str = PrivateAttr(default='PUT')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/menu/menu')
 
-    menu_list: List[MenuListPutModel] = Field(..., description="...")
+    menu_list: list[MenuListPutModel] = Field(..., description="...")
     settings: SettingsModel = Field(..., description="Settings")
 
 class PutSort(AppendableGateway):

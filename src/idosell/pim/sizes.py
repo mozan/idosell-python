@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr
 
 from src.idosell._common import AppendableGateway, Gateway
@@ -7,7 +6,7 @@ from src.idosell.pim._common import SizesPutModel
 
 # --- DTOs
 class PutPimSizesParamsModel(BaseModel):
-    sizes: List[SizesPutModel] = Field(..., description="Size table")
+    sizes: list[SizesPutModel] = Field(..., description="Size table")
 
 
 # --- ENDPOINTS

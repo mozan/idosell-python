@@ -1,6 +1,5 @@
 from datetime import date
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway, PageableCamelGateway
@@ -31,8 +30,8 @@ class DisplaySnippetsModel(DisplayBaseModel):
 
 class PagesSnippetsModel(BaseModel):
     all: BooleanStrShortEnum = Field(..., description="Whether to display to all sites")
-    pages: List[PageEnum] = Field(..., description="List of selected pages where snippet shows (works for all=n mode). If passed, the url should be omitted")
-    url: List[str] = Field(..., description="List of selected url (works for all=n mode) If passed, pages should be omitted")
+    pages: list[PageEnum] = Field(..., description="List of selected pages where snippet shows (works for all=n mode). If passed, the url should be omitted")
+    url: list[str] = Field(..., description="List of selected url (works for all=n mode) If passed, pages should be omitted")
 
 class SnippetsModel(BaseModel):
     active: BooleanStrShortEnum | None = Field(None, description="Whether the snippet is active")
@@ -60,10 +59,10 @@ class PutSnippetsModel(SnippetsModel):
     campaign: StrictInt | None = Field(None, ge=1, description="Snippet campaign id")
 
 class PostCmsSnippetsSnippetsParamsModel(BaseModel):
-    snippets: List[PostSnippetsModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
+    snippets: list[PostSnippetsModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 class PutCmsSnippetsSnippetsParamsModel(BaseModel):
-    snippets: List[PutSnippetsModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
+    snippets: list[PutSnippetsModel] = Field(..., min_length=1, max_length=100, description="...") # type: ignore
 
 
 # --- ENDPOINTS
@@ -76,8 +75,8 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/snippets/snippets')
 
-    campaign: List[int] | None = Field(None, min_length=1, description="List of campaign identifiers") # type: ignore
-    id: List[int] | None = Field(None, min_length=1, description="List of identifiers") # type: ignore
+    campaign: list[int] | None = Field(None, min_length=1, description="List of campaign identifiers") # type: ignore
+    id: list[int] | None = Field(None, min_length=1, description="List of identifiers") # type: ignore
     omitDeleted: BooleanStrShortEnum | None = Field(None, description="Whether to skip the return of deleted campaigns")
 
 
@@ -112,4 +111,4 @@ class Delete(Gateway):
     _method: str = PrivateAttr(default='DELETE')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/snippets/snippets')
 
-    id: List[int] = Field(..., min_length=1, max_length=100, description="List of identifiers") # type: ignore
+    id: list[int] = Field(..., min_length=1, max_length=100, description="List of identifiers") # type: ignore

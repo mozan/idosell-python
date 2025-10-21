@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, Field, StrictInt
 
 from src.idosell._common import BooleanStrShortEnum
@@ -168,8 +167,8 @@ class LangDataModel(BaseModel):
     meta_keywords: str = Field(..., description="Meta - keywords")
     url: str = Field(..., description="URL address")
     href_target: HrefTargetEnum = Field(..., description="Link target attribute")
-    sort: List[SortLangDataModelModel] = Field(..., description="...")
-    display_limit: List[DisplayLimitLangDataModel] = Field(..., description="...")
+    sort: list[SortLangDataModelModel] = Field(..., description="...")
+    display_limit: list[DisplayLimitLangDataModel] = Field(..., description="...")
     default_view: DefaultViewEnum = Field(..., description="...")
     headline_name: str = Field(..., description="Headline name. Leaving this value empty will automatically generate name basing on a name in menu")
     expand: BooleanStrShortEnum = Field(..., description="Display by default nested elements")
@@ -211,14 +210,14 @@ class MenuListPutModel(BaseModel):
     menu_id: StrictInt = Field(..., ge=1, description="Menu Id")
     item_id: str = Field(..., description="Menu element ID")
     item_textid: str = Field(..., description=r"Menu element text identifier. Example: 'item1\item2\item3'")
-    lang_data: List[LangDataModel] = Field(..., description="...")
+    lang_data: list[LangDataModel] = Field(..., description="...")
 
 class MenuListPostModel(BaseModel):
     shop_id: StrictInt = Field(..., ge=1, description="Shop Id")
     menu_id: StrictInt = Field(..., ge=1, description="Menu Id")
     parent_id: str = Field(..., description="Parent menu element ID")
     parent_textid: str = Field(..., description=r"Menu element text identifier. Example: 'item1\item2'")
-    lang_data: List[LangDataModel] = Field(..., description="...")
+    lang_data: list[LangDataModel] = Field(..., description="...")
 
 class SettingsModel(BaseModel):
     textid_separator: str = Field(..., description="Default: ''")
@@ -236,18 +235,18 @@ class DescriptionsModel(BaseModel):
 class SizesModel(BaseModel):
     sizeId: str = Field(..., description="Size identifier")
     priority: StrictInt = Field(..., description="Priority")
-    descriptions: List[DescriptionsModel] = Field(..., description="...")
+    descriptions: list[DescriptionsModel] = Field(..., description="...")
 
 class LanguagesDataModel(BaseModel):
     language: str = Field(..., description="Customer language ID")
-    columns: List[ColumnsModel] = Field(..., description="...")
-    sizes: List[SizesModel] = Field(..., description="List of sizes")
+    columns: list[ColumnsModel] = Field(..., description="...")
+    sizes: list[SizesModel] = Field(..., description="List of sizes")
 
 class SizeChartsPutModel(BaseModel):
     id: StrictInt = Field(..., ge=1, description="Id")
     nameInPanel: str = Field(..., description="Name in panel")
     displayMode: DisplayModeEnum = Field(..., description="Display mode")
-    languagesData: List[LanguagesDataModel] = Field(..., description="...")
+    languagesData: list[LanguagesDataModel] = Field(..., description="...")
 
 
 # --- Sizes DTOs
@@ -263,7 +262,7 @@ class SizesPutModel(BaseModel):
     name: str = Field(..., description="Category plural name")
     description: str = Field(..., description="Size description")
     operation: OperationSizesEnum = Field(..., description="Operation type")
-    lang_data: List[LangDataSizesModel] = Field(..., description="...")
+    lang_data: list[LangDataSizesModel] = Field(..., description="...")
 
 
 # --- Warranties DTOs
@@ -273,7 +272,7 @@ class LanguagesWarrantiesModel(BaseModel):
     value: str = Field(..., description="Literal in selected language")
 
 class DescriptionWarrantiesModel(BaseModel):
-    languages: List[LanguagesWarrantiesModel] = Field(..., description="...")
+    languages: list[LanguagesWarrantiesModel] = Field(..., description="...")
 
 class IconSettingsModel(BaseModel):
     format: FormatWarrantiesEnum = Field(..., description="...")
@@ -288,14 +287,14 @@ class LangWarrantiesModel(BaseModel):
 
 class LangDataWarrantiesModel(BaseModel):
     warranty_id: str | int = Field(..., description="Warranty ID (numeric or text based)")
-    lang: List[LangWarrantiesModel] = Field(..., description="...")
+    lang: list[LangWarrantiesModel] = Field(..., description="...")
 
 class ResultsOrderWarrantiesGetModel(BaseModel):
     field: FieldEnum = Field(..., description="...")
     order: OrderEnum = Field(..., description="Sorting order")
 
 class ShopnameWarrantiesModel(BaseModel):
-    languages: List[LanguagesWarrantiesModel] = Field(..., description="...")
+    languages: list[LanguagesWarrantiesModel] = Field(..., description="...")
 
 class WarrantiesPostModel(BaseModel):
     name: str = Field(..., description="Name")

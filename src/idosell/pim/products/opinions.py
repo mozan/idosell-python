@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, BooleanStrShortEnum, Gateway, PageableCamelGateway
@@ -53,7 +52,7 @@ class Get(PageableCamelGateway):
     scorePositive: ScorePositiveGetModel | None = Field(None, description="Review positive score data")
     scoreNegative: ScoreNegativeGetModel | None = Field(None, description="Review negative score data")
     dateRange: DateRangeGetModel | None = Field(None, description="Date range")
-    ordersBy: List[OrdersByGetModel] | None = Field(None, min_length=1, max_length=5, description="Possibility of sorting returned list") # type: ignore
+    ordersBy: list[OrdersByGetModel] | None = Field(None, min_length=1, max_length=5, description="Possibility of sorting returned list") # type: ignore
 
 class Post(AppendableGateway):
     """

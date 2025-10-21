@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr
 
 from src.idosell._common import AppendableGateway
@@ -10,22 +9,22 @@ from src.idosell.pim.products._common import (
 
 # --- DTOs
 class DeleteProductsPimProductsBundlesParamsModel(BaseModel):
-    products: List[ProductsBundleDeleteProductsModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsBundleDeleteProductsModel] = Field(..., min_length=1, description="Products list") # type: ignore
     bundleIdent: ProductIdentBundlesModel = Field(..., description="Bundle identifier")
 
 class PostBundlesPimProductsBundlesParamsModel(BaseModel):
-    products: List[ProductsBundlesPostModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsBundlesPostModel] = Field(..., min_length=1, description="Products list") # type: ignore
 
 class PostProductsPimProductsBundlesParamsModel(BaseModel):
-    products: List[ProductsBundlesPostProductsModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsBundlesPostProductsModel] = Field(..., min_length=1, description="Products list") # type: ignore
     bundleIdent: ProductIdentBundlesModel = Field(..., description="Bundle identifier")
 
 class PutProductsQuantityPimProductsBundlesParamsModel(BaseModel):
-    products: List[ProductsPutProductsQuantityModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsPutProductsQuantityModel] = Field(..., min_length=1, description="Products list") # type: ignore
     bundleIdent: ProductIdentBundlesModel = Field(..., description="Bundle identifier")
 
 class PutRenewPimProductsBundlesParamsModel(BaseModel):
-    products: List[ProductPutRenewModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductPutRenewModel] = Field(..., min_length=1, description="Products list") # type: ignore
     bundleIdent: ProductIdentBundlesModel = Field(..., description="Bundle identifier")
 
 
@@ -50,7 +49,7 @@ class DeleteProducts(AppendableGateway):
     _method: str = PrivateAttr(default='POST')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/products/bundles/products/delete')
 
-    params: List[DeleteProductsPimProductsBundlesParamsModel] = Field(..., description="Parameters transmitted to method")
+    params: list[DeleteProductsPimProductsBundlesParamsModel] = Field(..., description="Parameters transmitted to method")
 
 class PostProducts(AppendableGateway):
     """

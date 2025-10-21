@@ -1,4 +1,3 @@
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import AppendableGateway, PageableCamelGateway, PayerAddressBaseModel
@@ -17,13 +16,13 @@ class PutPayersModel(PayerAddressBaseModel):
     payerAddressId: str = Field(..., description="Buyer's address id")
 
 class DeleteParamsPayersAddressModel(BaseModel):
-    payers: List[PayerModel] = Field(..., description="List of payer addresses to delete")
+    payers: list[PayerModel] = Field(..., description="List of payer addresses to delete")
 
 class PostParamsPayersAddressModel(BaseModel):
-    payers: List[PostPayersModel] = Field(..., description="...")
+    payers: list[PostPayersModel] = Field(..., description="...")
 
 class PutParamsPayersAddressModel(BaseModel):
-    payers: List[PutPayersModel] = Field(..., description="...")
+    payers: list[PutPayersModel] = Field(..., description="...")
 
 
 # --- ENDPOINTS
@@ -47,7 +46,7 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/clients/payerAddress')
 
-    clientId: Optional[str] = Field(default=None, min_length=1, description="Unique client's number")
+    clientId: str | None = Field(default=None, min_length=1, description="Unique client's number")
 
 class Post(AppendableGateway):
     """

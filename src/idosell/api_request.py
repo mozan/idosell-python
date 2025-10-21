@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 
-from typing import Any, Dict, Optional
+from typing import Any
 
 import httpx
 from pydantic import BaseModel
@@ -13,12 +13,12 @@ from src.idosell._common import Gateway
 @dataclass
 class RequestConfig:
     """Configuration object for API requests to reduce parameter count."""
-    client: Optional[httpx.Client] = None
-    headers: Optional[Dict[str, str]] = None
-    auth: Optional[httpx.Auth] = None
-    bearer_token: Optional[str] = None
+    client: httpx.Client | None = None
+    headers: dict[str, str] | None = None
+    auth: httpx.Auth | None = None
+    bearer_token: str | None = None
     api_key_header: str = "X-API-KEY"
-    timeout: Optional[float | httpx.Timeout] = None
+    timeout: float | httpx.Timeout | None = None
 
 class ApiRequest:
     def __init__(
@@ -26,13 +26,13 @@ class ApiRequest:
         base_url: str,
         api_key: str,
         *,  # Force keyword-only arguments
-        config: Optional[RequestConfig] = None,
-        client: Optional[httpx.Client] = None,
-        headers: Optional[Dict[str, str]] = None,
-        auth: Optional[httpx.Auth] = None,
-        bearer_token: Optional[str] = None,
+        config: RequestConfig | None = None,
+        client: httpx.Client | None = None,
+        headers: dict[str, str] | None = None,
+        auth: httpx.Auth | None = None,
+        bearer_token: str | None = None,
         api_key_header: str = "X-API-KEY",
-        timeout: Optional[float | httpx.Timeout] = None
+        timeout: float | httpx.Timeout | None = None
     ):
         """Initialize ApiRequest with required base_url and api_key.
 
@@ -72,7 +72,7 @@ class ApiRequest:
             return "true" if value else "false"
         return value
 
-    def _build_query_params(self, model: BaseModel) -> Dict[str, Any]:
+    def _build_query_params(self, model: BaseModel) -> dict[str, Any]:
         # Prefer model's custom builder if present
         build_q = getattr(model, "build_query", None)
         if callable(build_q):
@@ -86,11 +86,11 @@ class ApiRequest:
 
     def _merge_headers(
         self,
-        headers: Optional[Dict[str, str]],
-        bearer_token: Optional[str],
-        api_key: Optional[str],
+        headers: dict[str, str] | None,
+        bearer_token: str | None,
+        api_key: str | None,
         api_key_header: str,
-    ) -> Dict[str, str]:
+    ) -> dict[str, str]:
         final = {
             "Accept": "application/json",
             "User-Agent": "idosell-python-httpx",
@@ -103,10 +103,10 @@ class ApiRequest:
             final[api_key_header] = api_key
         return final
 
-    def _build_request_data(self, dto: Gateway, method: str) -> tuple[Optional[Dict[str, Any]], Any]:
+    def _build_request_data(self, dto: Gateway, method: str) -> tuple[dict[str, Any] | None, Any]:
         """Build query parameters and JSON body based on HTTP method and DTO."""
         json_body: Any = None
-        params: Optional[Dict[str, Any]] = None
+        params: dict[str, Any] | None = None
 
         if method in {"GET", "HEAD"}:
             params = self._build_query_params(dto)
@@ -198,7 +198,7 @@ class ApiRequest:
         self,
         dto: Gateway,
         *,  # Force keyword-only arguments
-        config: Optional[RequestConfig] = None,
+        config: RequestConfig | None = None,
         raise_for_status: bool = False,
         parse_json: bool = True
     ) -> Any:
@@ -253,7 +253,7 @@ class ApiRequest:
         self,
         dto: Gateway,
         *,  # Force keyword-only arguments
-        config: Optional[RequestConfig] = None,
+        config: RequestConfig | None = None,
         raise_for_status: bool = False,
         parse_json: bool = True
     ) -> Any:

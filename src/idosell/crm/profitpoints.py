@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List, Optional
 from pydantic import BaseModel, Field, PrivateAttr, StrictInt
 
 from src.idosell._common import BooleanStrLongEnum, Gateway, PageableCamelGateway
@@ -39,13 +38,13 @@ class Get(PageableCamelGateway):
     _method: str = PrivateAttr(default='GET')
     _endpoint: str = PrivateAttr(default='/api/admin/v6/clients/profitPoints')
 
-    clientsIds: Optional[List[int]] = Field(default=None, min_length=1, description="Customer numbers (each >=1)")  # type: ignore
-    clientTextSearch: Optional[str] = Field(default=None, min_length=1, description="Text search through customer data")
-    clientIsActive: Optional[BooleanStrLongEnum] = Field(default=None, description="Active (yes/no)")
-    clientHasTradeCredit: Optional[TradeCreditEnum] = Field(default=None, description="Trade credit")
-    clientLastPurchaseDate: Optional[ClientLastPurchaseDateProfitPointsModel] = Field(default=None, description="Date of last purchase")
-    pointsModificationDate: Optional[PointsModificationDateModel] = Field(default=None, description="Profit points modification date range")
-    returnElements: Optional[List[str]] = Field(default=None, min_length=1, description="Elements to be returned by the endpoint. By default all elements are returned. Allowed: clientId, clientProfitPoints, clientProfitPointsHistories")  # type: ignore
+    clientsIds: list[int] | None = Field(default=None, min_length=1, description="Customer numbers (each >=1)")  # type: ignore
+    clientTextSearch: str | None = Field(default=None, min_length=1, description="Text search through customer data")
+    clientIsActive: BooleanStrLongEnum | None = Field(default=None, description="Active (yes/no)")
+    clientHasTradeCredit: TradeCreditEnum | None = Field(default=None, description="Trade credit")
+    clientLastPurchaseDate: ClientLastPurchaseDateProfitPointsModel | None = Field(default=None, description="Date of last purchase")
+    pointsModificationDate: PointsModificationDateModel | None = Field(default=None, description="Profit points modification date range")
+    returnElements: list[str] | None = Field(default=None, min_length=1, description="Elements to be returned by the endpoint. By default all elements are returned. Allowed: clientId, clientProfitPoints, clientProfitPointsHistories")  # type: ignore
 
 class Post(Gateway):
     """

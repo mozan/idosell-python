@@ -1,4 +1,3 @@
-from typing import List
 from pydantic import BaseModel, Field, PrivateAttr
 
 from src.idosell._common import AppendableGateway
@@ -7,10 +6,10 @@ from src.idosell.pim.products._common import ProductsSupplierPutCodeModel, Produ
 
 # --- DTOs
 class PutCodePimProductsSupplierParamsModel(BaseModel):
-    products: List[ProductsSupplierPutCodeModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsSupplierPutCodeModel] = Field(..., min_length=1, description="Products list") # type: ignore
 
 class PutProductDataPimProductsSupplierParamsModel(BaseModel):
-    products: List[ProductsSupplierPutProductDataModel] = Field(..., min_length=1, description="Products list") # type: ignore
+    products: list[ProductsSupplierPutProductDataModel] = Field(..., min_length=1, description="Products list") # type: ignore
 
 
 # --- ENDPOINTS

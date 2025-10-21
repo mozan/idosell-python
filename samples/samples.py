@@ -1,7 +1,6 @@
-import asyncio
 import os
 import sys
-from typing import List, Any
+from typing import Any
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -28,13 +27,13 @@ if __name__ == "__main__":
 
     api = ApiRequest(base_url = IDOSELL_BASE_URL, api_key = IDOSELL_API_KEY)
 
-    test_delete_dtos: List[Any] = [
+    test_delete_dtos: list[Any] = [
         cms_delete, crm_delete, oms_delete, pim_delete, pim_products_delete, pim_products_product_delete, system_delete, wms_delete
     ]
-    test_get_dtos: List[Any] = [
+    test_get_dtos: list[Any] = [
         cms_get, crm_get, oms_get, pim_get, pim_products_get, pim_products_product_get, system_get, wms_get
     ]
-    test_post_dtos: List[Any] = [
+    test_post_dtos: list[Any] = [
         cms_post,
         crm_post,
         oms_post,
@@ -44,7 +43,7 @@ if __name__ == "__main__":
         system_post,
         wms_post
     ]
-    test_put_dtos: List[Any] = [
+    test_put_dtos: list[Any] = [
         cms_put,
         crm_put,
         oms_put,
@@ -54,11 +53,11 @@ if __name__ == "__main__":
         system_put,
         wms_put
     ]
-    test_search_dtos: List[Any] = [
+    test_search_dtos: list[Any] = [
         crm_search, oms_search, pim_products_search, pim_products_product_search
     ]
 
-    test_dtos: List[Any] = [
+    test_dtos: list[Any] = [
         # test_delete_dtos,
         test_get_dtos,
         # test_post_dtos,

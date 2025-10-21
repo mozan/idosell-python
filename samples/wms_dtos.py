@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any
 
 from src.idosell._common import BooleanStrShortEnum
 from src.idosell.wms._common import AverageDeliveryTimeModel, DocumentTypeEnum, DocumentsConfirmedEnum, DocumentsCurrencyForPurchasePriceRateTypeEnum, DocumentsPriceTypeEnum, DocumentsQueueTypeEnum, DocumentsWntEnum, OrderCompletionTimeModel, ProductsDeleteModel, ProductsPostPutModel, SuppliersModel, WorkDaysModel
@@ -11,7 +11,7 @@ from src.idosell.wms.stocks import (
 )
 from src.idosell.wms.suppliers import DeleteWmsSuppliersParamsModel, Get as WmsGet, Delete as WmsSuppliersDelete, Put as WmsSuppliersPut, PutWmsSuppliersParamsModel
 
-wms_delete: List[Any] = [
+wms_delete: list[Any] = [
     WmsSuppliersDelete(
         params = DeleteWmsSuppliersParamsModel(ids = [1])
     ),
@@ -33,7 +33,7 @@ wms_delete: List[Any] = [
     ),
 ]
 
-wms_get: List[Any] = [
+wms_get: list[Any] = [
     WmsGetWmsLocations(
         # type: ignore
         locationId = 1,
@@ -47,7 +47,7 @@ wms_get: List[Any] = [
     WmsGet() # type: ignore
 ]
 
-wms_post: List[Any] = [
+wms_post: list[Any] = [
     WmsStocksPostDocuments(
         params = PostDocumentsWmsStocksParamsModel(
             type = DocumentTypeEnum.PZ,
@@ -83,7 +83,7 @@ wms_post: List[Any] = [
     ),
 ]
 
-wms_put: List[Any] = [
+wms_put: list[Any] = [
     WmsStocksPutAcceptMM(
         params = PutAcceptMMWmsStocksParamsModel(
             id = 1

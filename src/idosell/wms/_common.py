@@ -1,5 +1,4 @@
 from enum import StrEnum
-from typing import List
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 
 
@@ -146,4 +145,4 @@ class SuppliersModel(BaseModel):
     averageDeliveryTime: AverageDeliveryTimeModel = Field(..., description="Average delivery time")
     description: str = Field(..., description="Description. (limit of 255 characters)")
     orderCompletionTime: OrderCompletionTimeModel = Field(..., description="Order preparation time for shipment")
-    workDays: List[WorkDaysModel] = Field(..., description="Supplier working hours")
+    workDays: list[WorkDaysModel] = Field(..., description="Supplier working hours")
