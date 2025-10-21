@@ -32,7 +32,7 @@ class PostCrmProfitpointsParamsModel(BaseModel):
 class Get(PageableCamelGateway):
     """
     Method that enables extracting information about the amount of loyalty points collected by customers in a loyalty program
-    DOCS_URL: https://idosell.readme.io/reference/clientsprofitpointsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsprofitpointsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -49,7 +49,7 @@ class Get(PageableCamelGateway):
 class Post(Gateway):
     """
     Method that allows for adding loyalty points to the balances of existing customer accounts
-    DOCS_URL: https://idosell.readme.io/reference/clientsprofitpointspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsprofitpointspost
     """
 
     _method: str = PrivateAttr(default='POST')

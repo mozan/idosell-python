@@ -43,7 +43,7 @@ class PutOmsRmaParamsModel(BaseModel):
 class Get(PageableCamelGateway):
     """
     This get method allows you to retrieve data about existing claims
-    DOCS_URL: https://idosell.readme.io/reference/rmarmaget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/rmarmaget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -60,7 +60,7 @@ class Get(PageableCamelGateway):
 class Put(AppendableGateway):
     """
     This update method allows to update the data in existing complaints
-    DOCS_URL: https://idosell.readme.io/reference/rmarmaput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/rmarmaput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -71,7 +71,7 @@ class Put(AppendableGateway):
 class GetStatuses(Gateway):
     """
     Allows to download all possible complaint statuses
-    DOCS_URL: https://idosell.readme.io/reference/rmastatusesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/rmastatusesget
     """
 
     _method: str = PrivateAttr(default='GET')

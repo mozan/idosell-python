@@ -245,7 +245,7 @@ class SubscriptionsStatusModel(BaseModel):
 class PostAddProduct(Gateway):
     """
     The method allowing adding products to subscription
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionsaddproductpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionsaddproductpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -256,7 +256,7 @@ class PostAddProduct(Gateway):
 class PostChangeDeliveryDates(Gateway):
     """
     The method allowing to change subscriptions delivery dates
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionschangedeliverydatespost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionschangedeliverydatespost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -267,7 +267,7 @@ class PostChangeDeliveryDates(Gateway):
 class PostChangePriceAutoUpdate(Gateway):
     """
     The method allowing to change subscriptions price auto update setting
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionschangepriceautoupdatepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionschangepriceautoupdatepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -278,7 +278,7 @@ class PostChangePriceAutoUpdate(Gateway):
 class PostChangeStatus(Gateway):
     """
     The method allowing to change subscriptions status
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionschangestatuspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionschangestatuspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -289,7 +289,7 @@ class PostChangeStatus(Gateway):
 class DeleteProduct(Gateway):
     """
     The method allowing for products in subscription removeing
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionsdeleteproductpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionsdeleteproductpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -300,7 +300,7 @@ class DeleteProduct(Gateway):
 class PostEdit(Gateway):
     """
     The method allowing for subscription editing
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionseditpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionseditpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -311,7 +311,7 @@ class PostEdit(Gateway):
 class PostEditProduct(Gateway):
     """
     The method allowing for products in subscription editing
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionseditproductpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionseditproductpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -322,7 +322,7 @@ class PostEditProduct(Gateway):
 class PostItemsList(Gateway):
     """
     List of items assigned to subscription
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionsitemslistpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionsitemslistpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -333,7 +333,7 @@ class PostItemsList(Gateway):
 class PostListViewFetchIds(Gateway):
     """
     List of subscriptions ID's of the store
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionslistviewfetchidspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionslistviewfetchidspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -344,7 +344,7 @@ class PostListViewFetchIds(Gateway):
 class PostListViewList(Gateway):
     """
     List of subscriptions of the store. Allows you to download data for editing and basic statistics
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionslistviewlistpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionslistviewlistpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -355,7 +355,7 @@ class PostListViewList(Gateway):
 class PostSetRebateCode(Gateway):
     """
     The method for set rebate code
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionssetrebatecodepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionssetrebatecodepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -366,7 +366,7 @@ class PostSetRebateCode(Gateway):
 class PostUnsetRebateCode(Gateway):
     """
     The method for set rebate code
-    DOCS_URL: https://idosell.readme.io/reference/subscriptionsunsetrebatecodepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/subscriptionsunsetrebatecodepost
     """
 
     _method: str = PrivateAttr(default='POST')

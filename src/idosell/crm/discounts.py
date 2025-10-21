@@ -83,7 +83,7 @@ class PutGroupsProductsCrmDiscountsParamsModel(BaseModel):
 class GetGroupsClients(Gateway):
     """
     Returns the list of customer IDs assigned to an indicated discount group. In order to assign a discount group, use setClients method in API Clients
-    DOCS_URL: https://idosell.readme.io/reference/discountsgroupsclientsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsgroupsclientsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -94,7 +94,7 @@ class GetGroupsClients(Gateway):
 class DeleteGroups(Gateway):
     """
     Allows to remove a discount group. The condition for conducting this process is no customers assigned to the indicated group. In order to check the assigned customers use getClientsAssignedToDiscountGroup method
-    DOCS_URL: https://idosell.readme.io/reference/discountsgroupsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsgroupsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -105,7 +105,7 @@ class DeleteGroups(Gateway):
 class GetGroups(PageableCamelGateway):
     """
     Method that enables extracting information about discount groups configured in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/discountsgroupsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsgroupsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -117,7 +117,7 @@ class GetGroups(PageableCamelGateway):
 class PostGroups(Gateway):
     """
     Allows to add a new discount group in the administration panel. The discount group is added by default with the setting "Discount for products - yes, but different for indicated groups"
-    DOCS_URL: https://idosell.readme.io/reference/discountsgroupspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsgroupspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -128,7 +128,7 @@ class PostGroups(Gateway):
 class PutGroups(Gateway):
     """
     Allows to change a discount group name
-    DOCS_URL: https://idosell.readme.io/reference/discountsgroupsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsgroupsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -139,7 +139,7 @@ class PutGroups(Gateway):
 class DeleteGroupsProducts(Gateway):
     """
     The method allows the removal of products from a discount group
-    DOCS_URL: https://idosell.readme.io/reference/discountsgroupsproductsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsgroupsproductsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -150,7 +150,7 @@ class DeleteGroupsProducts(Gateway):
 class PutGroupsProducts(Gateway):
     """
     The method allows products to be added to a discount group and their price to be specified in the discount group
-    DOCS_URL: https://idosell.readme.io/reference/discountsgroupsproductsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsgroupsproductsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -161,7 +161,7 @@ class PutGroupsProducts(Gateway):
 class PutRebatesBlockCard(Gateway):
     """
     Allows to block an indicated discount card, eg. when it is assumed that its number has been made available publicly. The blocked card can be unblocked with the method unblockRebateCard
-    DOCS_URL: https://idosell.readme.io/reference/discountsrebatesblockcardput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsrebatesblockcardput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -172,7 +172,7 @@ class PutRebatesBlockCard(Gateway):
 class DeleteRebatesCard(Gateway):
     """
     Method allows to quickly delete all the discount codes, which have never been used by customers, from an indicated rebate campaign. Codes which have been used at least once, will not be deleted
-    DOCS_URL: https://idosell.readme.io/reference/discountsrebatescarddeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsrebatescarddeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -183,7 +183,7 @@ class DeleteRebatesCard(Gateway):
 class PostRebatesCard(Gateway):
     """
     Allows to upload new card numbers to already existing discount card types in the administration panel. Cards uploaded such way retrieve settings, regarding the discount amount, from the type of cards to which they are uploaded. Every card can also have individual, independent discount settings which can be set in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/discountsrebatescardpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsrebatescardpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -195,7 +195,7 @@ class PostRebatesCard(Gateway):
 class DeleteRebatesCode(Gateway):
     """
     Allows to quickly delete all the discount codes, which have never been used by customers, from an indicated rebate campaign. Codes which have been used at least once, will not be deleted
-    DOCS_URL: https://idosell.readme.io/reference/discountsrebatescodedeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsrebatescodedeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -206,7 +206,7 @@ class DeleteRebatesCode(Gateway):
 class PostRebatesCode(Gateway):
     """
     Allows to upload new code numbers to already existing rebate campaigns in the administration panel. The codes uploaded in such way retrieve settings, regarding the discount amount, from a campaign to which they are uploaded. Each discount code can also have individual, independent discount settings which can be set in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/discountsrebatescodepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsrebatescodepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -218,7 +218,7 @@ class PostRebatesCode(Gateway):
 class PutRebatesUnblockCard(Gateway):
     """
     unblockRebateCard method - allows to unblock discount cards. Block cards with the blockRebateCard method
-    DOCS_URL: https://idosell.readme.io/reference/discountsrebatesunblockcardput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/discountsrebatesunblockcardput
     """
 
     _method: str = PrivateAttr(default='PUT')

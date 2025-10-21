@@ -38,7 +38,7 @@ class PutEntitiesPimResponsabilityParamsModel(BaseModel):
 class GetEntities(PageableCamelGateway):
     """
     This call returns a list of responsible entities.
-    DOCS_URL: https://idosell.readme.io/reference/responsibilityentitiesget-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/responsibilityentitiesget-1
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -50,7 +50,7 @@ class GetEntities(PageableCamelGateway):
 class PostEntities(AppendableGateway):
     """
     Use this operation to create responsible entities.
-    DOCS_URL: https://idosell.readme.io/reference/responsibilityentitiespost-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/responsibilityentitiespost-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -61,7 +61,7 @@ class PostEntities(AppendableGateway):
 class PutEntities(AppendableGateway):
     """
     Use this operation to update responsible entities
-    DOCS_URL: https://idosell.readme.io/reference/responsibilityentitiesput-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/responsibilityentitiesput-1
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -72,7 +72,7 @@ class PutEntities(AppendableGateway):
 class DeleteEntities(Gateway):
     """
     This call is used to remove responsible entities
-    DOCS_URL: https://idosell.readme.io/reference/responsibilityentitiesdelete-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/responsibilityentitiesdelete-1
     """
 
     _method: str = PrivateAttr(default='DELETE')

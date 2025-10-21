@@ -16,7 +16,7 @@ class PutPimSizechartsParamsModel(BaseModel):
 class Delete(Gateway):
     """
     The method allows the removal of size charts
-    DOCS_URL: https://idosell.readme.io/reference/sizechartssizechartsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/sizechartssizechartsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -27,7 +27,7 @@ class Delete(Gateway):
 class Get(PageableCamelGateway):
     """
     The method allows size charts to be downloaded.
-    DOCS_URL: https://idosell.readme.io/reference/sizechartssizechartsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/sizechartssizechartsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -40,7 +40,7 @@ class Get(PageableCamelGateway):
 class Put(AppendableGateway):
     """
     The method allows the size charts settings to be updated
-    DOCS_URL: https://idosell.readme.io/reference/sizechartssizechartsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/sizechartssizechartsput
     """
 
     _method: str = PrivateAttr(default='PUT')

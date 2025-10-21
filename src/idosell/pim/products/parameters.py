@@ -19,7 +19,7 @@ class SearchPimProductsParametersParamsModel(BaseModel):
 class Delete(Gateway):
     """
     The method allows you to delete parameters and their values (for parameters that are not pinned to any product)
-    DOCS_URL: https://idosell.readme.io/reference/productsparametersdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsparametersdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -30,7 +30,7 @@ class Delete(Gateway):
 class Put(AppendableGateway):
     """
     Method that enables adding and editing of sections and parameters, modifying their values and setting their order.
-    DOCS_URL: https://idosell.readme.io/reference/productsparametersput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsparametersput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -42,7 +42,7 @@ class Put(AppendableGateway):
 class Search(PageableCamelGateway):
     """
     Method that enables adding and editing of sections and parameters, modifying their values and setting their order
-    DOCS_URL: https://idosell.readme.io/reference/productsparameterssearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsparameterssearchpost
     """
 
     _method: str = PrivateAttr(default='POST')

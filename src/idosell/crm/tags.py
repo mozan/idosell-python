@@ -38,7 +38,7 @@ class PutCrmTagsParamsModel(BaseModel):
 class DeleteClear(Gateway):
     """
     Use this method to delete all tags assigned to a customer
-    DOCS_URL: https://idosell.readme.io/reference/clientstagscleardeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientstagscleardeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -49,7 +49,7 @@ class DeleteClear(Gateway):
 class Delete(AppendableGateway):
     """
     Use this method to delete selected tags assigned to a customer
-    DOCS_URL: https://idosell.readme.io/reference/clientstagsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientstagsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -60,7 +60,7 @@ class Delete(AppendableGateway):
 class Get(Gateway):
     """
     Use this method to retrieve all tags assigned to a client
-    DOCS_URL: https://idosell.readme.io/reference/clientstagsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientstagsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -71,7 +71,7 @@ class Get(Gateway):
 class Post(AppendableGateway):
     """
     Use this method to add new tags and their associated values to the client
-    DOCS_URL: https://idosell.readme.io/reference/clientstagspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientstagspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -82,7 +82,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     The method is used to update the value of the tags assigned to the client. A tag with value 0 is detached from the client
-    DOCS_URL: https://idosell.readme.io/reference/clientstagsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientstagsput
     """
 
     _method: str = PrivateAttr(default='PUT')

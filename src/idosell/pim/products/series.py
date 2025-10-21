@@ -23,7 +23,7 @@ class PutPimProductsSeriesParamsModel(BaseModel):
 class Delete(Gateway):
     """
     Method allows you to delete a series of products available in the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsseriesdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsseriesdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -34,7 +34,7 @@ class Delete(Gateway):
 class GetFilter(Gateway):
     """
     Method allows you to retrieve a list of filters for a series of products available in the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsseriesfilterget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsseriesfilterget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -47,7 +47,7 @@ class GetFilter(Gateway):
 class PutFilter(AppendableGateway):
     """
     The method allows you to manage the filter settings for the series
-    DOCS_URL: https://idosell.readme.io/reference/productsseriesfilterput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsseriesfilterput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -58,7 +58,7 @@ class PutFilter(AppendableGateway):
 class Get(PageableCamelGateway):
     """
     Method returns information about the product series available in the IdoSell administration panel.
-    DOCS_URL: https://idosell.readme.io/reference/productsseriesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsseriesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -72,7 +72,7 @@ class Get(PageableCamelGateway):
 class Put(AppendableGateway):
     """
     Method allows you to update information about product series available in the IdoSell administration panel.
-    DOCS_URL: https://idosell.readme.io/reference/productsseriesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsseriesput
     """
 
     _method: str = PrivateAttr(default='PUT')

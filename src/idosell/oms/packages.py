@@ -66,7 +66,7 @@ class SearchOmsPackagesParamsModel(BaseModel):
 class GetLabels(Gateway):
     """
     The method allows you to download labels for the courier from orders, complaints and returns
-    DOCS_URL: https://idosell.readme.io/reference/packageslabelsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/packageslabelsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -78,7 +78,7 @@ class GetLabels(Gateway):
 class PostLabels(AppendableGateway):
     """
     The method is used to generate shipments and printouts for the courier in orders, complaints and returns. When generating a label with a default courier configuration, it is not necessary to complete the shipment configuration options. To generate a custom label, you must additionally forward the shipment configuration options available to the courier in a given event (parcelParameters node). Completable configuration options can be checked using the getPackages method
-    DOCS_URL: https://idosell.readme.io/reference/packageslabelspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/packageslabelspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -89,7 +89,7 @@ class PostLabels(AppendableGateway):
 class Post(AppendableGateway):
     """
     Method that enables adding parcels to an order
-    DOCS_URL: https://idosell.readme.io/reference/packagespackagespost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/packagespackagespost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -100,7 +100,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Method that enables editing parcels already assigned to an order
-    DOCS_URL: https://idosell.readme.io/reference/packagespackagesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/packagespackagesput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -111,7 +111,7 @@ class Put(AppendableGateway):
 class Search(Gateway):
     """
     Method that enables getting a list of parcels assigned to an order
-    DOCS_URL: https://idosell.readme.io/reference/packagespackagessearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/packagespackagessearchpost
     """
 
     _method: str = PrivateAttr(default='POST')

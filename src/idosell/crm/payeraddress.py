@@ -29,7 +29,7 @@ class PutParamsPayersAddressModel(BaseModel):
 class Delete(AppendableGateway):
     """
     The method allows you to delete unused buyer addresses for customer accounts in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientspayeraddressdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspayeraddressdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -40,7 +40,7 @@ class Delete(AppendableGateway):
 class Get(PageableCamelGateway):
     """
     The method allows to retrieve buyer's addresses from sales documents, for existing customer accounts in the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientspayeraddressget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspayeraddressget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -51,7 +51,7 @@ class Get(PageableCamelGateway):
 class Post(AppendableGateway):
     """
     The method allows to add buyer's addresses to sales documents, for existing customer accounts in the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientspayeraddresspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspayeraddresspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -62,7 +62,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     The method allows to modify buyer's addresses in sales documents, for existing customer accounts in the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientspayeraddressput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspayeraddressput
     """
 
     _method: str = PrivateAttr(default='PUT')

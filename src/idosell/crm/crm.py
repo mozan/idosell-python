@@ -91,7 +91,7 @@ class PostParamsSearchModel(BaseModel):
 class Search(PageableCamelGateway):
     """
     The method allows to download information about customers from the CRM module assigned to stores to which the user has rights
-    DOCS_URL: https://idosell.readme.io/reference/clientscrmsearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientscrmsearchpost
     """
 
     _method: str = PrivateAttr(default='POST')

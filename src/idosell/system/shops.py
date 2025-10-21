@@ -7,7 +7,7 @@ from src.idosell._common import Gateway
 class GetCurrencies(Gateway):
     """
     Method is used for extracting information about a shop language templates
-    DOCS_URL: https://idosell.readme.io/reference/shopscurrenciesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/shopscurrenciesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -16,7 +16,7 @@ class GetCurrencies(Gateway):
 class GetLanguages(Gateway):
     """
     Method is used for extracting information about a shop language templates
-    DOCS_URL: https://idosell.readme.io/reference/shopslanguagesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/shopslanguagesget
     """
 
     _method: str = PrivateAttr(default='GET')

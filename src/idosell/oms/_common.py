@@ -405,7 +405,7 @@ class OrderProductsModel(BaseModel):
     productSerialNumbers: list[str] = Field(..., description="Serial numbers")
 
 class OrderSourceModel(BaseModel):
-    # Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. https://idosell.readme.io/reference/ordersorderssearchpost
+    # Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. https://idosell.readme.io/v6.0/reference/ordersorderssearchpost
     shopsMask: StrictInt = Field(..., description="Bit mask of shop IDs")
     shopsIds: list[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
     auctionsParams: AuctionsParamsModel = Field(..., description="Object used for order searching based on auctions' parameters")
@@ -414,7 +414,7 @@ class OrderSourceModel(BaseModel):
     auctionsClients: list[AuctionsClientsModel] = Field(..., description="Client's account on auction site data")
 
 class OrderSourceSearchUnfinishedModel(BaseModel):
-    # Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. https://idosell.readme.io/reference/ordersorderssearchpost
+    # Mask for indicated store is calculated on basis of following formula: 2^(store_ID - 1). If the product should be available in more than one shop, the masks should be summed up. https://idosell.readme.io/v6.0/reference/ordersorderssearchpost
     shopsMask: StrictInt = Field(..., description="Bit mask of shop IDs")
     shopsIds: list[int] = Field(..., description="List of stores IDs When mask is determined, this parameter is omitted")
     auctionsParams: AuctionsParamsModel = Field(..., description="Object used for order searching based on auctions' parameters")

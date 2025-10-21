@@ -67,7 +67,7 @@ class PutOmsRefundsParamsModel(BaseModel):
 class PostAddAutomatic(Gateway):
     """
     Method allows you to add automatic refund of payments for returns and rma
-    DOCS_URL: https://idosell.readme.io/reference/refundsaddautomaticrefund-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/refundsaddautomaticrefund-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -78,7 +78,7 @@ class PostAddAutomatic(Gateway):
 class PostAddAutomaticForOrder(Gateway):
     """
     Method allows you to add automatic refund for order
-    DOCS_URL: https://idosell.readme.io/reference/refundsaddautomaticrefundfororder-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/refundsaddautomaticrefundfororder-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -89,7 +89,7 @@ class PostAddAutomaticForOrder(Gateway):
 class PostAddManual(Gateway):
     """
     Method allows you to add manual refund for return and rma
-    DOCS_URL: https://idosell.readme.io/reference/refundsaddmanualrefund-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/refundsaddmanualrefund-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -100,7 +100,7 @@ class PostAddManual(Gateway):
 class PutCancelRefund(Gateway):
     """
     Method allows you to cancel refund
-    DOCS_URL: https://idosell.readme.io/reference/refundscancelrefund-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/refundscancelrefund-1
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -111,7 +111,7 @@ class PutCancelRefund(Gateway):
 class PutConfirm(Gateway):
     """
     Method allows you to confirm refund
-    DOCS_URL: https://idosell.readme.io/reference/refundsconfirmrefund-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/refundsconfirmrefund-1
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -122,7 +122,7 @@ class PutConfirm(Gateway):
 class GetPossibleAuto(Gateway):
     """
     Method returns Automatic refunds possible
-    DOCS_URL: https://idosell.readme.io/reference/refundsgetpossibleautorefunds-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/refundsgetpossibleautorefunds-1
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -134,7 +134,7 @@ class GetPossibleAuto(Gateway):
 class GetStatus(Gateway):
     """
     Method returns refund status
-    DOCS_URL: https://idosell.readme.io/reference/refundsgetrefundstatus-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/refundsgetrefundstatus-1
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -147,7 +147,7 @@ class GetStatus(Gateway):
 class GetRetrieveList(PageableCamelGateway):
     """
     Method returns a list of incomplete refunds
-    DOCS_URL: https://idosell.readme.io/reference/refundsretrieverefundslist-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/refundsretrieverefundslist-1
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -158,7 +158,7 @@ class GetRetrieveList(PageableCamelGateway):
 class PutUpdate(Gateway):
     """
     Method allows you to update refund
-    DOCS_URL: https://idosell.readme.io/reference/refundsupdaterefund-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/refundsupdaterefund-1
     """
 
     _method: str = PrivateAttr(default='PUT')

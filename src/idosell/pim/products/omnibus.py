@@ -13,7 +13,7 @@ class PutPricesPimProductsOmnibusParamsModel(BaseModel):
 class GetPrices(Gateway):
     """
     Allows you to download information about the lowest prices before promotions
-    DOCS_URL: https://idosell.readme.io/reference/productsomnibuspricesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsomnibuspricesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -25,7 +25,7 @@ class GetPrices(Gateway):
 class PutPrices(AppendableGateway):
     """
     Allows for editing product strikethrough price settings
-    DOCS_URL: https://idosell.readme.io/reference/productsomnibuspricesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsomnibuspricesput
     """
 
     _method: str = PrivateAttr(default='PUT')

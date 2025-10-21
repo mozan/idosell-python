@@ -20,7 +20,7 @@ class PutPimProductsImagesParamsModel(BaseModel):
 class Delete(AppendableGateway):
     """
     This method is used to delete images of products
-    DOCS_URL: https://idosell.readme.io/reference/productsimagesdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsimagesdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -31,7 +31,7 @@ class Delete(AppendableGateway):
 class Put(AppendableGateway):
     """
     Method used for adding and editing product pictures
-    DOCS_URL: https://idosell.readme.io/reference/productsimagesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsimagesput
     """
 
     _method: str = PrivateAttr(default='PUT')

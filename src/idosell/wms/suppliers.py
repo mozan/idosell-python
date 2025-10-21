@@ -16,7 +16,7 @@ class PutWmsSuppliersParamsModel(BaseModel):
 class Delete(Gateway):
     """
     Method allows for the removal of suppliers.
-    DOCS_URL: https://idosell.readme.io/reference/wmssupplierssuppliersdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmssupplierssuppliersdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -27,7 +27,7 @@ class Delete(Gateway):
 class Get(PageableCamelGateway):
     """
     The method allows to download a list of suppliers along with information about the number of products assigned to them.
-    DOCS_URL: https://idosell.readme.io/reference/wmssupplierssuppliersget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmssupplierssuppliersget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -40,7 +40,7 @@ class Get(PageableCamelGateway):
 class Put(Gateway):
     """
     The method allows information about suppliers to be updated, including address details, description, order preparation time or supplier working hours
-    DOCS_URL: https://idosell.readme.io/reference/wmssupplierssuppliersput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmssupplierssuppliersput
     """
 
     _method: str = PrivateAttr(default='PUT')

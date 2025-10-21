@@ -65,7 +65,7 @@ class PutCmsEntriesParamsModel(EntitiesModel):
 class Delete(Gateway):
     """
     Enables deleting blog or news entry
-    DOCS_URL: https://idosell.readme.io/reference/entriesentriesdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/entriesentriesdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -76,7 +76,7 @@ class Delete(Gateway):
 class Get(Gateway):
     """
     Enables downloading blog or news entry data
-    DOCS_URL: https://idosell.readme.io/reference/entriesentriesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/entriesentriesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -88,7 +88,7 @@ class Get(Gateway):
 class Post(AppendableGateway):
     """
     Enables adding blog or news entry
-    DOCS_URL: https://idosell.readme.io/reference/entriesentriespost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/entriesentriespost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -99,7 +99,7 @@ class Post(AppendableGateway):
 class Put(Gateway):
     """
     Enables changing blog or news entry in the shop
-    DOCS_URL: https://idosell.readme.io/reference/entriesentriesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/entriesentriesput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -110,7 +110,7 @@ class Put(Gateway):
 class GetPagesToDisplay(Gateway):
     """
     Allows you to download a list of sites on which a blog entry or a news item can be published
-    DOCS_URL: https://idosell.readme.io/reference/entriespagestodisplayget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/entriespagestodisplayget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -121,7 +121,7 @@ class GetPagesToDisplay(Gateway):
 class GetSources(Gateway):
     """
     DOCS: This call returns all entry sources with options
-    DOCS_URL: https://idosell.readme.io/reference/entriessourcesget-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/entriessourcesget-1
     """
 
     _method: str = PrivateAttr(default='GET')

@@ -13,7 +13,7 @@ class PutPimProductsDescriptionsParamsModel(BaseModel):
 class Get(Gateway):
     """
     Method that returns text elements for a given product, e.g. product name, long and short description, metadata
-    DOCS_URL: https://idosell.readme.io/reference/productsdescriptionsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsdescriptionsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -26,7 +26,7 @@ class Get(Gateway):
 class Put(AppendableGateway):
     """
     The method allows for setting text elements for a given product, e.g. product name, long and short description, metadata
-    DOCS_URL: https://idosell.readme.io/reference/productsdescriptionsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsdescriptionsput
     """
 
     _method: str = PrivateAttr(default='PUT')

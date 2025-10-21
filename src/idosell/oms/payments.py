@@ -87,7 +87,7 @@ class PostRepaymentOmsPaymentsParamsModel(BaseModel):
 class PostCancel(Gateway):
     """
     Method that enables cancelling payments for orders in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/paymentscancelpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/paymentscancelpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -98,7 +98,7 @@ class PostCancel(Gateway):
 class PostCashback(Gateway):
     """
     The method allows to send refund requests (so called cashback) for payments managed by external payment systems which have such option available
-    DOCS_URL: https://idosell.readme.io/reference/paymentscashbackpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/paymentscashbackpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -109,7 +109,7 @@ class PostCashback(Gateway):
 class PutConfirm(Gateway):
     """
     Method that enables accepting payments for orders in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/paymentsconfirmput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/paymentsconfirmput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -121,7 +121,7 @@ class PutConfirm(Gateway):
 class GetForms(Gateway):
     """
     Method that enables getting information about payment methods available in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/paymentsformsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/paymentsformsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -132,7 +132,7 @@ class GetForms(Gateway):
 class Get(Gateway):
     """
     Method that enables getting information about payments for orders in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/paymentspaymentsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/paymentspaymentsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -144,7 +144,7 @@ class Get(Gateway):
 class Post(Gateway):
     """
     Method that enables adding payments to orders in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/paymentspaymentspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/paymentspaymentspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -155,7 +155,7 @@ class Post(Gateway):
 class Put(Gateway):
     """
     Method that enables editing payments for orders in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/paymentspaymentsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/paymentspaymentsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -166,7 +166,7 @@ class Put(Gateway):
 class GetProfiles(PageableCamelGateway):
     """
     Allows to download all of the payment profiles defined in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/paymentsprofilesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/paymentsprofilesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -175,7 +175,7 @@ class GetProfiles(PageableCamelGateway):
 class PostRepayment(Gateway):
     """
     Method that enables adding withdrawals for orders in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/paymentsrepaymentpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/paymentsrepaymentpost
     """
 
     _method: str = PrivateAttr(default='POST')

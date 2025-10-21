@@ -21,7 +21,7 @@ class SearchProductsDeliveryTimePimProductsMiscsParamsModel(BaseModel):
 class GetProductsAuctions(PageableCamelGateway):
     """
     Allows for downloading information about auctions and auction categories to which the product has been assigned (for a maximum of 100 products in one request)
-    DOCS_URL: https://idosell.readme.io/reference/productsauctionsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsauctionsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -34,7 +34,7 @@ class GetProductsAuctions(PageableCamelGateway):
 class GetProductsCodeExistence(Gateway):
     """
     The method allows to check if a product with the given identification code (panel ID, IAI code, manufacturer code, external system code) exists in the panel
-    DOCS_URL: https://idosell.readme.io/reference/productscodeexistenceget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productscodeexistenceget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -47,7 +47,7 @@ class GetProductsCodeExistence(Gateway):
 class GetProductsIdBySizecode(Gateway):
     """
     Method that returns information about product IDs, as well as size IDs and names, based on the provided product external system codes.
-    DOCS_URL: https://idosell.readme.io/reference/productsidbysizecodeget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsidbysizecodeget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -59,7 +59,7 @@ class GetProductsIdBySizecode(Gateway):
 class GetProductsReservations(Gateway):
     """
     It allows to download information about product reservations in orders (for up to 100 products in one request).
-    DOCS_URL: https://idosell.readme.io/reference/productsreservationsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsreservationsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -71,7 +71,7 @@ class GetProductsReservations(Gateway):
 class GetProductsSKUbyBarcode(Gateway):
     """
     The method allows to download, among others, information on identifiers, names and size codes, their available stock quantity and locations in the warehouse based on scanned bar codes.
-    DOCS_URL: https://idosell.readme.io/reference/productsskubybarcodeget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsskubybarcodeget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -83,7 +83,7 @@ class GetProductsSKUbyBarcode(Gateway):
 class PostProductsRestore(Gateway):
     """
     The method is used to restore deleted products
-    DOCS_URL: https://idosell.readme.io/reference/productsrestorepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsrestorepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -94,7 +94,7 @@ class PostProductsRestore(Gateway):
 class PutProductsAttachments(AppendableGateway):
     """
     Method that enables adding and editing product attachments
-    DOCS_URL: https://idosell.readme.io/reference/productsattachmentsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsattachmentsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -105,7 +105,7 @@ class PutProductsAttachments(AppendableGateway):
 class SearchProductsDeliveryTime(AppendableGateway):
     """
     The method returns the time needed to prepare the product for shipment
-    DOCS_URL: https://idosell.readme.io/reference/productsdeliverytimesearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsdeliverytimesearchpost
     """
 
     _method: str = PrivateAttr(default='POST')

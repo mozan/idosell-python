@@ -22,7 +22,7 @@ class SearchSmsCrmNewsletterParamsModel(BaseModel):
 class SearchEmail(PageableSnakeGateway):
     """
     Method that enables extracting a list of customer accounts that agreed / did not agree to receiving email newsletters
-    DOCS_URL: https://idosell.readme.io/reference/clientsnewsletteremailsearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsnewsletteremailsearchpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -33,7 +33,7 @@ class SearchEmail(PageableSnakeGateway):
 class SearchSms(PageableSnakeGateway):
     """
     Method that enables extracting a list of customer accounts that agreed / did not agree to receiving text message newsletters
-    DOCS_URL: https://idosell.readme.io/reference/clientsnewslettersmssearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsnewslettersmssearchpost
     """
 
     _method: str = PrivateAttr(default='POST')

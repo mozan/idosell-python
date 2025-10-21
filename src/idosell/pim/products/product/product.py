@@ -89,7 +89,7 @@ class SearchPimProductsProductProductParamsModel(BaseModel):
 class Delete(AppendableGateway):
     """
     Method used for deleting products from the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsproductsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsproductsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -100,7 +100,7 @@ class Delete(AppendableGateway):
 class Get(Gateway):
     """
     Method that enables extracting information about non-deleted products available in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsproductsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsproductsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -118,7 +118,7 @@ class Get(Gateway):
 class Post(AppendableGateway):
     """
     The method is used to add products
-    DOCS_URL: https://idosell.readme.io/reference/productsproductspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsproductspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -129,7 +129,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Method that enables editing and adding new products to the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsproductsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsproductsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -140,7 +140,7 @@ class Put(AppendableGateway):
 class Search(PageableCamelGateway):
     """
     Method that enables extracting information about non-deleted products available in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsproductssearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsproductssearchpost
     """
 
     _method: str = PrivateAttr(default='POST')

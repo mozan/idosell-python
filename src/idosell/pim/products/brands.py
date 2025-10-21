@@ -26,7 +26,7 @@ class PutFilterPimProductsBrandsParamsModel(BaseModel):
 class Delete(Gateway):
     """
     The method allows you to remove brands from the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsbrandsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbrandsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -37,7 +37,7 @@ class Delete(Gateway):
 class GetFilter(Gateway):
     """
     The method allows you to download a list of filters for brands (manufacturers) available in the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsbrandsfilterget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbrandsfilterget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -50,7 +50,7 @@ class GetFilter(Gateway):
 class PutFilter(AppendableGateway):
     """
     The method allows you to manage filter settings for brands (manufacturers)
-    DOCS_URL: https://idosell.readme.io/reference/productsbrandsfilterput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbrandsfilterput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -61,7 +61,7 @@ class PutFilter(AppendableGateway):
 class Get(PageableCamelGateway):
     """
     Method that returns information about brands available in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsbrandsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbrandsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -72,7 +72,7 @@ class Get(PageableCamelGateway):
 class Post(AppendableGateway):
     """
     The method allows you to update brands information available in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsbrandspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbrandspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -83,7 +83,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     The method allows you to update brands information available in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsbrandsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbrandsput
     """
 
     _method: str = PrivateAttr(default='PUT')

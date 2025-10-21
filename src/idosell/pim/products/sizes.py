@@ -57,7 +57,7 @@ class SizesProductsDataPutModel(BaseModel):
 class Delete(AppendableGateway):
     """
     The method is used to remove sizes
-    DOCS_URL: https://idosell.readme.io/reference/productssizesdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productssizesdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -70,7 +70,7 @@ class Delete(AppendableGateway):
 class Get(Gateway):
     """
     Method that returns information about product sizes configured in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productssizesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productssizesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -82,7 +82,7 @@ class Get(Gateway):
 class Put(AppendableGateway):
     """
     This method allows you to edit the size-dependent data
-    DOCS_URL: https://idosell.readme.io/reference/productssizesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productssizesput
     """
 
     _method: str = PrivateAttr(default='PUT')

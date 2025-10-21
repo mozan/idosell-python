@@ -13,7 +13,7 @@ class PutPimProductsQuestionsParamsModel(BaseModel):
 class Get(Gateway):
     """
     The method allows you to download a list of questions to products available in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsquestionsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsquestionsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -25,7 +25,7 @@ class Get(Gateway):
 class Put(AppendableGateway):
     """
     The method allows you to add and edit questions to products available in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsquestionsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsquestionsput
     """
 
     _method: str = PrivateAttr(default='PUT')

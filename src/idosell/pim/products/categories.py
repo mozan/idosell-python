@@ -19,7 +19,7 @@ class SearchIdosellPimProductsCategoriesParamsModel(BaseModel):
 class Get(PageableCamelGateway):
     """
     Method that returns information about categories configured in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productscategoriesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productscategoriesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -32,7 +32,7 @@ class Get(PageableCamelGateway):
 class Put(AppendableGateway):
     """
     Method that enables adding new categories to the administration panel as well editing and deleting of existing categories.
-    DOCS_URL: https://idosell.readme.io/reference/productscategoriesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productscategoriesput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -43,7 +43,7 @@ class Put(AppendableGateway):
 class SearchIdosell(PageableCamelGateway):
     """
     Method returns information about IdoSell Categories available in store
-    DOCS_URL: https://idosell.readme.io/reference/productscategoriesidosellsearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productscategoriesidosellsearchpost
     """
 
     _method: str = PrivateAttr(default='POST')

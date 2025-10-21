@@ -16,7 +16,7 @@ class PutProductDataPimProductsSupplierParamsModel(BaseModel):
 class PutCode(AppendableGateway):
     """
     The method allows to edit supplier data in the IdoSell Shop administration panel.
-    DOCS_URL: https://idosell.readme.io/reference/productssuppliercodeput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productssuppliercodeput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -27,7 +27,7 @@ class PutCode(AppendableGateway):
 class PutProductData(AppendableGateway):
     """
     The method allows you to edit the commodity data related to its suppliers.
-    DOCS_URL: https://idosell.readme.io/reference/productssupplierproductdataput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productssupplierproductdataput
     """
 
     _method: str = PrivateAttr(default='PUT')

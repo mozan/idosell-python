@@ -20,7 +20,7 @@ class PutConfigSystemSystemParamsModel(BaseModel):
 class GetConfig(Gateway):
     """
     Method is used for extracting information about a shop and its most important configuration settings
-    DOCS_URL: https://idosell.readme.io/reference/systemconfigget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemconfigget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -29,7 +29,7 @@ class GetConfig(Gateway):
 class PutConfig(Gateway):
     """
     The method is used to manage the most important settings in the store and in the panel. It enables, among others, configuration of tax and billing settings and configuration of warehouse management
-    DOCS_URL: https://idosell.readme.io/reference/systemconfigput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemconfigput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -40,7 +40,7 @@ class PutConfig(Gateway):
 class GetCurrencies(Gateway):
     """
     This method returns the current exchange rate in relation to the currency set in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/systemcurrenciesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemcurrenciesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -52,7 +52,7 @@ class GetCurrencies(Gateway):
 class PutCurrencies(AppendableGateway):
     """
     Method that allows for setting currency exchange rates in relation to the currency set in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/systemcurrenciesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemcurrenciesput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -63,7 +63,7 @@ class PutCurrencies(AppendableGateway):
 class GetProcessesAutomation(Gateway):
     """
     It allows you to download the current automation processes configuration
-    DOCS_URL: https://idosell.readme.io/reference/systemprocessesautomationget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemprocessesautomationget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -74,7 +74,7 @@ class GetProcessesAutomation(Gateway):
 class PutProcessesAutomation(Gateway):
     """
     The method is used for edit of processes automation settings
-    DOCS_URL: https://idosell.readme.io/reference/systemprocessesautomationput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemprocessesautomationput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -85,7 +85,7 @@ class PutProcessesAutomation(Gateway):
 class GetServerLoad(Gateway):
     """
     This method returns server status information which is useful in determining whether the server is currently overloaded
-    DOCS_URL: https://idosell.readme.io/reference/systemserverloadget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemserverloadget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -94,7 +94,7 @@ class GetServerLoad(Gateway):
 class GetServerTime(Gateway):
     """
     Method that returns the current server time, which is essential for authentication
-    DOCS_URL: https://idosell.readme.io/reference/systemservertimeget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemservertimeget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -103,7 +103,7 @@ class GetServerTime(Gateway):
 class GetShopsData(Gateway):
     """
     Method is used for extracting information about a shop and its most important configuration settings
-    DOCS_URL: https://idosell.readme.io/reference/systemshopsdataget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemshopsdataget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -112,7 +112,7 @@ class GetShopsData(Gateway):
 class GetUnits(Gateway):
     """
     The method allows units of measurement to be downloaded from the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/systemunitsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemunitsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -123,7 +123,7 @@ class GetUnits(Gateway):
 class PutUnits(AppendableGateway):
     """
     The method allows existing units of measurement to be updated to the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/systemunitsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemunitsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -134,7 +134,7 @@ class PutUnits(AppendableGateway):
 class GetUsers(Gateway):
     """
     Method that returns information about IdoSell Shop administration panel users
-    DOCS_URL: https://idosell.readme.io/reference/systemusersget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/systemusersget
     """
 
     _method: str = PrivateAttr(default='GET')

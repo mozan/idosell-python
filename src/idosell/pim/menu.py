@@ -21,7 +21,7 @@ class PutFilterPimMenuParamsModel(BaseModel):
 class GetFilter(Gateway):
     """
     The method returns information about filter settings in menu nodes.
-    DOCS_URL: https://idosell.readme.io/reference/menufilterget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/menufilterget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -35,7 +35,7 @@ class GetFilter(Gateway):
 class PutFilter(AppendableGateway):
     """
     The method allows you to manage filter settings in menu nodes.
-    DOCS_URL: https://idosell.readme.io/reference/menufilterput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/menufilterput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -46,7 +46,7 @@ class PutFilter(AppendableGateway):
 class Delete(AppendableGateway):
     """
     Method that enables deleting existing menu elements.
-    DOCS_URL: https://idosell.readme.io/reference/menumenudeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/menumenudeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -58,7 +58,7 @@ class Delete(AppendableGateway):
 class Get(Gateway):
     """
     Method that returns information about menus and menu elements.
-    DOCS_URL: https://idosell.readme.io/reference/menumenuget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/menumenuget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -74,7 +74,7 @@ class Get(Gateway):
 class Post(AppendableGateway):
     """
     Method that enables adding new menu elements.
-    DOCS_URL: https://idosell.readme.io/reference/menumenupost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/menumenupost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -86,7 +86,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Method that enables editing existing menu elements.
-    DOCS_URL: https://idosell.readme.io/reference/menumenuput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/menumenuput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -98,7 +98,7 @@ class Put(AppendableGateway):
 class PutSort(AppendableGateway):
     """
     Method that enables sorting of menu elements.
-    DOCS_URL: https://idosell.readme.io/reference/menusortput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/menusortput
     """
 
     _method: str = PrivateAttr(default='PUT')

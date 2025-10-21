@@ -19,7 +19,7 @@ class PutPickupPointsSystemCouriersParamsModel(BaseModel):
 class GetAssignedToShippingProfiles(Gateway):
     """
     Retrieves information about assigned couriers to delivery profiles
-    DOCS_URL: https://idosell.readme.io/reference/couriersassignedtoshippingprofilesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/couriersassignedtoshippingprofilesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -28,7 +28,7 @@ class GetAssignedToShippingProfiles(Gateway):
 class Get(PageableCamelGateway):
     """
     Method that returns all couriers available for a given country. It also returns information whether the courier service handles personal collections
-    DOCS_URL: https://idosell.readme.io/reference/courierscouriersget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/courierscouriersget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -39,7 +39,7 @@ class Get(PageableCamelGateway):
 class DeletePickupPoint(AppendableGateway):
     """
     The method enables cancelling personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points
-    DOCS_URL: https://idosell.readme.io/reference/courierspickuppointsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/courierspickuppointsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -50,7 +50,7 @@ class DeletePickupPoint(AppendableGateway):
 class GetPickupPoints(PageableCamelGateway):
     """
     The method returns personal collection points within its own network of collection points and for integrated couriers
-    DOCS_URL: https://idosell.readme.io/reference/courierspickuppointsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/courierspickuppointsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -63,7 +63,7 @@ class GetPickupPoints(PageableCamelGateway):
 class PostPickupPoints(AppendableGateway):
     """
     The method enables adding personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points.
-    DOCS_URL: https://idosell.readme.io/reference/courierspickuppointspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/courierspickuppointspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -74,7 +74,7 @@ class PostPickupPoints(AppendableGateway):
 class PutPickupPoints(AppendableGateway):
     """
     The method enables updating personal collection points within your own collection points chain. It does not allow for modifying integrated couriers collection points
-    DOCS_URL: https://idosell.readme.io/reference/courierspickuppointsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/courierspickuppointsput
     """
 
     _method: str = PrivateAttr(default='PUT')

@@ -55,7 +55,7 @@ class PutCmsSnippetsCookiesParamsModel(BaseModel):
 class Get(PageableCamelGateway):
     """
     This call returns all cookie definitions related to code snippets
-    DOCS_URL: https://idosell.readme.io/reference/snippetscookiesget-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetscookiesget-1
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -66,7 +66,7 @@ class Get(PageableCamelGateway):
 class Post(AppendableGateway):
     """
     Use this operation to create a cookie definition for a code snippet
-    DOCS_URL: https://idosell.readme.io/reference/snippetscookiespost-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetscookiespost-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -77,7 +77,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Use this operation to update a cookie definition for a code snippet
-    DOCS_URL: https://idosell.readme.io/reference/snippetscookiesput-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetscookiesput-1
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -88,7 +88,7 @@ class Put(AppendableGateway):
 class Delete(Gateway):
     """
     This call is used to remove campaign cookies
-    DOCS_URL: https://idosell.readme.io/reference/snippetscookiesdelete-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetscookiesdelete-1
     """
 
     _method: str = PrivateAttr(default='DELETE')

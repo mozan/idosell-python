@@ -23,7 +23,7 @@ class PutFinishUploadPimProductsSynchronizationParamsModel(BaseModel):
 class PostFile(Gateway):
     """
     The method allows you to upload to the goods synchronization module, the offer in a file in IOF 3.0 format.
-    DOCS_URL: https://idosell.readme.io/reference/productssynchronizationfilepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productssynchronizationfilepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -34,7 +34,7 @@ class PostFile(Gateway):
 class PutFinishUpload(Gateway):
     """
     Method informs commodity synchronization module that uploading of files is complete.
-    DOCS_URL: https://idosell.readme.io/reference/productssynchronizationfinishuploadput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productssynchronizationfinishuploadput
     """
 
     _method: str = PrivateAttr(default='PUT')

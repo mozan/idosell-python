@@ -33,7 +33,7 @@ class PutRenewPimProductsCollectionsParamsModel(BaseModel):
 class Post(AppendableGateway):
     """
     createCollection method allows to create a new product with a type: collection and to assign existing products as a collection components. Products added via this gate are hidden from the shop customer by default. To change the visibility of created products use the gate setProducts or set it on a product card in the shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productscollectionspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productscollectionspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -44,7 +44,7 @@ class Post(AppendableGateway):
 class DeleteProducts(AppendableGateway):
     """
     removeProductsFromCollection method allows to remove indicated collection components
-    DOCS_URL: https://idosell.readme.io/reference/productscollectionsproductsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productscollectionsproductsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -55,7 +55,7 @@ class DeleteProducts(AppendableGateway):
 class PostProducts(AppendableGateway):
     """
     addProductsToCollection method allows to add components to existing collections in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productscollectionsproductspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productscollectionsproductspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -66,7 +66,7 @@ class PostProducts(AppendableGateway):
 class PutProducts(AppendableGateway):
     """
     setProductsQuantityInCollection method allows to indicate quantity of a collection component
-    DOCS_URL: https://idosell.readme.io/reference/productscollectionsproductsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productscollectionsproductsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -77,7 +77,7 @@ class PutProducts(AppendableGateway):
 class PutRenew(AppendableGateway):
     """
     The renewProductsInCollection method allows you to rebuild existing components of Collections in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productscollectionsrenewput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productscollectionsrenewput
     """
 
     _method: str = PrivateAttr(default='PUT')

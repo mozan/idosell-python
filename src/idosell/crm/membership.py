@@ -43,7 +43,7 @@ class PutCardsCrmMembershipParamsModel(BaseModel):
 class GetCards(Gateway):
     """
     Method that enables extracting information about loyalty cards available in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientsmembershipcardsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsmembershipcardsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -55,7 +55,7 @@ class GetCards(Gateway):
 class PutCards(AppendableGateway):
     """
     Method that enables assigning loyalty cards to customer accounts
-    DOCS_URL: https://idosell.readme.io/reference/clientsmembershipcardsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsmembershipcardsput
     """
 
     _method: str = PrivateAttr(default='PUT')

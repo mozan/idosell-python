@@ -59,7 +59,7 @@ class PutCrmVouchersParamsModel(BaseModel):
 class PutBlock(AppendableGateway):
     """
     Enables gift voucer blocking
-    DOCS_URL: https://idosell.readme.io/reference/vouchersblockput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/vouchersblockput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -70,7 +70,7 @@ class PutBlock(AppendableGateway):
 class GetTypes(PageableCamelGateway):
     """
     Allows for downloading all discount code campaigns defined in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/voucherstypesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/voucherstypesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -79,7 +79,7 @@ class GetTypes(PageableCamelGateway):
 class PutUnblock(AppendableGateway):
     """
     Enables gift vouchers unblocking
-    DOCS_URL: https://idosell.readme.io/reference/vouchersunblockput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/vouchersunblockput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -90,7 +90,7 @@ class PutUnblock(AppendableGateway):
 class Delete(AppendableGateway):
     """
     Enables deleting a single or a list of gift vouchers
-    DOCS_URL: https://idosell.readme.io/reference/vouchersvouchersdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/vouchersvouchersdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -101,7 +101,7 @@ class Delete(AppendableGateway):
 class Get(PageableCamelGateway):
     """
     Enables searching for vouchers and retrieving information about indicated vouchers
-    DOCS_URL: https://idosell.readme.io/reference/vouchersvouchersget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/vouchersvouchersget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -125,7 +125,7 @@ class Get(PageableCamelGateway):
 class Post(AppendableGateway):
     """
     Enables adding new gift vouchers with the selected voucher type
-    DOCS_URL: https://idosell.readme.io/reference/vouchersvoucherspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/vouchersvoucherspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -136,7 +136,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Enables editing gift voucher, e.g. changing its balance, validity date or number (only for unused vouchers)
-    DOCS_URL: https://idosell.readme.io/reference/vouchersvouchersput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/vouchersvouchersput
     """
 
     _method: str = PrivateAttr(default='PUT')

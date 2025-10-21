@@ -93,7 +93,7 @@ class PutSerialNumberOmsReturnsParamsModel(BaseModel):
 class Get(PageableSnakeGateway):
     """
     Method that enables getting information about returns issued for orders in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/returnsreturnsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/returnsreturnsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -111,7 +111,7 @@ class Get(PageableSnakeGateway):
 class Post(AppendableGateway):
     """
     ...
-    DOCS_URL: https://idosell.readme.io/reference/returnsreturnspost-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/returnsreturnspost-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -122,7 +122,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     ...
-    DOCS_URL: https://idosell.readme.io/reference/returnsreturnsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/returnsreturnsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -133,7 +133,7 @@ class Put(AppendableGateway):
 class PutSerialNumber(AppendableGateway):
     """
     Method that enables setting serial numbers for products included in returns issued for orders in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/returnsserialnumberput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/returnsserialnumberput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -144,7 +144,7 @@ class PutSerialNumber(AppendableGateway):
 class GetStatuses(Gateway):
     """
     Allows to download all configurable return statuses
-    DOCS_URL: https://idosell.readme.io/reference/returnsstatusesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/returnsstatusesget
     """
 
     _method: str = PrivateAttr(default='GET')

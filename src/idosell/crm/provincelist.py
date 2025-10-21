@@ -7,7 +7,7 @@ from src.idosell._common import Gateway
 class Get(Gateway):
     """
     The method allows to retrieve the list of administrative regions available in the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientsprovincelistget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsprovincelistget
     """
 
     _method: str = PrivateAttr(default='GET')

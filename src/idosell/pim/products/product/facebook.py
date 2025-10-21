@@ -19,7 +19,7 @@ class PostToFacebookCatalogPimProductsProductFacebookParamsModel(BaseModel):
 class DeleteToFacebookCatalog(Gateway):
     """
     The method allows you to add products to the Facebook catalog
-    DOCS_URL: https://idosell.readme.io/reference/productsproductstofacebookcatalogdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsproductstofacebookcatalogdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -30,7 +30,7 @@ class DeleteToFacebookCatalog(Gateway):
 class GetToFacebookCatalog(Gateway):
     """
     The method allows you to retrieve products assigned to the Facebook catalog
-    DOCS_URL: https://idosell.readme.io/reference/productsproductstofacebookcatalogget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsproductstofacebookcatalogget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -42,7 +42,7 @@ class GetToFacebookCatalog(Gateway):
 class PostToFacebookCatalog(Gateway):
     """
     The method allows you to add products to the Facebook catalog
-    DOCS_URL: https://idosell.readme.io/reference/productsproductstofacebookcatalogpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsproductstofacebookcatalogpost
     """
 
     _method: str = PrivateAttr(default='POST')

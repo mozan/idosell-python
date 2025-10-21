@@ -64,7 +64,7 @@ class PutCmsCpaCpaParamsModel(BaseModel):
 class Get(PageableCamelGateway):
     """
     This call returns all cpa programs
-    DOCS_URL: https://idosell.readme.io/reference/cpacpaget-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/cpacpaget-1
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -76,7 +76,7 @@ class Get(PageableCamelGateway):
 class Post(AppendableGateway):
     """
     Use this operation to create code snippet
-    DOCS_URL: https://idosell.readme.io/reference/cpacpapost-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/cpacpapost-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -87,7 +87,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Use this operation to update code snippet
-    DOCS_URL: https://idosell.readme.io/reference/cpacpaput-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/cpacpaput-1
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -98,7 +98,7 @@ class Put(AppendableGateway):
 class Delete(Gateway):
     """
     This call is used to remove CPA programs
-    DOCS_URL: https://idosell.readme.io/reference/cpacpadelete-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/cpacpadelete-1
     """
 
     _method: str = PrivateAttr(default='DELETE')

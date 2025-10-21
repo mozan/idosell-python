@@ -29,7 +29,7 @@ class PutCmsCpaCampaignParamsModel(BaseModel):
 class Get(PageableCamelGateway):
     """
     This call returns all CPA campaigns
-    DOCS_URL: https://idosell.readme.io/reference/cpacampaignget-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/cpacampaignget-1
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -41,7 +41,7 @@ class Get(PageableCamelGateway):
 class Post(AppendableGateway):
     """
     Use this operation to create cpa campaigns
-    DOCS_URL: https://idosell.readme.io/reference/cpacampaignpost-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/cpacampaignpost-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -52,7 +52,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Use this operation to update CPA campaigns
-    DOCS_URL: https://idosell.readme.io/reference/cpacampaignput-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/cpacampaignput-1
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -63,7 +63,7 @@ class Put(AppendableGateway):
 class Delete(Gateway):
     """
     This call is used to remove CPA program campaign
-    DOCS_URL: https://idosell.readme.io/reference/cpacampaigndelete-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/cpacampaigndelete-1
     """
 
     _method: str = PrivateAttr(default='DELETE')

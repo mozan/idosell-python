@@ -51,7 +51,7 @@ class PutCrmDeliveryaddressParamsModel(BaseModel):
 class Delete(AppendableGateway):
     """
     The method allows you to delete unused delivery addresses for customer accounts in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientsdeliveryaddressdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsdeliveryaddressdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -62,7 +62,7 @@ class Delete(AppendableGateway):
 class Get(Gateway):
     """
     Method that enables extracting information about delivery addresses assigned to existing customer accounts
-    DOCS_URL: https://idosell.readme.io/reference/clientsdeliveryaddressget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsdeliveryaddressget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -75,7 +75,7 @@ class Get(Gateway):
 class Post(AppendableGateway):
     """
     Method that enables adding delivery address details to existing customer accounts
-    DOCS_URL: https://idosell.readme.io/reference/clientsdeliveryaddresspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsdeliveryaddresspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -86,7 +86,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Method that enables editing the delivery address details for existing customer accounts
-    DOCS_URL: https://idosell.readme.io/reference/clientsdeliveryaddressput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsdeliveryaddressput
     """
 
     _method: str = PrivateAttr(default='PUT')

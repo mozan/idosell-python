@@ -80,7 +80,7 @@ class PutQuantityPimProductsStocksParamsModel(BaseModel):
 class PutQuantity(AppendableGateway):
     """
     Metoda pozwala na edycje danych dotyczacych ilosci
-    DOCS_URL: https://idosell.readme.io/reference/productsstockquantityput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsstockquantityput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -91,7 +91,7 @@ class PutQuantity(AppendableGateway):
 class Get(Gateway):
     """
     Method that enables getting information about product stock levels and warehouse locations.
-    DOCS_URL: https://idosell.readme.io/reference/productsstocksget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsstocksget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -104,7 +104,7 @@ class Get(Gateway):
 class Put(AppendableGateway):
     """
     Method that enables setting product stock levels and warehouse locations.
-    DOCS_URL: https://idosell.readme.io/reference/productsstocksput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsstocksput
     """
 
     _method: str = PrivateAttr(default='PUT')

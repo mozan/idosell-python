@@ -158,7 +158,7 @@ class PutWarehouseOmsOrdersParamsModel(BaseModel):
 class GetAnalytics(Gateway):
     """
     The method is used to retrieve information about the margins of the goods of the order
-    DOCS_URL: https://idosell.readme.io/reference/ordersanalyticsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersanalyticsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -169,7 +169,7 @@ class GetAnalytics(Gateway):
 class GetAuctionDetails(Gateway):
     """
     Method that enables getting information about external listings assigned to orders in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/ordersauctiondetailsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersauctiondetailsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -181,7 +181,7 @@ class GetAuctionDetails(Gateway):
 class PutClient(Gateway):
     """
     ...
-    DOCS_URL: https://idosell.readme.io/reference/ordersclientput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersclientput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -192,7 +192,7 @@ class PutClient(Gateway):
 class PutCourier(Gateway):
     """
     Method that enables changing the courier handling the shipment for an order
-    DOCS_URL: https://idosell.readme.io/reference/orderscourierput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/orderscourierput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -206,7 +206,7 @@ class DeleteDocumentsOmsOrdersParamsModel(BaseModel):
 class PutDeliveryAddress(Gateway):
     """
     Method that enables editing the delivery address details for an order in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/ordersdeliveryaddressput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersdeliveryaddressput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -217,7 +217,7 @@ class PutDeliveryAddress(Gateway):
 class PutDevide(AppendableGateway):
     """
     Method for division order
-    DOCS_URL: https://idosell.readme.io/reference/ordersdevideput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersdevideput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -228,7 +228,7 @@ class PutDevide(AppendableGateway):
 class PostDocumentsCreate(Gateway):
     """
     The method allows to generate documents to the order in the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/ordersdocumentscreatepost-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersdocumentscreatepost-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -239,7 +239,7 @@ class PostDocumentsCreate(Gateway):
 class DeleteDocuments(AppendableGateway):
     """
     The method allows to delete documents added to the order in the IdoSell administration panel
-    DOCS_URL: https://idosell.readme.io/reference/ordersdocumentsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersdocumentsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -250,7 +250,7 @@ class DeleteDocuments(AppendableGateway):
 class GetDocuments(Gateway):
     """
     Method that enables extracting information about documents issued for orders in the administration panel.
-    DOCS_URL: https://idosell.readme.io/reference/ordersdocumentsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersdocumentsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -263,7 +263,7 @@ class GetDocuments(Gateway):
 class PostDocuments(AppendableGateway):
     """
     The method allows to add TIFF, BMP, PNG, JPG, JPEG, GIF or PDF documents to the order in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/ordersdocumentspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersdocumentspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -274,7 +274,7 @@ class PostDocuments(AppendableGateway):
 class GetExportdocumentsEPP(Gateway):
     """
     This method returns sales and warehouse documents in the universal EDI (Electronic Data Interchange) format
-    DOCS_URL: https://idosell.readme.io/reference/ordersexportdocumentseppget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersexportdocumentseppget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -290,7 +290,7 @@ class GetExportdocumentsEPP(Gateway):
 class GetExportdocumentsJPK(Gateway):
     """
     Method returns sales and warehouse documents in universal JPK format
-    DOCS_URL: https://idosell.readme.io/reference/ordersexportdocumentsjpkget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersexportdocumentsjpkget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -312,7 +312,7 @@ class GetExportdocumentsJPK(Gateway):
 class GetHandler(Gateway):
     """
     Method that enables getting information about the handler currently assigned to an order
-    DOCS_URL: https://idosell.readme.io/reference/ordershandlerget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordershandlerget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -323,7 +323,7 @@ class GetHandler(Gateway):
 class PutHandler(Gateway):
     """
     Method that enabled assigning a handler to an order
-    DOCS_URL: https://idosell.readme.io/reference/ordershandlerput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordershandlerput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -334,7 +334,7 @@ class PutHandler(Gateway):
 class GetHistory(Gateway):
     """
     Method allows to retrieve orders history from the IdoSell Shop panel
-    DOCS_URL: https://idosell.readme.io/reference/ordershistoryget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordershistoryget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -345,7 +345,7 @@ class GetHistory(Gateway):
 class DeleteImages(AppendableGateway):
     """
     Method allows to remove image attachments from the details of the specified order
-    DOCS_URL: https://idosell.readme.io/reference/ordersimagesdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersimagesdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -356,7 +356,7 @@ class DeleteImages(AppendableGateway):
 class GetImages(Gateway):
     """
     Method allows downloading image attachment data from the details of the specified order
-    DOCS_URL: https://idosell.readme.io/reference/ordersimagesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersimagesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -368,7 +368,7 @@ class GetImages(Gateway):
 class PostImages(AppendableGateway):
     """
     Method allows to add image attachments to the details of the specified order
-    DOCS_URL: https://idosell.readme.io/reference/ordersimagespost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersimagespost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -379,7 +379,7 @@ class PostImages(AppendableGateway):
 class GetLabels(Gateway):
     """
     The method is used to generate parcels and printouts for a courier
-    DOCS_URL: https://idosell.readme.io/reference/orderslabelsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/orderslabelsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -390,7 +390,7 @@ class GetLabels(Gateway):
 class SearchOpinions(PageableCamelGateway):
     """
     The method allows for downloading information about reviews issued for orders available in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/ordersopinionssearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersopinionssearchpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -401,7 +401,7 @@ class SearchOpinions(PageableCamelGateway):
 class GetOpinionsRate(Gateway):
     """
     Evaluation of the usefulness of opinions issued for orders
-    DOCS_URL: https://idosell.readme.io/reference/ordersopinionsrateget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersopinionsrateget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -413,7 +413,7 @@ class GetOpinionsRate(Gateway):
 class Get(Gateway):
     """
     Method that enables extracting information about orders present in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/ordersordersget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersordersget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -426,7 +426,7 @@ class Get(Gateway):
 class Post(AppendableGateway):
     """
     Method that is used for adding new retail or wholesale orders to a shop in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/ordersorderspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersorderspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -437,7 +437,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Method that enables editing an order in the administration panel. It allows, for example, to change the products included in the order or change its status
-    DOCS_URL: https://idosell.readme.io/reference/ordersordersput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersordersput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -448,7 +448,7 @@ class Put(AppendableGateway):
 class Search(PageableCamelGateway):
     """
     Method that enables extracting information about orders present in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/ordersorderssearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersorderssearchpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -459,7 +459,7 @@ class Search(PageableCamelGateway):
 class GetPackages(Gateway):
     """
     Method that enables getting a list of parcels assigned to an order
-    DOCS_URL: https://idosell.readme.io/reference/orderspackagesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/orderspackagesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -474,7 +474,7 @@ class GetPackages(Gateway):
 class PostPackages(AppendableGateway):
     """
     Method that enables editing parcels already assigned to an order
-    DOCS_URL: https://idosell.readme.io/reference/orderspackagespost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/orderspackagespost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -485,7 +485,7 @@ class PostPackages(AppendableGateway):
 class PutPackages(AppendableGateway):
     """
     Method that enables editing parcels already assigned to an order
-    DOCS_URL: https://idosell.readme.io/reference/orderspackagesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/orderspackagesput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -496,7 +496,7 @@ class PutPackages(AppendableGateway):
 class PutPickupPoint(Gateway):
     """
     The method allows to change the collection point in the order
-    DOCS_URL: https://idosell.readme.io/reference/orderspickuppointput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/orderspickuppointput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -507,7 +507,7 @@ class PutPickupPoint(Gateway):
 class GetPrinterDocuments(Gateway):
     """
     Method that enables getting a VAT invoice issued for an order added to the administration panel by the IAI POS application
-    DOCS_URL: https://idosell.readme.io/reference/ordersprinterdocumentsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersprinterdocumentsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -523,7 +523,7 @@ class GetPrinterDocuments(Gateway):
 class PutProductsSerialNumbers(AppendableGateway):
     """
     Method that enables adding serial numbers to products in an order
-    DOCS_URL: https://idosell.readme.io/reference/ordersproductsserialnumbersput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersproductsserialnumbersput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -534,7 +534,7 @@ class PutProductsSerialNumbers(AppendableGateway):
 class PutProfitMargin(AppendableGateway):
     """
     Method that enables setting price margins for products in an order
-    DOCS_URL: https://idosell.readme.io/reference/ordersprofitmarginput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersprofitmarginput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -545,7 +545,7 @@ class PutProfitMargin(AppendableGateway):
 class GetProfitability(Gateway):
     """
     The method is used to retrieve information about the profitability of an order
-    DOCS_URL: https://idosell.readme.io/reference/ordersprofitabilityget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersprofitabilityget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -556,7 +556,7 @@ class GetProfitability(Gateway):
 class PutShippingCosts(Gateway):
     """
     Method that enables editing the delivery costs for an order in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/ordersshippingcostsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersshippingcostsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -567,7 +567,7 @@ class PutShippingCosts(Gateway):
 class SearchUnfinished(PageableCamelGateway):
     """
     It allows you to download information about unclosed orders located in the store's administration panel. Orders with a status of false and lost are considered closed. Orders with a status of false and lost are considered closed
-    DOCS_URL: https://idosell.readme.io/reference/ordersunfinishedsearchpost-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/ordersunfinishedsearchpost-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -578,7 +578,7 @@ class SearchUnfinished(PageableCamelGateway):
 class GetWarehouse(Gateway):
     """
     Method that enables getting information about which warehouse an order is being handled from
-    DOCS_URL: https://idosell.readme.io/reference/orderswarehouseget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/orderswarehouseget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -589,7 +589,7 @@ class GetWarehouse(Gateway):
 class PutWarehouse(Gateway):
     """
     Method that enables setting which warehouse an order is handled from
-    DOCS_URL: https://idosell.readme.io/reference/orderswarehouseput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/orderswarehouseput
     """
 
     _method: str = PrivateAttr(default='PUT')

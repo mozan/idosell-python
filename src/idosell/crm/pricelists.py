@@ -73,7 +73,7 @@ class PutRenameCrmPricelistsParamsModel(BaseModel):
 class GetClients(Gateway):
     """
     The getClients method returns a list of customer IDs assigned to an individual price list
-    DOCS_URL: https://idosell.readme.io/reference/clientspricelistsclientsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspricelistsclientsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -84,7 +84,7 @@ class GetClients(Gateway):
 class PutClients(Gateway):
     """
     The setClients method allows you to assign customers to an individual price list
-    DOCS_URL: https://idosell.readme.io/reference/clientspricelistsclientsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspricelistsclientsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -95,7 +95,7 @@ class PutClients(Gateway):
 class Delete(Gateway):
     """
     The delete method enables to delete an individual pricelist. The pricelist must not be associated with any customer. In order to check the clients related to the given group, the getClients method shall be used
-    DOCS_URL: https://idosell.readme.io/reference/clientspricelistsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspricelistsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -106,7 +106,7 @@ class Delete(Gateway):
 class Get(PageableCamelGateway):
     """
     The get method allows you to download individual price lists available in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientspricelistsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspricelistsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -118,7 +118,7 @@ class Get(PageableCamelGateway):
 class Post(Gateway):
     """
     The insert method enables you to add a new individual price list to the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientspricelistspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspricelistspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -129,7 +129,7 @@ class Post(Gateway):
 class Put(Gateway):
     """
     The update method allows you to change the individual price list
-    DOCS_URL: https://idosell.readme.io/reference/clientspricelistsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspricelistsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -140,7 +140,7 @@ class Put(Gateway):
 class GetProducts(PageableCamelGateway):
     """
     The getProducts method enables the retrieval of products from an individual price list together with the price
-    DOCS_URL: https://idosell.readme.io/reference/clientspricelistsproductsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspricelistsproductsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -151,7 +151,7 @@ class GetProducts(PageableCamelGateway):
 class PutProducts(Gateway):
     """
     The setProducts method allows you to add goods to an individual price list and specify their price
-    DOCS_URL: https://idosell.readme.io/reference/clientspricelistsproductsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspricelistsproductsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -162,7 +162,7 @@ class PutProducts(Gateway):
 class PutRename(Gateway):
     """
     The rename method enables changing the name of an individual price list
-    DOCS_URL: https://idosell.readme.io/reference/clientspricelistsrenameput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientspricelistsrenameput
     """
 
     _method: str = PrivateAttr(default='PUT')

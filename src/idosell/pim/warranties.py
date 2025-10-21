@@ -22,7 +22,7 @@ class PutPimWarrantiesParamsModel(BaseModel):
 class GetCountTotal(Gateway):
     """
     Method that enables getting the number of product guarantees available in the administration panel.
-    DOCS_URL: https://idosell.readme.io/reference/warrantiescounttotalget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/warrantiescounttotalget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -33,7 +33,7 @@ class GetCountTotal(Gateway):
 class PutLanguageData(AppendableGateway):
     """
     Method that enables editing product warranty language settings
-    DOCS_URL: https://idosell.readme.io/reference/warrantieslanguagedataput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/warrantieslanguagedataput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -44,7 +44,7 @@ class PutLanguageData(AppendableGateway):
 class Delete(Gateway):
     """
     Method that enables deleting product warranties from the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/warrantieswarrantiesdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/warrantieswarrantiesdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -55,7 +55,7 @@ class Delete(Gateway):
 class Get(PageableSnakeGateway):
     """
     Method that enables getting a list of product warranties available in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/warrantieswarrantiesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/warrantieswarrantiesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -67,7 +67,7 @@ class Get(PageableSnakeGateway):
 class Post(AppendableGateway):
     """
     Method that enables adding product warranties to the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/warrantieswarrantiespost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/warrantieswarrantiespost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -78,7 +78,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Method that enables editing product warranties available in the administration panel.
-    DOCS_URL: https://idosell.readme.io/reference/warrantieswarrantiesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/warrantieswarrantiesput
     """
 
     _method: str = PrivateAttr(default='PUT')

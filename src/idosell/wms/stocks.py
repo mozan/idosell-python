@@ -82,7 +82,7 @@ class PutRejectMMWmsStocksParamsModel(BaseModel):
 class PutAcceptMM(Gateway):
     """
     The method enables the MM document to be received at the target warehouse
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsacceptmmput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsacceptmmput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -93,7 +93,7 @@ class PutAcceptMM(Gateway):
 class PutClose(Gateway):
     """
     Method that enables closing warehouse documents
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentscloseput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentscloseput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -104,7 +104,7 @@ class PutClose(Gateway):
 class DeleteDocuments(Gateway):
     """
     Method that enables deleting open warehouse documents.
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsdocumentsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsdocumentsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -115,7 +115,7 @@ class DeleteDocuments(Gateway):
 class GetDocuments(PageableCamelGateway):
     """
     The method allows for downloading a list of warehouse documents
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsdocumentsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsdocumentsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -131,7 +131,7 @@ class GetDocuments(PageableCamelGateway):
 class PostDocuments(Gateway):
     """
     Method that enables warehouse document creation
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsdocumentspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsdocumentspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -142,7 +142,7 @@ class PostDocuments(Gateway):
 class PutDocuments(Gateway):
     """
     The method allows for warehouse documents edit
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsdocumentsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsdocumentsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -153,7 +153,7 @@ class PutDocuments(Gateway):
 class GetOpenedDocuments(PageableCamelGateway):
     """
     Method that enables getting a list of open warehouse documents
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsopeneddocumentsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsopeneddocumentsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -168,7 +168,7 @@ class GetOpenedDocuments(PageableCamelGateway):
 class DeleteProducts(AppendableGateway):
     """
     Method that enables deleting products from warehouse documents
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsproductsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsproductsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -179,7 +179,7 @@ class DeleteProducts(AppendableGateway):
 class GetProducts(PageableSnakeGateway):
     """
     Method that enables getting a list of products present on a warehouse document
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsproductsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsproductsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -191,7 +191,7 @@ class GetProducts(PageableSnakeGateway):
 class PostProducts(AppendableGateway):
     """
     Method that enables adding products to warehouse documents.
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsproductspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsproductspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -202,7 +202,7 @@ class PostProducts(AppendableGateway):
 class PutProducts(AppendableGateway):
     """
     Method that enables, amongst others, editing the quantity of a given product on a warehouse document
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsproductsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsproductsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -213,7 +213,7 @@ class PutProducts(AppendableGateway):
 class PutRejectMM(Gateway):
     """
     The method allows to withdraw the MM document to the source warehouse
-    DOCS_URL: https://idosell.readme.io/reference/wmsstocksdocumentsrejectmmput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/wmsstocksdocumentsrejectmmput
     """
 
     _method: str = PrivateAttr(default='PUT')

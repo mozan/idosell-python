@@ -62,7 +62,7 @@ class PutPricesPimProductsStrikethroughSettingsModel(BaseModel):
 class GetPrices(Gateway):
     """
     Allows for getting information about product strikethrough price settings
-    DOCS_URL: https://idosell.readme.io/reference/productsstrikethroughpricesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsstrikethroughpricesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -74,7 +74,7 @@ class GetPrices(Gateway):
 class PutPrices(AppendableGateway):
     """
     Allows for editing product strikethrough price settings
-    DOCS_URL: https://idosell.readme.io/reference/productsstrikethroughpricesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsstrikethroughpricesput
     """
 
     _method: str = PrivateAttr(default='PUT')

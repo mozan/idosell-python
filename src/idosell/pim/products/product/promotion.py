@@ -17,7 +17,7 @@ class PostProductsToPromotionPimProductsProductPromotionParamsModel(BaseModel):
 class DeleteProductsToPromotion(Gateway):
     """
     The method allows to remove the products from the promotion
-    DOCS_URL: https://idosell.readme.io/reference/productsproductstopromotiondeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsproductstopromotiondeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -28,7 +28,7 @@ class DeleteProductsToPromotion(Gateway):
 class PostProductsToPromotion(Gateway):
     """
     The method allows to add products to an existing special offer
-    DOCS_URL: https://idosell.readme.io/reference/productsproductstopromotionpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsproductstopromotionpost
     """
 
     _method: str = PrivateAttr(default='POST')

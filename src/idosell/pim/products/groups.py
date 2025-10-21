@@ -19,7 +19,7 @@ class PutSettingsPimProductsGroupsParamsModel(BaseModel):
 class PutMainProduct(AppendableGateway):
     """
     The method allows you to change the main product in a group of products
-    DOCS_URL: https://idosell.readme.io/reference/productsgroupsmainproductput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsgroupsmainproductput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -30,7 +30,7 @@ class PutMainProduct(AppendableGateway):
 class PutOrder(AppendableGateway):
     """
     The method allows you to change the order of products in a group of products
-    DOCS_URL: https://idosell.readme.io/reference/productsgroupsorderput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsgroupsorderput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -41,7 +41,7 @@ class PutOrder(AppendableGateway):
 class PutSettings(AppendableGateway):
     """
     The method allows you to change the settings for displaying products to a group of products
-    DOCS_URL: https://idosell.readme.io/reference/productsgroupssettingsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsgroupssettingsput
     """
 
     _method: str = PrivateAttr(default='PUT')

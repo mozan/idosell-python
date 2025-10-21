@@ -69,7 +69,7 @@ class PutCmsSnippetsSnippetsParamsModel(BaseModel):
 class Get(PageableCamelGateway):
     """
     This call returns all snippets
-    DOCS_URL: https://idosell.readme.io/reference/snippetssnippetsget-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetssnippetsget-1
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -83,7 +83,7 @@ class Get(PageableCamelGateway):
 class Post(AppendableGateway):
     """
     Use this operation to create code snippet
-    DOCS_URL: https://idosell.readme.io/reference/snippetssnippetspost-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetssnippetspost-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -94,7 +94,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Use this operation to update code snippet
-    DOCS_URL: https://idosell.readme.io/reference/snippetssnippetsput-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetssnippetsput-1
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -105,7 +105,7 @@ class Put(AppendableGateway):
 class Delete(Gateway):
     """
     This call is used to remove snippets
-    DOCS_URL: https://idosell.readme.io/reference/snippetssnippetsdelete-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetssnippetsdelete-1
     """
 
     _method: str = PrivateAttr(default='DELETE')

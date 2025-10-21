@@ -13,7 +13,7 @@ class PutPimSizesParamsModel(BaseModel):
 class Get(Gateway):
     """
     Method that returns information about product sizes configured in the administration panel. List of size groups (with sizes that belong to particular group) is returned as a result
-    DOCS_URL: https://idosell.readme.io/reference/sizessizesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/sizessizesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -24,7 +24,7 @@ class Get(Gateway):
 class Put(AppendableGateway):
     """
     Method that enables creating, deleting and editing product sizes in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/sizessizesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/sizessizesput
     """
 
     _method: str = PrivateAttr(default='PUT')

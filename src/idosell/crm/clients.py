@@ -176,7 +176,7 @@ class SettingsPostPutModel(BaseModel):
 class GetBalance(PageableCamelGateway):
     """
     Method that enables extracting customer balance information from existing customer accounts
-    DOCS_URL: https://idosell.readme.io/reference/clientsbalanceget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsbalanceget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -192,7 +192,7 @@ class GetBalance(PageableCamelGateway):
 class PostBalance(Gateway):
     """
     Method that allows for customer account balance operations
-    DOCS_URL: https://idosell.readme.io/reference/clientsbalancepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsbalancepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -204,7 +204,7 @@ class PostBalance(Gateway):
 class Get(PageableCamelGateway):
     """
     Method that enables extracting customer account details
-    DOCS_URL: https://idosell.readme.io/reference/clientsclientsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsclientsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -224,7 +224,7 @@ class Get(PageableCamelGateway):
 class Post(AppendableGateway):
     """
     Method that enables adding new customer accounts to the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientsclientspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsclientspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -236,7 +236,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Method enables modifying existing customer account data
-    DOCS_URL: https://idosell.readme.io/reference/clientsclientsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsclientsput
     """
 
     _method: str = PrivateAttr(default='PUT')

@@ -32,7 +32,7 @@ class PutRenewPimProductsBundlesParamsModel(BaseModel):
 class PostBundles(AppendableGateway):
     """
     createBundle method allows to create a new product with a type: set and to assign existing products as a set components. Products added via this gate are hidden from the shop customer by default. To change the visibility of created products use the gate setProducts or set it on a product card in the shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsbundlesbundlespost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbundlesbundlespost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -43,7 +43,7 @@ class PostBundles(AppendableGateway):
 class DeleteProducts(AppendableGateway):
     """
     removeProductsFromBundle method allows to remove indicated set components
-    DOCS_URL: https://idosell.readme.io/reference/productsbundlesproductsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbundlesproductsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -54,7 +54,7 @@ class DeleteProducts(AppendableGateway):
 class PostProducts(AppendableGateway):
     """
     addProductsToBundle method allows to add components to existing sets in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsbundlesproductspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbundlesproductspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -65,7 +65,7 @@ class PostProducts(AppendableGateway):
 class PutProductsQuantity(AppendableGateway):
     """
     setProductsQuantityInBundle method allows to indicate quantity of a set component
-    DOCS_URL: https://idosell.readme.io/reference/productsbundlesproductsquantityput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbundlesproductsquantityput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -76,7 +76,7 @@ class PutProductsQuantity(AppendableGateway):
 class PutRenew(AppendableGateway):
     """
     the renewProductsInBundle method allows you to rebuild components of Sets existing in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsbundlesrenewput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsbundlesrenewput
     """
 
     _method: str = PrivateAttr(default='PUT')

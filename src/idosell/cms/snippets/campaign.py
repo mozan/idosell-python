@@ -35,7 +35,7 @@ class PutCmsSnippetsCampaignParamsModel(BaseModel):
 class Get(PageableCamelGateway):
     """
     This call returns all snippet campaigns (including deleted ones but to readonly)
-    DOCS_URL: https://idosell.readme.io/reference/snippetscampaignget-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetscampaignget-1
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -48,7 +48,7 @@ class Get(PageableCamelGateway):
 class Post(AppendableGateway):
     """
     Use this operation to create snippet campaigns
-    DOCS_URL: https://idosell.readme.io/reference/snippetscampaignpost-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetscampaignpost-1
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -59,7 +59,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Use this operation to update snippet campaigns
-    DOCS_URL: https://idosell.readme.io/reference/snippetscampaignput-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetscampaignput-1
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -70,7 +70,7 @@ class Put(AppendableGateway):
 class Delete(Gateway):
     """
     This call is used to remove campaign snippets
-    DOCS_URL: https://idosell.readme.io/reference/snippetscampaigndelete-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/snippetscampaigndelete-1
     """
 
     _method: str = PrivateAttr(default='DELETE')

@@ -29,7 +29,7 @@ class PutPimProductsOpinionsParamsModel(BaseModel):
 class Delete(Gateway):
     """
     The method allows to delete the feedback about the commodity from the panel.
-    DOCS_URL: https://idosell.readme.io/reference/productsopinionsopinionsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsopinionsopinionsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -40,7 +40,7 @@ class Delete(Gateway):
 class Get(PageableCamelGateway):
     """
     The method allows for downloading information about reviews issued for products available in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsopinionsopinionsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsopinionsopinionsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -57,7 +57,7 @@ class Get(PageableCamelGateway):
 class Post(AppendableGateway):
     """
     The method allows for adding reviews of products available in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsopinionsopinionspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsopinionsopinionspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -68,7 +68,7 @@ class Post(AppendableGateway):
 class Put(Gateway):
     """
     The method allows to edit opinions about goods available in the IdoSell Shop administration panel
-    DOCS_URL: https://idosell.readme.io/reference/productsopinionsopinionsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsopinionsopinionsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -79,7 +79,7 @@ class Put(Gateway):
 class GetRate(Gateway):
     """
     Evaluation of the usefulness of opinions issued for products.
-    DOCS_URL: https://idosell.readme.io/reference/productsopinionsrateget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsopinionsrateget
     """
 
     _method: str = PrivateAttr(default='GET')

@@ -49,7 +49,7 @@ class PutZonesPimProductsMarketingParamsModel(BaseModel):
 class GetAllFacebookCatalogIds(Gateway):
     """
     The method allows you to download available Facebook catalogs in a given store
-    DOCS_URL: https://idosell.readme.io/reference/productsmarketingallfacebookcatalogidsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsmarketingallfacebookcatalogidsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -60,7 +60,7 @@ class GetAllFacebookCatalogIds(Gateway):
 class GetPromotion(Gateway):
     """
     The method allows to download a list of active promotions for the given store
-    DOCS_URL: https://idosell.readme.io/reference/productsmarketingpromotionget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsmarketingpromotionget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -72,7 +72,7 @@ class GetPromotion(Gateway):
 class PostPromotion(AppendableGateway):
     """
     The method allows you to add promotions from a new module with elements
-    DOCS_URL: https://idosell.readme.io/reference/productsmarketingpromotionpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsmarketingpromotionpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -83,7 +83,7 @@ class PostPromotion(AppendableGateway):
 class PutPromotion(AppendableGateway):
     """
     The method allows you to edit the promotion from the new module with the elements
-    DOCS_URL: https://idosell.readme.io/reference/productsmarketingpromotionput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsmarketingpromotionput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -94,7 +94,7 @@ class PutPromotion(AppendableGateway):
 class GetZones(Gateway):
     """
     Allows for getting information about products assigned to marketing hot spots
-    DOCS_URL: https://idosell.readme.io/reference/productsmarketingzonesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsmarketingzonesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -106,7 +106,7 @@ class GetZones(Gateway):
 class PutZones(AppendableGateway):
     """
     Allows for assigning products to marketing hot spots
-    DOCS_URL: https://idosell.readme.io/reference/productsmarketingzonesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/productsmarketingzonesput
     """
 
     _method: str = PrivateAttr(default='PUT')

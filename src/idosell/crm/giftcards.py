@@ -66,7 +66,7 @@ class PutUnblockCrmGiftcardsParamsModel(BaseModel):
 class PutBlock(AppendableGateway):
     """
     Enables gift card blocking
-    DOCS_URL: https://idosell.readme.io/reference/clientsgiftcardsblockput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsgiftcardsblockput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -77,7 +77,7 @@ class PutBlock(AppendableGateway):
 class Delete(AppendableGateway):
     """
     Enables deleting a single or a list of gift cards
-    DOCS_URL: https://idosell.readme.io/reference/clientsgiftcardsdeletepost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsgiftcardsdeletepost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -88,7 +88,7 @@ class Delete(AppendableGateway):
 class Post(AppendableGateway):
     """
     Enables adding new gift cards with the selected card type
-    DOCS_URL: https://idosell.readme.io/reference/clientsgiftcardspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsgiftcardspost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -99,7 +99,7 @@ class Post(AppendableGateway):
 class Put(AppendableGateway):
     """
     Enables editing gift parameters, e.g. changing its balance, validity date, number or PIN
-    DOCS_URL: https://idosell.readme.io/reference/clientsgiftcardsput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsgiftcardsput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -110,7 +110,7 @@ class Put(AppendableGateway):
 class Search(Gateway):
     """
     Enables searching for gift cards and retrieving information about indicated gift cards
-    DOCS_URL: https://idosell.readme.io/reference/clientsgiftcardssearchpost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsgiftcardssearchpost
     """
 
     _method: str = PrivateAttr(default='POST')
@@ -121,7 +121,7 @@ class Search(Gateway):
 class GetTypes(PageableCamelGateway):
     """
     Allows for downloading all types of gift cards defined in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/clientsgiftcardstypesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsgiftcardstypesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -130,7 +130,7 @@ class GetTypes(PageableCamelGateway):
 class PutUnblock(AppendableGateway):
     """
     Enables gift card unblocking
-    DOCS_URL: https://idosell.readme.io/reference/clientsgiftcardsunblockput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsgiftcardsunblockput
     """
 
     _method: str = PrivateAttr(default='PUT')

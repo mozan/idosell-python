@@ -22,7 +22,7 @@ class PutDefaultProfilesSystemDeliveriesParamsModel(BaseModel):
 class PutDefaultProfiles(Gateway):
     """
     The method allows to set the default delivery profile for the given region
-    DOCS_URL: https://idosell.readme.io/reference/deliveriesdefaultprofilesput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/deliveriesdefaultprofilesput
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -33,7 +33,7 @@ class PutDefaultProfiles(Gateway):
 class GetProfiles(PageableCamelGateway):
     """
     Allows to download all of the delivery profiles defined in the administration panel
-    DOCS_URL: https://idosell.readme.io/reference/deliveriesprofilesget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/deliveriesprofilesget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -42,7 +42,7 @@ class GetProfiles(PageableCamelGateway):
 class GetRegions(Gateway):
     """
     The method allows to download a list of regions supporting deliveries
-    DOCS_URL: https://idosell.readme.io/reference/deliveriesregionsget
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/deliveriesregionsget
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -53,7 +53,7 @@ class GetRegions(Gateway):
 class PostRegions(Gateway):
     """
     Allows you to add a region to the indicated country
-    DOCS_URL: https://idosell.readme.io/reference/deliveriesregionspost
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/deliveriesregionspost
     """
 
     _method: str = PrivateAttr(default='POST')

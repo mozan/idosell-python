@@ -24,7 +24,7 @@ class PutCmsConfigVariablesModel(BaseModel):
 class Get(PageableCamelGateway):
     """
     This call returns config variables for given module (type)
-    DOCS_URL: https://idosell.readme.io/reference/configvariablesget-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/configvariablesget-1
     """
 
     _method: str = PrivateAttr(default='GET')
@@ -37,7 +37,7 @@ class Get(PageableCamelGateway):
 class Put(AppendableGateway):
     """
     Use this operation to update snippet campaigns
-    DOCS_URL: https://idosell.readme.io/reference/configvariablesput-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/configvariablesput-1
     """
 
     _method: str = PrivateAttr(default='PUT')
@@ -48,7 +48,7 @@ class Put(AppendableGateway):
 class Delete(Gateway):
     """
     This call is used to remove defined configuration variables
-    DOCS_URL: https://idosell.readme.io/reference/configvariablesdelete-1
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/configvariablesdelete-1
     """
 
     _method: str = PrivateAttr(default='DELETE')

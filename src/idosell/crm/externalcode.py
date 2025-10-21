@@ -14,7 +14,7 @@ class PutCrmExternalcodeParamsModel(BaseModel):
 class Put(Gateway):
     """
     Method that enables setting external system codes for existing customer accounts
-    DOCS_URL: https://idosell.readme.io/reference/clientsexternalcodeput
+    DOCS_URL: https://idosell.readme.io/v6.0/reference/clientsexternalcodeput
     """
 
     _method: str = PrivateAttr(default='PUT')
